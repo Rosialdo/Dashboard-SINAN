@@ -1,0 +1,68 @@
+;MunTurismo.cnv
+;65 Municípios Indutores de Desenvolvimento Turístico Regional - Ministério de Turismo; pós-Patch 4.2
+65  6
+      1  110020 Porto Velho                                 110020
+      2  120040 Rio Brano                                   120040
+      3  130040 Barcelos                                    130040
+      4  130260 Manaus                                      130260
+      5  130340 Parintins                                   130340
+      6  140010 Boa Vista                                   140010
+      7  150140 Belém                                       150140
+      8  150680 Santarém                                    150680
+      9  160030 Macapá                                      160030
+     10  171270 Mateiros                                    171270
+     11  172100 Palmas                                      172100
+     12  210170 Barreirinhas                                210170
+     13  211130 São Luis                                    211130
+     14  220770 Parnaíba                                    220770
+     15  221060 São Raimundo Nonato                         221060
+     16  221100 Teresina                                    221100
+     17  230110 Aracati                                     230110
+     18  230440 Fortaleza                                   230440
+     19  230725 Jijoca de Jericoacoara                      230725
+     20  230920 Nova Olinda                                 230920
+     21  240810 Natal                                       240810
+     22  241420 Tibau do Sul                                241420
+     23  250750 João Pessoa                                 250750
+     24  260545 Fernando de Noronha                         260545
+     25  260730 Ipojuca                                     260730
+     26  261160 Recife                                      261160
+     27  270430 Maceió                                      270430
+     28  270450 Maragogi                                    270450
+     29  280030 Aracajú                                     280030
+     30  291930 Lençois                                     291930
+     31  292070 Maraú                                       292070
+     32  292100 Mata de São João                            292100
+     33  292530 Porto Seguro                                292530
+     34  292740 Salvador                                    292740
+     35  310620 Belo Horizonte                              310620
+     36  312160 Diamantina                                  312160
+     37  314610 Ouro Preto                                  314610
+     38  316880 Tiradentes                                  316880
+     39  320530 Vitória                                     320530
+     40  330010 Angra dos Reis                              330010
+     41  330023 Armação de Búzios                           330023
+     42  330380 Paraty                                      330380
+     43  330390 Petrópolis                                  330390
+     44  330455 Rio de Janeiro                              330455
+     45  352040 Ilha Bela                                   352040
+     46  355030 São Paulo                                   355030
+     47  410690 Curitiba                                    410690
+     48  410830 Foz do Iguaçú                               410830
+     49  411820 Paranaguá                                   411820
+     50  420200 Balneário Camburiú                          420200
+     51  420540 Florianópolis                               420540
+     52  421650 São Joaquim                                 421650
+     53  430210 Bento Gonçalves                             430210
+     54  430910 Gramado                                     430910
+     55  431490 Porto Alegre                                431490
+     56  500220 Bonito                                      500220
+     57  500270 Campo Grande                                500270
+     58  500320 Corumbá                                     500320
+     59  510250 Cáceres                                     510250
+     60  510340 Cuiabá                                      510340
+     61  520060 Alto Paraíso de Goiás                       520060
+     62  520450 Caldas Novas                                520450
+     63  520870 Goiânia                                     520870
+     64  521730 Pirenópolis                                 521730
+     65  530010 Brasília                                    530010

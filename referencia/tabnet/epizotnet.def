@@ -1,0 +1,279 @@
+; INVESTIGAÇÃO DE EPIZOTIA - Sinan NET
+; Criado em 31/07/2008 pelo GT- Sinan/MS - Versão 3.0.0.0
+; Atualizado em 24/09/2010 pelo GT- Sinan/MS - inclusão de consulta segundo Núcleos Hospitalares de Epidemiologia-NHE (190 nucleos)
+
+Ac:\SinanNet\BaseDBF\EPIZ.DB?
+
+;    Definições para Ano, Mes, Semana e Trimestre da Notificação
+XAno da Notific,       DT_NOTIFIC,  1, ANOS.CNV
+LMes da Notific,       DT_NOTIFIC,  5, MESES.CNV
+CMes da Notific,       DT_NOTIFIC,  5, MESESC.CNV
+SMes da Notific,       DT_NOTIFIC,  5, MESES.CNV
+XTrim.da Notific,      DT_NOTIFIC,  5, TRIME.CNV
+
+
+; Definições para Ano, Trimestre, Mes do Inicio da EPIZOTIA
+XAno Inic.Epizotia,    DT_INI_PIZ,  1, ANOS.CNV
+LMes Inic.Epizotia,    DT_INI_PIZ,  5, MESES.CNV
+CMes Inic.Epizotia,    DT_INI_PIZ,  5, MESESC.CNV
+SMes Inic.Epizotia,    DT_INI_PIZ,  5, MESES.CNV
+XTrim.Inic.Epizotia,   DT_INI_PIZ,  5, TRIME.CNV
+
+;    Definições para Ano e Semana epidemiologica de notificação
+xSem.Epid Notific,    SEM_NOT,     5, SEMANAEP.CNV
+xAno Epid notific,    NU_ANO,      1, ANOS.CNV
+
+; Definições para Identificação da Unidade de Saúde Notificante
+LUnid Saude Not, ID_UNIDADE, NM_UNIDADE,  unidanet.dbf
+SUnid Saude Not, ID_UNIDADE, NM_UNIDADE,  unidanet.dbf
+
+;       Definições para identificação dos 190 Núcleos Hospitalares de Epidemiologia-NHE
+LHosp NHE-UF e mun,    ID_UNIDADE,    1,  NHE.CNV
+SHosp NHE-UF e mun,    ID_UNIDADE,    1,  NHE.CNV
+
+;       Definições para identificação dos 190 Núcleos Hospitalares de Epidemiologia-NHE segundo nível hospitalar
+LHosp NHE-Nível,       ID_UNIDADE,    1,     NHENIVEL.CNV
+SHosp NHE-Nível,       ID_UNIDADE,    1,     NHENIVEL.CNV
+
+;       Definições para identificação dos 190 Núcleos Hospitalares de Epidemiologia-NHE segundo município
+LHosp NHE-Nível Mun,   ID_UNIDADE,    1,     NHE_NIVEL_MUN.CNV
+SHosp NHE-Nível Mun,   ID_UNIDADE,    1,     NHE_NIVEL_MUN.CNV
+
+; Definicoes para localização da UF Notificante
+LUF Notificação,    ID_MUNICIP,  1,  UFCODIGO.CNV
+CUF Notificação,    ID_MUNICIP,  1,  UFCCODIG.CNV
+SUF Notificação,    ID_MUNICIP,  1,  UFCODIGO.CNV
+
+;     Definicoes para Regionais de Notificaçao
+LRegional Notificação,  ID_REGIONA, NM_REGIONA,  regionet.dbf
+SRegional Notificação,  ID_REGIONA, NM_REGIONA,  regionet.dbf
+
+;     Definicoes para Região metropolitana de notificação
+LReg Metrop Not,  ID_MUNICIP,   1,  RMETRIDB2007.CNV
+SReg Metrop Not,  ID_MUNICIP,   1,  RMETRIDB2007.CNV
+
+; Definicoes para Capitais de Notificação
+XCapitais Not.,       ID_MUNICIP,  1,  CAPITAL.CNV
+
+; Definicoes para Municípios de Fronteira
+XMun Fronteira Not,     ID_MUNICIP, 1,  Munfront.cnv
+XMun Fronteira Res,    ID_MN_RESI,   1,  Munfront.cnv
+
+; Definicoes para Municípios de Fronteira com o Paraguai
+XMun Not Fro Paraguai,     ID_MUNICIP, 1,  MufroPY.cnv
+XMun Res Fro Paraguai,    ID_MN_RESI,   1,  MufroPY.cnv
+
+; Definicoes UF e Municipio de fronteira
+
+XUF e Mun Not Front,    ID_MUNICIP,  1,  UF_MN_Front.cnv
+XUF e Mun Res Front,    ID_MN_RESI,  1,  UF_MN_Front.cnv
+
+; Definicoes para municípios de Notificação
+LMun US Noti AC,   ID_MUNICIP,  1,  MUNICAC.CNV
+SMun US Noti AC,   ID_MUNICIP,  1,  MUNICAC.CNV
+LMun US Noti AL,   ID_MUNICIP,  1,  MUNICAL.CNV
+SMun US Noti AL,   ID_MUNICIP,  1,  MUNICAL.CNV
+LMun US Noti AM,   ID_MUNICIP,  1,  MUNICAM.CNV
+SMun US Noti AM,   ID_MUNICIP,  1,  MUNICAM.CNV
+LMun US Noti AP,   ID_MUNICIP,  1,  MUNICAP.CNV
+SMun US Noti AP,   ID_MUNICIP,  1,  MUNICAP.CNV
+LMun US Noti BA,   ID_MUNICIP,  1,  MUNICBA.CNV
+SMun US Noti BA,   ID_MUNICIP,  1,  MUNICBA.CNV
+LMun US Noti BR,   ID_MUNICIP,  1,  MUNICBR.CNV
+SMun US Noti BR,   ID_MUNICIP,  1,  MUNICBR.CNV
+LMun US Noti CE,   ID_MUNICIP,  1,  MUNICCE.CNV
+SMun US Noti CE,   ID_MUNICIP,  1,  MUNICCE.CNV
+LMun US Noti DF,   ID_MUNICIP,  1,  MUNICDF.CNV
+SMun US Noti DF,   ID_MUNICIP,  1,  MUNICDF.CNV
+LMun US Noti ES,   ID_MUNICIP,  1,  MUNICES.CNV
+SMun US Noti ES,   ID_MUNICIP,  1,  MUNICES.CNV
+LMun US Noti GO,   ID_MUNICIP,  1,  MUNICGO.CNV
+SMun US Noti GO,   ID_MUNICIP,  1,  MUNICGO.CNV
+LMun US Noti MA,   ID_MUNICIP,  1,  MUNICMA.CNV
+SMun US Noti MA,   ID_MUNICIP,  1,  MUNICMA.CNV
+LMun US Noti MG,   ID_MUNICIP,  1,  MUNICMG.CNV
+SMun US Noti MG,   ID_MUNICIP,  1,  MUNICMG.CNV
+LMun US Noti MS,   ID_MUNICIP,  1,  MUNICMS.CNV
+SMun US Noti MS,   ID_MUNICIP,  1,  MUNICMS.CNV
+LMun US Noti MT,   ID_MUNICIP,  1,  MUNICMT.CNV
+SMun US Noti MT,   ID_MUNICIP,  1,  MUNICMT.CNV
+LMun US Noti PA,   ID_MUNICIP,  1,  MUNICPA.CNV
+SMun US Noti PA,   ID_MUNICIP,  1,  MUNICPA.CNV
+LMun US Noti PB,   ID_MUNICIP,  1,  MUNICPB.CNV
+SMun US Noti PB,   ID_MUNICIP,  1,  MUNICPB.CNV
+LMun US Noti PE,   ID_MUNICIP,  1,  MUNICPE.CNV
+SMun US Noti PE,   ID_MUNICIP,  1,  MUNICPE.CNV
+LMun US Noti PI,   ID_MUNICIP,  1,  MUNICPI.CNV
+SMun US Noti PI,   ID_MUNICIP,  1,  MUNICPI.CNV
+LMun US Noti PR,   ID_MUNICIP,  1,  MUNICPR.CNV
+SMun US Noti PR,   ID_MUNICIP,  1,  MUNICPR.CNV
+LMun US Noti RJ,   ID_MUNICIP,  1,  MUNICRJ.CNV
+SMun US Noti RJ,   ID_MUNICIP,  1,  MUNICRJ.CNV
+LMun US Noti RN,   ID_MUNICIP,  1,  MUNICRN.CNV
+SMun US Noti RN,   ID_MUNICIP,  1,  MUNICRN.CNV
+LMun US Noti RO,   ID_MUNICIP,  1,  MUNICRO.CNV
+SMun US Noti RO,   ID_MUNICIP,  1,  MUNICRO.CNV
+LMun US Noti RR,   ID_MUNICIP,  1,  MUNICRR.CNV
+SMun US Noti RR,   ID_MUNICIP,  1,  MUNICRR.CNV
+LMun US Noti RS,   ID_MUNICIP,  1,  MUNICRS.CNV
+SMun US Noti RS,   ID_MUNICIP,  1,  MUNICRS.CNV
+LMun US Noti SC,   ID_MUNICIP,  1,  MUNICSC.CNV
+SMun US Noti SC,   ID_MUNICIP,  1,  MUNICSC.CNV
+LMun US Noti SE,   ID_MUNICIP,  1,  MUNICSE.CNV
+SMun US Noti SE,   ID_MUNICIP,  1,  MUNICSE.CNV
+LMun US Noti SP,   ID_MUNICIP,  1,  MUNICSP.CNV
+SMun US Noti SP,   ID_MUNICIP,  1,  MUNICSP.CNV
+LMun US Noti TO,   ID_MUNICIP,  1,  MUNICTO.CNV
+SMun US Noti TO,   ID_MUNICIP,  1,  MUNICTO.CNV
+
+;   Definicoes para localização da ocorrência da epizotia por ocasião da Notificação
+;País de Ocorrência
+LPAIS Ocorrência,   ID_PAIS,NM_PAIS,      paisnet.dbf
+SPAIS Ocorrência,   ID_PAIS,NM_PAIS,      paisnet.dbf
+
+;Unidade federada de Ocorrência
+LUF Ocorrência,      ID_MN_OCOR,        1,  UFcodigo.CNV
+CUF Ocorrência,      ID_MN_OCOR,        1,  UFCcodig.CNV
+SUF Ocorrência,      ID_MN_OCOR,        1,  UFcodigo.CNV
+
+DUF Mercosul,             ID_MN_OCOR,           1,  UFMSUL.CNV
+CUF Mercosul,             ID_MN_OCOR,           1,  UFMSULC.CNV
+SUF Mercosul,             ID_MN_OCOR,           1,  UFMSUL.CNV
+
+;regional de saúde de Ocorrência
+LRegional Ocorrência,     ID_RG_OCOR, NM_REGIONA,   regionet.dbf
+SRegional Ocorrência,     ID_RG_OCOR, NM_REGIONA,   regionet.dbf
+
+;região metropolitana de Ocorrência
+LReg Metrop Ocorrência,    ID_MN_OCOR,   1,  RMETRIDB2007.CNV
+SReg Metrop Ocorrência,    ID_MN_OCOR,   1,  RMETRIDB2007.CNV
+
+;município de Ocorrência
+DMun Ocorr AC,    ID_MN_OCOR,   1,  MUNICAC.CNV
+SMun Ocorr AC,    ID_MN_OCOR,   1,  MUNICAC.CNV
+DMun Ocorr AL,    ID_MN_OCOR,   1,  MUNICAL.CNV
+SMun Ocorr AL,    ID_MN_OCOR,   1,  MUNICAL.CNV
+DMun Ocorr AM,    ID_MN_OCOR,   1,  MUNICAM.CNV
+SMun Ocorr AM,    ID_MN_OCOR,   1,  MUNICAM.CNV
+DMun Ocorr AP,    ID_MN_OCOR,   1,  MUNICAP.CNV
+SMun Ocorr AP,    ID_MN_OCOR,   1,  MUNICAP.CNV
+DMun Ocorr BA,    ID_MN_OCOR,   1,  MUNICBA.CNV
+SMun Ocorr BA,    ID_MN_OCOR,   1,  MUNICBA.CNV
+DMun Ocorr BR,    ID_MN_OCOR,   1,  MUNICBR.CNV
+SMun Ocorr BR,    ID_MN_OCOR,   1,  MUNICBR.CNV
+DMun Ocorr CE,    ID_MN_OCOR,   1,  MUNICCE.CNV
+SMun Ocorr CE,    ID_MN_OCOR,   1,  MUNICCE.CNV
+DMun Ocorr DF,    ID_MN_OCOR,   1,  MUNICDF.CNV
+SMun Ocorr DF,    ID_MN_OCOR,   1,  MUNICDF.CNV
+DMun Ocorr ES,    ID_MN_OCOR,   1,  MUNICES.CNV
+SMun Ocorr ES,    ID_MN_OCOR,   1,  MUNICES.CNV
+DMun Ocorr GO,    ID_MN_OCOR,   1,  MUNICGO.CNV
+SMun Ocorr GO,    ID_MN_OCOR,   1,  MUNICGO.CNV
+DMun Ocorr MA,    ID_MN_OCOR,   1,  MUNICMA.CNV
+SMun Ocorr MA,    ID_MN_OCOR,   1,  MUNICMA.CNV
+DMun Ocorr MG,    ID_MN_OCOR,   1,  MUNICMG.CNV
+SMun Ocorr MG,    ID_MN_OCOR,   1,  MUNICMG.CNV
+DMun Ocorr MS,    ID_MN_OCOR,   1,  MUNICMS.CNV
+SMun Ocorr MS,    ID_MN_OCOR,   1,  MUNICMS.CNV
+DMun Ocorr MT,    ID_MN_OCOR,   1,  MUNICMT.CNV
+SMun Ocorr MT,    ID_MN_OCOR,   1,  MUNICMT.CNV
+DMun Ocorr PA,    ID_MN_OCOR,   1,  MUNICPA.CNV
+SMun Ocorr PA,    ID_MN_OCOR,   1,  MUNICPA.CNV
+DMun Ocorr PB,    ID_MN_OCOR,   1,  MUNICPB.CNV
+SMun Ocorr PB,    ID_MN_OCOR,   1,  MUNICPB.CNV
+DMun Ocorr PE,    ID_MN_OCOR,   1,  MUNICPE.CNV
+SMun Ocorr PE,    ID_MN_OCOR,   1,  MUNICPE.CNV
+DMun Ocorr PI,    ID_MN_OCOR,   1,  MUNICPI.CNV
+SMun Ocorr PI,    ID_MN_OCOR,   1,  MUNICPI.CNV
+DMun Ocorr PR,    ID_MN_OCOR,   1,  MUNICPR.CNV
+SMun Ocorr PR,    ID_MN_OCOR,   1,  MUNICPR.CNV
+DMun Ocorr RJ,    ID_MN_OCOR,   1,  MUNICRJ.CNV
+SMun Ocorr RJ,    ID_MN_OCOR,   1,  MUNICRJ.CNV
+DMun Ocorr RN,    ID_MN_OCOR,   1,  MUNICRN.CNV
+SMun Ocorr RN,    ID_MN_OCOR,   1,  MUNICRN.CNV
+DMun Ocorr RO,    ID_MN_OCOR,   1,  MUNICRO.CNV
+SMun Ocorr RO,    ID_MN_OCOR,   1,  MUNICRO.CNV
+DMun Ocorr RR,    ID_MN_OCOR,   1,  MUNICRR.CNV
+SMun Ocorr RR,    ID_MN_OCOR,   1,  MUNICRR.CNV
+DMun Ocorr RS,    ID_MN_OCOR,   1,  MUNICRS.CNV
+SMun Ocorr RS,    ID_MN_OCOR,   1,  MUNICRS.CNV
+DMun Ocorr SC,    ID_MN_OCOR,   1,  MUNICSC.CNV
+SMun Ocorr SC,    ID_MN_OCOR,   1,  MUNICSC.CNV
+DMun Ocorr SE,    ID_MN_OCOR,   1,  MUNICSE.CNV
+SMun Ocorr SE,    ID_MN_OCOR,   1,  MUNICSE.CNV
+DMun Ocorr SP,    ID_MN_OCOR,   1,  MUNICSP.CNV
+SMun Ocorr SP,    ID_MN_OCOR,   1,  MUNICSP.CNV
+DMun Ocorr TO,    ID_MN_OCOR,   1,  MUNICTO.CNV
+SMun Ocorr TO,    ID_MN_OCOR,   1,  MUNICTO.CNV
+
+;Zona de Ocorrência
+XZona Ocorrência,    CS_ZONA,      1,  ZONA.CNV
+
+;Distritos de Ocorrencia
+DDistr Ocorr,   ID_DISTRIT, NM_DISTRIT,   distrnet.dbf
+SDistr Ocorr,   ID_DISTRIT, NM_DISTRIT,   distrnet.dbf
+
+;Bairros de Ocorrencia
+DBairro Ocorr,     ID_BAIRRO, NM_BAIRRO,     bairrnet.dbf
+SBairro Ocorr,     ID_BAIRRO, NM_BAIRRO,     bairrnet.dbf
+
+; Capitais de Ocorrência
+DCapitais Ocorrência,       ID_MN_OCOR,  1,  CAPITAL.CNV
+SCapitais Ocorrência,       ID_MN_OCOR,  1,  CAPITAL.CNV
+
+
+;--------FIM NOTINDIV------------------------
+;                          INVESTIGACAO
+
+XAmbiente Ocor,            TP_AMB_OCO,    1,  AMB_EPIZ.CNV
+
+XHouve Coleta,               ST_MAT_COL,    1,  SIM_NAO.CNV
+
+;    Definições para Ano, Mes, Semana e Trimestre da Coleta
+XAno da Coleta,       DT_COL_MAT,  1, ANOS.CNV
+LMes da Coleta,       DT_COL_MAT,  5, MESES.CNV
+CMes da Coleta,       DT_COL_MAT,  5, MESESC.CNV
+SMes da Coleta,       DT_COL_MAT,  5, MESES.CNV
+XTrim.da Coleta,      DT_COL_MAT,  5, TRIME.CNV
+
+;               MATERIAL COLETADO
+XFígado,              ST_MAT_FIG,  1, SIM_NAO.CNV
+XRim,                 ST_MAT_RIM,  1, SIM_NAO.CNV
+XBaço,                ST_MAT_BAC,  1, SIM_NAO.CNV
+XCerebro,             ST_MAT_CER,  1, SIM_NAO.CNV
+XCoração,             ST_MAT_COR,  1, SIM_NAO.CNV
+XFezes,               ST_MAT_FEZ,  1, SIM_NAO.CNV
+XSoro,                ST_MAT_SOR,  1, SIM_NAO.CNV
+XSangue Total,        ST_MAT_SAN,  1, SIM_NAO.CNV
+XOutro Material,      ST_MAT_OUT,  1, SIM_NAO.CNV
+
+XAnimal Acometido_1,     ST_ANIMA_1,  1, ANI_EPIZ.CNV
+
+IAnimal Doente_1,      NU_ANIDO_1
+
+IAnimal Morto_1,       NU_ANIMO_1
+
+XAnimal Acometido_2,     ST_ANIMA_2,  1, ANI_EPIZ.CNV
+
+IAnimal Doente_2,      NU_ANIDO_2
+
+IAnimal Morto_2,       NU_ANIMO_2
+
+XSuspeita Diag_1,      TP_SUSP_1,    1,  SUSPEI_EPIZ.CNV
+
+XSuspeita Diag_2,      TP_SUSP_2,    1,  SUSPEI_EPIZ.CNV
+
+XSuspeita Diag_3,      TP_SUSP_3,    1,  SUSPEI_EPIZ.CNV
+
+;               RESULTADOS LABORATORIAIS
+
+XLab. Raiva,              ST_RES_RAI,     1, LAB_EPIZ.CNV
+XLab. Equina,             ST_RES_EQ,      1, LAB_EPIZ.CNV
+XLab. Febre Nilo,         ST_RES_FN,      1, LAB_EPIZ.CNV
+XLab. Encefalite Bovina,  ST_RES_EB,      1, LAB_EPIZ.CNV
+XLab. Febre Amarela,      ST_RES_FA,      1, LAB_EPIZ.CNV
+XLab. Influenza,          ST_RES_INF,     1, LAB_EPIZ.CNV
+XLab. Outro,              ST_RES_OUT,     1, LAB_EPIZ.CNV
+
+
+

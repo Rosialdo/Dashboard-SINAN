@@ -1,0 +1,45 @@
+;listados todos os agravos da portaria 05 de notificação compulsória
+;de 21/02/2006 para relatórios de Municípios de fronteiras.
+;GTSINAN alterado no dia 25 de maio de 2010 ( neste dia foi alterado
+; retirada Eventos Adversos Pós-Vacina, Intoxicação Exogena, Influenza
+; - nesta última será dados do influenza on-line e não sinan net.
+; Revisado UT-Sinan 2019
+
+37  4
+      1  AIDS                                               B24 ,
+      2  Botulismo                                          A051
+      3  Carbúnculo ou Antraz                               A229
+      4  Cólera                                             A009
+      5  Coqueluche                                         A379
+      6  Dengue                                             A90 ,
+      7  Difteria                                           A369
+      8  Doenças de Chagas Aguda                            B571
+      9  Doença de Creutzfeldt-Jacob                        A810
+     10  Doenças Exantemáticas                              B09 ,
+     11  Esquistossomose                                    B659
+     12  Febre Amarela                                      A959
+     13  Febre do Nilo                                      A923
+     14  Febre Maculosa                                     A779
+     15  Febre Tifóide                                      A010
+     16  Gestantes HIV +                                    Z21 ,
+     17  Hanseníase                                         A309
+     18  Hantaviroses                                       A988
+     19  Hepatites Virais                                   B19 ,
+     20  Influenza                                          J11 ,
+     21  Leishmaniose Tegumentar Americana                  B551
+     22  Leishmaniose Visceral                              B550
+     23  Leptospirose                                       A279
+     24  Malária                                            B54 ,
+     25  Meningite                                          G039
+     26  Paralisia Flácida Aguda/Poliomielite               A809
+     27  Peste                                              A209
+     28  Raiva Humana                                       A829
+     29  Sífilis Congênita                                  A509
+     30  Sífilis em Gestante                                O981
+     31  Síndrome da Rubéola Congênita                      P350
+     32  Síndrome Respiratória Aguda                        J07 ,
+     33  Tétano Acidental                                   A35 ,
+     34  Tétano Neonatal                                    A33 ,
+     35  Tuberculose                                        A169
+     36  Tularemia                                          A219
+     37  Varíola                                            B03 ,

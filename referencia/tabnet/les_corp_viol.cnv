@@ -1,0 +1,15 @@
+;Local_ocor.cnv
+13 2 l
+      1  Ign/Branco                                           ,00-99
+      2  Cabeça/face                                        01
+      3  Pescoço                                            02
+      4  Boca/dentes                                        03
+      5  Coluna/medula                                      04
+      6  Tórax/dorso                                        05
+      7  Abdome                                             06
+      8  Quadril/pelve                                      07
+      9  Membros superiores                                 08
+     10  Membros inferiores                                 09
+     11  Órgãos genitais/ânus                               10
+     12  Múltiplos órgão /regiões                           11
+     13  Não se aplica                                      88

@@ -1,0 +1,8 @@
+;Agravos de notificação compulsória em Unidades Sentinelas
+; elaborada para retirada de dados Sáude nas Fronteiras.
+; Excluída a intoxicação exógena.
+; Revisado UT-Sinan 2019
+
+2  4
+      1  Agravos saúde do trabalhador                       Z209,Y96 ,C80 ,L989,Z579,H833,J64 ,F99 ,
+      2  Violência doméstica sexual e/ou auto-provocada     Y09 ,

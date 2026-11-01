@@ -1,0 +1,40 @@
+; Lista dos agravos selecionados pelo CIEVS para surto - Demanda CIEVS Raquel. Criado por UT-Sinan em 28/06/2012 - Andrea
+; Lista dos agravos selecionados para monitoramento pelo CIEVS, com base na Portaria 204 de 17 de fevereiro de 2016 - Demanda CGVR Greice
+; Apenas agravos de notificação compulsória e imediata de qualquer caso suspeito. Criado por UT-Sinan em 21/02/2018 - Juliano
+; Revisado UT-Sinan 2019
+
+33  4
+      1  Arenavírus                                         A969
+      2  Botulismo                                          A051
+      3  Carbúnculo ou Antraz                               A229
+      4  Cólera                                             A009
+      5  Coqueluche                                         A379
+      6  Dengue                                             A90 ,
+      7  Difteria                                           A369
+      8  Doenças de Chagas Aguda                            B571
+      9  Doenças Exantemáticas                              B09 ,
+     10  Ebola                                              A984
+     11  Febre Amarela                                      A959
+     12  Febre de Chikungunya                               A920
+     13  Febre do Nilo ocidental e outras arboviroses       A923
+     14  Febre Maculosa e outras Rickettsioses              A779
+     15  Doença aguda pelo vírus Zika                       A928
+     16  Febre Purpúrica Brasileira                         A484
+     17  Febre Tifóide                                      A010
+     18  Hantaviroses                                       A988
+     19  Influenza humana produzida pornovo subtipo viral   J11 ,
+     20  Lassa                                              A962
+     21  Leptospirose                                       A279
+     22  Malária                                            B54 ,
+     23  Marburg                                            A983
+     24  Meningite                                          G039
+     25  Paralisia Flácida Aguda/Poliomielite               A809
+     26  Peste                                              A209
+     27  Raiva Humana                                       A829
+     28  Síndrome da Rubéola Congênita                      P350
+     29  Tétano Acidental                                   A35 ,
+     30  Tétano Neonatal                                    A33 ,
+     31  Tularemia                                          A219
+     32  Varicela                                           B019
+     33  Varíola                                            B03 ,
+

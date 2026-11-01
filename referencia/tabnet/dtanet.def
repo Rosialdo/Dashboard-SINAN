@@ -1,0 +1,330 @@
+; INVESTIGAÇÃO DE DTA - SinanNet 
+; atualizado em 15/10/2007 pelo GT- Sinan/MS
+; Atualizado em 30/08/2010 pelo GT- Sinan/MS
+; Atualizado em 24/09/2010 pelo GT- Sinan/MS - inclusão de consulta segundo Núcleos Hospitalares de Epidemiologia-NHE (190 nucleos)
+
+Ac:\SinanNet\BaseDBF\DTA*.DB?
+
+;    Definições para Ano, Mês, Semana e Trimestre da Notificação
+XAno da Notific,       DT_NOTIFIC,  1, ANOS.CNV
+LMes da Notific,       DT_NOTIFIC,  5, MESES.CNV
+CMes da Notific,       DT_NOTIFIC,  5, MESESC.CNV
+SMes da Notific,       DT_NOTIFIC,  5, MESES.CNV
+XTrim.da Notific,      DT_NOTIFIC,  5, TRIME.CNV
+
+
+;    Definições para Ano e Semana epidemiologica de notificação
+xSem.Epid Notific,    SEM_NOT,     5, SEMANAEP.CNV
+xAno Epid notific,    NU_ANO,      1, ANOS.CNV
+
+; Definições para Agravos
+
+;agravos notificados no Sinan. Nos níveis municipal e estadual estão incluídos os de
+;seu interesse
+LAgravos notificados,    ID_AGRAVO, NM_IDEN_AG,   AGRAVNET.DBF
+SAgravos notificados,    ID_AGRAVO, NM_IDEN_AG,   AGRAVNET.DBF
+
+; Incremento de casos suspeitos
+INº de casos suspeitos,   QT_TOTAL_C
+
+; Definições para Ano, Trimestre, Mes do Inicio dos Sintomas
+XAno 1ºSint. 1ºCaso,     DT_SIN_PRI,  1, ANOS.CNV
+LMes 1ºSint. 1ºCaso,     DT_SIN_PRI,  5, MESES.CNV
+CMes 1ºSint. 1ºCaso,     DT_SIN_PRI,  5, MESESC.CNV
+SMes 1ºSint. 1ºCaso,     DT_SIN_PRI,  5, MESES.CNV
+XTrim. 1ºSint. 1ºCaso,   DT_SIN_PRI,  5, TRIME.CNV
+
+XLocal Inic. Ocorre.,    CS_LOCAL,    1, OCORRENCIA.CNV   
+
+
+; Definições para Identificação da Unidade de Saúde Notificante
+LUnid Saude Not, ID_UNIDADE, NM_UNIDADE,  unidanet.dbf
+SUnid Saude Not, ID_UNIDADE, NM_UNIDADE,  unidanet.dbf
+
+;       Definições para identificação dos 190 Núcleos Hospitalares de Epidemiologia-NHE
+LHosp NHE-UF e mun,    ID_UNIDADE,    1,  NHE.CNV
+SHosp NHE-UF e mun,    ID_UNIDADE,    1,  NHE.CNV
+
+;       Definições para identificação dos 190 Núcleos Hospitalares de Epidemiologia-NHE segundo nível hospitalar
+LHosp NHE-Nível,       ID_UNIDADE,    1,     NHENIVEL.CNV
+SHosp NHE-Nível,       ID_UNIDADE,    1,     NHENIVEL.CNV
+
+;       Definições para identificação dos 190 Núcleos Hospitalares de Epidemiologia-NHE segundo município
+LHosp NHE-Nível Mun,   ID_UNIDADE,    1,     NHE_NIVEL_MUN.CNV
+SHosp NHE-Nível Mun,   ID_UNIDADE,    1,     NHE_NIVEL_MUN.CNV
+
+
+; Definicoes para localização da UF Notificante
+
+LRegião notificação,ID_MUNICIP,  1,REGIAO.CNV
+CRegião notificação,ID_MUNICIP,  1,REGIAOC.CNV
+SRegião notificação,ID_MUNICIP,  1,REGIAO.CNV
+LRegião/UF Not     ,ID_MUNICIP,  1,REGUF.CNV
+
+LUF Notificação,    ID_MUNICIP,  1,  UFCODIGO.CNV
+CUF Notificação,    ID_MUNICIP,  1,  UFCCODIG.CNV
+SUF Notificação,    ID_MUNICIP,  1,  UFCODIGO.CNV
+
+;     Definicoes para Regionais de Notificaçao
+LRegional Notificação,  ID_REGIONA, NM_REGIONA,  regionet.dbf
+SRegional Notificação,  ID_REGIONA, NM_REGIONA,  regionet.dbf
+
+;     Definicoes para Região metropolitana de notificação
+LReg Metrop Not,  ID_MUNICIP,   1,  RMETRIDB2007.CNV
+SReg Metrop Not,  ID_MUNICIP,   1,  RMETRIDB2007.CNV
+
+; Definicoes para Capitais de Notificação
+XCapitais Not.,       ID_MUNICIP,  1,  CAPITAL.CNV
+
+; Definicoes para municípios de Notificação
+LMun US Noti AC,   ID_MUNICIP,  1,  MUNICAC.CNV
+SMun US Noti AC,   ID_MUNICIP,  1,  MUNICAC.CNV
+LMun US Noti AL,   ID_MUNICIP,  1,  MUNICAL.CNV
+SMun US Noti AL,   ID_MUNICIP,  1,  MUNICAL.CNV
+LMun US Noti AM,   ID_MUNICIP,  1,  MUNICAM.CNV
+SMun US Noti AM,   ID_MUNICIP,  1,  MUNICAM.CNV
+LMun US Noti AP,   ID_MUNICIP,  1,  MUNICAP.CNV
+SMun US Noti AP,   ID_MUNICIP,  1,  MUNICAP.CNV
+LMun US Noti BA,   ID_MUNICIP,  1,  MUNICBA.CNV
+SMun US Noti BA,   ID_MUNICIP,  1,  MUNICBA.CNV
+LMun US Noti BR,   ID_MUNICIP,  1,  MUNICBR.CNV
+SMun US Noti BR,   ID_MUNICIP,  1,  MUNICBR.CNV
+LMun US Noti CE,   ID_MUNICIP,  1,  MUNICCE.CNV
+SMun US Noti CE,   ID_MUNICIP,  1,  MUNICCE.CNV
+LMun US Noti DF,   ID_MUNICIP,  1,  MUNICDF.CNV
+SMun US Noti DF,   ID_MUNICIP,  1,  MUNICDF.CNV
+LMun US Noti ES,   ID_MUNICIP,  1,  MUNICES.CNV
+SMun US Noti ES,   ID_MUNICIP,  1,  MUNICES.CNV
+LMun US Noti GO,   ID_MUNICIP,  1,  MUNICGO.CNV
+SMun US Noti GO,   ID_MUNICIP,  1,  MUNICGO.CNV
+LMun US Noti MA,   ID_MUNICIP,  1,  MUNICMA.CNV
+SMun US Noti MA,   ID_MUNICIP,  1,  MUNICMA.CNV
+LMun US Noti MG,   ID_MUNICIP,  1,  MUNICMG.CNV
+SMun US Noti MG,   ID_MUNICIP,  1,  MUNICMG.CNV
+LMun US Noti MS,   ID_MUNICIP,  1,  MUNICMS.CNV
+SMun US Noti MS,   ID_MUNICIP,  1,  MUNICMS.CNV
+LMun US Noti MT,   ID_MUNICIP,  1,  MUNICMT.CNV
+SMun US Noti MT,   ID_MUNICIP,  1,  MUNICMT.CNV
+LMun US Noti PA,   ID_MUNICIP,  1,  MUNICPA.CNV
+SMun US Noti PA,   ID_MUNICIP,  1,  MUNICPA.CNV
+LMun US Noti PB,   ID_MUNICIP,  1,  MUNICPB.CNV
+SMun US Noti PB,   ID_MUNICIP,  1,  MUNICPB.CNV
+LMun US Noti PE,   ID_MUNICIP,  1,  MUNICPE.CNV
+SMun US Noti PE,   ID_MUNICIP,  1,  MUNICPE.CNV
+LMun US Noti PI,   ID_MUNICIP,  1,  MUNICPI.CNV
+SMun US Noti PI,   ID_MUNICIP,  1,  MUNICPI.CNV
+LMun US Noti PR,   ID_MUNICIP,  1,  MUNICPR.CNV
+SMun US Noti PR,   ID_MUNICIP,  1,  MUNICPR.CNV
+LMun US Noti RJ,   ID_MUNICIP,  1,  MUNICRJ.CNV
+SMun US Noti RJ,   ID_MUNICIP,  1,  MUNICRJ.CNV
+LMun US Noti RN,   ID_MUNICIP,  1,  MUNICRN.CNV
+SMun US Noti RN,   ID_MUNICIP,  1,  MUNICRN.CNV
+LMun US Noti RO,   ID_MUNICIP,  1,  MUNICRO.CNV
+SMun US Noti RO,   ID_MUNICIP,  1,  MUNICRO.CNV
+LMun US Noti RR,   ID_MUNICIP,  1,  MUNICRR.CNV
+SMun US Noti RR,   ID_MUNICIP,  1,  MUNICRR.CNV
+LMun US Noti RS,   ID_MUNICIP,  1,  MUNICRS.CNV
+SMun US Noti RS,   ID_MUNICIP,  1,  MUNICRS.CNV
+LMun US Noti SC,   ID_MUNICIP,  1,  MUNICSC.CNV
+SMun US Noti SC,   ID_MUNICIP,  1,  MUNICSC.CNV
+LMun US Noti SE,   ID_MUNICIP,  1,  MUNICSE.CNV
+SMun US Noti SE,   ID_MUNICIP,  1,  MUNICSE.CNV
+LMun US Noti SP,   ID_MUNICIP,  1,  MUNICSP.CNV
+SMun US Noti SP,   ID_MUNICIP,  1,  MUNICSP.CNV
+LMun US Noti TO,   ID_MUNICIP,  1,  MUNICTO.CNV
+SMun US Noti TO,   ID_MUNICIP,  1,  MUNICTO.CNV
+
+;   Definicoes para localização da Residência do paciente por ocasião da Notificação
+;País de residência
+LPAIS Residência,   ID_PAIS,NM_PAIS,      paisnet.dbf
+SPAIS Residência,   ID_PAIS,NM_PAIS,      paisnet.dbf
+
+;REGIÃO DO BRASIL 
+LRegião Residência,ID_MUNI_RE,  1,REGIAO.CNV
+CRegião Residência,ID_MUNI_RE,  1,REGIAOC.CNV
+SRegião Residência,ID_MUNI_RE,  1,REGIAO.CNV
+LRegião/UF Resid  ,ID_MUNI_RE,  1,REGUF.CNV
+
+;Unidade federada de residência
+LUF Residência,      ID_MUNI_RE,        1,  UFcodigo.CNV
+CUF Residência,      ID_MUNI_RE,        1,  UFCcodig.CNV
+SUF Residência,      ID_MUNI_RE,        1,  UFcodigo.CNV
+
+;regional de saúde de residência
+LRegional Residência,     ID_RG_RESI, NM_REGIONA,   regionet.dbf
+SRegional Residência,     ID_RG_RESI, NM_REGIONA,   regionet.dbf
+
+;região metropolitana de residência
+LReg Metrop Residência,    ID_MUNI_RE,   1,  RMETRIDB2007.CNV
+SReg Metrop Residência,    ID_MUNI_RE,   1,  RMETRIDB2007.CNV
+
+;município de residência
+DMun Resid AC,    ID_MUNI_RE,   1,  MUNICAC.CNV
+SMun Resid AC,    ID_MUNI_RE,   1,  MUNICAC.CNV
+DMun Resid AL,    ID_MUNI_RE,   1,  MUNICAL.CNV
+SMun Resid AL,    ID_MUNI_RE,   1,  MUNICAL.CNV
+DMun Resid AM,    ID_MUNI_RE,   1,  MUNICAM.CNV
+SMun Resid AM,    ID_MUNI_RE,   1,  MUNICAM.CNV
+DMun Resid AP,    ID_MUNI_RE,   1,  MUNICAP.CNV
+SMun Resid AP,    ID_MUNI_RE,   1,  MUNICAP.CNV
+DMun Resid BA,    ID_MUNI_RE,   1,  MUNICBA.CNV
+SMun Resid BA,    ID_MUNI_RE,   1,  MUNICBA.CNV
+DMun Resid BR,    ID_MUNI_RE,   1,  MUNICBR.CNV
+SMun Resid BR,    ID_MUNI_RE,   1,  MUNICBR.CNV
+DMun Resid CE,    ID_MUNI_RE,   1,  MUNICCE.CNV
+SMun Resid CE,    ID_MUNI_RE,   1,  MUNICCE.CNV
+DMun Resid DF,    ID_MUNI_RE,   1,  MUNICDF.CNV
+SMun Resid DF,    ID_MUNI_RE,   1,  MUNICDF.CNV
+DMun Resid ES,    ID_MUNI_RE,   1,  MUNICES.CNV
+SMun Resid ES,    ID_MUNI_RE,   1,  MUNICES.CNV
+DMun Resid GO,    ID_MUNI_RE,   1,  MUNICGO.CNV
+SMun Resid GO,    ID_MUNI_RE,   1,  MUNICGO.CNV
+DMun Resid MA,    ID_MUNI_RE,   1,  MUNICMA.CNV
+SMun Resid MA,    ID_MUNI_RE,   1,  MUNICMA.CNV
+DMun Resid MG,    ID_MUNI_RE,   1,  MUNICMG.CNV
+SMun Resid MG,    ID_MUNI_RE,   1,  MUNICMG.CNV
+DMun Resid MS,    ID_MUNI_RE,   1,  MUNICMS.CNV
+SMun Resid MS,    ID_MUNI_RE,   1,  MUNICMS.CNV
+DMun Resid MT,    ID_MUNI_RE,   1,  MUNICMT.CNV
+SMun Resid MT,    ID_MUNI_RE,   1,  MUNICMT.CNV
+DMun Resid PA,    ID_MUNI_RE,   1,  MUNICPA.CNV
+SMun Resid PA,    ID_MUNI_RE,   1,  MUNICPA.CNV
+DMun Resid PB,    ID_MUNI_RE,   1,  MUNICPB.CNV
+SMun Resid PB,    ID_MUNI_RE,   1,  MUNICPB.CNV
+DMun Resid PE,    ID_MUNI_RE,   1,  MUNICPE.CNV
+SMun Resid PE,    ID_MUNI_RE,   1,  MUNICPE.CNV
+DMun Resid PI,    ID_MUNI_RE,   1,  MUNICPI.CNV
+SMun Resid PI,    ID_MUNI_RE,   1,  MUNICPI.CNV
+DMun Resid PR,    ID_MUNI_RE,   1,  MUNICPR.CNV
+SMun Resid PR,    ID_MUNI_RE,   1,  MUNICPR.CNV
+DMun Resid RJ,    ID_MUNI_RE,   1,  MUNICRJ.CNV
+SMun Resid RJ,    ID_MUNI_RE,   1,  MUNICRJ.CNV
+DMun Resid RN,    ID_MUNI_RE,   1,  MUNICRN.CNV
+SMun Resid RN,    ID_MUNI_RE,   1,  MUNICRN.CNV
+DMun Resid RO,    ID_MUNI_RE,   1,  MUNICRO.CNV
+SMun Resid RO,    ID_MUNI_RE,   1,  MUNICRO.CNV
+DMun Resid RR,    ID_MUNI_RE,   1,  MUNICRR.CNV
+SMun Resid RR,    ID_MUNI_RE,   1,  MUNICRR.CNV
+DMun Resid RS,    ID_MUNI_RE,   1,  MUNICRS.CNV
+SMun Resid RS,    ID_MUNI_RE,   1,  MUNICRS.CNV
+DMun Resid SC,    ID_MUNI_RE,   1,  MUNICSC.CNV
+SMun Resid SC,    ID_MUNI_RE,   1,  MUNICSC.CNV
+DMun Resid SE,    ID_MUNI_RE,   1,  MUNICSE.CNV
+SMun Resid SE,    ID_MUNI_RE,   1,  MUNICSE.CNV
+DMun Resid SP,    ID_MUNI_RE,   1,  MUNICSP.CNV
+SMun Resid SP,    ID_MUNI_RE,   1,  MUNICSP.CNV
+DMun Resid TO,    ID_MUNI_RE,   1,  MUNICTO.CNV
+SMun Resid TO,    ID_MUNI_RE,   1,  MUNICTO.CNV
+
+;Zona de Residência
+XZona Residência,    CS_ZONA,      1,  ZONA.CNV
+
+;Distritos de Residencia
+DDistr Resid,   ID_DISTRIT, NM_DISTRIT,   distrnet.dbf
+SDistr Resid,   ID_DISTRIT, NM_DISTRIT,   distrnet.dbf
+
+;Bairros de Residencia
+DBairro Resid,     ID_BAIRRO, NM_BAIRRO,     bairrnet.dbf
+SBairro Resid,     ID_BAIRRO, NM_BAIRRO,     bairrnet.dbf
+
+; Capitais de Residência
+DCapitais Residência,       ID_MUNI_RE,  1,  CAPITAL.CNV
+SCapitais Residência,       ID_MUNI_RE,  1,  CAPITAL.CNV
+
+
+;------------------------- INVESTIGAÇAO
+
+; Definições para a Data da Investigação
+TAno Investigação,    DT_INVEST,   1, ANOS.CNV
+SAno Investigação,    DT_INVEST,   1, ANOS.CNV  
+DMês Investigação,    DT_INVEST,   5, MESES.CNV
+CMês Investigação,    DT_INVEST,   5, MESESC.CNV
+SMes Investigação,    DT_INVEST,   5, MESES.CNV
+TTrim.Investigação,   DT_INVEST,   5, TRIME.CNV
+STrim.Investigação,   DT_INVEST,   5, TRIME.CNV
+
+; Definições para Ano e Semana epidemiologica de inícos de sintomas
+
+;DSem.Epid. Invest,    SEM_EPIDEM,     5, SEMANAEP.CNV
+;SSem.Epid. Invest,    SEM_EPIDEM,     5, SEMANAEP.CNV
+
+
+;Definicoes para Modo Provável da Transmissão
+
+XModo Prov. Infec.,  CS_TRANS, 1, MODOTRANS.CNV
+XSe indireta,        TP_INDIRET,   1, MODOIND.CNV
+
+
+INº Entrevistados,               NU_ENTR
+INº Doentes Entrevistados,       NU_ENT_DOE
+INº Total de Doentes,            NU_TOT
+INº Total de Hospitalizados,     NU_TOT_HOS
+INº Óbitos,                      NU_OBITO
+
+;editar segundo demanda
+INº Masc. < 1,        NU_1_M_NU
+INº Masc. 1-4,        NU_1_4_NU
+INº Masc. 5-9,        NU_5_9_NU
+INº Masc. 10-19,      NU_10_19_M
+INº Masc. 20-49,      NU_20_49_N
+INº Masc. 50 e +,     NU_50_M_NU
+INº Masc. Ign.,       NU_IGRA_NU
+INº Masc. Total,      NU_F_TOT_N
+
+INº Fem. < 1,         NU_1_F_NU
+INº Fem. 1-4,         NU1_4_F_NU
+INº Fem. 5-9,         NU5_9_F_NU
+INº Fem. 10-19,       NU10_19_N
+INº Fem. 20-49,       NU_20_49_F
+INº Fem. 50 e +,      NU_50_F_NU
+INº Fem. Ign.,        NU_IG_F_NU
+INº Fem. Total,       NU_TO_F_NU
+
+INº Ign. < 1,         NU_1_IGN
+INº Ign. 1-4,         NU_1_4_IGN
+INº Ign. 5-9,         NU_5_9_IGN
+INº Ign. 10-19,       NU_10_19IG
+INº Ign. 20-49,       NU_20_49IG
+INº Ign. 50 e +,      NU_50_IGN
+INº Ign. Ign.,        NU_IG_IGN
+INº Ign. Total,       NU_TOT_IGN
+
+INº Total < 1,        NU_1_TOT_N
+INº Total 1-4,        NU_1_4_TOT
+INº Total 5-9,        NU_5_9_TOT
+INº Total 10-19,      NU_10_19
+INº Total 20-49,      NU_20_49
+INº Total 50 e +,     NU_50_TOT
+INº Total Ign.,       NU_IGN_NU
+;incluir total
+
+IFebre,               NU_FEBRE_N
+INáuseas,             NU_NAUSE_P
+IVômitos,             NU_VOMTO_N
+IDiarréia,            NU_DIARR_N
+ICefaléia,            NU_CEFAL_N
+IDor Abdominal,       NU_ABDOM_N 
+INeurológicos,        NU_NEURO_N
+IOutros sintomas,     NU_OUTRO_N
+
+xLocal de produção,   TP_PRO_PRE, 1,  Locproducao.cnv
+
+xMatéria  prima,          ST_IMPRO,   1, sim_nao.cnv
+xConservação Inadequada,   ST_INAD,    1, sim_nao.cnv
+xManipulação/Preparação,   ST_MANIP,   1, sim_nao.cnv
+xOutros fatores,           ST_F_OUTRO, 1, sim_nao.cnv
+
+xAmostras Clínicas,       DS_A_CLINI, 1, sim_nao.cnv
+INº amostras clínicas col.,   NU_CLI_NUM
+
+xAmostras Bromatológicas, ST_ALIMEN, 1, sim_nao.cnv
+INº amostras bromat. col.,   NU_A_ALIM  
+
+ 
+XCriterio conf.,       CRITERIO    ,   1,  Confdescsurto.cnv
+  
+;    Definições para Ano, Mes da Data de Encerramento da investigação
+XAno encerramento,       DT_ENCERRA,  1, ANOS.CNV
+LMes encerramento,       DT_ENCERRA,  5, MESES.CNV
+CMes encerramento,       DT_ENCERRA,  5, MESESC.CNV
+SMes encerramento,       DT_ENCERRA,  5, MESES.CNV

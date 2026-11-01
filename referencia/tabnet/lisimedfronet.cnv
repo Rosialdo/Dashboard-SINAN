@@ -1,0 +1,23 @@
+;Lista de notificação individual imediata para retirada de dados 
+; municípios de fronteira - alterado: Texto (docenças Exantemática
+; para Sarampo) exclusão de difteria (influenza deve ser dados do
+; influenza online) - Tétano Neonatal somente confirmado para isso 
+; deve ser feita tabulação separada com filtro de confirmação.
+; Revisado UT-Sinan 2019
+
+15 4
+      1  Botulismo                                          A051
+      2  Carbúnculo ou Antraz                               A22 ,
+      3  Cólera                                             A009
+      4  Febre do Nilo Ocidental                            A923
+      5  Febre Amarela                                      A959
+      6  Hantaviroses                                       A988
+      7  Peste                                              A209
+      8  Poliomielite / Paralisia Flácida Aguda             A809
+      9  Raiva Humana                                       A829
+     10  Sarampo                                            B09 ,
+     11  Síndrome Febril Hemorrágica Aguda                  D699
+     12  Síndrome Respiratória Aguda                        J07 ,
+     13  Tétano Neonatal                                    A33 ,
+     14  Tularemia                                          A21 ,
+     15  Varíola                                            B03 ,

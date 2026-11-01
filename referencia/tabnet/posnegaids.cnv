@@ -1,0 +1,7 @@
+; Posnegaids.cnv
+; Revisado UT-Sinan 2019
+4  1
+      1  Ign/Branco                                          ,0-9
+      2  Detectável                                         6
+      3  Indetectável                                       7
+      4  Não realizado                                      4

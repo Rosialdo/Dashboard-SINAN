@@ -1,0 +1,30 @@
+; UF codigo sigla
+
+27 2  L
+      1  11 Rondônia                                        11,RO
+      2  12 Acre                                            12,AC
+      3  13 Amazonas                                        13,AM
+      4  14 Roraima                                         14,RR
+      5  15 Pará                                            15,PA
+      6  16 Amapá                                           16,AP
+      7  17 Tocantins                                       17,TO
+      8  21 Maranhão                                        21,MA
+      9  22 Piauí                                           22,PI
+     10  23 Ceará                                           23,CE
+     11  24 Rio Grande do Norte                             24,RN
+     12  25 Paraíba                                         25,PB
+     13  26 Pernambuco                                      26,20,PE
+     14  27 Alagoas                                         27,AL
+     15  28 Sergipe                                         28,SE
+     16  29 Bahia                                           29,BA
+     17  31 Minas Gerais                                    31,MG
+     18  32 Espírito Santo                                  32,ES
+     19  33 Rio de Janeiro                                  33,RJ
+     20  35 São Paulo                                       35,SP
+     21  41 Paraná                                          41,PR
+     22  42 Santa Catarina                                  42,SC
+     23  43 Rio Grande do Sul                               43,RS
+     24  50 Mato Grosso do Sul                              50,MS
+     25  51 Mato Grosso                                     51,MT
+     26  52 Goiás                                           52,GO
+     27  53 Distrito Federal                                53,DF

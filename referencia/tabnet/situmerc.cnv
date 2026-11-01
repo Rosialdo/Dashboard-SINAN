@@ -1,0 +1,16 @@
+;Situmerc.cnv
+; reavaliado e padronizado UT-Sinan 2019
+13 2
+      1  Ign/Branco                                           ,00-99
+      2  Empregado registrado com carteira assinada         01
+      3  Empregado não registrado                           02
+      4  Autônomo/cont propria                              03
+      5  Serv. Púb. Estatutário                             04
+      6  Serv. Púb. Celetista                               05
+      7  Aposentado                                         06
+      8  Desempregado                                       07
+      9  Trab. temporário                                   08
+     10  Cooperativado                                      09
+     11  Trab. avulso                                       10
+     12  Empregador                                         11
+     13  Outros                                             12

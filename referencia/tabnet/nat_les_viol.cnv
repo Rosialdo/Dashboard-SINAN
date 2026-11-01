@@ -1,0 +1,15 @@
+;Local_ocor.cnv
+13 2 l
+      1  Ign/Branco                                           ,00-99
+      2  Contusão                                           01
+      3  Coorte/perfuração/laceração                        02
+      4  Entorse/luxação                                    03
+      5  Fratura                                            04
+      6  Amputação                                          05
+      7  Traumatismo dentário                               06
+      8  Traumatismo crânio encefálico                      07
+      9  Politraumatismo                                    08
+     10  Intoxicação                                        09
+     11  Quiemadura                                         10
+     12  Outros                                             11
+     13  Não se aplica                                      88

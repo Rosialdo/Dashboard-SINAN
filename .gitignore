@@ -1,0 +1,11 @@
+# ambiente Python
+.venv/
+__pycache__/
+*.pyc
+
+# dados baixados (cada computador baixa os seus)
+dados/
+
+# editores
+.vscode/
+.idea/

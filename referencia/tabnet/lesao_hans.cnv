@@ -1,0 +1,8 @@
+;Lesao_Hans.CNV
+; Revisado UT-Sinan 2019
+
+4 2 
+      1  Informado 0 ou 99                                    ,00-99
+      2  Lesão unica                                        1 ,01
+      3  2-5 lesões                                         2 -5 ,02-05
+      4  >5 lesões                                          6 -9 ,20,06-40

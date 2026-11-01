@@ -1,0 +1,16 @@
+; Hepfontenet.cnv
+; Revisado UT-Sinan 2019
+13  2
+      1  Ign/Branco                                           ,00-99
+      2  Sexual                                             01
+      3  Transfusional                                      02
+      4  Uso de Drogas                                      03
+      5  Vertical                                           04
+      6  Acidente de Trabalho                               05
+      7  Hemodiálise                                        06
+      8  Domiciliar                                         07
+      9  Tratamento Cirúrgico                               08
+     10  Tratamento Dentário                                09
+     11  Pessoa/pessoa                                      10
+     12  Alimento/Água                                      11
+     13  Outros                                             12

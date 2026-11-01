@@ -1,0 +1,13 @@
+; localpic.CNV
+11 2
+      1  Ign/Em branco                                        ,00-99
+      2  Cabeça                                             01
+      3  Braço                                              02
+      4  Ante-Braço                                         03
+      5  Mão                                                04
+      6  Dedo da mão                                        05
+      7  Tronco                                             06
+      8  Coxa                                               07
+      9  Perna                                              08
+     10  Pé                                                 09
+     11  Dedo do pé                                         10

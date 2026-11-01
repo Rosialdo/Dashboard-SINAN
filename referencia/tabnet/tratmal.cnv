@@ -1,0 +1,15 @@
+; Tratmal.cnv
+13 2 
+      1  Ign/Branco                                           ,00
+      2  Inf. Pv Cloroquina 3dd/Primaquina 7dd              01
+      3  Pf Quinina 3dd/Doxiciclina 5dd/Primaquina          02 
+      4  Pv+Pf Mefloquina/Primaquina 7dd                    03
+      5  Pm Cloroquina 3dd                                  04
+      6  Pv crianças Artesunato 4dd/Primaquina 7dd          05
+      7  Pf Mefloquina/Primaquina                           06
+      8  Pf Quinina 7dd                                     07
+      9  Pf crianças Artesunato 4dd/Mefloquina/Primaquina   08
+     10  Pv+Pf Quinina 3dd/Doxiciclina 5dd/Primaquina 7dd   09
+     11  Pv Cloroquina 3 meses                              10
+     12  Malária grave e complicada                         11
+     13  Outros esquema                                     99

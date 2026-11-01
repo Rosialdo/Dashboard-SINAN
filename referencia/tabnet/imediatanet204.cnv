@@ -1,0 +1,36 @@
+; Lista Nacional de Compulsória Imediata
+; Doença Exantemáticas:
+;            - Sarampo tabular utilizando CS_SUSPEIT = 1
+;            - Rubéola tabular utilizando CS_SUSPEIT = 2
+; Dengue sorotipo DENV 4 não incluído neste CNV; selecionar no DBF de dengue pelo sorotipo
+; Atualizado em 29/09/2014 pela UT-Sinan/MS - Alteração da lista de acordo com a Portaria nº 1.271 de 06/06/2014 "Imediatas para MS" 
+; Atualizado em 15/03/2017 pela UT-Sinan/MS - Alteração da lista de acordo com a Portaria nº 204 de 17/02/2016 "Imediatas para MS" - não consta na lista SRAG considerando que a fonte é formSus
+; Atualizado em 17/11/2017 pela UT-Sinan/MS - Inclusão de Sindrome Respiratoria Aguda (estva faltando)
+; Revisado UT-Sinan 2019
+26 4
+      1  Arenavírus                                         A969
+      2  Botulismo                                          A051
+      3  Carbúnculo ou Antraz                               A22 ,
+      4  Cólera                                             A009
+      5  Dengue                                             A90 ,
+      6  Doença Aguda pelo vírus Zika                       A928
+      7  Doenças Exantemáticas                              B09 ,
+      8  Ebola                                              A984
+      9  Eventos Adversos Pós-vacina                        Y59 ,
+     10  Febre de Chikungunya                               A920
+     11  Febre do Nilo Ocidental                            A923
+     12  Febre Amarela                                      A959
+     13  Febre Maculosa                                     A779
+     14  Febre Purpúrica Brasileira                         A484
+     15  Hantavirose                                        A988
+     16  Influenza Humana produzida por novo subtipo viral  J11 ,
+     17  Lassa                                              A962
+     18  Malária                                            B54 ,
+     19  Marburg                                            A983
+     20  Peste                                              A209
+     21  Poliomielite / Paralisia Flácida Aguda             A809
+     22  Raiva Humana                                       A829
+     23  Síndrome da Rubéola Congênita                      P350
+     24  Síndrome Respiratoria Aguda                        J07 ,
+     25  Tularemia                                          A21 ,
+     26  Varíola                                            B03 ,

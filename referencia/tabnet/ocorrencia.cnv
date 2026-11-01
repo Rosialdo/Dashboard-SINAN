@@ -1,0 +1,14 @@
+;OCORRENCIA.CNV
+12  2  L
+      1  Em Branco                                            ,00
+      2  Residência                                         1 ,01
+      3  Hosp/Unid. Saúde                                   2 ,02
+      4  Creche/escola                                      3 ,03
+      5  Asilo                                              4 ,04
+      6  Outras inst.                                       5 ,05
+      7  Rest./Padaria                                      6 ,06
+      8  Eventos                                            7 ,07
+      9  Disp. bairro                                       8 ,08
+     10  Disp. município                                    9 ,09
+     11  Disp. + 1 munic.                                   10
+     12  Outros                                             11

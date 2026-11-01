@@ -1,0 +1,10 @@
+;Lista de agravos de Interesse Nacional nao compulsorios
+;Atendimentos individuais antirabico não constam na base nacional
+; Revisado UT-Sinan 2019
+
+5 4 l
+      1  Difteria                                           A369
+      2  Doença de Chagas Agudas                            B571
+      3  Síndrome de agravos inusitados                     A08 ,N199,R17 ,G043,R699
+      4  Síndrome Respiratória Aguda                        J07 ,
+      5  Síndrome da Febre Hemorrágica Aguda                D699

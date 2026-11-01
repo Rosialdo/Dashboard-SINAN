@@ -1,0 +1,22 @@
+;listados todos os agravos da portaria 05 de notificação compulsória
+;Imediata LNCI - GTSINAN alterado no dia 20/12/2011 (foi retirado Influenza humana por novo subtipo e Dengue)
+;Inclusão SARS-COV em 28/06/2012. Solicitação Raquel CIEVS, alteração Andrea UT-Sinan
+;Retirada do agravo Sindrome Respiratoria Aguda em 03/07/2012. Solicitação Raquel CIEVS, alteração Andrea UT-Sinan
+; Revisado em fev/2019 pela UT_Sinan
+16  4
+      1  Botulismo                                          A051
+      2  Carbúnculo ou Antraz                               A229
+      3  Cólera                                             A009
+      4  Doenças de Chagas Aguda                            B571
+      5  Doenças Exantemáticas                              B09 ,
+      6  Epizootia                                          EPI ,
+      7  Febre Amarela                                      A959
+      8  Febre do Nilo                                      A923
+      9  Hantaviroses                                       A988
+     10  Paralisia Flácida Aguda/Poliomielite               A809
+     11  Peste                                              A209
+     12  Raiva Humana                                       A829
+     13  Síndrome da Rubéola Congênita                      P350
+     14  SARS-COV - Sindrome Respiratóra Aguda Grave        B342
+     15  Tularemia                                          A219
+     16  Varíola                                            B03 ,

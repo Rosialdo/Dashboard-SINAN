@@ -1,0 +1,44 @@
+; agravos habilitados para notificação modo Surto
+42  4 L
+      1  A051 BOTULISMO                                     A051
+      2  A229 CARBUNCULO OU ANTRAZ                          A229
+      3  B26  CAXUMBA (PAROTIDITE EPIDEMICA)                B26 ,
+      4  A009 COLERA                                        A009
+      5  A379 COQUELUCHE                                    A379
+      6  A90  DENGUE                                        A90 ,
+      7  A369 DIFTERIA                                      A369
+      8  B571 DOENCA DE CHAGAS AGUDA                        B571
+      9  A810 DOENCA DE CREUTZFELDT-JACOB                   A810
+     10  B09  DOENCAS EXANTEMATICAS                         B09 ,
+     11  B659 ESQUISTOSSOMOSE                               B659
+     12  Y59  EVENTOS ADVERSOS POS-VACINACAO                Y59 ,
+     13  A959 FEBRE AMARELA                                 A959
+     14  A923 FEBRE DO NILO                                 A923
+     15  A779 FEBRE MACULOSA / RICKETTSIOSES                A779
+     16  A010 FEBRE TIFOIDE                                 A010
+     17  B749 FILARIOSE NAO ESPECIFICADA                    B749
+     18  A988 HANTAVIROSE                                   A988
+     19  B19  HEPATITES VIRAIS                              B19 ,
+     20  J11  INFLUENZA HUMANA POR NOVO SUBTIPO (PANDEMICO) J11 ,
+     21  T659 INTOXICACAO EXOGENA                           T659
+     22  B551 LEISHMANIOSE TEGUMENTAR AMERICANA             B551
+     23  B550 LEISHMANIOSE VISCERAL                         B550
+     24  A279 LEPTOSPIROSE                                  A279
+     25  B54  MALARIA                                       B54 ,
+     26  G039 MENINGITE                                     G039
+     27  R699 OUTRAS SINDROMES                              R699
+     28  A809 PARALISIA FLACIDA AGUDA   POLIOMIELITE        A809
+     29  A209 PESTE                                         A209
+     30  A829 RAIVA HUMANA                                  A829
+     31  A080 ROTAVIRUS                                     A080
+     32  D699 SINDROME DA FEBRE HEMORRAGICA AGUDA           D699
+     33  N199 SINDROME DA INSUFICIENCIA RENAL AGUDA         N199
+     34  A08  SINDROME DIARREICA AGUDA                      A08 ,
+     35  J06  SINDROME GRIPAL                               J06 ,
+     36  R17  SINDROME ICTERICA AGUDA                       R17 ,
+     37  G043 SINDROME NEUROLOGICA AGUDA                    G043
+     38  J07  SINDROME RESPIRATORIA AGUDA                   J07 ,
+     39  A719 TRACOMA                                       A719
+     40  A219 TULAREMIA                                     A219
+     41  B019 VARICELA                                      B019
+     42  B03  VARIOLA                                       B03 ,

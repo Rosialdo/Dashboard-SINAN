@@ -1,0 +1,763 @@
+;amazonialegal.CNV
+761  6
+      1  110001 Alta Floresta D'Oeste                       110001
+      2  110002 Ariquemes                                   110002
+      3  110003 Cabixi                                      110003
+      4  110004 Cacoal                                      110004
+      5  110005 Cerejeiras                                  110005
+      6  110006 Colorado do Oeste                           110006
+      7  110007 Corumbiara                                  110007
+      8  110008 Costa Marques                               110008
+      9  110009 Espigão D'Oeste                             110009
+     10  110010 Guajará-Mirim                               110010
+     11  110011 Jaru                                        110011
+     12  110012 Ji-Paraná                                   110012
+     13  110013 Machadinho D'Oeste                          110013
+     14  110014 Nova Brasilândia D'Oeste                    110014
+     15  110015 Ouro Preto do Oeste                         110015
+     16  110018 Pimenta Bueno                               110018
+     17  110020 Porto Velho                                 110020
+     18  110025 Presidente Médici                           110025
+     19  110026 Rio Crespo                                  110026
+     20  110028 Rolim de Moura                              110028
+     21  110029 Santa Luzia D'Oeste                         110029
+     22  110030 Vilhena                                     110030
+     23  110032 São Miguel do Guaporé                       110032
+     24  110033 Nova Mamoré                                 110033
+     25  110034 Alvorada D'Oeste                            110034
+     26  110037 Alto Alegre dos Parecis                     110037
+     27  110040 Alto Paraíso                                110040
+     28  110045 Buritis                                     110045
+     29  110050 Novo Horizonte do Oeste                     110050
+     30  110060 Cacaulândia                                 110060
+     31  110070 Campo Novo de Rondônia                      110070
+     32  110080 Candeias do Jamari                          110080
+     33  110090 Castanheiras                                110090
+     34  110092 Chupinguaia                                 110092
+     35  110094 Cujubim                                     110094
+     36  110100 Governador Jorge Teixeira                   110100
+     37  110110 Itapuã do Oeste                             110110
+     38  110120 Ministro Andreazza                          110120
+     39  110130 Mirante da Serra                            110130
+     40  110140 Monte Negro                                 110140
+     41  110143 Nova União                                  110143
+     42  110145 Parecis                                     110145
+     43  110146 Pimenteiras do Oeste                        110146
+     44  110147 Primavera de Rondônia                       110147
+     45  110148 São Felipe D'Oeste                          110148
+     46  110149 São Francisco do Guaporé                    110149
+     47  110150 Seringueiras                                110150
+     48  110155 Teixeirópolis                               110155
+     49  110160 Theobroma                                   110160
+     50  110170 Urupá                                       110170
+     51  110175 Vale do Anari                               110175
+     52  110180 Vale do Paraíso                             110180
+     53  120001 Acrelândia                                  120001
+     54  120005 Assis Brasil                                120005
+     55  120010 Brasiléia                                   120010
+     56  120013 Bujari                                      120013
+     57  120017 Capixaba                                    120017
+     58  120020 Cruzeiro do Sul                             120020
+     59  120025 Epitaciolândia                              120025
+     60  120030 Feijó                                       120030
+     61  120032 Jordão                                      120032
+     62  120033 Mâncio Lima                                 120033
+     63  120034 Manoel Urbano                               120034
+     64  120035 Marechal Thaumaturgo                        120035
+     65  120038 Plácido de Castro                           120038
+     66  120039 Porto Walter                                120039
+     67  120040 Rio Branco                                  120040
+     68  120042 Rodrigues Alves                             120042
+     69  120043 Santa Rosa do Purus                         120043
+     70  120045 Senador Guiomard                            120045
+     71  120050 Sena Madureira                              120050
+     72  120060 Tarauacá                                    120060
+     73  120070 Xapuri                                      120070
+     74  120080 Porto Acre                                  120080
+     75  130002 Alvarães                                    130002
+     76  130006 Amaturá                                     130006
+     77  130008 Anamã                                       130008
+     78  130010 Anori                                       130010
+     79  130014 Apuí                                        130014
+     80  130020 Atalaia do Norte                            130020
+     81  130030 Autazes                                     130030
+     82  130040 Barcelos                                    130040
+     83  130050 Barreirinha                                 130050
+     84  130060 Benjamin Constant                           130060
+     85  130063 Beruri                                      130063
+     86  130068 Boa Vista do Ramos                          130068
+     87  130070 Boca do Acre                                130070
+     88  130080 Borba                                       130080
+     89  130083 Caapiranga                                  130083
+     90  130090 Canutama                                    130090
+     91  130100 Carauari                                    130100
+     92  130110 Careiro                                     130110
+     93  130115 Careiro da Várzea                           130115
+     94  130120 Coari                                       130120
+     95  130130 Codajás                                     130130
+     96  130140 Eirunepé                                    130140
+     97  130150 Envira                                      130150
+     98  130160 Fonte Boa                                   130160
+     99  130165 Guajará                                     130165
+    100  130170 Humaitá                                     130170
+    101  130180 Ipixuna                                     130180
+    102  130185 Iranduba                                    130185
+    103  130190 Itacoatiara                                 130190
+    104  130195 Itamarati                                   130195
+    105  130200 Itapiranga                                  130200
+    106  130210 Japurá                                      130210
+    107  130220 Juruá                                       130220
+    108  130230 Jutaí                                       130230
+    109  130240 Lábrea                                      130240
+    110  130250 Manacapuru                                  130250
+    111  130255 Manaquiri                                   130255
+    112  130260 Manaus                                      130260
+    113  130270 Manicoré                                    130270
+    114  130280 Maraã                                       130280
+    115  130290 Maués                                       130290
+    116  130300 Nhamundá                                    130300
+    117  130310 Nova Olinda do Norte                        130310
+    118  130320 Novo Airão                                  130320
+    119  130330 Novo Aripuanã                               130330
+    120  130340 Parintins                                   130340
+    121  130350 Pauini                                      130350
+    122  130353 Presidente Figueiredo                       130353
+    123  130356 Rio Preto da Eva                            130356
+    124  130360 Santa Isabel do Rio Negro                   130360
+    125  130370 Santo Antônio do Içá                        130370
+    126  130380 São Gabriel da Cachoeira                    130380
+    127  130390 São Paulo de Olivença                       130390
+    128  130395 São Sebastião do Uatumã                     130395
+    129  130400 Silves                                      130400
+    130  130406 Tabatinga                                   130406
+    131  130410 Tapauá                                      130410
+    132  130420 Tefé                                        130420
+    133  130423 Tonantins                                   130423
+    134  130426 Uarini                                      130426
+    135  130430 Urucará                                     130430
+    136  130440 Urucurituba                                 130440
+    137  140002 Amajari                                     140002
+    138  140005 Alto Alegre                                 140005
+    139  140010 Boa Vista                                   140010
+    140  140015 Bonfim                                      140015
+    141  140017 Cantá                                       140017
+    142  140020 Caracaraí                                   140020
+    143  140023 Caroebe                                     140023
+    144  140028 Iracema                                     140028
+    145  140030 Mucajaí                                     140030
+    146  140040 Normandia                                   140040
+    147  140045 Pacaraima                                   140045
+    148  140047 Rorainópolis                                140047
+    149  140050 São João da Baliza                          140050
+    150  140060 São Luiz                                    140060
+    151  140070 Uiramutã                                    140070
+    152  150010 Abaetetuba                                  150010
+    153  150013 Abel Figueiredo                             150013
+    154  150020 Acará                                       150020
+    155  150030 Afuá                                        150030
+    156  150034 Água Azul do Norte                          150034
+    157  150040 Alenquer                                    150040
+    158  150050 Almeirim                                    150050
+    159  150060 Altamira                                    150060
+    160  150070 Anajás                                      150070
+    161  150080 Ananindeua                                  150080
+    162  150085 Anapu                                       150085
+    163  150090 Augusto Corrêa                              150090
+    164  150095 Aurora do Pará                              150095
+    165  150100 Aveiro                                      150100
+    166  150110 Bagre                                       150110
+    167  150120 Baião                                       150120
+    168  150125 Bannach                                     150125
+    169  150130 Barcarena                                   150130
+    170  150140 Belém                                       150140
+    171  150145 Belterra                                    150145
+    172  150150 Benevides                                   150150
+    173  150157 Bom Jesus do Tocantins                      150157
+    174  150160 Bonito                                      150160
+    175  150170 Bragança                                    150170
+    176  150172 Brasil Novo                                 150172
+    177  150175 Brejo Grande do Araguaia                    150175
+    178  150178 Breu Branco                                 150178
+    179  150180 Breves                                      150180
+    180  150190 Bujaru                                      150190
+    181  150195 Cachoeira do Piriá                          150195
+    182  150200 Cachoeira do Arari                          150200
+    183  150210 Cametá                                      150210
+    184  150215 Canaã dos Carajás                           150215
+    185  150220 Capanema                                    150220
+    186  150230 Capitão Poço                                150230
+    187  150240 Castanhal                                   150240
+    188  150250 Chaves                                      150250
+    189  150260 Colares                                     150260
+    190  150270 Conceição do Araguaia                       150270
+    191  150275 Concórdia do Pará                           150275
+    192  150276 Cumaru do Norte                             150276
+    193  150277 Curionópolis                                150277
+    194  150280 Curralinho                                  150280
+    195  150285 Curuá                                       150285
+    196  150290 Curuçá                                      150290
+    197  150293 Dom Eliseu                                  150293
+    198  150295 Eldorado dos Carajás                        150295
+    199  150300 Faro                                        150300
+    200  150304 Floresta do Araguaia                        150304
+    201  150307 Garrafão do Norte                           150307
+    202  150309 Goianésia do Pará                           150309
+    203  150310 Gurupá                                      150310
+    204  150320 Igarapé-Açu                                 150320
+    205  150330 Igarapé-Miri                                150330
+    206  150340 Inhangapi                                   150340
+    207  150345 Ipixuna do Pará                             150345
+    208  150350 Irituia                                     150350
+    209  150360 Itaituba                                    150360
+    210  150370 Itupiranga                                  150370
+    211  150375 Jacareacanga                                150375
+    212  150380 Jacundá                                     150380
+    213  150390 Juruti                                      150390
+    214  150400 Limoeiro do Ajuru                           150400
+    215  150405 Mãe do Rio                                  150405
+    216  150410 Magalhães Barata                            150410
+    217  150420 Marabá                                      150420
+    218  150430 Maracanã                                    150430
+    219  150440 Marapanim                                   150440
+    220  150442 Marituba                                    150442
+    221  150445 Medicilândia                                150445
+    222  150450 Melgaço                                     150450
+    223  150460 Mocajuba                                    150460
+    224  150470 Moju                                        150470
+    225  150480 Monte Alegre                                150480
+    226  150490 Muaná                                       150490
+    227  150495 Nova Esperança do Piriá                     150495
+    228  150497 Nova Ipixuna                                150497
+    229  150500 Nova Timboteua                              150500
+    230  150503 Novo Progresso                              150503
+    231  150506 Novo Repartimento                           150506
+    232  150510 Óbidos                                      150510
+    233  150520 Oeiras do Pará                              150520
+    234  150530 Oriximiná                                   150530
+    235  150540 Ourém                                       150540
+    236  150543 Ourilândia do Norte                         150543
+    237  150548 Pacajá                                      150548
+    238  150549 Palestina do Pará                           150549
+    239  150550 Paragominas                                 150550
+    240  150553 Parauapebas                                 150553
+    241  150555 Pau D'Arco                                  150555
+    242  150560 Peixe-Boi                                   150560
+    243  150563 Piçarra                                     150563
+    244  150565 Placas                                      150565
+    245  150570 Ponta de Pedras                             150570
+    246  150580 Portel                                      150580
+    247  150590 Porto de Moz                                150590
+    248  150600 Prainha                                     150600
+    249  150610 Primavera                                   150610
+    250  150611 Quatipuru                                   150611
+    251  150613 Redenção                                    150613
+    252  150616 Rio Maria                                   150616
+    253  150618 Rondon do Pará                              150618
+    254  150619 Rurópolis                                   150619
+    255  150620 Salinópolis                                 150620
+    256  150630 Salvaterra                                  150630
+    257  150635 Santa Bárbara do Pará                       150635
+    258  150640 Santa Cruz do Arari                         150640
+    259  150650 Santa Isabel do Pará                        150650
+    260  150655 Santa Luzia do Pará                         150655
+    261  150658 Santa Maria das Barreiras                   150658
+    262  150660 Santa Maria do Pará                         150660
+    263  150670 Santana do Araguaia                         150670
+    264  150680 Santarém                                    150680
+    265  150690 Santarém Novo                               150690
+    266  150700 Santo Antônio do Tauá                       150700
+    267  150710 São Caetano de Odivelas                     150710
+    268  150715 São Domingos do Araguaia                    150715
+    269  150720 São Domingos do Capim                       150720
+    270  150730 São Félix do Xingu                          150730
+    271  150740 São Francisco do Pará                       150740
+    272  150745 São Geraldo do Araguaia                     150745
+    273  150746 São João da Ponta                           150746
+    274  150747 São João de Pirabas                         150747
+    275  150750 São João do Araguaia                        150750
+    276  150760 São Miguel do Guamá                         150760
+    277  150770 São Sebastião da Boa Vist                   150770
+    278  150775 Sapucaia                                    150775
+    279  150780 Senador José Porfírio                       150780
+    280  150790 Soure                                       150790
+    281  150795 Tailândia                                   150795
+    282  150796 Terra Alta                                  150796
+    283  150797 Terra Santa                                 150797
+    284  150800 Tomé-Açu                                    150800
+    285  150803 Tracuateua                                  150803
+    286  150805 Trairão                                     150805
+    287  150808 Tucumã                                      150808
+    288  150810 Tucuruí                                     150810
+    289  150812 Ulianópolis                                 150812
+    290  150815 Uruará                                      150815
+    291  150820 Vigia                                       150820
+    292  150830 Viseu                                       150830
+    293  150835 Vitória do Xingu                            150835
+    294  150840 Xinguara                                    150840
+    295  160005 Serra do Navio                              160005
+    296  160010 Amapá                                       160010
+    297  160015 Pedra Branca do Amapari                     160015
+    298  160020 Calçoene                                    160020
+    299  160021 Cutias                                      160021
+    300  160023 Ferreira Gomes                              160023
+    301  160025 Itaubal                                     160025
+    302  160027 Laranjal do Jari                            160027
+    303  160030 Macapá                                      160030
+    304  160040 Mazagão                                     160040
+    305  160050 Oiapoque                                    160050
+    306  160053 Porto Grande                                160053
+    307  160055 Pracuúba                                    160055
+    308  160060 Santana                                     160060
+    309  160070 Tartarugalzinho                             160070
+    310  160080 Vitória do Jari                             160080
+    311  170025 Abreulândia                                 170025
+    312  170030 Aguiarnópolis                               170030
+    313  170035 Aliança do Tocantins                        170035
+    314  170040 Almas                                       170040
+    315  170070 Alvorada                                    170070
+    316  170100 Ananás                                      170100
+    317  170105 Angico                                      170105
+    318  170110 Aparecida do Rio Negro                      170110
+    319  170130 Aragominas                                  170130
+    320  170190 Araguacema                                  170190
+    321  170200 Araguaçu                                    170200
+    322  170210 Araguaína                                   170210
+    323  170215 Araguanã                                    170215
+    324  170220 Araguatins                                  170220
+    325  170230 Arapoema                                    170230
+    326  170240 Arraias                                     170240
+    327  170255 Augustinópolis                              170255
+    328  170270 Aurora do Tocantins                         170270
+    329  170290 Axixá do Tocantins                          170290
+    330  170300 Babaçulândia                                170300
+    331  170305 Bandeirantes do Tocantins                   170305
+    332  170307 Barra do Ouro                               170307
+    333  170310 Barrolândia                                 170310
+    334  170320 Bernardo Sayão                              170320
+    335  170330 Bom Jesus do Tocantins                      170330
+    336  170360 Brasilândia do Tocantins                    170360
+    337  170370 Brejinho de Nazaré                          170370
+    338  170380 Buriti do Tocantins                         170380
+    339  170382 Cachoeirinha                                170382
+    340  170384 Campos Lindos                               170384
+    341  170386 Cariri do Tocantins                         170386
+    342  170388 Carmolândia                                 170388
+    343  170389 Carrasco Bonito                             170389
+    344  170390 Caseara                                     170390
+    345  170410 Centenário                                  170410
+    346  170460 Chapada de Areia                            170460
+    347  170510 Chapada da Natividade                       170510
+    348  170550 Colinas do Tocantins                        170550
+    349  170555 Combinado                                   170555
+    350  170560 Conceição do Tocantins                      170560
+    351  170600 Couto de Magalhães                          170600
+    352  170610 Cristalândia                                170610
+    353  170625 Crixás do Tocantins                         170625
+    354  170650 Darcinópolis                                170650
+    355  170700 Dianópolis                                  170700
+    356  170710 Divinópolis do Tocantins                    170710
+    357  170720 Dois Irmãos do Tocantins                    170720
+    358  170730 Dueré                                       170730
+    359  170740 Esperantina                                 170740
+    360  170755 Fátima                                      170755
+    361  170765 Figueirópolis                               170765
+    362  170770 Filadélfia                                  170770
+    363  170820 Formoso do Araguaia                         170820
+    364  170825 Fortaleza do Tabocão                        170825
+    365  170830 Goianorte                                   170830
+    366  170900 Goiatins                                    170900
+    367  170930 Guaraí                                      170930
+    368  170950 Gurupi                                      170950
+    369  170980 Ipueiras                                    170980
+    370  171050 Itacajá                                     171050
+    371  171070 Itaguatins                                  171070
+    372  171090 Itapiratins                                 171090
+    373  171110 Itaporã do Tocantins                        171110
+    374  171150 Jaú do Tocantins                            171150
+    375  171180 Juarina                                     171180
+    376  171190 Lagoa da Confusão                           171190
+    377  171195 Lagoa do Tocantins                          171195
+    378  171200 Lajeado                                     171200
+    379  171215 Lavandeira                                  171215
+    380  171240 Lizarda                                     171240
+    381  171245 Luzinópolis                                 171245
+    382  171250 Marianópolis do Tocantins                   171250
+    383  171270 Mateiros                                    171270
+    384  171280 Maurilândia do Tocantins                    171280
+    385  171320 Miracema do Tocantins                       171320
+    386  171330 Miranorte                                   171330
+    387  171360 Monte do Carmo                              171360
+    388  171370 Monte Santo do Tocantins                    171370
+    389  171380 Palmeiras do Tocantins                      171380
+    390  171395 Muricilândia                                171395
+    391  171420 Natividade                                  171420
+    392  171430 Nazaré                                      171430
+    393  171488 Nova Olinda                                 171488
+    394  171500 Nova Rosalândia                             171500
+    395  171510 Novo Acordo                                 171510
+    396  171515 Novo Alegre                                 171515
+    397  171525 Novo Jardim                                 171525
+    398  171550 Oliveira de Fátima                          171550
+    399  171570 Palmeirante                                 171570
+    400  171575 Palmeirópolis                               171575
+    401  171610 Paraíso do Tocantins                        171610
+    402  171620 Paranã                                      171620
+    403  171630 Pau D'Arco                                  171630
+    404  171650 Pedro Afonso                                171650
+    405  171660 Peixe                                       171660
+    406  171665 Pequizeiro                                  171665
+    407  171670 Colméia                                     171670
+    408  171700 Pindorama do Tocantins                      171700
+    409  171720 Piraquê                                     171720
+    410  171750 Pium                                        171750
+    411  171780 Ponte Alta do Bom Jesus                     171780
+    412  171790 Ponte Alta do Tocantins                     171790
+    413  171800 Porto Alegre do Tocantins                   171800
+    414  171820 Porto Nacional                              171820
+    415  171830 Praia Norte                                 171830
+    416  171840 Presidente Kennedy                          171840
+    417  171845 Pugmil                                      171845
+    418  171850 Recursolândia                               171850
+    419  171855 Riachinho                                   171855
+    420  171865 Rio da Conceição                            171865
+    421  171870 Rio dos Bois                                171870
+    422  171875 Rio Sono                                    171875
+    423  171880 Sampaio                                     171880
+    424  171884 Sandolândia                                 171884
+    425  171886 Santa Fé do Araguaia                        171886
+    426  171888 Santa Maria do Tocantins                    171888
+    427  171889 Santa Rita do Tocantins                     171889
+    428  171890 Santa Rosa do Tocantins                     171890
+    429  171900 Santa Tereza do Tocantins                   171900
+    430  172000 Santa Terezinha do Tocant                   172000
+    431  172010 São Bento do Tocantins                      172010
+    432  172015 São Félix do Tocantins                      172015
+    433  172020 São Miguel do Tocantins                     172020
+    434  172025 São Salvador do Tocantins                   172025
+    435  172030 São Sebastião do Tocantin                   172030
+    436  172049 São Valério da Natividade                   172049
+    437  172065 Silvanópolis                                172065
+    438  172080 Sítio Novo do Tocantins                     172080
+    439  172085 Sucupira                                    172085
+    440  172090 Taguatinga                                  172090
+    441  172093 Taipas do Tocantins                         172093
+    442  172097 Talismã                                     172097
+    443  172100 Palmas                                      172100
+    444  172110 Tocantínia                                  172110
+    445  172120 Tocantinópolis                              172120
+    446  172125 Tupirama                                    172125
+    447  172130 Tupiratins                                  172130
+    448  172208 Wanderlândia                                172208
+    449  172210 Xambioá                                     172210
+    450  210005 Açailândia                                  210005
+    451  210020 Alcântara                                   210020
+    452  210040 Altamira do Maranhão                        210040
+    453  210043 Alto Alegre do Maranhão                     210043
+    454  210047 Alto Alegre do Pindaré                      210047
+    455  210050 Alto Parnaíba                               210050
+    456  210055 Amapá do Maranhão                           210055
+    457  210060 Amarante do Maranhão                        210060
+    458  210070 Anajatuba                                   210070
+    459  210083 Apicum-Açu                                  210083
+    460  210087 Araguanã                                    210087
+    461  210095 Arame                                       210095
+    462  210100 Arari                                       210100
+    463  210110 Axixá                                       210110
+    464  210120 Bacabal                                     210120
+    465  210125 Bacabeira                                   210125
+    466  210130 Bacuri                                      210130
+    467  210135 Bacurituba                                  210135
+    468  210140 Balsas                                      210140
+    469  210160 Barra do Corda                              210160
+    470  210177 Bela Vista do Maranhão                      210177
+    471  210180 Benedito Leite                              210180
+    472  210190 Bequimão                                    210190
+    473  210193 Bernardo do Mearim                          210193
+    474  210197 Boa Vista do Gurupi                         210197
+    475  210200 Bom Jardim                                  210200
+    476  210203 Bom Jesus das Selvas                        210203
+    477  210207 Bom Lugar                                   210207
+    478  210215 Brejo de Areia                              210215
+    479  210230 Buriti Bravo                                210230
+    480  210232 Buriticupu                                  210232
+    481  210235 Buritirana                                  210235
+    482  210237 Cachoeira Grande                            210237
+    483  210240 Cajapió                                     210240
+    484  210250 Cajari                                      210250
+    485  210255 Campestre do Maranhão                       210255
+    486  210260 Cândido Mendes                              210260
+    487  210270 Cantanhede                                  210270
+    488  210275 Capinzal do Norte                           210275
+    489  210280 Carolina                                    210280
+    490  210290 Carutapera                                  210290
+    491  210310 Cedral                                      210310
+    492  210312 Central do Maranhão                         210312
+    493  210315 Centro do Guilherme                         210315
+    494  210317 Centro Novo do Maranhão                     210317
+    495  210325 Cidelândia                                  210325
+    496  210330 Codó                                        210330
+    497  210350 Colinas                                     210350
+    498  210355 Conceição do Lago-Açu                       210355
+    499  210360 Coroatá                                     210360
+    500  210370 Cururupu                                    210370
+    501  210375 Davinópolis                                 210375
+    502  210380 Dom Pedro                                   210380
+    503  210400 Esperantinópolis                            210400
+    504  210405 Estreito                                    210405
+    505  210407 Feira Nova do Maranhão                      210407
+    506  210408 Fernando Falcão                             210408
+    507  210409 Formosa da Serra Negra                      210409
+    508  210410 Fortaleza dos Nogueiras                     210410
+    509  210420 Fortuna                                     210420
+    510  210430 Godofredo Viana                             210430
+    511  210440 Gonçalves Dias                              210440
+    512  210450 Governador Archer                           210450
+    513  210455 Governador Edison Lobão                     210455
+    514  210460 Governador Eugênio Barros                   210460
+    515  210462 Governador Luiz Rocha                       210462
+    516  210465 Governador Newton Bello                     210465
+    517  210467 Governador Nunes Freire                     210467
+    518  210470 Graça Aranha                                210470
+    519  210480 Grajaú                                      210480
+    520  210490 Guimarães                                   210490
+    521  210510 Icatu                                       210510
+    522  210515 Igarapé do Meio                             210515
+    523  210520 Igarapé Grande                              210520
+    524  210530 Imperatriz                                  210530
+    525  210535 Itaipava do Grajaú                          210535
+    526  210540 Itapecuru Mirim                             210540
+    527  210542 Itinga do Maranhão                          210542
+    528  210545 Jatobá                                      210545
+    529  210547 Jenipapo dos Vieiras                        210547
+    530  210550 João Lisboa                                 210550
+    531  210560 Joselândia                                  210560
+    532  210565 Junco do Maranhão                           210565
+    533  210570 Lago da Pedra                               210570
+    534  210580 Lago do Junco                               210580
+    535  210590 Lago Verde                                  210590
+    536  210594 Lago dos Rodrigues                          210594
+    537  210596 Lagoa Grande do Maranhão                    210596
+    538  210598 Lajeado Novo                                210598
+    539  210600 Lima Campos                                 210600
+    540  210610 Loreto                                      210610
+    541  210620 Luís Domingues                              210620
+    542  210632 Maracaçumé                                  210632
+    543  210635 Marajá do Sena                              210635
+    544  210637 Maranhãozinho                               210637
+    545  210650 Matinha                                     210650
+    546  210663 Matões do Norte                             210663
+    547  210670 Mirador                                     210670
+    548  210675 Miranda do Norte                            210675
+    549  210680 Mirinzal                                    210680
+    550  210690 Monção                                      210690
+    551  210700 Montes Altos                                210700
+    552  210710 Morros                                      210710
+    553  210725 Nova Colinas                                210725
+    554  210730 Nova Iorque                                 210730
+    555  210735 Nova Olinda do Maranhão                     210735
+    556  210740 Olho d'Água das Cunhãs                      210740
+    557  210745 Olinda Nova do Maranhão                     210745
+    558  210750 Paço do Lumiar                              210750
+    559  210760 Palmeirândia                                210760
+    560  210770 Paraibano                                   210770
+    561  210800 Pastos Bons                                 210800
+    562  210810 Paulo Ramos                                 210810
+    563  210820 Pedreiras                                   210820
+    564  210825 Pedro do Rosário                            210825
+    565  210830 Penalva                                     210830
+    566  210840 Peri Mirim                                  210840
+    567  210845 Peritoró                                    210845
+    568  210850 Pindaré-Mirim                               210850
+    569  210860 Pinheiro                                    210860
+    570  210870 Pio XII                                     210870
+    571  210880 Pirapemas                                   210880
+    572  210890 Poção de Pedras                             210890
+    573  210900 Porto Franco                                210900
+    574  210905 Porto Rico do Maranhão                      210905
+    575  210910 Presidente Dutra                            210910
+    576  210920 Presidente Juscelino                        210920
+    577  210923 Presidente Médici                           210923
+    578  210927 Presidente Sarney                           210927
+    579  210930 Presidente Vargas                           210930
+    580  210945 Raposa                                      210945
+    581  210950 Riachão                                     210950
+    582  210955 Ribamar Fiquene                             210955
+    583  210960 Rosário                                     210960
+    584  210970 Sambaíba                                    210970
+    585  210975 Santa Filomena do Maranhã                   210975
+    586  210980 Santa Helena                                210980
+    587  210990 Santa Inês                                  210990
+    588  211000 Santa Luzia                                 211000
+    589  211003 Santa Luzia do Paruá                        211003
+    590  211020 Santa Rita                                  211020
+    591  211030 Santo Antônio dos Lopes                     211030
+    592  211050 São Bento                                   211050
+    593  211065 São Domingos do Azeitão                     211065
+    594  211070 São Domingos do Maranhão                    211070
+    595  211080 São Félix de Balsas                         211080
+    596  211085 São Francisco do Brejão                     211085
+    597  211100 São João Batista                            211100
+    598  211102 São João do Carú                            211102
+    599  211105 São João do Paraíso                         211105
+    600  211107 São João do Soter                           211107
+    601  211120 São José de Ribamar                         211120
+    602  211125 São José dos Basílios                       211125
+    603  211130 São Luís                                    211130
+    604  211140 São Luís Gonzaga do Maran                   211140
+    605  211150 São Mateus do Maranhão                      211150
+    606  211153 São Pedro da Água Branca                    211153
+    607  211157 São Pedro dos Crentes                       211157
+    608  211160 São Raimundo das Mangabei                   211160
+    609  211163 São Raimundo do Doca Beze                   211163
+    610  211167 São Roberto                                 211167
+    611  211170 São Vicente Ferrer                          211170
+    612  211172 Satubinha                                   211172
+    613  211174 Senador Alexandre Costa                     211174
+    614  211176 Senador La Rocque                           211176
+    615  211178 Serrano do Maranhão                         211178
+    616  211180 Sítio Novo                                  211180
+    617  211190 Sucupira do Norte                           211190
+    618  211200 Tasso Fragoso                               211200
+    619  211210 Timbiras                                    211210
+    620  211223 Trizidela do Vale                           211223
+    621  211227 Tufilândia                                  211227
+    622  211230 Tuntum                                      211230
+    623  211240 Turiaçu                                     211240
+    624  211245 Turilândia                                  211245
+    625  211270 Vargem Grande                               211270
+    626  211280 Viana                                       211280
+    627  211285 Vila Nova dos Martírios                     211285
+    628  211290 Vitória do Mearim                           211290
+    629  211300 Vitorino Freire                             211300
+    630  211400 Zé Doca                                     211400
+    631  510010 Acorizal                                    510010
+    632  510020 Água Boa                                    510020
+    633  510025 Alta Floresta                               510025
+    634  510030 Alto Araguaia                               510030
+    635  510035 Alto Boa Vista                              510035
+    636  510040 Alto Garças                                 510040
+    637  510050 Alto Paraguai                               510050
+    638  510060 Alto Taquari                                510060
+    639  510080 Apiacás                                     510080
+    640  510100 Araguaiana                                  510100
+    641  510120 Araguainha                                  510120
+    642  510125 Araputanga                                  510125
+    643  510130 Arenápolis                                  510130
+    644  510140 Aripuanã                                    510140
+    645  510160 Barão de Melgaço                            510160
+    646  510170 Barra do Bugres                             510170
+    647  510180 Barra do Garças                             510180
+    648  510190 Brasnorte                                   510190
+    649  510250 Cáceres                                     510250
+    650  510260 Campinápolis                                510260
+    651  510263 Campo Novo do Parecis                       510263
+    652  510267 Campo Verde                                 510267
+    653  510268 Campos de Júlio                             510268
+    654  510269 Canabrava do Norte                          510269
+    655  510270 Canarana                                    510270
+    656  510279 Carlinda                                    510279
+    657  510285 Castanheira                                 510285
+    658  510300 Chapada dos Guimarães                       510300
+    659  510305 Cláudia                                     510305
+    660  510310 Cocalinho                                   510310
+    661  510320 Colíder                                     510320
+    662  510330 Comodoro                                    510330
+    663  510335 Confresa                                    510335
+    664  510337 Cotriguaçu                                  510337
+    665  510340 Cuiabá                                      510340
+    666  510345 Denise                                      510345
+    667  510350 Diamantino                                  510350
+    668  510360 Dom Aquino                                  510360
+    669  510370 Feliz Natal                                 510370
+    670  510380 Figueirópolis D'Oeste                       510380
+    671  510385 Gaúcha do Norte                             510385
+    672  510390 General Carneiro                            510390
+    673  510395 Glória D'Oeste                              510395
+    674  510410 Guarantã do Norte                           510410
+    675  510420 Guiratinga                                  510420
+    676  510450 Indiavaí                                    510450
+    677  510455 Itaúba                                      510455
+    678  510460 Itiquira                                    510460
+    679  510480 Jaciara                                     510480
+    680  510490 Jangada                                     510490
+    681  510500 Jauru                                       510500
+    682  510510 Juara                                       510510
+    683  510515 Juína                                       510515
+    684  510517 Juruena                                     510517
+    685  510520 Juscimeira                                  510520
+    686  510523 Lambari D'Oeste                             510523
+    687  510525 Lucas do Rio Verde                          510525
+    688  510530 Luciára                                     510530
+    689  510550 Vila Bela da Santíssima T                   510550
+    690  510558 Marcelândia                                 510558
+    691  510560 Matupá                                      510560
+    692  510562 Mirassol d'Oeste                            510562
+    693  510590 Nobres                                      510590
+    694  510600 Nortelândia                                 510600
+    695  510610 Nossa Senhora do Livramen                   510610
+    696  510615 Nova Bandeirantes                           510615
+    697  510618 Nova Lacerda                                510618
+    698  510620 Nova Brasilândia                            510620
+    699  510621 Nova Canaã do Norte                         510621
+    700  510622 Nova Mutum                                  510622
+    701  510623 Nova Olímpia                                510623
+    702  510624 Nova Ubiratã                                510624
+    703  510625 Nova Xavantina                              510625
+    704  510626 Novo Mundo                                  510626
+    705  510627 Novo Horizonte do Norte                     510627
+    706  510628 Novo São Joaquim                            510628
+    707  510629 Paranaíta                                   510629
+    708  510630 Paranatinga                                 510630
+    709  510637 Pedra Preta                                 510637
+    710  510642 Peixoto de Azevedo                          510642
+    711  510645 Planalto da Serra                           510645
+    712  510650 Poconé                                      510650
+    713  510665 Pontal do Araguaia                          510665
+    714  510670 Ponte Branca                                510670
+    715  510675 Pontes e Lacerda                            510675
+    716  510677 Porto Alegre do Norte                       510677
+    717  510680 Porto dos Gaúchos                           510680
+    718  510682 Porto Esperidião                            510682
+    719  510685 Porto Estrela                               510685
+    720  510700 Poxoréo                                     510700
+    721  510704 Primavera do Leste                          510704
+    722  510706 Querência                                   510706
+    723  510710 São José dos Quatro Marco                   510710
+    724  510715 Reserva do Cabaçal                          510715
+    725  510718 Ribeirão Cascalheira                        510718
+    726  510719 Ribeirãozinho                               510719
+    727  510720 Rio Branco                                  510720
+    728  510724 Santa Carmem                                510724
+    729  510726 Santo Afonso                                510726
+    730  510729 São José do Povo                            510729
+    731  510730 São José do Rio Claro                       510730
+    732  510735 São José do Xingu                           510735
+    733  510740 São Pedro da Cipa                           510740
+    734  510760 Rondonópolis                                510760
+    735  510770 Rosário Oeste                               510770
+    736  510775 Salto do Céu                                510775
+    737  510777 Santa Terezinha                             510777
+    738  510780 Santo Antônio do Leverger                   510780
+    739  510785 São Félix do Araguaia                       510785
+    740  510787 Sapezal                                     510787
+    741  510790 Sinop                                       510790
+    742  510792 Sorriso                                     510792
+    743  510794 Tabaporã                                    510794
+    744  510795 Tangará da Serra                            510795
+    745  510800 Tapurah                                     510800
+    746  510805 Terra Nova do Norte                         510805
+    747  510810 Tesouro                                     510810
+    748  510820 Torixoréu                                   510820
+    749  510830 União do Sul                                510830
+    750  510840 Várzea Grande                               510840
+    751  510850 Vera                                        510850
+    752  510860 Vila Rica                                   510860
+    753  510880 Nova Guarita                                510880
+    754  510885 Nova Marilândia                             510885
+    755  510890 Nova Maringá                                510890
+    756  510895 Nova Monte Verde                            510895
+    757  520490 Campos Belos                                520490
+    758  521377 Montividiu do Norte                         521377
+    759  521525 Novo Planalto                               521525
+    760  521800 Porangatu                                   521800
+    761  522020 São Miguel do Araguaia                      522020

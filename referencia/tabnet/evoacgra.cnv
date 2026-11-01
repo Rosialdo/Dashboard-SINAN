@@ -1,0 +1,12 @@
+; EVOACGRA.CNV
+; revisado pela UT_sinan março 2019
+8 1
+      1  Ign/Branco                                          ,0-9
+      2  Cura                                               1
+      3  Incapacidade Temporária                            2
+      4  Incapacidade parcial permanente                    3
+      5  Incapacidade total permanente                      4
+      6  Óbito pelo acidente trab grave                     5
+      7  Óbito por outras causas                            6
+      8  Outra                                              7
+

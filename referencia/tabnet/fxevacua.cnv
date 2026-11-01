@@ -1,0 +1,7 @@
+;FXEVACUA.CNV
+5 1
+      1  Ign/Branco                                          ,0-9
+      2  Até 5 Evacuações                                   1
+      3  De 6 a 10 Evacuações                               2
+      4  De 11 a 20 Evacuações                              3
+      5  Acima de 20 Evacuações                             4

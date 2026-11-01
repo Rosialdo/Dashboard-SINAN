@@ -1,0 +1,14 @@
+; CRITMENNET.CNV
+11 2 L
+
+      1  Em branco                                            ,0 ,00, 0
+      2  Cultura                                            1 ,01
+      3  CIE                                                2 ,02
+      4  AG. Latex                                          3 ,03
+      5  Clínico                                            4 ,04
+      6  Bacterioscopia                                     5 ,05
+      7  Quimiocitológico                                   6 ,06
+      8  Clínico-epidemiológico                             7 ,07
+      9  Isolamento viral                                   8 ,08
+     10  PCR - viral                                        9 ,09
+     11  Outra técnica                                      10

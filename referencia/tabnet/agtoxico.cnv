@@ -1,0 +1,18 @@
+; Agtoxico.cnv
+; revisado pela UT-Sinan março 2019
+15 2
+      1  Ign/Branco                                           ,00-99
+      2  Medicamento                                        01
+      3  Agrotóxico uso agrícola                            02
+      4  Agrotóxico uso doméstico                           03
+      5  Agrotóxico uso saúde pública                       04
+      6  Raticida                                           05
+      7  Prod. uso veterinário                              06
+      8  Prod. uso domiciliar                               07
+      9  Cosmético_higiene pessoal                          08
+     10  Prod. químico uso industrial                       09
+     11  Metal                                              10
+     12  Drogas de abuso                                    11
+     13  Planta tóxica                                      12
+     14  Alimento e bebida                                  13
+     15  Outro                                              14

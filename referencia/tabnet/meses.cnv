@@ -1,0 +1,15 @@
+;MESES.CNV
+13 2
+      1  Ign/Branco                                           ,00-99
+      2  Janeiro                                            01
+      3  Fevereiro                                          02
+      4  Marco                                              03
+      5  Abril                                              04
+      6  Maio                                               05
+      7  Junho                                              06
+      8  Julho                                              07
+      9  Agosto                                             08
+     10  Setembro                                           09
+     11  Outubro                                            10
+     12  Novembro                                           11
+     13  Dezembro                                           12

@@ -1,0 +1,6 @@
+;Fxidad2NET.CNV
+; Revisado UT-Sinan 2019
+3  4
+      1  Em branco/IGN                                          ,0000,9999,1000-4999
+      2  0 a 14 anos                                        1000-4014
+      3  15 anos e mais                                     4015-4125

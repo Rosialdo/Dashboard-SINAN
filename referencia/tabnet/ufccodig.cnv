@@ -1,0 +1,30 @@
+;UFCcodig.CNV
+28 2
+      1  Ign/Em Branco                                        ,00-99
+      2  RO                                                 11
+      3  AC                                                 12
+      4  AM                                                 13
+      5  RR                                                 14
+      6  PA                                                 15
+      7  AP                                                 16
+      8  TO                                                 17
+      9  MA                                                 21
+     10  PI                                                 22
+     11  CE                                                 23
+     12  RN                                                 24
+     13  PB                                                 25
+     14  PE                                                 26
+     15  AL                                                 27
+     16  SE                                                 28
+     17  BA                                                 29
+     18  MG                                                 31
+     19  ES                                                 32
+     20  RJ                                                 33
+     21  SP                                                 35
+     22  PR                                                 41
+     23  SC                                                 42
+     24  RS                                                 43
+     25  MS                                                 50
+     26  MT                                                 51
+     27  GO                                                 52
+     28  DF                                                 53

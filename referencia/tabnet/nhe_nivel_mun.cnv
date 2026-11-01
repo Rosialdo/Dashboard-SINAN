@@ -1,0 +1,338 @@
+;NHE_NIVEL_MUN - Nível, municípios e respectivas Unidades de Saúde ; Patch 4.2
+336 7 L
+      1  ===                  NIVEL I                   === -------
+  1   2  ...Altamira                                        -------
+  1   3  Hospital Municipal São Rafael - Altamira           2330830
+  1   4  ...Anápolis                                        -------
+  1   5  Hospital Municipal Jamel Cecílio                   2361744
+  1   6  ...Aracaju                                         -------
+  1   7  Hospital da Universidade Federal de Sergipe        0002534
+  1   8  ...Araçatuba                                       -------
+  1   9  Santa Cs M Araçatuba-Hosp Sagrado Coração de Jesus 2078775
+  1  10  ...Araguaína                                       -------
+  1  11  Hospital de Referência de Araguaina                2600536
+  1  12  ...Araxá                                           -------
+  1  13  Santa Casa de Misericódia de Araxá                 2164620
+  1  14  ...Assis                                           -------
+  1  15  Hospital Regional de Assis                         2083094
+  1  16  ...Batalha                                         -------
+  1  17  Hosp Maternidade São Vicente de Paulo - Barbalha   2564211
+  1  18  ...Barretos                                        -------
+  1  19  Santa Casa de Barretos                             2092611
+  1  20  ...Bauru                                           -------
+  1  21  Hospital Estadual de Bauru                         2790602
+  1  22  ...Boa Vista                                       -------
+  1  23  Hospital Geral de Roraima                          2319659
+  1  24  ...Campina Grande                                  -------
+  1  25  Hospital Regional de Urg e Emerg de Campina Grande 2362856
+  1  26  Hosp Univ Alcides Carneiro-Univ Fed Campina Grande 2676060
+  1  27  ...Campina Grande do Sul                           -------
+  1  28  Hospital Maternidade Angelina Caron                0013633
+  1  29  ...Campinas                                        -------
+  1  30  Hospital e Maternidade Celso Pierro                2082128
+  1  31  ...Campo Grande                                    -------
+  1  32  Associação Ben Campo Grande-Santa CS do Estado MS  0009717
+  1  33  ...Campos dos Goytacazes                           -------
+  1  34  Fund Dr.João Barcelo Martins-Hosp Ferreira Machado 2287579
+  1  35  ...Canoas                                          -------
+  1  36  Associação Ben Canoas-Hosp N Senhora das Graças    2232014
+  1  37  ...Carangola                                       -------
+  1  38  Casa de Caridade de Carangola                      2764776
+  1  39  ...Cascavel                                        -------
+  1  40  Hospital Univ do Oeste do Paraná/UNIOESTE Cascavel 2738368
+  1  41  ...Caxias do Sul                                   -------
+  1  42  Pio Sod Damas de Carid Mante do Hosp N S Pompéia   2223546
+  1  43  ...Curitiba                                        -------
+  1  44  Hospital do Trabalhador - Hospital Mauro Goulart   0015369
+  1  45  Hospital Univ Cajuru-Soc Paranaense de Cultura/HUC 0015407
+  1  46  ...Duque de Caxias                                 -------
+  1  47  Hospital Estadual Adão Pereira Nunes               2290227
+  1  48  ...Ferraz de Vasconcelos                           -------
+  1  49  Hosp Reg F Vasconclos-Dr Osiris Florindo Coelho    2080079
+  1  50  ...Florianópolis                                   -------
+  1  51  Hospital Infantil Joana de Gusmão                  2691868
+  1  52  ...Fortaleza                                       -------
+  1  53  Hospital Geral Dr. César Cals                      2499363
+  1  54  Hospital Universitário Walter Cantídio             2561492
+  1  55  ...Foz do Iguaçu                                   -------
+  1  56  Hospital Municipal de Foz de Iguaçu                5061989
+  1  57  ...Franca                                          -------
+  1  58  Fund Civil Cs M Franca-Santa Cs Miser de Franca    2705982
+  1  59  ...Francisco Mota                                  -------
+  1  60  Hospital Estadual Prof. Carlos da Silva Lacaz      3028399
+  1  61  ...Goiânia                                         -------
+  1  62  Hospital das Clínicas da Univ Federal de Goiás     2338424
+  1  63  Hospital de Urg Goiania Dr. Valdemiro da Cruz/HUGO 2338262
+  1  64  ...Itapeva                                         -------
+  1  65  Santa Casa de Misericórdia de Itapeva              2027186
+  1  66  ...Jequié                                          -------
+  1  67  Hospital Geral Prado Valadares                     2400693
+  1  68  ...Joinville                                       -------
+  1  69  Hospital  Regional Hans Ditter Schmidt             2436450
+  1  70  ...Limeira                                         -------
+  1  71  Irmandade Santa Casa de Misericordia de Limeira    2081458
+  1  72  ...Macapá                                          -------
+  1  73  Hosp da Criança e Adolescente do Estado do Amapá   2019647
+  1  74  ...Maceió                                          -------
+  1  75  Maternidade Escola Santa Mônica                    2009250
+  1  76  ...Manaus                                          -------
+  1  77  Pronto Socorro da Criança Zona Sul                 2012472
+  1  78  ...Maringá                                         -------
+  1  79  Hospital Universitário Regional de Maringá/HUM     2587335
+  1  80  ...Mococa                                          -------
+  1  81  Hosp Carolina Figueiredo e Matern Anita Costa      2705222
+  1  82  ...Natal                                           -------
+  1  83  Hospital Universitário Onofre Lopes                2653982
+  1  84  ...Osasco                                          -------
+  1  85  Hosp Mun Antonio Giglio - Hosp Mun Cent Osasco     0008028
+  1  86  ...Palmas                                          -------
+  1  87  Hosp de Referência de Palmas Dr. Francisco Ayres   2786117
+  1  88  ...Pará de Minas                                   -------
+  1  89  Hospital N S Conceição-Irmandade N S da Conceição  2206064
+  1  90  ...Pariquera-Acu                                   -------
+  1  91  Hospital Regional Vale do Ribeira                  2077434
+  1  92  ...Passos                                          -------
+  1  93  Santa Casa de Misericordia de Passos               2775999
+  1  94  ...Patos de Minas                                  -------
+  1  95  Hospital Regional Antônio Dias/FHEIMIG             2726726
+  1  96  ...Pelótas                                         -------
+  1  97  Santa Casa de Misericórdia de Pelotas              2253054
+  1  98  ...Picos                                           -------
+  1  99  Hospital Regional Justino Luz - Picos              4009622
+  1 100  ...Ponte Nova                                      -------
+  1 101  Hosp NS Dores/Irmandade Hosp NSenhora Dores        2111640
+  1 102  ...Porto Velho                                     -------
+  1 103  Centro de Medicina Tropical de Rondônia            2493853
+  1 104  Hospital de Base Dr Ary Pinheiro                   4001303
+  1 105  ...Recife                                          -------
+  1 106  Hospital Agamenon Magalhães                        0000418
+  1 107  Hospital Geral Otávio Freitas                      0000426
+  1 108  Hospital Getúlio Vargas                            2802783
+  1 109  Inst Medicina Integ Prof. Fernando Figueira-IMIP   0000434
+  1 110  Hospital Geral de Clínicas de Rio Branco - HGCRB   2001578
+  1 111  ...Redenção                                        -------
+  1 112  Hospital Regional Público do Araguaia              5998465
+  1 113  ...Rio Branco                                      -------
+  1 114  Hospital Estadual Carlos Chagas                    2273411
+  1 115  ...Rio de Janeiro                                  -------
+  1 116  Hospital Geral de Bonsucesso                       2269880
+  1 117  Hospital Municipal Miguel Couto                    2270269
+  1 118  Hospital Municipal Souza Aguiar                    2280183
+  1 119  Hospital Universitário Clementino Fraga Filho/UFRJ 2280167
+  1 120  ...Salvador                                        -------
+  1 121  Hospital Geral de Estado                           0004294
+  1 122  Hospital Geral Ernesto Simões Filho                0004073
+  1 123  Hospital Geral Roberto Santos                      0003859
+  1 124  Hosp Liga Álvaro Bahia CMI-Martagão Gesteira       0004278
+  1 125  Hosp Monte Tabor Centro Ítalo Bras Prom Sanitária  0003808
+  1 126  Hosp Santo Antonio das Obras Sociais Irmã Dulce    2802104
+  1 127  ...Santa Cruz do Sul                               -------
+  1 128  Assoc Pró-Ensino Santa Cruz do Sul-Hosp Santa Cruz 2254964
+  1 129  ...Santa Rosa                                      -------
+  1 130  Assoc Hosp de Carid Santa Rosa/Hospital Vida Saúde 2254611
+  1 131  ...Santo André                                     -------
+  1 132  Centro Hospitalar do Municipio de Santo André      0008923
+  1 133  ...São Carlos                                      -------
+  1 134  Irmandade Santa Cs de Miserircórdia de São Carlos  2080931
+  1 135  ...São Gonçalo                                     -------
+  1 136  Hospital Estadual Alberto Torres                   2298031
+  1 137  ...São Luiz                                        -------
+  1 138  Hospital da Criança Dr. Odorico Amaral de Matos    2458799
+  1 139  Hospital Urg e Emerg Clementino Moura-Socorrão II  2308800
+  1 140  Hospital Djalma Marques - Socorrão I               2308762
+  1 141  Hospital Geral Tarquínio Lopes Filho               2646536
+  1 142  ...São Paulo                                       -------
+  1 143  Hospital Infantil Cândido Fontoura                 2088517
+  1 144  Hospital Municipal Infantil Menino de Jesus        2078325
+  1 145  ...Sobradinho                                      -------
+  1 146  Hospital Regional de Sobradinho                    0010502
+  1 147  ...Sobral                                          -------
+  1 148  Santa Casa de Misericórdia - Sobral                3021114
+  1 149  ...Sumaré                                          -------
+  1 150  Hospital Estadual Sumaré                           2083981
+  1 151  ...Tabatinga                                       -------
+  1 152  Hospital de Guarnição de Tabatinga                 2016125
+  1 153  ...Taboão da Serra                                 -------
+  1 154  Hospital Geral Pirajussara                         2079828
+  1 155  ...Taubaté                                         -------
+  1 156  Hospital Escola da Universidade de Taubaté         2749319
+  1 157  ...Teófilo Otoni                                   -------
+  1 158  Associação Hospitalar Santa Rosália                2208172
+  1 159  ...Teresina                                        -------
+  1 160  Hospital Infantil Lucídio Portella                 2323249
+  1 161  ...Tubarão                                         -------
+  1 162  Soc Divina Prov-Hospital N Senhora da Conceição    2491710
+  1 163  ...Tucuruí                                         -------
+  1 164  Hospital Regional  de Tucurui                      2621614
+  1 165  ...Uruguaiana                                      -------
+  1 166  Santa Casa de Misericórdia de Uruguaiana           2248190
+  1 167  ...Varginha                                        -------
+  1 168  Hosp Bom Pastor/Fund Hosp Muno de Varginha         2761092
+  1 169  ...Várzea Grande                                   -------
+  1 170  Hosp/PS Municipal/FUSVAGFSaúde Várzea Grande      2391635
+  1 171  ...Vitória                                         -------
+  1 172  Hospital Univ Cassiano Antônio Moraes - HUCAM      4044916
+  1 173  ...Vitória da Conquista                            -------
+  1 174  Hospital Geral de Vitória da Conquista             2402076
+    175  ===                  NIVEL II                  === -------
+175 176  ...Alfenas                                         -------
+175 177  Hosp Univ Alzira Velano/F Ensino Tecn Alfenas      2171988
+175 178  ...Aracajú                                         -------
+175 179  Hospital Governador João Alves Filho               2816210
+175 180  ...Belo Horizonte                                  -------
+175 181  Hospital Eduardo de Menezes/FHEMIG                 2181770
+175 182  Hospital Infantil João Paulo II                    0026948
+175 183  ...Blumenau                                        -------
+175 184  Hospital Santa Isabel                              2558246
+175 185  ...Bragança                                        -------
+175 186  Hospital Santo Antônio Maria de Zaccaria           2678403
+175 187  ...Campinas                                        -------
+175 188  Hospital Municipal Mário Gatti                     2081490
+175 189  ...Campo Grande                                    -------
+175 190  Hospital Regional de Mato Grosso do Sul - HRMS     0009725
+175 191  ...Chapecó                                         -------
+175 192  Hosp Reg Leonoir Vargas Ferreira-Hosp Reg do Oeste 2537788
+175 193  ...Cuiabá                                          -------
+175 194  Hospital e Pronto Socorro Municipal de Cuiabá      2495015
+175 195  ...Curitiba                                        -------
+175 196  Hosp Inf Pequeno Príncipe - AHPC-Dr Raul Carneiro  0015563
+175 197  Hospital Universitário Evangelico de Curitiba      0015245
+175 198  ...Feira de Santana                                -------
+175 199  Hospital Geral Clériston Andrade                   2799758
+175 200  ...Fortaleza                                       -------
+175 201  Hospital Infantil Albert Sabin                     2563681
+175 202  Instituto Dr. José Frota                           2529149
+175 203  ...Gama                                            -------
+175 204  Hospital Regional do Gama - HRG                    0010472
+175 205  ...Goiânia                                         -------
+175 206  Hospital Materno Infantil/SES                      2339196
+175 207  Santa Casa de Misericórdia de Goiânia              2338351
+175 208  ...Governador Valadares                            -------
+175 209  Hospital Municipal de Governador Valadares         2222043
+175 210  ...Guarulhos                                       -------
+175 211  Hospital Geral de Guarulhos                        2080338
+175 212  ...João Pessoa                                     -------
+175 213  Complexo Hospitalar Clementino Fraga               2399717
+175 214  ...Juiz de Fora                                    -------
+175 215  Hospital Universitário de Juiz de Fora             2218798
+175 216  ...Maceió                                          -------
+175 217  Hospital Universitário Prof. Alberto Antunes       2006197
+175 218  ...Manaus                                          -------
+175 219  Hospital Universitário Getúlio Vargas              2017644
+175 220  Pronto Socorro 28 de Agosto                        2013649
+175 221  ...Marília                                         -------
+175 222  Hosp Clí-Unid I e Mat Inf Fund Mun ES Marília      2025523
+175 223  ...Mauá                                            -------
+175 224  Hospital das Clínicas Dr. Radames Nardini          2082349
+175 225  ...Montes Claros                                   -------
+175 226  Hospital Univ Clemente de Faria de Montes Claros   2219654
+175 227  ...Natal                                           -------
+175 228  Hospital Monsenhor Walfredo Gurgel                 2653923
+175 229  ...Niterói                                         -------
+175 230  Hospital Estadual Azevedo Lima                     0012521
+175 231  ...Passo Fundo                                     -------
+175 232  Associação Hosp Beneficiente São Vicente de Paulo  2246988
+175 233  ...Recife                                          -------
+175 234  Hospital Corrêa Picanço                            0000981
+175 235  Hospital das Clínicas da UFPE                      0000396
+175 236  ...Rio de Janeiro                                  -------
+175 237  Centro de Pesq do Hosp Evandro Chagas - FIOCRUZ    2288338
+175 238  Hospital dos Servidores do Estado                  2269988
+175 239  Hospital Estadual Rocha Faria                      2295407
+175 240  Hospital Universitário Pedro Ernesto               2269783
+175 241  ...Rio Grande                                      -------
+175 242  Assoc de Caridade S Cs de Misericórdia Rio Grande  2232995
+175 243  ...Salvador                                        -------
+175 244  Hospital Santa Casa Misericórdia da Bahia-Hosp S I 0003832
+175 245  Hospital Universitário Prof. Edgard Santos         0003816
+175 246  Hospital Espanhol-Real Soc Espanhola Beneficiência 0004057
+175 247  ...Santa Maria                                     -------
+175 248  Hospital Universitário de Santa Maria - HUSM       2244306
+175 249  ...Santarém                                        -------
+175 250  Hospital Municipal de Santarém                     2329905
+175 251  ...Santos                                          -------
+175 252  Hospital Guilherme Álvaro                          2079720
+175 253  ...São José dos Campos                             -------
+175 254  Hospital Municipal Dr. José de Carvalho Florence   0009628
+175 255  ...São Luiz                                        -------
+175 256  Hospital Presidente Vargas                         2458292
+175 257  ...São Paulo                                       -------
+175 258  Conjunto Hospitalar do Mandaqui                    2077574
+175 259  Hospital Municipal de Tatuapé - Cármino Caricchio  2080346
+175 260  Hospital Regional Sul                              2091313
+175 261  Hospital Santa Marcelina                           2077477
+175 262  Hospital São Paulo/UNIFESP                         2077485
+175 263  ...Sorocaba                                        -------
+175 264  Conjunto Hospitalar de Sorocaba                    2081695
+175 265  ...Teresina                                        -------
+175 266  Hospital Gétulio Vargas                            2726971
+175 267  ...Vitória                                         -------
+175 268  Hospital Infantil Nossa Senhora da Glória          0011800
+    269  ===                  NIVEL III                 === -------
+269 270  ...Belém                                           -------
+269 271  Hospital Fundação Santa Cs de Misericórdia do Pará 2752700
+269 272  Hospital Universitário João de Barros Barreto      2332981
+269 273  ...Belo Horizonte                                  -------
+269 274  Hospital das Clínicas da UFMG                      0027049
+269 275  Hospital Municipal Odilon Behrens                  2192896
+269 276  ...Botucatu                                        -------
+269 277  Hospital Clín da Fac de Medicina de Botucatu/UNESP 2748223
+269 278  ...Brasília                                        -------
+269 279  Hospital Regional da Asa Norte - HRAN              0010464
+269 280  ...Campinas                                        -------
+269 281  Hospital das Clínicas/UNICAMP                      2079798
+269 282  ...Campo Grande                                    -------
+269 283  Hospital Univ M Aparecida Pedrossian-Fundação UFMS 0009709
+269 284  ...Cuiabá                                          -------
+269 285  Hospital Universitário Julio Müller-Fundação UFMT  2655411
+269 286  ...Curitiba                                        -------
+269 287  Hospital de Clínicas da UFPR                       2384299
+269 288  ...Florianópolis                                   -------
+269 289  Hospital Nereu Ramos                               2664879
+269 290  ...Fortaleza                                       -------
+269 291  Hospital Geral de Fortaleza                        2497654
+269 292  Hospital São José                                  2561417
+269 293  ...Goiânia                                         -------
+269 294  Hospital de Doenças Tropicais - HDT                2506661
+269 295  ...João Pessoa                                     -------
+269 296  Hospital Universitário Lauro Wanderley             2400243
+269 297  ...Londrina                                        -------
+269 298  Hosp Univ Londrina-H Univ Reg Norte do Parana      2781859
+269 299  ...Maceió                                          -------
+269 300  Hospital Escola Dr. Helvio Auto - UNCISAL          2720035
+269 301  ...Manaus                                          -------
+269 302  Fundação de Medicina Tropical do Amazonas - FMTAM  2013606
+269 303  ...Natal                                           -------
+269 304  Hospital Giselda Trigueiro                         4013484
+269 305  ...Porto Alegre                                    -------
+269 306  Hospital Nossa Senhora da Conceição                2237571
+269 307  Hospital São Lucas da PUCRS                        2262568
+269 308  HC Samuel Libânio Pouso Alegre-FES V Sapucaí       2127989
+269 309  ...Recife                                          -------
+269 310  Hospital da Restauração                            0000655
+269 311  Hospital Universitário Oswaldo Cruz                0000477
+269 312  ...Ribeirão Preto                                  -------
+269 313  Hospital Clín Fac Medicina Ribeirão Preto/FMRP-USP 2082187
+269 314  ...Rio de Janeiro                                  -------
+269 315  Hospital Estadual Getúlio Vargas                   2270234
+269 316  Hospital Estadual Pedro II                         2758091
+269 317  Instituto Estadual de Infectologia São Sebastião   2273365
+269 318  ...Salvador                                        -------
+269 319  Hospital Couto Maia                                0005428
+269 320  Hospital Especializado Octavio Mangabeira          0004065
+269 321  ...São José do Rio Preto                           -------
+269 322  Hosp Base-Fund Facul Reg Med S José Rio Preto      2077396
+269 323  ...São Luiz                                        -------
+269 324  Hospital Universitário - UFMA                      2726653
+269 325  ...São Paulo                                       -------
+269 326  Hospital das Clínicas/FMUSP                        2078015
+269 327  Instituto de Infectologia Emílio Ribas             2028840
+269 328  Irmandade da Santa Casa Misericórdia de São Paulo  2688689
+269 329  ...Teresina                                        -------
+269 330  Instituto Doenças Tropicais Natan Portella Nunes   2323338
+269 331  ...Uberaba                                         -------
+269 332  Hospital Escola Fac Medicina do Triângulo Mineiro  2206595
+269 333  ...Uberlândia                                      -------
+269 334  Hospital  de Clínicas de Uberlândia - UFU          2146355
+269 335  ...Vitória                                         -------
+269 336  Santa Casa de Misericórdia de Vitória              0011746

@@ -1,0 +1,14 @@
+; encerra.CNV
+11  2 L
+      1  Ign/Branco                                           ,00-99
+      2  Cura                                               1 ,01, 1
+      3  Abandono                                           2 ,02, 2
+      4  Óbito por tuberculose                              3 ,03, 3
+      5  Óbito por outras causas                            4 ,04, 4
+      6  Transferência                                      5 ,05, 5
+      7  Mudança de diagnóstico                             6 ,06, 6
+      8  TB-DR                                              7 ,07, 7
+      9  Mudança de Esquema                                 8 ,08, 8
+     10  Falência                                           9 ,09, 9
+     11  Abandono Primário                                  10
+

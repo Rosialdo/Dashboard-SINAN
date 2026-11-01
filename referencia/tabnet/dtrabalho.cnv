@@ -1,0 +1,14 @@
+;Agravos relacionados à saude do trabalhador listados em portaria específica
+;Intoxicação exógena por incluir notificações de não trabalhadores está no cnv de agravos compulsórios e de crônicos (por ser notificado confirmado)
+; Revisado em 29/01/2019 pela UT-Sinan
+9  4
+      1  Acidente Trabalho c/Exposição a Material Biológico Z209
+      2  Acidente de Trabalho Grave                         Y96 ,
+      3  Câncer Relacionado ao Trabalho                     C80 ,
+      4  Dermatoses Ocupacionais                            L989
+      5  Intoxicações Exógenas                              T659
+      6  LER DORT                                           Z579
+      7  PAIR                                               H833
+      8  Pneumoconiose                                      J64 ,
+      9  Transtorno Mental                                  F99 ,
+

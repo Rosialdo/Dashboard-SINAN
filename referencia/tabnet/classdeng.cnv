@@ -1,0 +1,12 @@
+; CLASSDENG.CNV
+10 2 L
+      1  Ign/Branco                                           , 0-9
+      2  Dengue Clássico                                    1 , 1,01
+      3  Dengue com complicações                            2 , 2,02
+      4  Febre Hemorrágica do Dengue                        3 , 3,03
+      5  Síndrome do Choque do Dengue                       4 , 4,04
+      6  Descartado                                         5 , 5,05
+      7  Inconclusivo                                       8 , 8,08
+      8  Dengue                                             10
+      9  Dengue com sinais de alarme                        11
+     10  Dengue grave                                       12

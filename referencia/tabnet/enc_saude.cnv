@@ -1,0 +1,7 @@
+;ENC_SAUDE.CNV
+5  1  L
+      1  Em Branco                                           ,
+      2  Ignorado                                           0-9
+      3  Encaminhamento At. Bás.                            1
+      4  Internação Hosp.                                   2
+      5  Não se aplica                                      8

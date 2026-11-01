@@ -1,0 +1,96 @@
+;ACOMPANHAMENTO DE SURTO - PLANILHA DE SURTO
+; Inclusão de Agravos Surto CIEVS em 28/06/2012. Demanda CIEVS Raquel, Inclusão UT-Sinan Andrea
+
+Ac:\SinanNet\BaseDBF\PSurt*.DB?
+
+;    Definições para Ano, Mês, Semana e Trimestre da Notificação
+XAno da Notific,       DT_NOTIFIC,  1, ANOS.CNV
+LMes da Notific,       DT_NOTIFIC,  5, MESES.CNV
+CMes da Notific,       DT_NOTIFIC,  5, MESESC.CNV
+SMes da Notific,       DT_NOTIFIC,  5, MESES.CNV
+XTrim.da Notific,      DT_NOTIFIC,  5, TRIME.CNV
+
+;    Definição do município de notificação
+LMunicipio Not,     ID_MUNICIP,1,municbr.cnv
+SMunicipio Not,     ID_MUNICIP,1,municbr.cnv
+
+;    Definição de agravos notificados no Sinan. 
+LAgravos notificados,  ID_AGRAVO, 1,  agravosSurto.cnv
+CAgravos notificados,  ID_AGRAVO, 1,  agravosSurto.cnv
+SAgravos notificados,  ID_AGRAVO, 1,  agravosSurto.cnv
+
+;agravos de surto lista CIEVS.
+xAgravos Surto CIEVS,     ID_AGRAVO,  1,  lista_surto_CIEVS.cnv
+
+;Definicoes para Faixa Etaria do paciente por ocasião da Notificação
+
+XFx Etária RIPSA6, NU_IDADE_N,   1,  FXRIPSA6NET.CNV
+XFx Etaria (5),    NU_IDADE_N,   1,  FXIDAD5NET.CNV
+XFx Etaria (9),    NU_IDADE_N,   1,  FXIDAD9NET.CNV
+XFx Etaria SINAN,  NU_IDADE_N,   1,  FXIDAD10NET.CNV
+XFx Etaria (13),   NU_IDADE_N,   1,  FXIDAD13NET.CNV
+XIdade detalhada,  NU_IDADE_N,   1,  IDADEDETNET.CNV
+XFx 14 a 69 anos,  NU_IDADE_N,   1,  Fx14a69.cnv
+
+;    Definição de Unidade Federada de residência
+LUF de residência,  SG_UF, 1, uf.cnv
+CUF de residência,  SG_UF, 1, uf.cnv
+SUF de residência,  SG_UF, 1, uf.cnv
+
+;    Definição de município de residência
+LMunicipio Res,     ID_MUNI_RE,1,municbr.cnv
+SMunicipio Res,     ID_MUNI_RE,1,municbr.cnv
+
+; Definicoes para Municípios de Fronteira
+XMun Fronteira Not,     ID_MUNICIP, 1,  Munfront.cnv
+XMun Fronteira Res,     ID_MN_RESI,   1,  Munfront.cnv
+
+; Definicoes Municipio com Aeroporto, Porto ou Fluvial
+XMun Not com AFP,    ID_MUNICIP,  1,  Mun_A_F_P.cnv
+XMun Res com AFP,    ID_MN_RESI,  1,  Mun_A_F_P.cnv
+
+; Definicoes para Municípios turístico definidos pelo Ministério de Turismo para Copa 2014
+XMun Turismo Not,     ID_MUNICIP,   1,  MunTurismo.cnv
+XMun Turismo Res,     ID_MN_RESI,   1,  MunTurismo.cnv
+
+;    Definição de zona de residência
+LZona,              CS_ZONA   ,1,zona.cnv
+CZona,              CS_ZONA   ,1,zona.cnv
+SZona,              CS_ZONA   ,1,zona.cnv
+
+;    Definição de sexo
+LSexo,              CS_SEXO   ,1,sexo.cnv
+CSexo,              CS_SEXO   ,1,sexo.cnv
+SSexo,              CS_SEXO   ,1,sexo.cnv
+
+;    Definições para Ano, Mês, Semana e Trimestre da Notificação
+XAno inic Sintomas,    DT_SIN_PRI,  1, ANOS.CNV
+LMes inic Sintomas,    DT_SIN_PRI,  5, MESES.CNV
+CMes inic Sintomas,    DT_SIN_PRI,  5, MESESC.CNV
+SMes inic Sintomas,    DT_SIN_PRI,  5, MESES.CNV
+XTrim.inic Sintomas,   DT_SIN_PRI,  5, TRIME.CNV
+
+;    Definição se ocorreu hospitalização 
+LHospitalização,    ID_HOSP, 1, sim_nao.cnv
+CHospitalização,    ID_HOSP, 1, sim_nao.cnv
+SHospitalização,    ID_HOSP, 1, sim_nao.cnv
+
+;    Definição se ocorreu óbito
+LOcorreu óbito,     OBITO     , 1, sim_nao.cnv
+COcorreu óbito,     OBITO     , 1, sim_nao.cnv
+SOcorreu óbito,     OBITO     , 1, sim_nao.cnv
+
+;    Definição de classificação final
+LClassificação fina,CLASSI_FIN,1,classifi.cnv
+CClassificação fina,CLASSI_FIN,1,classifi.cnv
+SClassificação fina,CLASSI_FIN,1,classifi.cnv
+
+;    Definição de critério de confirmação
+LCriterio confir,   CRITERIO,1, CRITERIO.CNV
+CCriterio confir,   CRITERIO,1, CRITERIO.CNV
+SCriterio confir,   CRITERIO,1, CRITERIO.CNV
+
+;    Definição do diagnóstico final
+LDiag final,        DIAG_FINAL,1, agravosSurto.cnv
+CDiag final,        DIAG_FINAL,1, agravosSurto.cnv
+SDiag final,        DIAG_FINAL,1, agravosSurto.cnv

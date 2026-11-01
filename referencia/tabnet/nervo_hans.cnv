@@ -1,0 +1,9 @@
+;Nervo_hans.CNV
+; Revisado UT-Sinan 2019
+6 2
+      1  Em branco, 99 ou >12                                 ,13-99
+      2  inf. 0 Nervos                                      0 ,00, 0
+      3  1 a 3                                              1 -3 ,01-03
+      4  4 a 6 Nervos                                       4 -6 ,04-06
+      5  7 a 9 Nervos                                       7 -9 ,07-09
+      6  10 e mais Nervos                                   10-12

@@ -1,0 +1,24 @@
+; CLAMENBACNET.cnv
+; Verificado pela UT_Sinan fev/2019
+21 2 L 
+      1  Ign/branco                                           ,00-99
+      2  Shigella sp                                        09
+      3  Staphylococcus (aureus, sp, epidermidis)           10
+      4  Salmonella sp                                      11
+      5  Escherichia coli                                   12
+      6  Klebsiella (sp, pneumoniae)                        13
+      7  Streptococcus (sp, pyogenes, agalactiae)           14
+      8  Enterococcus                                       15
+      9  Pseudomonas (aeruginosa, sp)                       16
+     10  Serratia (marcescens, sp)                          18
+     11  Alcaligenes (sp, faecalis)                         19
+     12  Proteus (sp, vulgaris, mirabilis)                  20
+     13  Listeria monocytogenes                             21
+     14  Enterobacter (sp, cloacae)                         22
+     15  Acinetobacter (sp, baumannii)                      23
+     16  Neisseria sp                                       26
+     17  Outras Bactérias                                   28
+     18  Treponema Pallidum                                 45
+     19  Rickettsiae                                        46
+     20  Leptospira                                         49
+     21  Bactéria não especificada                          81

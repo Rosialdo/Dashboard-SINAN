@@ -1,0 +1,20 @@
+[project]
+name = "dashboard-sinan"
+version = "1.0.0"
+description = "Dashboard offline de doenças e agravos de notificação (SINAN/DATASUS)"
+readme = "README.md"
+# Python 3.12: é a versão mais nova com leitor de .DBC (pyreaddbc) pronto para Windows
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "pyreaddbc>=2.0.4",
+    "pandas>=2.2",
+    "numpy>=1.26",
+    "pyarrow>=16",
+    "duckdb>=1.0",
+    "streamlit>=1.40",
+    "plotly>=5.22",
+    "openpyxl>=3.1",
+]
+
+[tool.uv]
+package = false

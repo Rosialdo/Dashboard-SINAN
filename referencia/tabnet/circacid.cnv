@@ -1,0 +1,21 @@
+; circacid.CNV
+; Verificado pela UT_Sinan em fev/2019
+18 2
+      1  Ign/Branco                                           ,00-99
+      2  Adm. med. endovenosa                               01
+      3  Adm. med. intramuscular                            02
+      4  Adm. med. subcutânea                               03
+      5  Adm. med. intradérmica                             04
+      6  Punção coleta                                      05
+      7  Punção NE                                          06
+      8  Descarte inadeq. lixo                              07
+      9  Descarte inadeq. chao                              08
+     10  Lavanderia                                         09
+     11  Lavagem de material                                10
+     12  Manip caixa perfuro/cortante                       11
+     13  Proced. cirúrgico                                  12
+     14  Proced. odontológico                               13
+     15  Proced. laboratorial                               14
+     16  Dextro                                             15
+     17  Reencape                                           16
+     18  Outros                                             98

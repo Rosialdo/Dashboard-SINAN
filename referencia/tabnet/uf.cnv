@@ -1,0 +1,31 @@
+;UF.CNV
+: Revisado UT-Sinan 2019
+28 2
+      1  Ignorado                                             ,00-99
+      2  Rondonia                                           11
+      3  Acre                                               12
+      4  Amazonas                                           13
+      5  Roraima                                            14
+      6  Para                                               15
+      7  Amapa                                              16
+      8  Tocantins                                          17
+      9  Maranhao                                           21
+     10  Piaui                                              22
+     11  Ceara                                              23
+     12  Rio Grande do Norte                                24
+     13  Paraiba                                            25
+     14  Pernambuco                                         26
+     15  Alagoas                                            27
+     16  Sergipe                                            28
+     17  Bahia                                              29
+     18  Minas Gerais                                       31
+     19  Espirito Santo                                     32
+     20  Rio de Janeiro                                     33
+     21  Sao Paulo                                          35
+     22  Parana                                             41
+     23  Santa Catarina                                     42
+     24  Rio Grande do Sul                                  43
+     25  Mato Grosso do Sul                                 50
+     26  Mato Grosso                                        51
+     27  Goias                                              52
+     28  Distrito Federal                                   53

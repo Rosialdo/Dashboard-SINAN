@@ -1,0 +1,17 @@
+;Contamina.cnv
+; revisado pela UT-Sinan março 2019
+14  2 l
+      1  Ign/Branco                                           ,00-99
+      2  Uso Habitual                                       1 ,01, 1
+      3  Acidental                                          2 ,02, 2
+      4  Ambiental                                          3 ,03, 3
+      5  Uso terapêutico                                    4 ,04, 4
+      6  Prescrição médica inadequada                       5 ,05, 5
+      7  Erro de administração                              6 ,06, 6
+      8  Automedicação                                      7 ,07, 7
+      9  Abuso                                              8 ,08, 8
+     10  Ingestão de alimento/bebida                        9 ,09, 9
+     11  Tentativa de suicídio                              10
+     12  Tentativa de aborto                                11
+     13  Violência/homicídio                                12
+     14  Outra                                              13

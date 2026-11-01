@@ -1,0 +1,18 @@
+;Agravos de notificação compulsória em Unidades Sentinelas
+; Excluída a intoxicação exógena.
+; Atualizado em 21/01/2019 pela UT-Sinan - Portaria de Consolidação 5 28/09/2017
+14  4
+      1  Câncer Relacionado ao Trabalho                     C80 ,
+      2  Dermatoses Ocupacionais                            L989,
+      3  Doença Diarreica Aguda                             A08 ,
+      4  LER DORT                                           Z579,
+      5  PAIR                                               H833,
+      6  Pneumoconiose                                      J64 ,
+      7  Pneumonias                                         J189,
+      8  Rotavírus                                          A080,
+      9  Síndrome de Corrimento Uretral Masculino           R30 ,
+     10  Síndrome Gripal (SG)                               J06 ,
+     11  Síndrome Hemolítica Urêmica                        D593
+     12  Síndrome neurológica pós infecção febril exantem   G043
+     13  Síndrome Respiratória Aguda Grave (SRAG)           J07 ,
+     14  Transtorno Mental                                  F99 ,

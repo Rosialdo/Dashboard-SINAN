@@ -1,0 +1,11 @@
+;Lista de agravos de Interesse Nacional nao compulsorios
+;incluindo intoxicação exógena e filarose
+; Revisado UT-Sinan 2019
+
+6 4 l
+      1  Acidente por Animais Peçonhentos                   X29 ,
+      2  Atendimento Anti-Rábico Humano                     W64 ,
+      3  Filariose                                          B749
+      4  Intoxicação Exógena                                T659
+      5  Rotavirus                                          A080
+      6  Varicela                                           B019

@@ -1,0 +1,43 @@
+; Agravos agudos
+; Agravos listados na portaria de notificação compulsória de julho de 2004
+; Atualizado em 29/09/2014 pela UT-Sinan/MS - retirada da doença Hepatites Virais e inclusão de Varicela
+; Atualizado em 28/01/2019 pela Ut-Sinan/MS
+37  4
+      1  Botulismo                                          A051
+      2  Carbúnculo ou Antraz                               A229
+      3  Cólera                                             A009
+      4  Coqueluche                                         A379
+      5  Dengue                                             A90 ,
+      6  Difteria                                           A369
+      7  Doenças de Chagas Aguda                            B571
+      8  Doença de Creutzfeldt-Jakob                        A810
+      9  Doença de Marburg                                  A983
+     10  Doença pelo virus Ebola                            A984
+     11  Doenças Exantemáticas                              B09 ,
+     12  Doença aguda pelo virus Zika                       A928
+     13  Esquistossomose                                    B659
+     14  Eventos Adversos Pós-vacina                        Y59 ,
+     15  Febre Amarela                                      A959
+     16  Febre de Lassa                                     A962
+     17  Febre do Nilo                                      A923
+     18  Febre Hemorragica por Arenavirus não especificada  A969
+     19  Febre Maculosa / Rickettsioses                     A779
+     20  Febre Purpúrica Brasileira                         A484
+     21  Febre Tifóide                                      A010
+     22  Hantaviroses                                       A988
+     23  Influenza humana produzida por novo subtipo viral  J11 ,
+     24  Leishmaniose Visceral                              B550
+     25  Leptospirose                                       A279
+     26  Malária                                            B54 ,
+     27  Meningite                                          G039
+     28  Paralisia Flácida Aguda/Poliomielite               A809
+     29  Peste                                              A209
+     30  Pneumonia não especificada                         J189
+     31  Raiva Humana                                       A829
+     32  Tétano Acidental                                   A35 ,
+     33  Tétano Neonatal                                    A33 ,
+     34  Tularemia                                          A219
+     35  Varicela                                           B019
+     36  Varicela                                           B01 ,
+     37  Varíola                                            B03 ,
+

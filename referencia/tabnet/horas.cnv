@@ -1,0 +1,29 @@
+;Horas.CNV
+;pós Patch 4.2
+; revisado pela UT-Sinan março 2019
+25 2 L
+      1  Em Branco                                            ,
+      2  1 Hora                                             01
+      3  2 Horas                                            02
+      4  3 Horas                                            03
+      5  4 Horas                                            04
+      6  5 Horas                                            05
+      7  6 Horas                                            06
+      8  7 Horas                                            07
+      9  8 Horas                                            08
+     10  9 Horas                                            09
+     11  10 Horas                                           10
+     12  11 Horas                                           11
+     13  12 Horas                                           12
+     14  13 Horas                                           13
+     15  14 Horas                                           14
+     16  15 Horas                                           15
+     17  16 Horas                                           16
+     18  17 Horas                                           17
+     19  18 Horas                                           18
+     20  19 Horas                                           19
+     21  20 Horas                                           20
+     22  21 Horas                                           21
+     23  22 Horas                                           22
+     24  23 Horas                                           23
+     25  24 horas                                           24

@@ -1,0 +1,7 @@
+;SINAOVAC.CNV 
+5 1
+      1  Ign/Branco                                          ,0-9
+      2  Sim                                                1
+      3  Não                                                2
+      4  Não, Todos Vacinados                               3
+      5  Não, sem História de Contato                       4

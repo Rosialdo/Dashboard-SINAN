@@ -1,0 +1,26 @@
+; munfront.cnv
+; Revisado pela UT-Sinan 2019
+ 22   6
+      1  PR                                                 ------
+  1   2  410753 Entre Rios do Oeste                         410753
+  1   3  410830 Foz do Iguaçu                               410830
+  1   4  410880 Guaíra                                      410880
+  1   5  411095 Itaipulândia                                411095
+  1   6  411460 Marechal Cândido Rondon                     411460
+  1   7  411585 Mercedes                                    411585
+  1   8  411845 Pato Bragado                                411845
+  1   9  412350 Santa Helena                                412350
+     10  MS                                                 ------
+ 10  11  500090 Antônio João                                500090
+ 10  12  500124 Aral Moreira                                500124
+ 10  13  500210 Bela Vista                                  500210
+ 10  14  500280 Caracol                                     500280
+ 10  15  500315 Coronel Sapucaia                            500315
+ 10  16  500320 Corumbá                                     500320
+ 10  17  500480 Japorã                                      500480
+ 10  18  500568 Mundo Novo                                  500568
+ 10  19  500635 Paranhos                                    500635
+ 10  20  500660 Ponta Porã                                  500660
+ 10  21  500690 Porto Murtinho                              500690
+ 10  22  500770 Sete Quedas                                 500770
+

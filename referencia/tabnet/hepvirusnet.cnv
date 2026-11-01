@@ -1,0 +1,14 @@
+; HEPvirusnet.CNV
+; Revisado UT-Sinan 2019
+10  2
+      1  Ign/Branco                                           ,00-99
+      2  Vírus A                                            01
+      3  Vírus B                                            02
+      4  Vírus C                                            03
+      5  Vírus B + D                                        04
+      6  Vírus E                                            05
+      7  Vírus B + C                                        06
+      8  Vírus A + B                                        07
+      9  Vírus A + C                                        08
+     10  Outras hepatites virais                            09
+     

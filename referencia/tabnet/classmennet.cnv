@@ -1,0 +1,13 @@
+; CLASSMENnet.CNV
+11 2 L 
+      1  IGN/EM BRANCO                                        ,0 ,00, 0,0-99
+      2  MCC                                                01
+      3  MM                                                 02
+      4  MM+MCC                                             03
+      5  MTBC                                               04
+      6  MB                                                 05
+      7  MNE                                                06
+      8  MV                                                 07
+      9  MOE                                                08
+     10  MH                                                 09
+     11  MP                                                 10

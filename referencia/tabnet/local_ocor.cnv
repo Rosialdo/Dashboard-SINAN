@@ -1,0 +1,13 @@
+;Local_ocor.cnv
+10 2 l
+      1  Ign/Branco                                           ,00-99
+      2  Residencia                                         01
+      3  Habitação Coletiva                                 02
+      4  Escola                                             03
+      5  Local de pratica esportiva                         04
+      6  Bar ou Similar                                     05
+      7  Via pública                                        06
+      8  Comércio/Serviços                                  07
+      9  Indústrias/construção                              08
+     10  Outros                                             09
+

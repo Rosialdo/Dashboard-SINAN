@@ -1,0 +1,9 @@
+; nudosePB.cnv  GT Sinan 13/08/2007
+; Revisado UT-Sinan 2019
+5 2 l
+      1  não preenchido/Ign                                   ,00-99
+      2  nenhuma dose                                       00, 0,0 ,
+      3  menor que 6                                        01-05,1 -5 , 1- 5,
+      4  6 doses                                            06, 6,6 ,
+      5  maior que 6                                        07-48,7 -48, 7-48
+
