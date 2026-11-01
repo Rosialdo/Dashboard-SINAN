@@ -1,0 +1,18 @@
+; cronicas net  (agravos notificados confirmados exceto saúde do trabalhador)
+; Atualizado em 29/09/2014 pelo UT-Sinan/MS - inclusão de Hepatites Virais, Sifilis Adquirida e separação de AIDS/Crianças Expostas
+; Revisado em 29/01/2019 pela UT-Sinanin
+
+11  4
+
+      1  AIDS                                               B24 ,
+      2  Crianças Expostas                                  Z206
+      3  Gestantes HIV +                                    Z21 ,
+      4  Hanseníase                                         A309
+      5  Hepatites Virais                                   B19 ,
+      6  Leishmaniose Tegumentar Americana                  B551
+      7  Sífilis Adquirida                                  A539
+      8  Sífilis Congênita                                  A509
+      9  Sífilis em Gestante                                0981
+     10  Síndrome da Rubeola Congênita                      P350
+     11  Tuberculose                                        A169
+     

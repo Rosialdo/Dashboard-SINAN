@@ -1,0 +1,8 @@
+; TP_TRANSF.CNV
+6  1
+      1  Ign/Branco                                           ,00-99
+      2  Mesmo município                                    1
+      3  Município diferente (mesma UF)                     2
+      4  UF diferente                                       3
+      5  País diferente                                     4
+      6  Ignorado                                           9

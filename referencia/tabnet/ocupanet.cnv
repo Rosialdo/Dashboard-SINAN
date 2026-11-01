@@ -1,0 +1,2673 @@
+: OCUPANET.CNV
+2671 6
+      1  RECEPCIONISTA DE SEGURO SAUDE                      422115
+      2  RECEPCIONISTA DE HOTEL                             422120
+      3  RECEPCIONISTA DE BANCO                             422125
+      4  TELEFONISTA                                        422205
+      5  TELEOPERADOR                                       422210
+      6  MONITOR DE TELEATENDIMENTO                         422215
+      7  OPERADOR DE RADIO-CHAMADA                          422220
+      8  OPERADOR DE TELEMARKETING ATIVO                    422305
+      9  OPERADOR DE TELEMARKETING ATIVO E RECEPTIVO        422310
+     10  OPERADOR DE TELEMARKETING RECEPTIVO                422315
+     11  OPERADOR DE TELEMARKETING TECNICO                  422320
+     12  DESPACHANTE DOCUMENTALISTA                         423105
+     13  ENTREVISTADOR CENSITARIO E DE PESQUISAS AMOSTRAIS  424105
+     14  ENTREVISTADOR DE PESQUISA DE OPINIAO E MIDIA       424110
+     15  ENTREVISTADOR DE PESQUISAS DE MERCADO              424115
+     16  ENTREVISTADOR DE PRECOS                            424120
+     17  ESCRITURARIO EM ESTATISTICA                        424125
+     18  SUPERVISOR DE TRANSPORTES                          510105
+     19  ADMINISTRADOR DE EDIFICIOS                         510110
+     20  SUPERVISOR DE ANDAR                                510115
+     21  CHEFE DE PORTARIA DE HOTEL                         510120
+     22  CHEFE DE COZINHA                                   510125
+     23  CHEFE DE BAR                                       510130
+     24  MAITRE                                             510135
+     25  SUPERVISOR DE LAVANDERIA                           510205
+     26  SUPERVISOR DE BOMBEIROS                            510305
+     27  SUPERVISOR DE VIGILANTES                           510310
+     28  COMISSARIO DE VOO                                  511105
+     29  COMISSARIO DE TREM                                 511110
+     30  TAIFEIRO                                           511115
+     31  FISCAL DE TRANSPORTES COLETIVOS (EXCETO TREM)      511205
+     32  DESPACHANTE DE TRANSPORTES COLETIVOS (EXCETO TREM) 511210
+     33  COBRADOR DE TRANSPORTES COLETIVOS (EXCETO TREM)    511215
+     34  BILHETEIRO (ESTACOES DE METRO, FERROVIARIAS E ASSE 511220
+     35  GUIA DE TURISMO                                    511405
+     36  EMPREGADO DOMESTICO NOS SERVICOS GERAIS            512105
+     37  EMPREGADO DOMESTICO ARRUMADOR                      512110
+     38  EMPREGADO DOMESTICO FAXINEIRO                      512115
+     39  EMPREGADO DOMESTICO DIARISTA                       512120
+     40  MORDOMO DE RESIDENCIA                              513105
+     41  MORDOMO DE HOTELARIA                               513110
+     42  GOVERNANTA DE HOTELARIA                            513115
+     43  COZINHEIRO GERAL                                   513205
+     44  COZINHEIRO DO SERVICO DOMESTICO                    513210
+     45  COZINHEIRO INDUSTRIAL                              513215
+     46  COZINHEIRO DE HOSPITAL                             513220
+     47  COZINHEIRO DE EMBARCACOES                          513225
+     48  CAMAREIRA DE TEATRO                                513305
+     49  CAMAREIRA DE TELEVISAO                             513310
+     50  CAMAREIRO DE HOTEL                                 513315
+     51  CAMAREIRO DE EMBARCACOES                           513320
+     52  GUARDA-ROUPEIRA DE CINEMA                          513325
+     53  GARCOM                                             513405
+     54  GARCOM (SERVICOS DE VINHOS)                        513410
+     55  CUMIM                                              513415
+     56  BARMAN                                             513420
+     57  COPEIRO                                            513425
+     58  COPEIRO DE HOSPITAL                                513430
+     59  ATENDENTE DE LANCHONETE                            513435
+     60  ASCENSORISTA                                       514105
+     61  GARAGISTA                                          514110
+     62  SACRISTAO                                          514115
+     63  ZELADOR DE EDIFICIO                                514120
+     64  COLETOR DE LIXO                                    514205
+     65  FAXINEIRO                                          514210
+     66  GARI                                               514215
+     67  LIMPADOR DE VIDROS                                 514220
+     68  TRABALHADOR DE SERVICOS DE MANUTENCAO DE EDIFICIOS 514225
+     69  AGENTE COMUNITARIO DE SAUDE                        515105
+     70  ATENDENTE DE ENFERMAGEM                            515110
+     71  PARTEIRA LEIGA                                     515115
+     72  VISITADOR SANITARIO                                515120
+     73  AUXILIAR DE BANCO DE SANGUE                        515205
+     74  AUXILIAR DE FARMACIA DE MANIPULACAO                515210
+     75  AUXILIAR DE LABORATORIO DE ANALISES CLINICAS       515215
+     76  AUXILIAR DE LABORATORIO DE IMUNOBIOLOGICOS         515220
+     77  AUXILIAR DE PRODUCAO FARMACEUTICA                  515225
+     78  BARBEIRO                                           516105
+     79  CABELEIREIRO                                       516110
+     80  ESTETICISTA                                        516115
+     81  MANICURE                                           516120
+     82  MAQUIADOR                                          516125
+     83  MAQUIADOR DE CARACTERIZACAO                        516130
+     84  MASSAGISTA                                         516135
+     85  PEDICURE                                           516140
+     86  BABA                                               516205
+     87  CUIDADOR DE IDOSOS                                 516210
+     88  MAE SOCIAL                                         516215
+     89  LAVADEIRO, EM GERAL                                516305
+     90  LAVADOR DE ROUPAS A MAQUINA                        516310
+     91  LAVADOR DE ARTEFATOS DE TAPECARIA                  516315
+     92  LIMPADOR A SECO, A MAQUINA                         516320
+     93  PASSADOR DE ROUPAS EM GERAL                        516325
+     94  TINGIDOR DE ROUPAS                                 516330
+     95  CONFERENTE-EXPEDIDOR DE ROUPAS (LAVANDERIAS)       516335
+     96  ATENDENTE DE LAVANDERIA                            516340
+     97  AUXILIAR DE LAVANDERIA                             516345
+     98  LAVADOR DE ROUPAS                                  516405
+     99  LIMPADOR DE ROUPAS A SECO, A MAO                   516410
+    100  PASSADOR DE ROUPAS, A MAO                          516415
+    101  AGENTE FUNERARIO                                   516505
+    102  OPERADOR DE FORNO (SERVICOS FUNERARIOS)            516605
+    103  SEPULTADOR                                         516610
+    104  ASTROLOGO                                          516705
+    105  NUMEROLOGO                                         516710
+    106  ESOTERICO                                          516805
+    107  SUPERVISOR DE ENTREVISTADORES E RECENSEADORES      420120
+    108  PARANORMAL                                         516810
+    109  BOMBEIRO DE AERODROMO                              517105
+    110  BOMBEIRO DE SEGURANCA DO TRABALHO                  517110
+    111  SALVA-VIDAS                                        517115
+    112  AGENTE DE POLICIA FEDERAL                          517205
+    113  POLICIAL RODOVIARIO FEDERAL                        517210
+    114  GUARDA-CIVIL MUNICIPAL                             517215
+    115  AGENTE DE TRANSITO                                 517220
+    116  AGENTE DE PROTECAO DE AEROPORTO                    517305
+    117  AGENTE DE SEGURANCA                                517310
+    118  AGENTE DE SEGURANCA PENITENCIARIA                  517315
+    119  VIGIA FLORESTAL                                    517320
+    120  VIGIA PORTUARIO                                    517325
+    121  VIGILANTE                                          517330
+    122  PORTEIRO (HOTEL)                                   517405
+    123  PORTEIRO DE EDIFICIOS                              517410
+    124  PORTEIRO DE LOCAIS DE DIVERSAO                     517415
+    125  VIGIA                                              517420
+    126  CICLISTA MENSAGEIRO                                519105
+    127  MOTOCICLISTA NO TRANSPORTE DE DOCUMENTOS E PEQUENO 519110
+    128  CATADOR DE MATERIAL RECICLAVEL                     519205
+    129  ENFERMEIRO VETERINARIO                             519305
+    130  ESTETICISTA DE ANIMAIS DOMESTICOS                  519310
+    131  BANHISTA DE ANIMAIS DOMESTICOS                     519315
+    132  TOSADOR DE ANIMAIS DOMESTICOS                      519320
+    133  PROFISSIONAL DO SEXO                               519805
+    134  CARTAZEIRO                                         519905
+    135  CONTROLADOR DE PRAGAS                              519910
+    136  ENGRAXATE                                          519915
+    137  GANDULA                                            519920
+    138  GUARDADOR DE VEICULOS                              519925
+    139  LAVADOR DE GARRAFAS, VIDROS E OUTROS UTENSILIOS    519930
+    140  LAVADOR DE VEICULOS                                519935
+    141  LEITURISTA                                         519940
+    142  RECEPCIONISTA DE CASAS DE ESPETACULOS              519945
+    143  SUPERVISOR DE VENDAS DE SERVICOS                   520105
+    144  SUPERVISOR DE VENDAS COMERCIAL                     520110
+    145  VENDEDOR EM COMERCIO ATACADISTA                    521105
+    146  PROMOTOR DE VENDAS                                 521115
+    147  DEMONSTRADOR DE MERCADORIAS                        521120
+    148  REPOSITOR DE MERCADORIAS                           521125
+    149  ATENDENTE DE FARMACIA - BALCONISTA                 521130
+    150  FRENTISTA                                          521135
+    151  INSTALADOR DE CORTINAS E PERSIANAS, PORTAS SANFONA 523105
+    152  INSTALADOR DE SOM E ACESSORIOS DE VEICULOS         523110
+    153  CHAVEIRO                                           523115
+    154  VENDEDOR EM DOMICILIO                              524105
+    155  FEIRANTE                                           524205
+    156  JORNALEIRO (EM BANCA DE JORNAL)                    524210
+    157  VENDEDOR PERMISSIONARIO                            524215
+    158  VENDEDOR AMBULANTE                                 524305
+    159  PIPOQUEIRO AMBULANTE                               524310
+    160  PRODUTOR AGROPECUARIO, EM GERAL                    611005
+    161  OPERADOR DE REDE DE TELEPROCESSAMENTO              372205
+    162  RADIOTELEGRAFISTA                                  372210
+    163  OPERADOR DE AUDIO DE CONTINUIDADE (RADIO)          373105
+    164  OPERADOR DE CENTRAL DE RADIO                       373110
+    165  OPERADOR DE EXTERNA (RADIO)                        373115
+    166  OPERADOR DE GRAVACAO DE RADIO                      373120
+    167  OPERADOR DE TRANSMISSOR DE RADIO                   373125
+    168  TECNICO EM OPERACAO DE EQUIPAMENTOS DE PRODUCAO PA 373205
+    169  TECNICO EM OPERACAO DE EQUIPAMENTO DE EXIBICAO DE  373210
+    170  TECNICO EM OPERACAO DE EQUIPAMENTOS DE TRANSMISSAO 373215
+    171  SUPERVISOR TECNICO OPERACIONAL DE SISTEMAS DE TELE 373220
+    172  TECNICO EM GRAVACAO DE AUDIO                       374105
+    173  TECNICO EM INSTALACAO DE EQUIPAMENTOS DE AUDIO     374110
+    174  TECNICO EM MASTERIZACAO DE AUDIO                   374115
+    175  PROJETISTA DE SOM                                  374120
+    176  TECNICO EM SONORIZACAO                             374125
+    177  TECNICO EM MIXAGEM DE AUDIO                        374130
+    178  PROJETISTA DE SISTEMAS DE AUDIO                    374135
+    179  MICROFONISTA                                       374140
+    180  CENOTECNICO (CINEMA, VIDEO, TELEVISAO, TEATRO E ES 374205
+    181  MAQUINISTA DE CINEMA E VIDEO                       374210
+    182  MAQUINISTA DE TEATRO E ESPETACULOS                 374215
+    183  OPERADOR DE PROJETOR CINEMATOGRAFICO               374305
+    184  OPERADOR-MANTENEDOR DE PROJETOR CINEMATOGRAFICO    374310
+    185  EDITOR DE TV E VIDEO                               374405
+    186  FINALIZADOR DE FILMES                              374410
+    187  FINALIZADOR DE VIDEO                               374415
+    188  MONTADOR DE FILMES                                 374420
+    189  DESIGNER DE INTERIORES                             375105
+    190  DESIGNER DE VITRINES                               375110
+    191  VISUAL MERCHANDISER                                375115
+    192  DANCARINO TRADICIONAL                              376105
+    193  DANCARINO POPULAR                                  376110
+    194  ACROBATA                                           376205
+    195  ARTISTA AEREO                                      376210
+    196  ARTISTA DE CIRCO (OUTROS)                          376215
+    197  CONTORCIONISTA                                     376220
+    198  DOMADOR DE ANIMAIS (CIRCENSE)                      376225
+    199  EQUILIBRISTA                                       376230
+    200  MAGICO                                             376235
+    201  MALABARISTA                                        376240
+    202  PALHACO                                            376245
+    203  TITERITEIRO                                        376250
+    204  TRAPEZISTA                                         376255
+    205  APRESENTADOR DE EVENTOS                            376305
+    206  APRESENTADOR DE FESTAS POPULARES                   376310
+    207  APRESENTADOR DE PROGRAMAS DE RADIO                 376315
+    208  APRESENTADOR DE PROGRAMAS DE TELEVISAO             376320
+    209  APRESENTADOR DE CIRCO                              376325
+    210  MODELO ARTISTICO                                   376405
+    211  MODELO DE MODAS                                    376410
+    212  MODELO PUBLICITARIO                                376415
+    213  ATLETA PROFISSIONAL (OUTRAS MODALIDADES)           377105
+    214  ATLETA PROFISSIONAL DE FUTEBOL                     377110
+    215  ATLETA PROFISSIONAL DE GOLFE                       377115
+    216  ATLETA PROFISSIONAL DE LUTA                        377120
+    217  ATLETA PROFISSIONAL DE TENIS                       377125
+    218  JOQUEI                                             377130
+    219  PILOTO DE COMPETICAO AUTOMOBILISTICA               377135
+    220  PROFISSIONAL DE ATLETISMO                          377140
+    221  PUGILISTA                                          377145
+    222  ARBITRO DESPORTIVO                                 377205
+    223  ARBITRO DE ATLETISMO                               377210
+    224  ARBITRO DE BASQUETE                                377215
+    225  ARBITRO DE FUTEBOL                                 377220
+    226  ARBITRO DE FUTEBOL DE SALAO                        377225
+    227  ARBITRO DE JUDO                                    377230
+    228  ARBITRO DE KARATE                                  377235
+    229  ARBITRO DE POLO AQUATICO                           377240
+    230  ARBITRO DE VOLEI                                   377245
+    231  CRONOANALISTA                                      391105
+    232  CRONOMETRISTA                                      391110
+    233  CONTROLADOR DE ENTRADA E SAIDA                     391115
+    234  PLANEJISTA                                         391120
+    235  TECNICO DE PLANEJAMENTO DE PRODUCAO                391125
+    236  TECNICO DE PLANEJAMENTO E PROGRAMACAO DA MANUTENCA 391130
+    237  TECNICO DE MATERIA-PRIMA E MATERIAL                391135
+    238  INSPETOR DE QUALIDADE                              391205
+    239  TECNICO DE GARANTIA DA QUALIDADE                   391210
+    240  OPERADOR DE INSPECAO DE QUALIDADE                  391215
+    241  TECNICO DE PAINEL DE CONTROLE                      391220
+    242  ESCOLHEDOR DE PAPEL                                391225
+    243  TECNICO OPERACIONAL DE SERVICOS DE CORREIOS        391230
+    244  TECNICO DE APOIO EM PESQUISA E DESENVOLVIMENTO (EX 395105
+    245  TECNICO DE APOIO EM PESQUISA E DESENVOLVIMENTO AGR 395110
+    246  SUPERVISOR ADMINISTRATIVO                          410105
+    247  SUPERVISOR DE ALMOXARIFADO                         410205
+    248  SUPERVISOR DE CAMBIO                               410210
+    249  SUPERVISOR DE CONTAS A PAGAR                       410215
+    250  SUPERVISOR DE CONTROLE PATRIMONIAL                 410220
+    251  SUPERVISOR DE CREDITO E COBRANCA                   410225
+    252  SUPERVISOR DE ORCAMENTO                            410230
+    253  SUPERVISOR DE TESOURARIA                           410235
+    254  AUXILIAR DE ESCRITORIO, EM GERAL                   411005
+    255  ASSISTENTE ADMINISTRATIVO                          411010
+    256  ATENDENTE DE JUDICIARIO                            411015
+    257  AUXILIAR DE JUDICIARIO                             411020
+    258  AUXILIAR DE CARTORIO                               411025
+    259  AUXILIAR DE PESSOAL                                411030
+    260  AUXILIAR DE ESTATISTICA                            411035
+    261  AUXILIAR DE SEGUROS                                411040
+    262  AUXILIAR DE SERVICOS DE IMPORTACAO E EXPORTACAO    411045
+    263  DATILOGRAFO                                        412105
+    264  DIGITADOR                                          412110
+    265  OPERADOR DE MENSAGENS DE TELECOMUNICACOES (CORREIO 412115
+    266  SUPERVISOR DE DIGITACAO E OPERACAO                 412120
+    267  CONTINUO                                           412205
+    268  ANALISTA DE FOLHA DE PAGAMENTO                     413105
+    269  AUXILIAR DE CONTABILIDADE                          413110
+    270  AUXILIAR DE FATURAMENTO                            413115
+    271  ATENDENTE DE AGENCIA                               413205
+    272  CAIXA DE BANCO                                     413210
+    273  COMPENSADOR DE BANCO                               413215
+    274  CONFERENTE DE SERVICOS BANCARIOS                   413220
+    275  ESCRITURARIO DE BANCO                              413225
+    276  OPERADOR DE COBRANCA BANCARIA                      413230
+    277  ALMOXARIFE                                         414105
+    278  AVALIADOR DE BENS MOVEIS                           354415
+    279  ARMAZENISTA                                        414110
+    280  BALANCEIRO                                         414115
+    281  APONTADOR DE MAO-DE-OBRA                           414205
+    282  APONTADOR DE PRODUCAO                              414210
+    283  CONFERENTE DE CARGA E DESCARGA                     414215
+    284  ARQUIVISTA DE DOCUMENTOS                           415105
+    285  CODIFICADOR DE DADOS                               415115
+    286  FITOTECARIO                                        415120
+    287  KARDEXISTA                                         415125
+    288  OPERADOR DE MAQUINA COPIADORA (EXCETO OPERADOR DE  415130
+    289  CARTEIRO                                           415205
+    290  OPERADOR DE TRIAGEM E TRANSBORDO                   415210
+    291  SUPERVISOR DE CAIXAS E BILHETEIROS (EXCETO CAIXA D 420105
+    292  SUPERVISOR DE COBRANCA                             420110
+    293  SUPERVISOR DE COLETADORES DE APOSTAS E DE JOGOS    420115
+    294  SUPERVISOR DE RECEPCIONISTAS                       420125
+    295  SUPERVISOR DE TELEFONISTAS                         420130
+    296  SUPERVISOR DE TELEMARKETING E ATENDIMENTO          420135
+    297  ATENDENTE COMERCIAL (AGENCIA POSTAL)               421105
+    298  BILHETEIRO DE TRANSPORTES COLETIVOS                421110
+    299  BILHETEIRO NO SERVICO DE DIVERSOES                 421115
+    300  EMISSOR DE PASSAGENS                               421120
+    301  OPERADOR DE CAIXA                                  421125
+    302  RECEBEDOR DE APOSTAS (LOTERIA)                     421205
+    303  RECEBEDOR DE APOSTAS (TURFE)                       421210
+    304  COBRADOR EXTERNO                                   421305
+    305  COBRADOR INTERNO                                   421310
+    306  LOCALIZADOR (COBRADOR)                             421315
+    307  RECEPCIONISTA, EM GERAL                            422105
+    308  RECEPCIONISTA DE CONSULTORIO MEDICO OU DENTARIO    422110
+    309  PRODUTOR AGRICOLA POLIVALENTE                      612005
+    310  PRODUTOR DE ARROZ                                  612105
+    311  PRODUTOR DE CANA-DE-ACUCAR                         612110
+    312  PRODUTOR DE CEREAIS DE INVERNO                     612115
+    313  PRODUTOR DE GRAMINEAS FORRAGEIRAS                  612120
+    314  PRODUTOR DE MILHO E SORGO                          612125
+    315  PRODUTOR DE ALGODAO                                612205
+    316  PRODUTOR DE CURAUA                                 612210
+    317  PRODUTOR DE JUTA                                   612215
+    318  PRODUTOR DE RAMI                                   612220
+    319  PRODUTOR DE SISAL                                  612225
+    320  PRODUTOR NA OLERICULTURA DE LEGUMES                612305
+    321  PRODUTOR NA OLERICULTURA DE RAIZES, BULBOS E TUBER 612310
+    322  PRODUTOR NA OLERICULTURA DE TALOS, FOLHAS E FLORES 612315
+    323  PRODUTOR NA OLERICULTURA DE FRUTOS E SEMENTES      612320
+    324  PRODUTOR DE FLORES DE CORTE                        612405
+    325  PRODUTOR DE FLORES EM VASO                         612410
+    326  PRODUTOR DE FORRACOES                              612415
+    327  PRODUTOR DE PLANTAS ORNAMENTAIS                    612420
+    328  PRODUTOR DE ARVORES FRUTIFERAS                     612505
+    329  PRODUTOR DE ESPECIES FRUTIFERAS RASTEIRAS          612510
+    330  PRODUTOR DE ESPECIES FRUTIFERAS TREPADEIRAS        612515
+    331  CAFEICULTOR                                        612605
+    332  PRODUTOR DE CACAU                                  612610
+    333  PRODUTOR DE ERVA-MATE                              612615
+    334  PRODUTOR DE FUMO                                   612620
+    335  PRODUTOR DE GUARANA                                612625
+    336  PRODUTOR DA CULTURA DE AMENDOIM                    612705
+    337  PRODUTOR DA CULTURA DE CANOLA                      612710
+    338  PRODUTOR DA CULTURA DE COCO-DA-BAIA                612715
+    339  PRODUTOR DA CULTURA DE DENDE                       612720
+    340  PRODUTOR DA CULTURA DE GIRASSOL                    612725
+    341  PRODUTOR DA CULTURA DE LINHO                       612730
+    342  PRODUTOR DA CULTURA DE MAMONA                      612735
+    343  PRODUTOR DA CULTURA DE SOJA                        612740
+    344  PRODUTOR DE ESPECIARIAS                            612805
+    345  PRODUTOR DE PLANTAS AROMATICAS E MEDICINAIS        612810
+    346  CRIADOR EM PECUARIA POLIVALENTE                    613005
+    347  CRIADOR DE ANIMAIS DOMESTICOS                      613010
+    348  CRIADOR DE ASININOS E MUARES                       613105
+    349  CRIADOR DE BOVINOS (CORTE)                         613110
+    350  CRIADOR DE BOVINOS (LEITE)                         613115
+    351  CRIADOR DE BUBALINOS (CORTE)                       613120
+    352  CRIADOR DE BUBALINOS (LEITE)                       613125
+    353  CRIADOR DE EQUINOS                                 613130
+    354  CRIADOR DE CAPRINOS                                613205
+    355  CRIADOR DE OVINOS                                  613210
+    356  CRIADOR DE SUINOS                                  613215
+    357  AVICULTOR                                          613305
+    358  CUNICULTOR                                         613310
+    359  APICULTOR                                          613405
+    360  CRIADOR DE ANIMAIS PRODUTORES DE VENENO            613410
+    361  MINHOCULTOR                                        613415
+    362  SERICULTOR                                         613420
+    363  SUPERVISOR DE EXPLORACAO AGRICOLA                  620105
+    364  SUPERVISOR DE EXPLORACAO AGROPECUARIA              620110
+    365  SUPERVISOR DE EXPLORACAO PECUARIA                  620115
+    366  TRABALHADOR AGROPECUARIO EM GERAL                  621005
+    367  CASEIRO (AGRICULTURA)                              622005
+    368  JARDINEIRO                                         622010
+    369  TRABALHADOR NA PRODUCAO DE MUDAS E SEMENTES        622015
+    370  TRABALHADOR VOLANTE DA AGRICULTURA                 622020
+    371  TRABALHADOR DA CULTURA DE ARROZ                    622105
+    372  TRABALHADOR DA CULTURA DE CANA-DE-ACUCAR           622110
+    373  TRABALHADOR DA CULTURA DE MILHO E SORGO            622115
+    374  TRABALHADOR DA CULTURA DE TRIGO, AVEIA, CEVADA E T 622120
+    375  TRABALHADOR DA CULTURA DE ALGODAO                  622205
+    376  TRABALHADOR DA CULTURA DE SISAL                    622210
+    377  TRABALHADOR DA CULTURA DO RAMI                     622215
+    378  TRABALHADOR NA OLERICULTURA (FRUTOS E SEMENTES)    622305
+    379  TRABALHADOR NA OLERICULTURA (LEGUMES)              622310
+    380  TRABALHADOR NA OLERICULTURA (RAIZES, BULBOS E TUBE 622315
+    381  TRABALHADOR NA OLERICULTURA (TALOS, FOLHAS E FLORE 622320
+    382  TRABALHADOR NO CULTIVO DE FLORES E FOLHAGENS DE CO 622405
+    383  TRABALHADOR NO CULTIVO DE FLORES EM VASO           622410
+    384  TRABALHADOR NO CULTIVO DE FORRACOES                622415
+    385  TRABALHADOR NO CULTIVO DE MUDAS                    622420
+    386  TRABALHADOR NO CULTIVO DE PLANTAS ORNAMENTAIS      622425
+    387  TRABALHADOR NO CULTIVO DE ARVORES FRUTIFERAS       622505
+    388  TRABALHADOR NO CULTIVO DE ESPECIES FRUTIFERAS RAST 622510
+    389  TRABALHADOR NO CULTIVO DE TREPADEIRAS FRUTIFERAS   622515
+    390  TRABALHADOR DA CULTURA DE CACAU                    622605
+    391  TRABALHADOR DA CULTURA DE CAFE                     622610
+    392  TRABALHADOR DA CULTURA DE ERVA-MATE                622615
+    393  TRABALHADOR DA CULTURA DE FUMO                     622620
+    394  TRABALHADOR DA CULTURA DE GUARANA                  622625
+    395  TRABALHADOR NA CULTURA DE AMENDOIM                 622705
+    396  TRABALHADOR NA CULTURA DE CANOLA                   622710
+    397  TRABALHADOR NA CULTURA DE COCO-DA-BAIA             622715
+    398  TRABALHADOR NA CULTURA DE DENDE                    622720
+    399  TRABALHADOR NA CULTURA DE MAMONA                   622725
+    400  TRABALHADOR NA CULTURA DE SOJA                     622730
+    401  TRABALHADOR NA CULTURA DO GIRASSOL                 622735
+    402  TRABALHADOR NA CULTURA DO LINHO                    622740
+    403  TRABALHADOR DA CULTURA DE ESPECIARIAS              622805
+    404  TRABALHADOR DA CULTURA DE PLANTAS AROMATICAS E MED 622810
+    405  ADESTRADOR DE ANIMAIS                              623005
+    406  INSEMINADOR                                        623010
+    407  TRABALHADOR DE PECUARIA POLIVALENTE                623015
+    408  TRATADOR DE ANIMAIS                                623020
+    409  TRABALHADOR DA PECUARIA (ASININOS E MUARES)        623105
+    410  VENDEDOR DE COMERCIO VAREJISTA                     521110
+    411  TRABALHADOR DA PECUARIA (BOVINOS CORTE)            623110
+    412  TRABALHADOR DA PECUARIA (BOVINOS LEITE)            623115
+    413  TRABALHADOR DA PECUARIA (BUBALINOS)                623120
+    414  TRABALHADOR DA PECUARIA (EQUINOS)                  623125
+    415  TRABALHADOR DA CAPRINOCULTURA                      623205
+    416  TRABALHADOR DA OVINOCULTURA                        623210
+    417  TRABALHADOR DA SUINOCULTURA                        623215
+    418  TRABALHADOR DA AVICULTURA DE CORTE                 623305
+    419  TRABALHADOR DA AVICULTURA DE POSTURA               623310
+    420  OPERADOR DE INCUBADORA                             623315
+    421  TRABALHADOR DA CUNICULTURA                         623320
+    422  SEXADOR                                            623325
+    423  TRABALHADOR EM CRIATORIOS DE ANIMAIS PRODUTORES DE 623405
+    424  TRABALHADOR NA APICULTURA                          623410
+    425  TRABALHADOR NA MINHOCULTURA                        623415
+    426  TRABALHADOR NA SERICICULTURA                       623420
+    427  SUPERVISOR DA AQUICULTURA                          630105
+    428  SUPERVISOR DA AREA FLORESTAL                       630110
+    429  CATADOR DE CARANGUEJOS E SIRIS                     631005
+    430  CATADOR DE MARISCOS                                631010
+    431  PESCADOR ARTESANAL DE LAGOSTAS                     631015
+    432  PESCADOR ARTESANAL DE PEIXES E CAMAROES            631020
+    433  PESCADOR ARTESANAL DE AGUA DOCE                    631105
+    434  PESCADOR PROFISSIONAL                              631210
+    435  CRIADOR DE CAMAROES                                631305
+    436  CRIADOR DE JACARES                                 631310
+    437  CRIADOR DE MEXILHOES                               631315
+    438  CRIADOR DE OSTRAS                                  631320
+    439  CRIADOR DE PEIXES                                  631325
+    440  CRIADOR DE QUELONIOS                               631330
+    441  CRIADOR DE RAS                                     631335
+    442  GELADOR INDUSTRIAL                                 631405
+    443  GELADOR PROFISSIONAL                               631410
+    444  PROEIRO                                            631415
+    445  REDEIRO (PESCA)                                    631420
+    446  GUIA FLORESTAL                                     632005
+    447  RAIZEIRO                                           632010
+    448  VIVEIRISTA FLORESTAL                               632015
+    449  CLASSIFICADOR DE TORAS                             632105
+    450  CUBADOR DE MADEIRA                                 632110
+    451  INSTALADOR DE MATERIAL ISOLANTE, A MAO (EDIFICACOE 715725
+    452  INSTALADOR DE MATERIAL ISOLANTE, A MAQUINA (EDIFIC 715730
+    453  ACABADOR DE SUPERFICIES DE CONCRETO                716105
+    454  REVESTIDOR DE SUPERFICIES DE CONCRETO              716110
+    455  TELHADOR (TELHAS DE ARGILA E MATERIAS SIMILARES)   716205
+    456  TELHADOR (TELHAS DE CIMENTO-AMIANTO)               716210
+    457  TELHADOR (TELHAS METALICAS)                        716215
+    458  TELHADOR (TELHAS PLATICAS)                         716220
+    459  VIDRACEIRO                                         716305
+    460  VIDRACEIRO (EDIFICACOES)                           716310
+    461  VIDRACEIRO (VITRAIS)                               716315
+    462  GESSEIRO                                           716405
+    463  ASSOALHADOR                                        716505
+    464  LADRILHEIRO                                        716510
+    465  PASTILHEIRO                                        716515
+    466  LUSTRADOR DE PISO                                  716520
+    467  MARMORISTA (CONSTRUCAO)                            716525
+    468  MOSAISTA                                           716530
+    469  TAQUEIRO                                           716535
+    470  CALAFETADOR                                        716605
+    471  PINTOR DE OBRAS                                    716610
+    472  REVESTIDOR DE INTERIORES (PAPEL, MATERIAL PLASTICO 716615
+    473  DEMOLIDOR DE EDIFICACOES                           717005
+    474  OPERADOR DE MARTELETE                              717010
+    475  POCEIRO (EDIFICACOES)                              717015
+    476  SERVENTE DE OBRAS                                  717020
+    477  VIBRADORISTA                                       717025
+    478  MESTRE (AFIADOR DE FERRAMENTAS)                    720105
+    479  MESTRE DE CALDEIRARIA                              720110
+    480  MESTRE DE FERRAMENTARIA                            720115
+    481  MESTRE DE FORJARIA                                 720120
+    482  MESTRE DE FUNDICAO                                 720125
+    483  MESTRE DE GALVANOPLASTIA                           720130
+    484  MESTRE DE PINTURA (TRATAMENTO DE SUPERFICIES)      720135
+    485  MESTRE DE SOLDAGEM                                 720140
+    486  MESTRE DE TREFILACAO DE METAIS                     720145
+    487  MESTRE DE USINAGEM                                 720150
+    488  MESTRE SERRALHEIRO                                 720155
+    489  SUPERVISOR DE CONTROLE DE TRATAMENTO TERMICO       720160
+    490  MESTRE (CONSTRUCAO NAVAL)                          720205
+    491  MESTRE (INDUSTRIA DE AUTOMOTORES E MATERIAL DE TRA 720210
+    492  MESTRE (INDUSTRIA DE MAQUINAS E OUTROS EQUIPAMENTO 720215
+    493  MESTRE DE CONSTRUCAO DE FORNOS                     720220
+    494  FERRAMENTEIRO                                      721105
+    495  FERRAMENTEIRO DE MANDRIS, CALIBRADORES E OUTROS DI 721110
+    496  MODELADOR DE METAIS (FUNDICAO)                     721115
+    497  OPERADOR DE MAQUINA DE ELETROEROSAO                721205
+    498  OPERADOR DE MAQUINAS OPERATRIZES                   721210
+    499  OPERADOR DE MAQUINAS-FERRAMENTA CONVENCIONAIS      721215
+    500  OPERADOR DE USINAGEM CONVENCIONAL POR ABRASAO      721220
+    501  PREPARADOR DE MAQUINAS-FERRAMENTA                  721225
+    502  AFIADOR DE CARDAS                                  721305
+    503  AFIADOR DE CUTELARIA                               721310
+    504  AFIADOR DE FERRAMENTAS                             721315
+    505  AFIADOR DE SERRAS                                  721320
+    506  POLIDOR DE METAIS                                  721325
+    507  OPERADOR DE CENTRO DE USINAGEM COM COMANDO NUMERIC 721405
+    508  OPERADOR DE FRESADORA COM COMANDO NUMERICO         721410
+    509  OPERADOR DE MANDRILADORA COM COMANDO NUMERICO      721415
+    510  OPERADOR DE MAQUINA ELETROEROSAO, A FIO, COM COMAN 721420
+    511  OPERADOR DE RETIFICADORA COM COMANDO NUMERICO      721425
+    512  OPERADOR DE TORNO COM COMANDO NUMERICO             721430
+    513  FORJADOR                                           722105
+    514  FORJADOR A MARTELO                                 722110
+    515  FORJADOR PRENSISTA                                 722115
+    516  FUNDIDOR DE METAIS                                 722205
+    517  LINGOTADOR                                         722210
+    518  OPERADOR DE ACABAMENTO DE PECAS FUNDIDAS           722215
+    519  OPERADOR DE MAQUINA CENTRIFUGADORA DE FUNDICAO     722220
+    520  OPERADOR DE MAQUINA DE FUNDIR SOB PRESSAO          722225
+    521  OPERADOR DE VAZAMENTO (LINGOTAMENTO)               722230
+    522  PREPARADOR DE PANELAS (LINGOTAMENTO)               722235
+    523  MACHEIRO, A MAO                                    722305
+    524  MACHEIRO, A MAQUINA                                722310
+    525  MOLDADOR, A MAO                                    722315
+    526  MOLDADOR, A MAQUINA                                722320
+    527  OPERADOR DE EQUIPAMENTOS DE PREPARACAO DE AREIA    722325
+    528  OPERADOR DE MAQUINA DE MOLDAR AUTOMATIZADA         722330
+    529  CABLEADOR                                          722405
+    530  ESTIRADOR DE TUBOS DE METAL SEM COSTURA            722410
+    531  TREFILADOR DE METAIS, A MAQUINA                    722415
+    532  CEMENTADOR DE METAIS                               723105
+    533  NORMALIZADOR DE METAIS E DE COMPOSITOS             723110
+    534  OPERADOR DE EQUIPAMENTO PARA RESFRIAMENTO          723115
+    535  OPERADOR DE FORNO DE TRATAMENTO TERMICO DE METAIS  723120
+    536  TEMPERADOR DE METAIS E DE COMPOSITOS               723125
+    537  DECAPADOR                                          723205
+    538  FOSFATIZADOR                                       723210
+    539  GALVANIZADOR                                       723215
+    540  METALIZADOR A PISTOLA                              723220
+    541  METALIZADOR (BANHO QUENTE)                         723225
+    542  OPERADOR DE MAQUINA RECOBRIDORA DE ARAME           723230
+    543  OPERADOR DE ZINCAGEM (PROCESSO ELETROLITICO)       723235
+    544  OXIDADOR                                           723240
+    545  OPERADOR DE EQUIPAMENTO DE SECAGEM DE PINTURA      723305
+    546  PINTOR A PINCEL E ROLO (EXCETO OBRAS E ESTRUTURAS  723310
+    547  PINTOR DE ESTRUTURAS METALICAS                     723315
+    548  PINTOR DE VEICULOS (FABRICACAO)                    723320
+    549  PINTOR POR IMERSAO                                 723325
+    550  PINTOR, A PISTOLA (EXCETO OBRAS E ESTRUTURAS METAL 723330
+    551  ASSENTADOR DE CANALIZACAO (EDIFICACOES)            724105
+    552  ENCANADOR                                          724110
+    553  INSTALADOR DE TUBULACOES                           724115
+    554  INSTALADOR DE TUBULACOES (AERONAVES)               724120
+    555  INSTALADOR DE TUBULACOES (EMBARCACOES)             724125
+    556  INSTALADOR DE TUBULACOES DE GAS COMBUSTIVEL (PRODU 724130
+    557  INSTALADOR DE TUBULACOES DE VAPOR (PRODUCAO E DIST 724135
+    558  MONTADOR DE ESTRUTURAS METALICAS                   724205
+    559  MONTADOR DE ESTRUTURAS METALICAS DE EMBARCACOES    724210
+    560  REBITADOR A MARTELO PNEUMATICO                     724215
+    561  PREPARADOR DE ESTRUTURAS METALICAS                 724220
+    562  RISCADOR DE ESTRUTURAS METALICAS                   724225
+    563  REBITADOR, A MAO                                   724230
+    564  BRASADOR                                           724305
+    565  OXICORTADOR A MAO E A MAQUINA                      724310
+    566  SOLDADOR                                           724315
+    567  SOLDADOR A OXIGAS                                  724320
+    568  SOLDADOR ELETRICO                                  724325
+    569  CALDEIREIRO (CHAPAS DE COBRE)                      724405
+    570  CALDEIREIRO (CHAPAS DE FERRO E ACO)                724410
+    571  CHAPEADOR                                          724415
+    572  CHAPEADOR DE CARROCERIAS METALICAS (FABRICACAO)    724420
+    573  CHAPEADOR NAVAL                                    724425
+    574  CHAPEADOR DE AERONAVES                             724430
+    575  FUNILEIRO INDUSTRIAL                               724435
+    576  SERRALHEIRO                                        724440
+    577  OPERADOR DE MAQUINA DE CILINDRAR CHAPAS            724505
+    578  OPERADOR DE MAQUINA DE DOBRAR CHAPAS               724510
+    579  CARPINTEIRO DE FORMAS PARA CONCRETO                715535
+    580  PRENSISTA (OPERADOR DE PRENSA)                     724515
+    581  TRANCADOR DE CABOS DE ACO                          724610
+    582  AJUSTADOR FERRAMENTEIRO                            725005
+    583  AJUSTADOR MECANICO                                 725010
+    584  AJUSTADOR MECANICO (USINAGEM EM BANCADA E EM MAQUI 725015
+    585  AJUSTADOR MECANICO EM BANCADA                      725020
+    586  AJUSTADOR NAVAL (REPARO E CONSTRUCAO)              725025
+    587  MONTADOR DE MAQUINAS, MOTORES E ACESSORIOS (MONTAG 725105
+    588  MONTADOR DE MAQUINAS                               725205
+    589  MONTADOR DE MAQUINAS GRAFICAS                      725210
+    590  MONTADOR DE MAQUINAS OPERATRIZES PARA MADEIRA      725215
+    591  MONTADOR DE MAQUINAS TEXTEIS                       725220
+    592  IDENTIFICADOR FLORESTAL                            632115
+    593  OPERADOR DE MOTOSSERRA                             632120
+    594  TRABALHADOR DE EXTRACAO FLORESTAL, EM GERAL        632125
+    595  SERINGUEIRO                                        632205
+    596  TRABALHADOR DA EXPLORACAO DE ESPECIES PRODUTORAS D 632210
+    597  TRABALHADOR DA EXPLORACAO DE RESINAS               632215
+    598  TRABALHADOR DA EXPLORACAO DE ANDIROBA              632305
+    599  TRABALHADOR DA EXPLORACAO DE BABACU                632310
+    600  TRABALHADOR DA EXPLORACAO DE BACABA                632315
+    601  TRABALHADOR DA EXPLORACAO DE BURITI                632320
+    602  TRABALHADOR DA EXPLORACAO DE CARNAUBA              632325
+    603  TRABALHADOR DA EXPLORACAO DE COCO-DA-PRAIA         632330
+    604  TRABALHADOR DA EXPLORACAO DE COPAIBA               632335
+    605  TRABALHADOR DA EXPLORACAO DE MALVA (PAINA)         632340
+    606  TRABALHADOR DA EXPLORACAO DE MURUMURU              632345
+    607  TRABALHADOR DA EXPLORACAO DE OITICICA              632350
+    608  TRABALHADOR DA EXPLORACAO DE OURICURI              632355
+    609  TRABALHADOR DA EXPLORACAO DE PEQUI                 632360
+    610  TRABALHADOR DA EXPLORACAO DE PIACAVA               632365
+    611  TRABALHADOR DA EXPLORACAO DE TUCUM                 632370
+    612  TRABALHADOR DA EXPLORACAO DE ACAI                  632405
+    613  TRABALHADOR DA EXPLORACAO DE CASTANHA              632410
+    614  TRABALHADOR DA EXPLORACAO DE PINHAO                632415
+    615  TRABALHADOR DA EXPLORACAO DE PUPUNHA               632420
+    616  TRABALHADOR DA EXPLORACAO DE ARVORES E ARBUSTOS PR 632505
+    617  TRABALHADOR DA EXPLORACAO DE CIPOS PRODUTORES DE S 632510
+    618  TRABALHADOR DA EXPLORACAO DE MADEIRAS TANANTES     632515
+    619  TRABALHADOR DA EXPLORACAO DE RAIZES PRODUTORAS DE  632520
+    620  TRABALHADOR DA EXTRACAO DE SUBSTANCIAS AROMATICAS, 632525
+    621  CARVOEIRO                                          632605
+    622  CARBONIZADOR                                       632610
+    623  AJUDANTE DE CARVOARIA                              632615
+    624  OPERADOR DE COLHEITADEIRA                          641005
+    625  OPERADOR DE MAQUINAS DE BENEFICIAMENTO DE PRODUTOS 641010
+    626  TRATORISTA AGRICOLA                                641015
+    627  OPERADOR DE COLHEDOR FLORESTAL                     642005
+    628  OPERADOR DE MAQUINAS FLORESTAIS ESTATICAS          642010
+    629  OPERADOR DE TRATOR FLORESTAL                       642015
+    630  TRABALHADOR NA OPERACAO DE SISTEMA DE IRRIGACAO LO 643005
+    631  TRABALHADOR NA OPERACAO DE SISTEMA DE IRRIGACAO PO 643010
+    632  TRABALHADOR NA OPERACAO DE SISTEMAS CONVENCIONAIS  643015
+    633  TRABALHADOR NA OPERACAO DE SISTEMAS DE IRRIGACAO E 643020
+    634  TRABALHADOR NA OPERACAO DE SISTEMAS DE IRRIGACAO P 643025
+    635  SUPERVISOR DE APOIO OPERACIONAL NA MINERACAO       710105
+    636  SUPERVISOR DE EXTRACAO DE SAL                      710110
+    637  SUPERVISOR DE PERFURACAO E DESMONTE                710115
+    638  SUPERVISOR DE PRODUCAO NA MINERACAO                710120
+    639  SUPERVISOR DE TRANSPORTE NA MINERACAO              710125
+    640  MESTRE (CONSTRUCAO CIVIL)                          710205
+    641  MESTRE DE LINHAS (FERROVIAS)                       710210
+    642  INSPETOR DE TERRAPLENAGEM                          710215
+    643  SUPERVISOR DE USINA DE CONCRETO                    710220
+    644  FISCAL DE PATIO DE USINA DE CONCRETO               710225
+    645  AMOSTRADOR DE MINERIOS                             711105
+    646  CANTEIRO                                           711110
+    647  DESTROCADOR DE PEDRA                               711115
+    648  DETONADOR                                          711120
+    649  ESCORADOR DE MINAS                                 711125
+    650  MINEIRO                                            711130
+    651  OPERADOR DE CAMINHAO (MINAS E PEDREIRAS)           711205
+    652  OPERADOR DE CARREGADEIRA                           711210
+    653  OPERADOR DE MAQUINA CORTADORA (MINAS E PEDREIRAS)  711215
+    654  OPERADOR DE MAQUINA DE EXTRACAO CONTINUA (MINAS DE 711220
+    655  OPERADOR DE MAQUINA PERFURADORA (MINAS E PEDREIRAS 711225
+    656  OPERADOR DE MAQUINA PERFURATRIZ                    711230
+    657  OPERADOR DE MOTONIVELADORA (EXTRACAO DE MINERAIS S 711235
+    658  OPERADOR DE SCHUTTHECAR                            711240
+    659  OPERADOR DE TRATOR (MINAS E PEDREIRAS)             711245
+    660  OPERADOR DE SONDA DE PERCUSSAO                     711305
+    661  OPERADOR DE SONDA ROTATIVA                         711310
+    662  SONDADOR (POCOS DE PETROLEO E GAS)                 711315
+    663  SONDADOR DE POCOS (EXCETO DE PETROLEO E GAS)       711320
+    664  PLATAFORMISTA (PETROLEO)                           711325
+    665  TORRISTA (PETROLEO)                                711330
+    666  GARIMPEIRO                                         711405
+    667  OPERADOR DE SALINA (SAL MARINHO)                   711410
+    668  MOLEIRO DE MINERIOS                                712105
+    669  OPERADOR DE APARELHO DE FLOTACAO                   712110
+    670  OPERADOR DE APARELHO DE PRECIPITACAO (MINAS DE OUR 712115
+    671  OPERADOR DE BRITADOR DE MANDIBULAS                 712120
+    672  OPERADOR DE ESPESSADOR                             712125
+    673  OPERADOR DE JIG (MINAS)                            712130
+    674  OPERADOR DE PENEIRAS HIDRAULICAS                   712135
+    675  CORTADOR DE PEDRAS                                 712205
+    676  GRAVADOR DE INSCRICOES EM PEDRA                    712210
+    677  GRAVADOR DE RELEVOS EM PEDRA                       712215
+    678  POLIDOR DE PEDRAS                                  712220
+    679  TORNEIRO (LAVRA DE PEDRA)                          712225
+    680  TRACADOR DE PEDRAS                                 712230
+    681  OPERADOR DE BATE-ESTACAS                           715105
+    682  OPERADOR DE COMPACTADORA DE SOLOS                  715110
+    683  OPERADOR DE ESCAVADEIRA                            715115
+    684  OPERADOR DE MAQUINA DE ABRIR VALAS                 715120
+    685  OPERADOR DE MAQUINAS DE CONSTRUCAO CIVIL E MINERAC 715125
+    686  OPERADOR DE MOTONIVELADORA                         715130
+    687  OPERADOR DE PA CARREGADEIRA                        715135
+    688  OPERADOR DE PAVIMENTADORA (ASFALTO, CONCRETO E MAT 715140
+    689  OPERADOR DE TRATOR DE LAMINA                       715145
+    690  CALCETEIRO                                         715205
+    691  PEDREIRO                                           715210
+    692  PEDREIRO (CHAMINES INDUSTRIAIS)                    715215
+    693  PEDREIRO (MATERIAL REFRATARIO)                     715220
+    694  PEDREIRO (MINERACAO)                               715225
+    695  PEDREIRO DE EDIFICACOES                            715230
+    696  ARMADOR DE ESTRUTURA DE CONCRETO                   715305
+    697  MOLDADOR DE CORPOS DE PROVA EM USINAS DE CONCRETO  715310
+    698  ARMADOR DE ESTRUTURA DE CONCRETO ARMADO            715315
+    699  OPERADOR DE BETONEIRA                              715405
+    700  OPERADOR DE BOMBA DE CONCRETO                      715410
+    701  OPERADOR DE CENTRAL DE CONCRETO                    715415
+    702  PESCADOR INDUSTRIAL                                631205
+    703  CARPINTEIRO                                        715505
+    704  CARPINTEIRO (ESQUADRIAS)                           715510
+    705  CARPINTEIRO (CENARIOS)                             715515
+    706  CARPINTEIRO (MINERACAO)                            715520
+    707  CARPINTEIRO DE OBRAS                               715525
+    708  CARPINTEIRO (TELHADOS)                             715530
+    709  CARPINTEIRO DE OBRAS CIVIS DE ARTE (PONTES, TUNEIS 715540
+    710  MONTADOR DE ANDAIMES (EDIFICACOES)                 715545
+    711  ELETRICISTA DE INSTALACOES (CENARIOS)              715605
+    712  ELETRICISTA DE INSTALACOES (EDIFICIOS)             715610
+    713  ELETRICISTA DE INSTALACOES                         715615
+    714  APLICADOR DE ASFALTO IMPERMEABILIZANTE (COBERTURAS 715705
+    715  INSTALADOR DE ISOLANTES ACUSTICOS                  715710
+    716  INSTALADOR DE ISOLANTES TERMICOS (REFRIGERACAO E C 715715
+    717  INSTALADOR DE ISOLANTES TERMICOS DE CALDEIRA E TUB 715720
+    718  MONTADOR DE MAQUINAS-FERRAMENTAS (USINAGEM DE META 725225
+    719  MONTADOR DE EQUIPAMENTO DE LEVANTAMENTO            725305
+    720  MONTADOR DE MAQUINAS AGRICOLAS                     725310
+    721  MONTADOR DE MAQUINAS DE MINAS E PEDREIRAS          725315
+    722  MONTADOR DE MAQUINAS DE TERRAPLENAGEM              725320
+    723  MECANICO MONTADOR DE MOTORES DE AERONAVES          725405
+    724  MECANICO MONTADOR DE MOTORES DE EMBARCACOES        725410
+    725  MECANICO MONTADOR DE MOTORES DE EXPLOSAO E DIESEL  725415
+    726  MECANICO MONTADOR DE TURBOALIMENTADORES            725420
+    727  MONTADOR DE VEICULOS (LINHA DE MONTAGEM)           725505
+    728  OPERADOR DE TIME DE MONTAGEM                       725510
+    729  MONTADOR DE ESTRUTURAS DE AERONAVES                725605
+    730  MONTADOR DE SISTEMAS DE COMBUSTIVEL DE AERONAVES   725610
+    731  MECANICO DE REFRIGERACAO                           725705
+    732  SUPERVISOR DE MONTAGEM E INSTALACAO ELETROELETRONI 730105
+    733  MONTADOR DE EQUIPAMENTOS ELETRONICOS (APARELHOS ME 731105
+    734  MONTADOR DE EQUIPAMENTOS ELETRONICOS (COMPUTADORES 731110
+    735  MONTADOR DE EQUIPAMENTOS ELETRICOS (INSTRUMENTOS D 731115
+    736  MONTADOR DE EQUIPAMENTOS ELETRICOS (APARELHOS ELET 731120
+    737  MONTADOR DE EQUIPAMENTOS ELETRICOS (CENTRAIS ELETR 731125
+    738  MONTADOR DE EQUIPAMENTOS ELETRICOS (MOTORES E DINA 731130
+    739  MONTADOR DE EQUIPAMENTOS ELETRICOS                 731135
+    740  MONTADOR DE EQUIPAMENTOS ELETRONICOS (INSTALACOES  731140
+    741  MONTADOR DE EQUIPAMENTOS ELETRONICOS (MAQUINAS IND 731145
+    742  MONTADOR DE EQUIPAMENTOS ELETRONICOS               731150
+    743  MONTADOR DE EQUIPAMENTOS ELETRICOS (ELEVADORES E E 731155
+    744  MONTADOR DE EQUIPAMENTOS ELETRICOS (TRANSFORMADORE 731160
+    745  BOBINADOR ELETRICISTA, A MAO                       731165
+    746  BOBINADOR ELETRICISTA, A MAQUINA                   731170
+    747  OPERADOR DE LINHA DE MONTAGEM (APARELHOS ELETRICOS 731175
+    748  OPERADOR DE LINHA DE MONTAGEM (APARELHOS ELETRONIC 731180
+    749  MONTADOR DE EQUIPAMENTOS ELETRONICOS (ESTACAO DE R 731205
+    750  INSTALADOR-REPARADOR DE EQUIPAMENTOS DE COMUTACAO  731305
+    751  INSTALADOR-REPARADOR DE EQUIPAMENTOS DE ENERGIA EM 731310
+    752  INSTALADOR-REPARADOR DE EQUIPAMENTOS DE TRANSMISSA 731315
+    753  INSTALADOR-REPARADOR DE LINHAS E APARELHOS DE TELE 731320
+    754  INSTALADOR-REPARADOR DE REDES E CABOS TELEFONICOS  731325
+    755  REPARADOR DE APARELHOS DE TELECOMUNICACOES EM LABO 731330
+    756  ELETRICISTA DE MANUTENCAO DE LINHAS ELETRICAS, TEL 732105
+    757  EMENDADOR DE CABOS ELETRICOS E TELEFONICOS (AEREOS 732110
+    758  EXAMINADOR DE CABOS, LINHAS ELETRICAS E TELEFONICA 732115
+    759  INSTALADOR DE LINHAS ELETRICAS DE ALTA E BAIXA - T 732120
+    760  INSTALADOR ELETRICISTA (TRACAO DE VEICULOS)        732125
+    761  INSTALADOR-REPARADOR DE REDES TELEFONICAS E DE COM 732130
+    762  LIGADOR DE LINHAS TELEFONICAS                      732135
+    763  SUPERVISOR DA MECANICA DE PRECISAO                 740105
+    764  SUPERVISOR DE FABRICACAO DE INSTRUMENTOS MUSICAIS  740110
+    765  AJUSTADOR DE INSTRUMENTOS DE PRECISAO              741105
+    766  MONTADOR DE INSTRUMENTOS DE OPTICA                 741110
+    767  MONTADOR DE INSTRUMENTOS DE PRECISAO               741115
+    768  RELOJOEIRO (FABRICACAO)                            741120
+    769  RELOJOEIRO (REPARACAO)                             741125
+    770  AFINADOR DE INSTRUMENTOS MUSICAIS                  742105
+    771  CONFECCIONADOR DE ACORDEAO                         742110
+    772  CONFECCIONADOR DE INSTRUMENTOS DE CORDA            742115
+    773  CONFECCIONADOR DE INSTRUMENTOS DE PERCUSSAO (PELE, 742120
+    774  CONFECCIONADOR DE INSTRUMENTOS DE SOPRO (MADEIRA)  742125
+    775  CONFECCIONADOR DE INSTRUMENTOS DE SOPRO (METAL)    742130
+    776  CONFECCIONADOR DE ORGAO                            742135
+    777  CONFECCIONADOR DE PIANO                            742140
+    778  SUPERVISOR DE JOALHERIA                            750105
+    779  SUPERVISOR DA INDUSTRIA DE MINERAIS NAO METALICOS  750205
+    780  ENGASTADOR (JOIAS)                                 751005
+    781  JOALHEIRO                                          751010
+    782  JOALHEIRO (REPARACOES)                             751015
+    783  LAPIDADOR (JOIAS)                                  751020
+    784  BATE-FOLHA A MAQUINA                               751105
+    785  FUNDIDOR (JOALHERIA E OURIVESARIA)                 751110
+    786  GRAVADOR (JOALHERIA E OURIVESARIA)                 751115
+    787  LAMINADOR DE METAIS PRECIOSOS A MAO                751120
+    788  OURIVES                                            751125
+    789  TREFILADOR (JOALHERIA E OURIVESARIA)               751130
+    790  ARTESAO MODELADOR (VIDROS)                         752105
+    791  MOLDADOR (VIDROS)                                  752110
+    792  SOPRADOR DE VIDRO                                  752115
+    793  TRANSFORMADOR DE TUBOS DE VIDRO                    752120
+    794  APLICADOR SERIGRAFICO EM VIDROS                    752205
+    795  CORTADOR DE VIDRO                                  752210
+    796  GRAVADOR DE VIDRO A AGUA-FORTE                     752215
+    797  GRAVADOR DE VIDRO A ESMERIL                        752220
+    798  GRAVADOR DE VIDRO A JATO DE AREIA                  752225
+    799  LAPIDADOR DE VIDROS E CRISTAIS                     752230
+    800  SURFASSAGISTA                                      752235
+    801  CERAMISTA                                          752305
+    802  CERAMISTA (TORNO DE PEDAL E MOTOR)                 752310
+    803  CERAMISTA (TORNO SEMI-AUTOMATICO)                  752315
+    804  CERAMISTA MODELADOR                                752320
+    805  CERAMISTA MOLDADOR                                 752325
+    806  CERAMISTA PRENSADOR                                752330
+    807  DECORADOR DE CERAMICA                              752405
+    808  DECORADOR DE VIDRO                                 752410
+    809  DECORADOR DE VIDRO A PINCEL                        752415
+    810  OPERADOR DE ESMALTADEIRA                           752420
+    811  OPERADOR DE ESPELHAMENTO                           752425
+    812  PINTOR DE CERAMICA, A PINCEL                       752430
+    813  CONTRAMESTRE DE ACABAMENTO (INDUSTRIA TEXTIL)      760105
+    814  CONTRAMESTRE DE FIACAO (INDUSTRIA TEXTIL)          760110
+    815  CONTRAMESTRE DE MALHARIA (INDUSTRIA TEXTIL)        760115
+    816  CONTRAMESTRE DE TECELAGEM (INDUSTRIA TEXTIL)       760120
+    817  MESTRE (INDUSTRIA TEXTIL E DE CONFECCOES)          760125
+    818  SUPERVISOR DE CURTIMENTO                           760205
+    819  ENCARREGADO DE CORTE NA CONFECCAO DO VESTUARIO     760305
+    820  ENCARREGADO DE COSTURA NA CONFECCAO DO VESTUARIO   760310
+    821  SUPERVISOR (INDUSTRIA DE CALCADOS E ARTEFATOS DE C 760405
+    822  SUPERVISOR DA CONFECCAO DE ARTEFATOS DE TECIDOS, C 760505
+    823  SUPERVISOR DAS ARTES GRAFICAS (INDUSTRIA EDITORIAL 760605
+    824  OPERADOR DE LACOS DE CABOS DE ACO                  724605
+    825  CLASSIFICADOR DE FIBRAS TEXTEIS                    761105
+    826  LAVADOR DE LA                                      761110
+    827  OPERADOR DE ABERTURA (FIACAO)                      761205
+    828  OPERADOR DE BINADEIRA                              761210
+    829  OPERADOR DE BOBINADEIRA                            761215
+    830  OPERADOR DE CARDAS                                 761220
+    831  OPERADOR DE CONICALEIRA                            761225
+    832  OPERADOR DE FILATORIO                              761230
+    833  OPERADOR DE LAMINADEIRA E REUNIDEIRA               761235
+    834  OPERADOR DE MACAROQUEIRA                           761240
+    835  OPERADOR DE OPEN-END                               761245
+    836  OPERADOR DE PASSADOR (FIACAO)                      761250
+    837  OPERADOR DE PENTEADEIRA                            761255
+    838  OPERADOR DE RETORCEDEIRA                           761260
+    839  TECELAO (REDES)                                    761303
+    840  TECELAO (RENDAS E BORDADOS)                        761306
+    841  TECELAO (TEAR AUTOMATICO)                          761309
+    842  TECELAO (TEAR JACQUARD)                            761312
+    843  TECELAO (TEAR MECANICO DE MAQUINETA)               761315
+    844  TECELAO (TEAR MECANICO DE XADREZ)                  761318
+    845  TECELAO (TEAR MECANICO LISO)                       761321
+    846  TECELAO (TEAR MECANICO, EXCETO JACQUARD)           761324
+    847  TECELAO DE MALHAS, A MAQUINA                       761327
+    848  TECELAO DE MALHAS (MAQUINA CIRCULAR)               761330
+    849  TECELAO DE MALHAS (MAQUINA RETILINEA)              761333
+    850  TECELAO DE MEIAS, A MAQUINA                        761336
+    851  TECELAO DE MEIAS (MAQUINA CIRCULAR)                761339
+    852  TECELAO DE MEIAS (MAQUINA RETILINEA)               761342
+    853  TECELAO DE TAPETES, A MAQUINA                      761345
+    854  OPERADOR DE ENGOMADEIRA DE URDUME                  761348
+    855  OPERADOR DE ESPULADEIRA                            761351
+    856  OPERADOR DE MAQUINA DE CORDOALHA                   761354
+    857  OPERADOR DE URDIDEIRA                              761357
+    858  PASSAMANEIRO A MAQUINA                             761360
+    859  REMETEDOR DE FIOS                                  761363
+    860  PICOTADOR DE CARTOES JACQUARD                      761366
+    861  ALVEJADOR (TECIDOS)                                761405
+    862  ESTAMPADOR DE TECIDO                               761410
+    863  OPERADOR DE CALANDRAS (TECIDOS)                    761415
+    864  OPERADOR DE CHAMUSCADEIRA DE TECIDOS               761420
+    865  OPERADOR DE IMPERMEABILIZADOR DE TECIDOS           761425
+    866  OPERADOR DE MAQUINA DE LAVAR FIOS E TECIDOS        761430
+    867  OPERADOR DE RAMEUSE                                761435
+    868  INSPETOR DE ESTAMPARIA (PRODUCAO TEXTIL)           761805
+    869  REVISOR DE FIOS (PRODUCAO TEXTIL)                  761810
+    870  REVISOR DE TECIDOS ACABADOS                        761815
+    871  REVISOR DE TECIDOS CRUS                            761820
+    872  TRABALHADOR POLIVALENTE DO CURTIMENTO DE COUROS E  762005
+    873  CLASSIFICADOR DE PELES                             762105
+    874  DESCARNADOR DE COUROS E PELES, A MAQUINA           762110
+    875  ESTIRADOR DE COUROS E PELES (PREPARACAO)           762115
+    876  FULONEIRO                                          762120
+    877  RACHADOR DE COUROS E PELES                         762125
+    878  CURTIDOR (COUROS E PELES)                          762205
+    879  CLASSIFICADOR DE COUROS                            762210
+    880  ENXUGADOR DE COUROS                                762215
+    881  REBAIXADOR DE COUROS                               762220
+    882  ESTIRADOR DE COUROS E PELES (ACABAMENTO)           762305
+    883  FULONEIRO NO ACABAMENTO DE COUROS E PELES          762310
+    884  LIXADOR DE COUROS E PELES                          762315
+    885  MATIZADOR DE COUROS E PELES                        762320
+    886  OPERADOR DE MAQUINAS DO ACABAMENTO DE COUROS E PEL 762325
+    887  PRENSADOR DE COUROS E PELES                        762330
+    888  PALECIONADOR DE COUROS E PELES                     762335
+    889  PREPARADOR DE COUROS CURTIDOS                      762340
+    890  VAQUEADOR DE COUROS E PELES                        762345
+    891  ALFAIATE                                           763005
+    892  COSTUREIRA DE PECAS SOB ENCOMENDA                  763010
+    893  COSTUREIRA DE REPARACAO DE ROUPAS                  763015
+    894  COSTUREIRO DE ROUPA DE COURO E PELE                763020
+    895  AUXILIAR DE CORTE (PREPARACAO DA CONFECCAO DE ROUP 763105
+    896  CORTADOR DE ROUPAS                                 763110
+    897  ENFESTADOR DE ROUPAS                               763115
+    898  RISCADOR DE ROUPAS                                 763120
+    899  COSTUREIRO DE ROUPAS DE COURO E PELE, A MAQUINA NA 763205
+    900  COSTUREIRO NA CONFECCAO EM SERIE                   763210
+    901  COSTUREIRO, A MAQUINA NA CONFECCAO EM SERIE        763215
+    902  ARREMATADEIRA                                      763305
+    903  BORDADOR, A MAQUINA                                763310
+    904  MARCADOR DE PECAS CONFECCIONADAS PARA BORDAR       763315
+    905  OPERADOR DE MAQUINA DE COSTURA DE ACABAMENTO       763320
+    906  PASSADEIRA DE PECAS CONFECCIONADAS                 763325
+    907  TRABALHADOR POLIVALENTE DA CONFECCAO DE CALCADOS   764005
+    908  CORTADOR DE CALCADOS, A MAQUINA (EXCETO SOLAS E PA 764105
+    909  CORTADOR DE SOLAS E PALMILHAS, A MAQUINA           764110
+    910  PREPARADOR DE CALCADOS                             764115
+    911  PREPARADOR DE SOLAS E PALMILHAS                    764120
+    912  COSTURADOR DE CALCADOS, A MAQUINA                  764205
+    913  MONTADOR DE CALCADOS                               764210
+    914  ACABADOR DE CALCADOS                               764305
+    915  CONFECCIONADOR DE ARTEFATOS DE COURO (EXCETO SAPAT 765005
+    916  CHAPELEIRO DE SENHORAS                             765010
+    917  BONELEIRO                                          765015
+    918  CORTADOR DE ARTEFATOS DE COURO (EXCETO ROUPAS E CA 765105
+    919  CORTADOR DE TAPECARIA                              765110
+    920  COLCHOEIRO (CONFECCAO DE COLCHOES)                 765205
+    921  CONFECCIONADOR DE BRINQUEDOS DE PANO               765215
+    922  CONFECCIONADOR DE VELAS NAUTICAS, BARRACAS E TOLDO 765225
+    923  ESTOFADOR DE AVIOES                                765230
+    924  ESTOFADOR DE MOVEIS                                765235
+    925  COSTURADOR DE ARTEFATOS DE COURO, A MAQUINA (EXCET 765310
+    926  MONTADOR DE ARTEFATOS DE COURO (EXCETO ROUPAS E CA 765315
+    927  TRABALHADOR DO ACABAMENTO DE ARTEFATOS DE TECIDOS  765405
+    928  COPIADOR DE CHAPA                                  766105
+    929  GRAVADOR DE MATRIZ PARA FLEXOGRAFIA (CLICHERISTA)  766115
+    930  EDITOR DE TEXTO E IMAGEM                           766120
+    931  MONTADOR DE FOTOLITO (ANALOGICO E DIGITAL)         766125
+    932  GRAVADOR DE MATRIZ PARA ROTOGRAVURA (ELETROMECANIC 766130
+    933  GRAVADOR DE MATRIZ CALCOGRAFICA                    766135
+    934  GRAVADOR DE MATRIZ SERIGRAFICA                     766140
+    935  OPERADOR DE SISTEMAS DE PROVA (ANALOGICO E DIGITAL 766145
+    936  OPERADOR DE PROCESSO DE TRATAMENTO DE IMAGEM       766150
+    937  PROGRAMADOR VISUAL GRAFICO                         766155
+    938  IMPRESSOR (SERIGRAFIA)                             766205
+    939  IMPRESSOR CALCOGRAFICO                             766210
+    940  IMPRESSOR DE OFSETE (PLANO E ROTATIVO)             766215
+    941  IMPRESSOR DE ROTATIVA                              766220
+    942  IMPRESSOR DE ROTOGRAVURA                           766225
+    943  IMPRESSOR DIGITAL                                  766230
+    944  IMPRESSOR FLEXOGRAFICO                             766235
+    945  IMPRESSOR LETTERSET                                766240
+    946  IMPRESSOR TAMPOGRAFICO                             766245
+    947  IMPRESSOR TIPOGRAFICO                              766250
+    948  ACABADOR DE EMBALAGENS (FLEXIVEIS E CARTOTECNICAS) 766305
+    949  IMPRESSOR DE CORTE E VINCO                         766310
+    950  OPERADOR DE ACABAMENTO (INDUSTRIA GRAFICA)         766315
+    951  OPERADOR DE GUILHOTINA (CORTE DE PAPEL)            766320
+    952  PREPARADOR DE MATRIZES DE CORTE E VINCO            766325
+    953  LABORATORISTA FOTOGRAFICO                          766405
+    954  REVELADOR DE FILMES FOTOGRAFICOS, EM PRETO E BRANC 766410
+    955  REVELADOR DE FILMES FOTOGRAFICOS, EM CORES         766415
+    956  AUXILIAR DE RADIOLOGIA (REVELACAO FOTOGRAFICA)     766420
+    957  TECELAO (TEAR MANUAL)                              768105
+    958  TECELAO DE TAPETES, A MAO                          768110
+    959  TRICOTEIRO, A MAO                                  768115
+    960  REDEIRO                                            768120
+    961  OPERADOR POLIVALENTE DA INDUSTRIA TEXTIL           761005
+    962  CROCHETEIRO, A MAO                                 768130
+    963  BORDADOR, A MAO                                    768205
+    964  CERZIDOR                                           768210
+    965  ARTIFICE DO COURO                                  768305
+    966  CORTADOR DE CALCADOS, A MAO (EXCETO SOLAS)         768310
+    967  COSTURADOR DE ARTEFATOS DE COURO, A MAO (EXCETO RO 768315
+    968  SAPATEIRO (CALCADOS SOB MEDIDA)                    768320
+    969  SELEIRO                                            768325
+    970  TIPOGRAFO                                          768605
+    971  LINOTIPISTA                                        768610
+    972  MONOTIPISTA                                        768615
+    973  PAGINADOR                                          768620
+    974  PINTOR DE LETREIROS                                768625
+    975  SUPERVISOR DE MANUTENCAO DE MAQUINAS INDUSTRIAIS T 910125
+    976  SUPERVISOR DE MANUTENCAO DE MAQUINAS OPERATRIZES E 910130
+    977  SUPERVISOR DA MANUTENCAO E REPARACAO DE VEICULOS L 910205
+    978  SUPERVISOR DA MANUTENCAO E REPARACAO DE VEICULOS P 910210
+    979  SUPERVISOR DE REPAROS LINHAS FERREAS               910905
+    980  SUPERVISOR DE MANUTENCAO DE VIAS FERREAS           910910
+    981  MECANICO DE MANUTENCAO DE BOMBA INJETORA (EXCETO D 911105
+    982  MECANICO DE MANUTENCAO DE BOMBAS                   911110
+    983  MECANICO DE MANUTENCAO DE COMPRESSORES DE AR       911115
+    984  MECANICO DE MANUTENCAO DE MOTORES DIESEL (EXCETO D 911120
+    985  MECANICO DE MANUTENCAO DE REDUTORES                911125
+    986  MECANICO DE MANUTENCAO DE TURBINAS (EXCETO DE AERO 911130
+    987  MECANICO DE MANUTENCAO DE TURBOCOMPRESSORES        911135
+    988  MECANICO DE MANUTENCAO E INSTALACAO DE APARELHOS D 911205
+    989  MECANICO DE MANUTENCAO DE MAQUINAS, EM GERAL       911305
+    990  MECANICO DE MANUTENCAO DE MAQUINAS GRAFICAS        911310
+    991  MECANICO DE MANUTENCAO DE MAQUINAS OPERATRIZES (LA 911315
+    992  MECANICO DE MANUTENCAO DE MAQUINAS TEXTEIS         911320
+    993  MECANICO DE MANUTENCAO DE MAQUINAS-FERRAMENTAS (US 911325
+    994  MECANICO DE MANUTENCAO DE APARELHOS DE LEVANTAMENT 913105
+    995  MECANICO DE MANUTENCAO DE EQUIPAMENTO DE MINERACAO 913110
+    996  MECANICO DE MANUTENCAO DE MAQUINAS AGRICOLAS       913115
+    997  MECANICO DE MANUTENCAO DE MAQUINAS DE CONSTRUCAO E 913120
+    998  MECANICO DE MANUTENCAO DE AERONAVES, EM GERAL      914105
+    999  MECANICO DE MANUTENCAO DE SISTEMA HIDRAULICO DE AE 914110
+   1000  MECANICO DE MANUTENCAO DE MOTORES E EQUIPAMENTOS N 914205
+   1001  MECANICO DE MANUTENCAO DE VEICULOS FERROVIARIOS    914305
+   1002  MECANICO DE MANUTENCAO DE AUTOMOVEIS, MOTOCICLETAS 914405
+   1003  MECANICO DE MANUTENCAO DE EMPILHADEIRAS E OUTROS V 914410
+   1004  MECANICO DE MANUTENCAO DE MOTOCICLETAS             914415
+   1005  MECANICO DE MANUTENCAO DE TRATORES                 914420
+   1006  MECANICO DE VEICULOS AUTOMOTORES A DIESEL (EXCETO  914425
+   1007  TECNICO EM MANUTENCAO DE INSTRUMENTOS DE MEDICAO E 915105
+   1008  TECNICO EM MANUTENCAO DE HIDROMETROS               915110
+   1009  TECNICO EM MANUTENCAO DE BALANCAS                  915115
+   1010  RESTAURADOR DE INSTRUMENTOS MUSICAIS (EXCETO CORDA 915205
+   1011  REPARADOR DE INSTRUMENTOS MUSICAIS                 915210
+   1012  LUTHIER (RESTAURACAO DE CORDAS ARCADAS)            915215
+   1013  TECNICO EM MANUTENCAO DE EQUIPAMENTOS E INSTRUMENT 915305
+   1014  REPARADOR DE EQUIPAMENTOS FOTOGRAFICOS             915405
+   1015  LUBRIFICADOR INDUSTRIAL                            919105
+   1016  LUBRIFICADOR DE VEICULOS AUTOMOTORES (EXCETO EMBAR 919110
+   1017  LUBRIFICADOR DE EMBARCACOES                        919115
+   1018  MECANICO DE MANUTENCAO DE MAQUINAS CORTADORAS DE G 919205
+   1019  MECANICO DE MANUTENCAO DE APARELHOS ESPORTIVOS E D 919305
+   1020  MECANICO DE MANUTENCAO DE BICICLETAS E VEICULOS SI 919310
+   1021  MONTADOR DE BICICLETAS                             919315
+   1022  SUPERVISOR DE MANUTENCAO ELETRICA DE ALTA TENSAO I 950105
+   1023  SUPERVISOR DE MANUTENCAO ELETROMECANICA INDUSTRIAL 950110
+   1024  ENCARREGADO DE MANUTENCAO ELETRICA DE VEICULOS     950205
+   1025  SUPERVISOR DE MANUTENCAO ELETROMECANICA            950305
+   1026  ELETRICISTA DE MANUTENCAO ELETROELETRONICA         951105
+   1027  INSTALADOR DE SISTEMAS ELETROELETRONICOS DE SEGURA 951305
+   1028  MANTENEDOR DE SISTEMAS ELETROELETRONICOS DE SEGURA 951310
+   1029  ELETRICISTA DE INSTALACOES (AERONAVES)             953105
+   1030  ELETRICISTA DE INSTALACOES (EMBARCACOES)           953110
+   1031  ELETRICISTA DE INSTALACOES (VEICULOS AUTOMOTORES E 953115
+   1032  ELETROMECANICO DE MANUTENCAO DE ELEVADORES         954105
+   1033  ELETROMECANICO DE MANUTENCAO DE ESCADAS ROLANTES   954110
+   1034  ELETROMECANICO DE MANUTENCAO DE PORTAS AUTOMATICAS 954115
+   1035  MECANICO DE MANUTENCAO DE INSTALACOES MECANICAS DE 954120
+   1036  OPERADOR ELETROMECANICO                            954125
+   1037  REPARADOR DE APARELHOS ELETRODOMESTICOS (EXCETO IM 954205
+   1038  REPARADOR DE RADIO, TV E SOM                       954210
+   1039  REPARADOR DE EQUIPAMENTOS DE ESCRITORIO            954305
+   1040  CONSERVADOR DE VIA PERMANENTE (TRILHOS)            991105
+   1041  INSPETOR DE VIA PERMANENTE (TRILHOS)               991110
+   1042  OPERADOR DE MAQUINAS ESPECIAIS EM CONSERVACAO DE V 991115
+   1043  SOLDADOR ALUMINOTERMICO EM CONSERVACAO DE TRILHOS  991120
+   1044  MANTENEDOR DE EQUIPAMENTOS DE PARQUES DE DIVERSOES 991205
+   1045  FUNILEIRO DE VEICULOS (REPARACAO)                  991305
+   1046  MONTADOR DE VEICULOS (REPARACAO)                   991310
+   1047  PINTOR DE VEICULOS (REPARACAO)                     991315
+   1048  TRABALHADOR DA MANUTENCAO DE EDIFICACOES           991405
+   1049  CONSERVADOR DE FACHADAS                            991410
+   1050  LIMPADOR DE FACHADAS                               991415
+   1051  ALINHADOR DE PNEUS                                 992105
+   1052  BALANCEADOR                                        992110
+   1053  BORRACHEIRO                                        992115
+   1054  LAVADOR DE PECAS                                   992120
+   1055  ENCARREGADO GERAL DE OPERACOES DE CONSERVACAO DE V 992205
+   1056  ENCARREGADO DE EQUIPE DE CONSERVACAO DE VIAS PERMA 992210
+   1057  OPERADOR DE CEIFADEIRA NA CONSERVACAO DE VIAS PERM 992215
+   1058  PEDREIRO DE CONSERVACAO DE VIAS PERMANENTES (EXCET 992220
+   1059  AUXILIAR GERAL DE CONSERVACAO DE VIAS PERMANENTES  992225
+   1060  IGNORADA                                           998999
+   1061  ESTUDANTE                                          999991
+   1062  DONA DE CASA                                       999992
+   1063  APOSENTADO/PENSIONISTA                             999993
+   1064  DESEMPREGADO CRONICO OU CUJA HABITACAO HABITUAL NA 999994
+   1065  SUPERVISOR DE MANUTENCAO DE MAQUINAS GRAFICAS      910120
+   1066  PRESIDENTE DA REPUBLICA                            111205
+   1067  VICE-PRESIDENTE DA REPUBLICA                       111210
+   1068  MINISTRO DE ESTADO                                 111215
+   1069  SECRETARIO - EXECUTIVO                             111220
+   1070  MEMBRO SUPERIOR DO PODER EXECUTIVO                 111225
+   1071  GOVERNADOR DE ESTADO                               111230
+   1072  GOVERNADOR DO DISTRITO FEDERAL                     111235
+   1073  VICE-GOVERNADOR DE ESTADO                          111240
+   1074  VICE-GOVERNADOR DO DISTRITO FEDERAL                111245
+   1075  PREFEITO                                           111250
+   1076  VICE-PREFEITO                                      111255
+   1077  MINISTRO DO SUPREMO TRIBUNAL FEDERAL               111305
+   1078  MINISTRO DO SUPERIOR TRIBUNAL DE JUSTICA           111310
+   1079  MINISTRO DO SUPERIOR TRIBUNAL MILITAR              111315
+   1080  MINISTRO DO SUPERIOR TRIBUNAL DO TRABALHO          111320
+   1081  JUIZ DE DIREITO                                    111325
+   1082  JUIZ FEDERAL                                       111330
+   1083  JUIZ AUDITOR FEDERAL - JUSTICA MILITAR             111335
+   1084  JUIZ AUDITOR ESTADUAL - JUSTICA MILITAR            111340
+   1085  CONFECCIONADOR DE CARIMBOS DE BORRACHA             768630
+   1086  GRAVADOR, A MAO (ENCADERNACAO)                     768705
+   1087  RESTAURADOR DE LIVROS                              768710
+   1088  MESTRE (INDUSTRIA DE MADEIRA E MOBILIARIO)         770105
+   1089  MESTRE CARPINTEIRO                                 770110
+   1090  MARCENEIRO                                         771105
+   1091  MODELADOR DE MADEIRA                               771110
+   1092  MAQUETISTA NA MARCENARIA                           771115
+   1093  TANOEIRO                                           771120
+   1094  CLASSIFICADOR DE MADEIRA                           772105
+   1095  IMPREGNADOR DE MADEIRA                             772110
+   1096  SECADOR DE MADEIRA                                 772115
+   1097  CORTADOR DE LAMINADOS DE MADEIRA                   773105
+   1098  OPERADOR DE SERRAS NO DESDOBRAMENTO DE MADEIRA     773110
+   1099  SERRADOR DE BORDAS NO DESDOBRAMENTO DE MADEIRA     773115
+   1100  SERRADOR DE MADEIRA                                773120
+   1101  SERRADOR DE MADEIRA (SERRA CIRCULAR MULTIPLA)      773125
+   1102  SERRADOR DE MADEIRA (SERRA DE FITA MULTIPLA)       773130
+   1103  OPERADOR DE MAQUINA INTERCALADORA E PLACAS (COMPEN 773205
+   1104  PRENSISTA DE AGLOMERADOS                           773210
+   1105  PRENSISTA DE COMPENSADOS                           773215
+   1106  PREPARADOR DE AGLOMERANTES                         773220
+   1107  OPERADOR DE DESEMPENADEIRA NA USINAGEM CONVENCIONA 773305
+   1108  OPERADOR DE ENTALHADEIRA (USINAGEM DE MADEIRA)     773310
+   1109  OPERADOR DE FRESADORA (USINAGEM DE MADEIRA)        773315
+   1110  OPERADOR DE LIXADEIRA (USINAGEM DE MADEIRA)        773320
+   1111  OPERADOR DE MAQUINA DE USINAGEM MADEIRA, EM GERAL  773325
+   1112  OPERADOR DE MOLDURADORA (USINAGEM DE MADEIRA)      773330
+   1113  OPERADOR DE PLAINA DESENGROSSADEIRA                773335
+   1114  OPERADOR DE SERRAS (USINAGEM DE MADEIRA)           773340
+   1115  OPERADOR DE TORNO AUTOMATICO (USINAGEM DE MADEIRA) 773345
+   1116  OPERADOR DE TUPIA (USINAGEM DE MADEIRA)            773350
+   1117  TORNEIRO NA USINAGEM CONVENCIONAL DE MADEIRA       773355
+   1118  OPERADOR DE MAQUINA BORDATRIZ                      773405
+   1119  OPERADOR DE MAQUINA DE CORTINA D¨AGUA (PRODUCAO DE 773410
+   1120  OPERADOR DE MAQUINA DE USINAGEM DE MADEIRA (PRODUC 773415
+   1121  OPERADOR DE PRENSA DE ALTA FREQUENCIA NA USINAGEM  773420
+   1122  OPERADOR DE CENTRO DE USINAGEM DE MADEIRA (CNC)    773505
+   1123  OPERADOR DE MAQUINAS DE USINAR MADEIRA (CNC)       773510
+   1124  MONTADOR DE MOVEIS E ARTEFATOS DE MADEIRA          774105
+   1125  ENTALHADOR DE MADEIRA                              775105
+   1126  FOLHEADOR DE MOVEIS DE MADEIRA                     775110
+   1127  LUSTRADOR DE PECAS DE MADEIRA                      775115
+   1128  MARCHETEIRO                                        775120
+   1129  CESTEIRO                                           776405
+   1130  CONFECCIONADOR DE ESCOVAS, PINCEIS E PRODUTOS SIMI 776410
+   1131  CONFECCIONADOR DE ESCOVAS, PINCEIS E PRODUTOS SIMI 776415
+   1132  CONFECCIONADOR DE MOVEIS DE VIME, JUNCO E BAMBU    776420
+   1133  ESTEIREIRO                                         776425
+   1134  VASSOUREIRO                                        776430
+   1135  CARPINTEIRO NAVAL (CONSTRUCAO DE PEQUENAS EMBARCAC 777105
+   1136  CARPINTEIRO NAVAL (EMBARCACOES)                    777110
+   1137  CARPINTEIRO NAVAL (ESTALEIROS)                     777115
+   1138  CARPINTEIRO DE CARRETAS                            777205
+   1139  CARPINTEIRO DE CARROCERIAS                         777210
+   1140  SUPERVISOR DE EMBALAGEM E ETIQUETAGEM              780105
+   1141  CONDUTOR DE PROCESSOS ROBOTIZADOS DE PINTURA       781105
+   1142  CONDUTOR DE PROCESSOS ROBOTIZADOS DE SOLDAGEM      781110
+   1143  OPERADOR DE VEICULOS SUBAQUATICOS CONTROLADOS REMO 781305
+   1144  MERGULHADOR PROFISSIONAL (RASO E PROFUNDO)         781705
+   1145  OPERADOR DE DRAGA                                  782105
+   1146  OPERADOR DE GUINDASTE (FIXO)                       782110
+   1147  OPERADOR DE GUINDASTE MOVEL                        782115
+   1148  OPERADOR DE MAQUINA RODOFERROVIARIA                782120
+   1149  OPERADOR DE MONTA-CARGAS (CONSTRUCAO CIVIL)        782125
+   1150  OPERADOR DE PONTE ROLANTE                          782130
+   1151  OPERADOR DE PORTICO ROLANTE                        782135
+   1152  OPERADOR DE TALHA ELETRICA                         782140
+   1153  SINALEIRO (PONTE-ROLANTE)                          782145
+   1154  GUINCHEIRO (CONSTRUCAO CIVIL)                      782205
+   1155  OPERADOR DE DOCAGEM                                782210
+   1156  OPERADOR DE EMPILHADEIRA                           782220
+   1157  MOTORISTA DE CARRO DE PASSEIO                      782305
+   1158  MOTORISTA DE FURGAO OU VEICULO SIMILAR             782310
+   1159  MOTORISTA DE TAXI                                  782315
+   1160  MOTORISTA DE ONIBUS RODOVIARIO                     782405
+   1161  MOTORISTA DE ONIBUS URBANO                         782410
+   1162  MOTORISTA DE TROLEBUS                              782415
+   1163  CAMINHONEIRO AUTONOMO (ROTAS REGIONAIS E INTERNACI 782505
+   1164  MOTORISTA DE CAMINHAO (ROTAS REGIONAIS E INTERNACI 782510
+   1165  MOTORISTA OPERACIONAL DE GUINCHO                   782515
+   1166  OPERADOR DE TREM DE METRO                          782605
+   1167  MAQUINISTA DE TREM                                 782610
+   1168  MAQUINISTA DE TREM METROPOLITANO                   782615
+   1169  MOTORNEIRO                                         782620
+   1170  AUXILIAR DE MAQUINISTA DE TREM                     782625
+   1171  OPERADOR DE TELEFERICO (PASSAGEIROS)               782630
+   1172  MARINHEIRO DE CONVES (MARITIMO E FLUVIARIO)        782705
+   1173  MARINHEIRO DE MAQUINAS                             782710
+   1174  MOCO DE CONVES (MARITIMO E FLUVIARIO)              782715
+   1175  MOCO DE MAQUINAS (MARITIMO E FLUVIARIO)            782720
+   1176  CONDUTOR DE VEICULOS DE TRACAO ANIMAL (RUAS E ESTR 782805
+   1177  TROPEIRO                                           782810
+   1178  BOIADEIRO                                          782815
+   1179  CONDUTOR DE VEICULOS A PEDAIS                      782820
+   1180  AGENTE DE PATIO                                    783105
+   1181  MANOBRADOR                                         783110
+   1182  CARREGADOR (AERONAVES)                             783205
+   1183  CARREGADOR (ARMAZEM)                               783210
+   1184  CARREGADOR (VEICULOS DE TRANSPORTES TERRESTRES)    783215
+   1185  ESTIVADOR                                          783220
+   1186  AJUDANTE DE MOTORISTA                              783225
+   1187  EMBALADOR, A MAO                                   784105
+   1188  EMBALADOR, A MAQUINA                               784110
+   1189  OPERADOR DE MAQUINA DE ETIQUETAR                   784115
+   1190  OPERADOR DE MAQUINA DE ENVASAR LIQUIDOS            784120
+   1191  OPERADOR DE PRENSA DE ENFARDAMENTO                 784125
+   1192  ALIMENTADOR DE LINHA DE PRODUCAO                   784205
+   1193  MESTRE (INDUSTRIA PETROQUIMICA E CARBOQUIMICA)     810105
+   1194  MESTRE DE PRODUCAO QUIMICA                         810110
+   1195  MESTRE (INDUSTRIA DE BORRACHA E PLASTICO)          810205
+   1196  MESTRE DE PRODUCAO FARMACEUTICA                    810305
+   1197  OPERADOR DE PROCESSOS QUIMICOS E PETROQUIMICOS     811005
+   1198  OPERADOR DE SALA DE CONTROLE DE INSTALACOES QUIMIC 811010
+   1199  MOLEIRO (TRATAMENTOS QUIMICOS E AFINS)             811105
+   1200  OPERADOR DE MAQUINA MISTURADEIRA (TRATAMENTOS QUIM 811110
+   1201  OPERADOR DE BRITADEIRA (TRATAMENTOS QUIMICOS E AFI 811115
+   1202  OPERADOR DE CONCENTRACAO                           811120
+   1203  TRABALHADOR DA FABRICACAO DE RESINAS E VERNIZES    811125
+   1204  CHAPELEIRO (CHAPEUS DE PALHA)                      768125
+   1205  TRABALHADOR DE FABRICACAO DE TINTAS                811130
+   1206  OPERADOR DE TRATAMENTO QUIMICO DE MATERIAIS RADIOA 811215
+   1207  OPERADOR DE CENTRIFUGADORA (TRATAMENTOS QUIMICOS E 811305
+   1208  OPERADOR DE EXPLORACAO DE PETROLEO                 811310
+   1209  OPERADOR DE FILTRO DE SECAGEM (MINERACAO)          811315
+   1210  OPERADOR DE FILTRO DE TAMBOR ROTATIVO (TRATAMENTOS 811320
+   1211  OPERADOR DE FILTRO-ESTEIRA (MINERACAO)             811325
+   1212  OPERADOR DE FILTRO-PRENSA (TRATAMENTOS QUIMICOS E  811330
+   1213  JUIZ DO TRABALHO                                   111345
+   1214  DIRIGENTE DO SERVICO PUBLICO FEDERAL               111405
+   1215  DIRIGENTE DO SERVICO PUBLICO ESTADUAL E DISTRITAL  111410
+   1216  DIRIGENTE DO SERVICO PUBLICO MUNICIPAL             111415
+   1217  CACIQUE                                            113005
+   1218  LIDER DE COMUNIDADE CAICARA                        113010
+   1219  MEMBRO DE LIDERANCA QUILOMBOLA                     113015
+   1220  DIRIGENTE DE PARTIDO POLITICO                      114105
+   1221  DIRIGENTES DE ENTIDADES DE TRABALHADORES           114205
+   1222  DIRIGENTES DE ENTIDADES PATRONAIS                  114210
+   1223  DIRIGENTE E ADMINISTRADOR DE ORGANIZACAO RELIGIOSA 114305
+   1224  DIRIGENTE E ADMINISTRADOR DE ORGANIZACAO DA SOCIED 114405
+   1225  DIRETOR DE PLANEJAMENTO ESTRATEGICO                121005
+   1226  DIRETOR GERAL DE EMPRESA E ORGANIZACOES (EXCETO DE 121010
+   1227  DIRETOR DE PRODUCAO E OPERACOES EM EMPRESA AGROPEC 122105
+   1228  DIRETOR DE PRODUCAO E OPERACOES EM EMPRESA AQUICOL 122110
+   1229  DIRETOR DE PRODUCAO E OPERACOES EM EMPRESA FLOREST 122115
+   1230  DIRETOR DE PRODUCAO E OPERACOES EM EMPRESA PESQUEI 122120
+   1231  DIRETOR DE PRODUCAO E OPERACOES DA INDUSTRIA DE TR 122205
+   1232  DIRETOR DE OPERACOES DE OBRAS PUBLICA E CIVIL      122305
+   1233  DIRETOR DE OPERACOES COMERCIAIS (COMERCIO ATACADIS 122405
+   1234  DIRETOR DE PRODUCAO E OPERACOES DE ALIMENTACAO     122505
+   1235  DIRETOR DE PRODUCAO E OPERACOES DE HOTEL           122510
+   1236  DIRETOR DE PRODUCAO E OPERACOES DE TURISMO         122515
+   1237  DIRETOR DE OPERACOES DE CORREIOS                   122605
+   1238  DIRETOR DE OPERACOES DE SERVICOS DE ARMAZENAMENTO  122610
+   1239  DIRETOR DE OPERACOES DE SERVICOS DE TELECOMUNICACO 122615
+   1240  DIRETOR DE OPERACOES DE SERVICOS DE TRANSPORTE     122620
+   1241  DIRETOR COMERCIAL EM OPERACOES DE INTERMEDIACAO FI 122705
+   1242  DIRETOR DE PRODUTOS BANCARIOS                      122710
+   1243  DIRETOR DE CREDITO RURAL                           122715
+   1244  DIRETOR DE CAMBIO E COMERCIO EXTERIOR              122720
+   1245  DIRETOR DE COMPLIANCE                              122725
+   1246  DIRETOR DE CREDITO (EXCETO CREDITO IMOBILIARIO)    122730
+   1247  DIRETOR DE CREDITO IMOBILIARIO                     122735
+   1248  DIRETOR DE LEASING                                 122740
+   1249  DIRETOR DE MERCADO DE CAPITAIS                     122745
+   1250  DIRETOR DE RECUPERACAO DE CREDITOS EM OPERACOES DE 122750
+   1251  DIRETOR DE RISCOS DE MERCADO                       122755
+   1252  DIRETOR ADMINISTRATIVO                             123105
+   1253  DIRETOR ADMINISTRATIVO E FINANCEIRO                123110
+   1254  DIRETOR FINANCEIRO                                 123115
+   1255  DIRETOR DE RECURSOS HUMANOS                        123205
+   1256  DIRETOR DE RELACOES DE TRABALHO                    123210
+   1257  DIRETOR COMERCIAL                                  123305
+   1258  DIRETOR DE MARKETING                               123310
+   1259  DIRETOR DE SUPRIMENTOS                             123405
+   1260  DIRETOR DE SUPRIMENTOS NO SERVICO PUBLICO          123410
+   1261  DIRETOR DE SERVICOS DE INFORMATICA                 123605
+   1262  DIRETOR DE PESQUISA E DESENVOLVIMENTO (P&D)        123705
+   1263  DIRETOR DE MANUTENCAO                              123805
+   1264  DIRETOR DE SERVICOS CULTURAIS                      131105
+   1265  DIRETOR DE SERVICOS SOCIAIS                        131110
+   1266  GERENTE DE SERVICOS CULTURAIS                      131115
+   1267  GERENTE DE SERVICOS SOCIAIS                        131120
+   1268  DIRETOR DE SERVICOS DE SAUDE                       131205
+   1269  GERENTE DE SERVICOS DE SAUDE                       131210
+   1270  DIRETOR DE INSTITUICAO EDUCACIONAL DA AREA PRIVADA 131305
+   1271  DIRETOR DE INSTITUICAO EDUCACIONAL PUBLICA         131310
+   1272  GERENTE DE INSTITUICAO EDUCACIONAL DA AREA PRIVADA 131315
+   1273  GERENTE DE SERVICOS EDUCACIONAIS DA AREA PUBLICA   131320
+   1274  GERENTE DE PRODUCAO E OPERACOES AQUICOLAS          141105
+   1275  GERENTE DE PRODUCAO E OPERACOES FLORESTAIS         141110
+   1276  GERENTE DE PRODUCAO E OPERACOES AGROPECUARIAS      141115
+   1277  GERENTE DE PRODUCAO E OPERACOES PESQUEIRAS         141120
+   1278  OFICIAL GENERAL DA AERONAUTICA                     010105
+   1279  OFICIAL GENERAL DO EXERCITO                        010110
+   1280  OFICIAL GENERAL DA MARINHA                         010115
+   1281  OFICIAL DA AERONAUTICA                             010205
+   1282  OFICIAL DO EXERCITO                                010210
+   1283  OFICIAL DA MARINHA                                 010215
+   1284  PRACA DA AERONAUTICA                               010305
+   1285  PRACA DO EXERCITO                                  010310
+   1286  PRACA DA MARINHA                                   010315
+   1287  CORONEL DA POLICIA MILITAR                         020105
+   1288  TENENTE-CORONEL DA POLICIA MILITAR                 020110
+   1289  MAJOR DA POLICIA MILITAR                           020115
+   1290  CAPITAO DA POLICIA MILITAR                         020205
+   1291  PRIMEIRO TENENTE DE POLICIA MILITAR                020305
+   1292  SEGUNDO TENENTE DE POLICIA MILITAR                 020310
+   1293  SUBTENENTE DA POLICIA MILITAR                      021105
+   1294  SARGENTO DA POLICIA MILITAR                        021110
+   1295  CABO DA POLICIA MILITAR                            021205
+   1296  SOLDADO DA POLICIA MILITAR                         021210
+   1297  CORONEL BOMBEIRO MILITAR                           030105
+   1298  MAJOR BOMBEIRO MILITAR                             030110
+   1299  TENENTE-CORONEL BOMBEIRO MILITAR                   030115
+   1300  CAPITAO BOMBEIRO MILITAR                           030205
+   1301  TENENTE DO CORPO DE BOMBEIROS MILITAR              030305
+   1302  SUBTENENTE BOMBEIRO MILITAR                        031105
+   1303  SARGENTO BOMBEIRO MILITAR                          031110
+   1304  CABO BOMBEIRO MILITAR                              031205
+   1305  SOLDADO BOMBEIRO MILITAR                           031210
+   1306  SENADOR                                            111105
+   1307  DEPUTADO FEDERAL                                   111110
+   1308  DEPUTADO ESTADUAL E DISTRITAL                      111115
+   1309  VEREADOR                                           111120
+   1310  GERENTE DE PRODUCAO E OPERACOES                    141205
+   1311  GERENTE DE PRODUCAO E OPERACOES DA CONSTRUCAO CIVI 141305
+   1312  COMERCIANTE ATACADISTA                             141405
+   1313  COMERCIANTE VAREJISTA                              141410
+   1314  GERENTE DE LOJA E SUPERMERCADO                     141415
+   1315  GERENTE DE OPERACOES DE SERVICOS DE ASSISTENCIA TE 141420
+   1316  GERENTE DE HOTEL                                   141505
+   1317  GERENTE DE RESTAURANTE                             141510
+   1318  GERENTE DE BAR                                     141515
+   1319  GERENTE DE PENSAO                                  141520
+   1320  GERENTE DE OPERACOES DE TRANSPORTES                141605
+   1321  GERENTE DE OPERACOES DE CORREIOS E TELECOMUNICACOE 141610
+   1322  GERENTE DE LOGISTICA (ARMAZENAGEM E DISTRIBUICAO)  141615
+   1323  GERENTE DE PRODUTOS BANCARIOS                      141705
+   1324  GERENTE DE AGENCIA                                 141710
+   1325  GERENTE DE CAMBIO E COMERCIO EXTERIOR              141715
+   1326  GERENTE DE CREDITO E COBRANCA                      141720
+   1327  GERENTE DE CREDITO IMOBILIARIO                     141725
+   1328  GERENTE DE CREDITO RURAL                           141730
+   1329  GERENTE ADMINISTRATIVO                             142105
+   1330  GERENTE DE RISCOS                                  142110
+   1331  GERENTE FINANCEIRO                                 142115
+   1332  GERENTE DE RECURSOS HUMANOS                        142205
+   1333  GERENTE DE DEPARTAMENTO PESSOAL                    142210
+   1334  GERENTE COMERCIAL                                  142305
+   1335  GERENTE DE COMUNICACAO                             142310
+   1336  GERENTE DE MARKETING                               142315
+   1337  GERENTE DE VENDAS                                  142320
+   1338  GERENTE DE COMPRAS                                 142405
+   1339  GERENTE DE SUPRIMENTOS                             142410
+   1340  GERENTE DE ALMOXARIFADO                            142415
+   1341  GERENTE DE REDE                                    142505
+   1342  GERENTE DE DESENVOLVIMENTO DE SISTEMAS             142510
+   1343  GERENTE DE PRODUCAO DE TECNOLOGIA DA INFORMACAO    142515
+   1344  GERENTE DE PROJETOS DE TECNOLOGIA DA INFORMACAO    142520
+   1345  GERENTE DE SEGURANCA DE TECNOLOGIA DA INFORMACAO   142525
+   1346  GERENTE DE SUPORTE TECNICO DE TECNOLOGIA DA INFORM 142530
+   1347  OPERADOR DE FILTROS DE PARAFINA (TRATAMENTOS QUIMI 811335
+   1348  DESTILADOR DE MADEIRA                              811405
+   1349  DESTILADOR DE PRODUTOS QUIMICOS (EXCETO PETROLEO)  811410
+   1350  OPERADOR DE ALAMBIQUE DE FUNCIONAMENTO CONTINUO (P 811415
+   1351  OPERADOR DE APARELHO DE REACAO E CONVERSAO (PRODUT 811420
+   1352  OPERADOR DE EQUIPAMENTO DE DESTILACAO DE ALCOOL    811425
+   1353  OPERADOR DE EVAPORADOR NA DESTILACAO               811430
+   1354  OPERADOR DE PAINEL DE CONTROLE (REFINACAO DE PETRO 811505
+   1355  OPERADOR DE TRANSFERENCIA E ESTOCAGEM - NA REFINAC 811510
+   1356  OPERADOR DE BRITADOR DE COQUE                      811605
+   1357  OPERADOR DE CARRO DE APAGAMENTO E COQUE            811610
+   1358  OPERADOR DE DESTILACAO E SUBPRODUTOS DE COQUE      811615
+   1359  OPERADOR DE ENFORNAMENTO E DESENFORNAMENTO DE COQU 811620
+   1360  OPERADOR DE EXAUSTOR (COQUERIA)                    811625
+   1361  OPERADOR DE PAINEL DE CONTROLE                     811630
+   1362  OPERADOR DE PRESERVACAO E CONTROLE TERMICO         811635
+   1363  OPERADOR DE REATOR DE COQUE DE PETROLEO            811640
+   1364  OPERADOR DE REFRIGERACAO (COQUERIA)                811645
+   1365  OPERADOR DE SISTEMA DE REVERSAO (COQUERIA)         811650
+   1366  BAMBURISTA                                         811705
+   1367  CALANDRISTA DE BORRACHA                            811710
+   1368  CONFECCIONADOR DE PNEUMATICOS                      811715
+   1369  CONFECCIONADOR DE VELAS POR IMERSAO                811725
+   1370  CONFECCIONADOR DE VELAS POR MOLDAGEM               811735
+   1371  LAMINADOR DE PLASTICO                              811745
+   1372  MOLDADOR DE BORRACHA POR COMPRESSAO                811750
+   1373  MOLDADOR DE PLASTICO POR COMPRESSAO                811760
+   1374  MOLDADOR DE PLASTICO POR INJECAO                   811770
+   1375  TREFILADOR DE BORRACHA                             811775
+   1376  OPERADOR DE MAQUINA DE PRODUTOS FARMACEUTICOS      811805
+   1377  DRAGEADOR (MEDICAMENTOS)                           811810
+   1378  OPERADOR DE MAQUINA DE FABRICACAO DE COSMETICOS    811815
+   1379  OPERADOR DE MAQUINA DE FABRICACAO DE PRODUTOS DE H 811820
+   1380  PIROTECNICO                                        812105
+   1381  TRABALHADOR DA FABRICACAO DE MUNICAO E EXPLOSIVOS  812110
+   1382  CILINDRISTA (PETROQUIMICA E AFINS)                 813105
+   1383  OPERADOR DE CALANDRA (QUIMICA, PETROQUIMICA E AFIN 813110
+   1384  OPERADOR DE EXTRUSORA (QUIMICA, PETROQUIMICA E AFI 813115
+   1385  OPERADOR DE PROCESSO (QUIMICA, PETROQUIMICA E AFIN 813120
+   1386  OPERADOR DE PRODUCAO (QUIMICA, PETROQUIMICA E AFIN 813125
+   1387  TECNICO DE OPERACAO (QUIMICA, PETROQUIMICA E AFINS 813130
+   1388  ASSISTENTE DE LABORATORIO INDUSTRIAL               818105
+   1389  AUXILIAR DE LABORATORIO DE ANALISES FISICO-QUIMICA 818110
+   1390  MESTRE DE SIDERURGIA                               820105
+   1391  MESTRE DE ACIARIA                                  820110
+   1392  MESTRE DE ALTO-FORNO                               820115
+   1393  MESTRE DE FORNO ELETRICO                           820120
+   1394  MESTRE DE LAMINACAO                                820125
+   1395  SUPERVISOR DE FABRICACAO DE PRODUTOS CERAMICOS, PO 820205
+   1396  SUPERVISOR DE FABRICACAO DE PRODUTOS DE VIDRO      820210
+   1397  OPERADOR DE CENTRO DE CONTROLE                     821105
+   1398  OPERADOR DE MAQUINA DE SINTERIZAR                  821110
+   1399  FORNEIRO E OPERADOR (ALTO-FORNO)                   821205
+   1400  FORNEIRO E OPERADOR (CONVERSOR A OXIGENIO)         821210
+   1401  FORNEIRO E OPERADOR (FORNO ELETRICO)               821215
+   1402  FORNEIRO E OPERADOR (REFINO DE METAIS NAO-FERROSOS 821220
+   1403  FORNEIRO E OPERADOR DE FORNO DE REDUCAO DIRETA     821225
+   1404  OPERADOR DE ACIARIA (BASCULAMENTO DE CONVERTEDOR)  821230
+   1405  OPERADOR DE ACIARIA (DESSULFURACAO DE GUSA)        821235
+   1406  OPERADOR DE ACIARIA (RECEBIMENTO DE GUSA)          821240
+   1407  OPERADOR DE AREA DE CORRIDA                        821245
+   1408  OPERADOR DE DESGASEIFICACAO                        821250
+   1409  SOPRADOR DE CONVERTEDOR                            821255
+   1410  OPERADOR DE LAMINADOR                              821305
+   1411  OPERADOR DE LAMINADOR DE BARRAS A FRIO             821310
+   1412  OPERADOR DE LAMINADOR DE BARRAS A QUENTE           821315
+   1413  OPERADOR DE LAMINADOR DE METAIS NAO-FERROSOS       821320
+   1414  OPERADOR DE LAMINADOR DE TUBOS                     821325
+   1415  OPERADOR DE MONTAGEM DE CILINDROS E MANCAIS        821330
+   1416  RECUPERADOR DE GUIAS E CILINDROS                   821335
+   1417  ENCARREGADO DE ACABAMENTO DE CHAPAS E METAIS (TEMP 821405
+   1418  ESCARFADOR                                         821410
+   1419  MARCADOR DE PRODUTOS (SIDERURGICO E METALURGICO)   821415
+   1420  OPERADOR DE BOBINADEIRA DE TIRAS A QUENTE, NO ACAB 821420
+   1421  OPERADOR DE CABINE DE LAMINACAO (FIO-MAQUINA)      821425
+   1422  OPERADOR DE ESCORIA E SUCATA                       821430
+   1423  OPERADOR DE JATO ABRASIVO                          821435
+   1424  OPERADOR DE TESOURA MECANICA E MAQUINA DE CORTE, N 821440
+   1425  PREPARADOR DE SUCATA E APARAS                      821445
+   1426  REBARBADOR DE METAL                                821450
+   1427  FORNEIRO DE CUBILO                                 822105
+   1428  FORNEIRO DE FORNO-POCO                             822110
+   1429  FORNEIRO DE FUNDICAO (FORNO DE REDUCAO)            822115
+   1430  FORNEIRO DE REAQUECIMENTO E TRATAMENTO TERMICO NA  822120
+   1431  FORNEIRO DE REVERBERO                              822125
+   1432  PREPARADOR DE MASSA (FABRICACAO DE ABRASIVOS)      823105
+   1433  PREPARADOR DE MASSA (FABRICACAO DE VIDRO)          823110
+   1434  PREPARADOR DE MASSA DE ARGILA                      823115
+   1435  PREPARADOR DE BARBOTINA                            823120
+   1436  PREPARADOR DE ESMALTES (CERAMICA)                  823125
+   1437  PREPARADOR DE ADITIVOS                             823130
+   1438  OPERADOR DE ATOMIZADOR                             823135
+   1439  EXTRUSOR DE FIOS OU FIBRAS DE VIDRO                823210
+   1440  FORNEIRO NA FUNDICAO DE VIDRO                      823215
+   1441  FORNEIRO NO RECOZIMENTO DE VIDRO                   823220
+   1442  MOLDADOR DE ABRASIVOS NA FABRICACAO DE CERAMICA, V 823230
+   1443  OPERADOR DE BANHO METALICO DE VIDRO POR FLUTUACAO  823235
+   1444  OPERADOR DE MAQUINA DE SOPRAR VIDRO                823240
+   1445  OPERADOR DE MAQUINA EXTRUSORA DE VARETAS E TUBOS D 823245
+   1446  OPERADOR DE PRENSA DE MOLDAR VIDRO                 823250
+   1447  TEMPERADOR DE VIDRO                                823255
+   1448  TRABALHADOR NA FABRICACAO DE PRODUTOS ABRASIVOS    823265
+   1449  CLASSIFICADOR E EMPILHADOR DE TIJOLOS REFRATARIOS  823305
+   1450  FORNEIRO (MATERIAIS DE CONSTRUCAO)                 823315
+   1451  TRABALHADOR DA ELABORACAO DE PRE-FABRICADOS (CIMEN 823320
+   1452  TRABALHADOR DA ELABORACAO DE PRE-FABRICADOS (CONCR 823325
+   1453  TRABALHADOR DA FABRICACAO DE PEDRAS ARTIFICIAIS    823330
+   1454  OLEIRO (FABRICACAO DE TELHAS)                      828105
+   1455  OLEIRO (FABRICACAO DE TIJOLOS)                     828110
+   1456  OPERADOR DE CALCINACAO (TRATAMENTO QUIMICO E AFINS 811205
+   1457  CILINDREIRO NA PREPARACAO DE PASTA PARA FABRICACAO 831105
+   1458  OPERADOR DE BRANQUEADOR DE PASTA PARA FABRICACAO D 831110
+   1459  OPERADOR DE DIGESTOR DE PASTA PARA FABRICACAO DE P 831115
+   1460  OPERADOR DE LAVAGEM E DEPURACAO DE PASTA PARA FABR 831120
+   1461  OPERADOR DE MAQUINA DE SECAR CELULOSE              831125
+   1462  CALANDRISTA DE PAPEL                               832105
+   1463  OPERADOR DE CORTADEIRA DE PAPEL                    832110
+   1464  GERENTE DE PESQUISA E DESENVOLVIMENTO (P&D)        142605
+   1465  GERENTE DE PROJETOS E SERVICOS DE MANUTENCAO       142705
+   1466  BIOENGENHEIRO                                      201105
+   1467  BIOTECNOLOGISTA                                    201110
+   1468  GENETICISTA                                        201115
+   1469  PESQUISADOR EM METROLOGIA                          201205
+   1470  ESPECIALISTA EM CALIBRACOES METROLOGICAS           201210
+   1471  ESPECIALISTA EM ENSAIOS METROLOGICOS               201215
+   1472  ESPECIALISTA EM INSTRUMENTACAO METROLOGICA         201220
+   1473  ESPECIALISTA EM MATERIAIS DE REFERENCIA METROLOGIC 201225
+   1474  ENGENHEIRO MECATRONICO                             202105
+   1475  PESQUISADOR EM BIOLOGIA AMBIENTAL                  203005
+   1476  PESQUISADOR EM BIOLOGIA ANIMAL                     203010
+   1477  PESQUISADOR EM BIOLOGIA DE MICROORGANISMOS E PARAS 203015
+   1478  PESQUISADOR EM BIOLOGIA HUMANA                     203020
+   1479  PESQUISADOR EM BIOLOGIA VEGETAL                    203025
+   1480  PESQUISADOR EM CIENCIAS DA COMPUTACAO E INFORMATIC 203105
+   1481  PESQUISADOR EM CIENCIAS DA TERRA E MEIO AMBIENTE   203110
+   1482  PESQUISADOR EM FISICA                              203115
+   1483  PESQUISADOR EM MATEMATICA                          203120
+   1484  PESQUISADOR EM QUIMICA                             203125
+   1485  PESQUISADOR DE ENGENHARIA CIVIL                    203205
+   1486  PESQUISADOR DE ENGENHARIA E TECNOLOGIA (OUTRAS ARE 203210
+   1487  PESQUISADOR DE ENGENHARIA ELETRICA E ELETRONICA    203215
+   1488  PESQUISADOR DE ENGENHARIA MECANICA                 203220
+   1489  PESQUISADOR DE ENGENHARIA METALURGICA, DE MINAS E  203225
+   1490  PESQUISADOR DE ENGENHARIA QUIMICA                  203230
+   1491  PESQUISADOR DE CLINICA MEDICA                      203305
+   1492  PESQUISADOR DE MEDICINA BASICA                     203310
+   1493  PESQUISADOR EM MEDICINA VETERINARIA                203315
+   1494  PESQUISADOR EM SAUDE COLETIVA                      203320
+   1495  PESQUISADOR EM CIENCIAS AGRONOMICAS                203405
+   1496  PESQUISADOR EM CIENCIAS DA PESCA E AQUICULTURA     203410
+   1497  PESQUISADOR EM CIENCIAS DA ZOOTECNIA               203415
+   1498  PESQUISADOR EM CIENCIAS FLORESTAIS                 203420
+   1499  PESQUISADOR EM CIENCIAS SOCIAIS E HUMANAS          203505
+   1500  PESQUISADOR EM ECONOMIA                            203510
+   1501  PESQUISADOR EM CIENCIAS DA EDUCACAO                203515
+   1502  PESQUISADOR EM HISTORIA                            203520
+   1503  PESQUISADOR EM PSICOLOGIA                          203525
+   1504  PERITO CRIMINAL                                    204105
+   1505  ATUARIO                                            211105
+   1506  ESPECIALISTA EM PESQUISA OPERACIONAL               211110
+   1507  MATEMATICO                                         211115
+   1508  MATEMATICO APLICADO                                211120
+   1509  ESTATISTICO                                        211205
+   1510  ESTATISTICO (ESTATISTICA APLICADA)                 211210
+   1511  ESTATISTICO TEORICO                                211215
+   1512  ENGENHEIRO DE APLICATIVOS EM COMPUTACAO            212205
+   1513  ENGENHEIRO DE EQUIPAMENTOS EM COMPUTACAO           212210
+   1514  ENGENHEIROS DE SISTEMAS OPERACIONAIS EM COMPUTACAO 212215
+   1515  ADMINISTRADOR DE BANCO DE DADOS                    212305
+   1516  ADMINISTRADOR DE REDES                             212310
+   1517  ADMINISTRADOR DE SISTEMAS OPERACIONAIS             212315
+   1518  ANALISTA DE DESENVOLVIMENTO DE SISTEMAS            212405
+   1519  ANALISTA DE REDES E DE COMUNICACAO DE DADOS        212410
+   1520  ANALISTA DE SISTEMAS DE AUTOMACAO                  212415
+   1521  ANALISTA DE SUPORTE COMPUTACIONAL                  212420
+   1522  FISICO                                             213105
+   1523  FISICO (ACUSTICA)                                  213110
+   1524  FISICO (ATOMICA E MOLECULAR)                       213115
+   1525  FISICO (COSMOLOGIA)                                213120
+   1526  FISICO (ESTATISTICA E MATEMATICA)                  213125
+   1527  FISICO (FLUIDOS)                                   213130
+   1528  FISICO (INSTRUMENTACAO)                            213135
+   1529  FISICO (MATERIA CONDENSADA)                        213140
+   1530  FISICO (MATERIAIS)                                 213145
+   1531  FISICO (MEDICINA)                                  213150
+   1532  FISICO (NUCLEAR E REATORES)                        213155
+   1533  FISICO (OPTICA)                                    213160
+   1534  FISICO (PARTICULAS E CAMPOS)                       213165
+   1535  FISICO (PLASMA)                                    213170
+   1536  FISICO (TERMICA)                                   213175
+   1537  QUIMICO                                            213205
+   1538  QUIMICO INDUSTRIAL                                 213210
+   1539  ASTRONOMO                                          213305
+   1540  GEOFISICO ESPACIAL                                 213310
+   1541  METEOROLOGISTA                                     213315
+   1542  GEOLOGO                                            213405
+   1543  GEOLOGO DE ENGENHARIA                              213410
+   1544  GEOFISICO                                          213415
+   1545  GEOQUIMICO                                         213420
+   1546  HIDROGEOLOGO                                       213425
+   1547  PALEONTOLOGO                                       213430
+   1548  PETROGRAFO                                         213435
+   1549  ARQUITETO DE EDIFICACOES                           214105
+   1550  ARQUITETO DE INTERIORES                            214110
+   1551  ARQUITETO DE PATRIMONIO                            214115
+   1552  ARQUITETO PAISAGISTA                               214120
+   1553  ARQUITETO URBANISTA                                214125
+   1554  ENGENHEIRO CIVIL                                   214205
+   1555  ENGENHEIRO CIVIL (AEROPORTOS)                      214210
+   1556  ENGENHEIRO CIVIL (EDIFICACOES)                     214215
+   1557  ENGENHEIRO CIVIL (ESTRUTURAS METALICAS)            214220
+   1558  ENGENHEIRO CIVIL (FERROVIAS E METROVIAS)           214225
+   1559  ENGENHEIRO CIVIL (GEOTECNIA)                       214230
+   1560  ENGENHEIRO CIVIL (HIDROLOGIA)                      214235
+   1561  ENGENHEIRO CIVIL (HIDRAULICA)                      214240
+   1562  ENGENHEIRO CIVIL (PONTES E VIADUTOS)               214245
+   1563  ENGENHEIRO CIVIL (PORTOS E VIAS NAVEGAVEIS)        214250
+   1564  ENGENHEIRO CIVIL (RODOVIAS)                        214255
+   1565  ENGENHEIRO CIVIL (SANEAMENTO)                      214260
+   1566  ENGENHEIRO CIVIL (TUNEIS)                          214265
+   1567  ENGENHEIRO CIVIL (TRANSPORTES E TRANSITO)          214270
+   1568  ENGENHEIRO ELETRICISTA                             214305
+   1569  ENGENHEIRO ELETRONICO                              214310
+   1570  ENGENHEIRO ELETRICISTA DE MANUTENCAO               214315
+   1571  ENGENHEIRO ELETRICISTA DE PROJETOS                 214320
+   1572  ENGENHEIRO ELETRONICO DE MANUTENCAO                214325
+   1573  ENGENHEIRO ELETRONICO DE PROJETOS                  214330
+   1574  ENGENHEIRO DE MANUTENCAO DE TELECOMUNICACOES       214335
+   1575  ENGENHEIRO DE TELECOMUNICACOES                     214340
+   1576  ENGENHEIRO PROJETISTA DE TELECOMUNICACOES          214345
+   1577  ENGENHEIRO DE REDES DE COMUNICACAO                 214350
+   1578  ENGENHEIRO DE CONTROLE E AUTOMACAO                 214355
+   1579  TECNOLOGO EM ELETRICIDADE                          214360
+   1580  TECNOLOGO EM ELETRONICA                            214365
+   1581  ENGENHEIRO MECANICO                                214405
+   1582  ENGENHEIRO MECANICO AUTOMOTIVO                     214410
+   1583  ENGENHEIRO MECANICO (ENERGIA NUCLEAR)              214415
+   1584  ENGENHEIRO MECANICO INDUSTRIAL                     214420
+   1585  ENGENHEIRO AERONAUTICO                             214425
+   1586  ENGENHEIRO NAVAL                                   214430
+   1587  ENGENHEIRO QUIMICO                                 214505
+   1588  ENGENHEIRO QUIMICO (INDUSTRIA QUIMICA)             214510
+   1589  GERENTE DE RECUPERACAO DE CREDITO                  141735
+   1590  ENGENHEIRO QUIMICO (PAPEL E CELULOSE)              214520
+   1591  ENGENHEIRO QUIMICO (PETROLEO E BORRACHA)           214525
+   1592  ENGENHEIRO QUIMICO (UTILIDADES E MEIO AMBIENTE)    214530
+   1593  ENGENHEIRO DE MATERIAIS                            214605
+   1594  ENGENHEIRO METALURGISTA                            214610
+   1595  ENGENHEIRO DE MINAS                                214705
+   1596  ENGENHEIRO DE MINAS (BENEFICIAMENTO)               214710
+   1597  ENGENHEIRO DE MINAS (LAVRA A CEU ABERTO)           214715
+   1598  ENGENHEIRO DE MINAS (LAVRA SUBTERRANEA)            214720
+   1599  ENGENHEIRO DE MINAS (PESQUISA MINERAL)             214725
+   1600  ENGENHEIRO DE MINAS (PLANEJAMENTO)                 214730
+   1601  ENGENHEIRO DE MINAS (PROCESSO)                     214735
+   1602  ENGENHEIRO DE MINAS (PROJETO)                      214740
+   1603  ENGENHEIRO AGRIMENSOR                              214805
+   1604  ENGENHEIRO CARTOGRAFO                              214810
+   1605  ENGENHEIRO DE PRODUCAO                             214905
+   1606  ENGENHEIRO DE CONTROLE DE QUALIDADE                214910
+   1607  OPERADOR DE MAQUINA DE FABRICAR PAPEL (FASE UMIDA) 832115
+   1608  OPERADOR DE MAQUINA DE FABRICAR PAPEL (FASE SECA)  832120
+   1609  OPERADOR DE MAQUINA DE FABRICAR PAPEL E PAPELAO    832125
+   1610  OPERADOR DE REBOBINADEIRA NA FABRICACAO DE PAPEL E 832135
+   1611  CARTONAGEIRO, A MAQUINA                            833105
+   1612  CONFECCIONADOR DE BOLSAS, SACOS E SACOLAS E PAPEL, 833110
+   1613  CONFECCIONADOR DE SACOS DE CELOFANE, A MAQUINA     833115
+   1614  OPERADOR DE MAQUINA DE CORTAR E DOBRAR PAPELAO     833120
+   1615  OPERADOR DE PRENSA DE EMBUTIR PAPELAO              833125
+   1616  CARTONAGEIRO, A MAO (CAIXAS DE PAPELAO)            833205
+   1617  SUPERVISOR DE PRODUCAO DA INDUSTRIA ALIMENTICIA    840105
+   1618  SUPERVISOR DA INDUSTRIA DE BEBIDAS                 840110
+   1619  SUPERVISOR DA INDUSTRIA DE FUMO                    840115
+   1620  CHEFE DE CONFEITARIA                               840120
+   1621  MOLEIRO DE CEREAIS (EXCETO ARROZ)                  841105
+   1622  MOLEIRO DE ESPECIARIAS                             841110
+   1623  OPERADOR DE PROCESSO DE MOAGEM                     841115
+   1624  MOEDOR DE SAL                                      841205
+   1625  REFINADOR DE SAL                                   841210
+   1626  OPERADOR DE CRISTALIZACAO NA REFINACAO DE ACUCAR   841305
+   1627  OPERADOR DE EQUIPAMENTOS DE REFINACAO DE ACUCAR (P 841310
+   1628  OPERADOR DE MOENDA NA FABRICACAO DE ACUCAR         841315
+   1629  OPERADOR DE TRATAMENTO DE CALDA NA REFINACAO DE AC 841320
+   1630  COZINHADOR (CONSERVACAO DE ALIMENTOS)              841408
+   1631  COZINHADOR DE CARNES                               841416
+   1632  COZINHADOR DE FRUTAS E LEGUMES                     841420
+   1633  COZINHADOR DE PESCADO                              841428
+   1634  DESIDRATADOR DE ALIMENTOS                          841432
+   1635  ESTERILIZADOR DE ALIMENTOS                         841440
+   1636  HIDROGENADOR DE OLEOS E GORDURAS                   841444
+   1637  LAGAREIRO                                          841448
+   1638  OPERADOR DE CAMARAS FRIAS                          841456
+   1639  OPERADOR DE PREPARACAO DE GRAOS VEGETAIS (OLEOS E  841460
+   1640  PRENSADOR DE FRUTAS (EXCETO OLEAGINOSAS)           841464
+   1641  PREPARADOR DE RACOES                               841468
+   1642  REFINADOR DE OLEO E GORDURA                        841472
+   1643  TRABALHADOR DE FABRICACAO DE MARGARINA             841476
+   1644  TRABALHADOR DE PREPARACAO DE PESCADOS (LIMPEZA)    841484
+   1645  TRABALHADOR DE TRATAMENTO DO LEITE E FABRICACAO DE 841505
+   1646  MISTURADOR DE CAFE                                 841605
+   1647  TORRADOR DE CAFE                                   841610
+   1648  MOEDOR DE CAFE                                     841615
+   1649  OPERADOR DE EXTRACAO DE CAFE SOLUVEL               841620
+   1650  TORRADOR DE CACAU                                  841625
+   1651  MISTURADOR DE CHA OU MATE                          841630
+   1652  ALAMBIQUEIRO                                       841705
+   1653  FILTRADOR DE CERVEJA                               841710
+   1654  FERMENTADOR                                        841715
+   1655  TRABALHADOR DE FABRICACAO DE VINHOS                841720
+   1656  MALTEIRO (GERMINACAO)                              841725
+   1657  COZINHADOR DE MALTE                                841730
+   1658  DESSECADOR DE MALTE                                841735
+   1659  VINAGREIRO                                         841740
+   1660  XAROPEIRO                                          841745
+   1661  OPERADOR DE FORNO (FABRICACAO DE PAES, BISCOITOS E 841805
+   1662  OPERADOR DE MAQUINAS DE FABRICACAO DE DOCES, SALGA 841810
+   1663  OPERADOR DE MAQUINAS DE FABRICACAO DE CHOCOLATES E 841815
+   1664  PREPARADOR DE MELADO E ESSENCIA DE FUMO            842105
+   1665  PROCESSADOR DE FUMO                                842110
+   1666  CLASSIFICADOR DE FUMO                              842115
+   1667  AUXILIAR DE PROCESSAMENTO DE FUMO                  842120
+   1668  PREPARADOR DE FUMO NA FABRICACAO DE CHARUTOS       842205
+   1669  OPERADOR DE MAQUINA DE FABRICAR CHARUTOS E CIGARRI 842210
+   1670  CLASSIFICADOR DE CHARUTOS                          842215
+   1671  CORTADOR DE CHARUTOS                               842220
+   1672  CELOFANISTA NA FABRICACAO DE CHARUTOS              842225
+   1673  CHARUTEIRO A MAO                                   842230
+   1674  DEGUSTADOR DE CHARUTOS                             842235
+   1675  OPERADOR DE MAQUINA DE FABRICAR CIGARROS           842305
+   1676  DEFUMADOR DE CARNES E PESCADOS                     848105
+   1677  SALGADOR DE ALIMENTOS                              848110
+   1678  SALSICHEIRO (FABRICACAO DE LINGUICA, SALSICHA E PR 848115
+   1679  PASTEURIZADOR                                      848205
+   1680  QUEIJEIRO NA FABRICACAO DE LATICINIO               848210
+   1681  MANTEIGUEIRO NA FABRICACAO DE LATICINIO            848215
+   1682  PADEIRO                                            848305
+   1683  CONFEITEIRO                                        848310
+   1684  MASSEIRO (MASSAS ALIMENTICIAS)                     848315
+   1685  TRABALHADOR DE FABRICACAO DE SORVETE               848325
+   1686  DEGUSTADOR DE CAFE                                 848405
+   1687  DEGUSTADOR DE CHA                                  848410
+   1688  DEGUSTADOR DE DERIVADOS DE CACAU                   848415
+   1689  DEGUSTADOR DE VINHOS OU LICORES                    848420
+   1690  ABATEDOR                                           848505
+   1691  ACOUGUEIRO                                         848510
+   1692  DESOSSADOR                                         848515
+   1693  MAGAREFE                                           848520
+   1694  RETALHADOR DE CARNE                                848525
+   1695  TRABALHADOR DO BENEFICIAMENTO DE FUMO              848605
+   1696  SUPERVISOR DE MANUTENCAO (ELETROMECANICA)          860105
+   1697  SUPERVISOR DE OPERACAO DE FLUIDOS (DISTRIBUICAO, C 860110
+   1698  SUPERVISOR DE OPERACAO ELETRICA (GERACAO, TRANSMIS 860115
+   1699  OPERADOR DE CENTRAL HIDRELETRICA                   861105
+   1700  OPERADOR DE QUADRO DE DISTRIBUICAO DE ENERGIA ELET 861110
+   1701  OPERADOR DE CENTRAL TERMOELETRICA                  861115
+   1702  OPERADOR DE REATOR NUCLEAR                         861120
+   1703  OPERADOR DE SUBESTACAO                             861205
+   1704  FOGUISTA (LOCOMOTIVAS A VAPOR)                     862105
+   1705  MAQUINISTA DE EMBARCACOES                          862110
+   1706  OPERADOR DE BATERIA DE GAS DE HULHA                862115
+   1707  OPERADOR DE CALDEIRA                               862120
+   1708  OPERADOR DE COMPRESSOR DE AR                       862130
+   1709  OPERADOR DE ESTACAO DE BOMBEAMENTO                 862140
+   1710  OPERADOR DE MAQUINAS FIXAS, EM GERAL               862150
+   1711  OPERADOR DE UTILIDADE (PRODUCAO E DISTRIBUICAO DE  862155
+   1712  OPERADOR DE ESTACAO DE CAPTACAO, TRATAMENTO E DIST 862205
+   1713  OPERADOR DE ESTACAO DE TRATAMENTO DE AGUA E EFLUEN 862305
+   1714  OPERADOR DE FORNO DE INCINERACAO NO TRATAMENTO DE  862310
+   1715  OPERADOR DE INSTALACAO DE EXTRACAO, PROCESSAMENTO, 862405
+   1716  OPERADOR DE INSTALACAO DE REFRIGERACAO             862505
+   1717  OPERADOR DE REFRIGERACAO COM AMONIA                862510
+   1718  OPERADOR DE INSTALACAO DE AR-CONDICIONADO          862515
+   1719  ENCARREGADO DE MANUTENCAO MECANICA DE SISTEMAS OPE 910105
+   1720  SUPERVISOR DE MANUTENCAO DE APARELHOS TERMICOS, DE 910110
+   1721  SUPERVISOR DE MANUTENCAO DE BOMBAS, MOTORES, COMPR 910115
+   1722  MESTRE (INDUSTRIA DE CELULOSE, PAPEL E PAPELAO)    830105
+   1723  ENGENHEIRO DE SEGURANCA DO TRABALHO                214915
+   1724  ENGENHEIRO DE RISCOS                               214920
+   1725  ENGENHEIRO DE TEMPOS E MOVIMENTOS                  214925
+   1726  AGENTE DE MANOBRA E DOCAGEM                        215105
+   1727  CAPITAO DE MANOBRA DA MARINHA MERCANTE             215110
+   1728  COMANDANTE DA MARINHA MERCANTE                     215115
+   1729  COORDENADOR DE OPERACOES DE COMBATE A POLUICAO NO  215120
+   1730  IMEDIATO DA MARINHA MERCANTE                       215125
+   1731  INSPETOR DE TERMINAL                               215130
+   1732  INSPETOR NAVAL                                     215135
+   1733  OFICIAL DE QUARTO DE NAVEGACAO DA MARINHA MERCANTE 215140
+   1734  PRATICO DE PORTOS DA MARINHA MERCANTE              215145
+   1735  VISTORIADOR NAVAL                                  215150
+   1736  OFICIAL SUPERIOR DE MAQUINAS DA MARINHA MERCANTE   215205
+   1737  PRIMEIRO OFICIAL DE MAQUINAS DA MARINHA MERCANTE   215210
+   1738  SEGUNDO OFICIAL DE MAQUINAS DA MARINHA MERCANTE    215215
+   1739  SUPERINTENDENTE TECNICO NO TRANSPORTE AQUAVIARIO   215220
+   1740  PILOTO DE AERONAVES                                215305
+   1741  PILOTO DE ENSAIOS EM VOO                           215310
+   1742  INSTRUTOR DE VOO                                   215315
+   1743  BIOLOGO                                            221105
+   1744  ENGENHEIRO AGRICOLA                                222105
+   1745  ENGENHEIRO AGRONOMO                                222110
+   1746  ENGENHEIRO DE PESCA                                222115
+   1747  ENGENHEIRO FLORESTAL                               222120
+   1748  MEDICO ACUPUNTURISTA                               223101
+   1749  MEDICO ALERGISTA E IMUNOLOGISTA                    223102
+   1750  MEDICO ANATOMOPATOLOGISTA                          223103
+   1751  MEDICO ANESTESIOLOGISTA                            223104
+   1752  MEDICO ANGIOLOGISTA                                223105
+   1753  MEDICO CARDIOLOGISTA                               223106
+   1754  MEDICO CIRURGIAO CARDIOVASCULAR                    223107
+   1755  MEDICO CIRURGIAO DE CABECA E PESCOCO               223108
+   1756  MEDICO CIRURGIAO DO APARELHO DIGESTIVO             223109
+   1757  MEDICO CIRURGIAO GERAL                             223110
+   1758  MEDICO CIRURGIAO PEDIATRICO                        223111
+   1759  MEDICO CIRURGIAO PLASTICO                          223112
+   1760  MEDICO CIRURGIAO TORACICO                          223113
+   1761  MEDICO CITOPATOLOGISTA                             223114
+   1762  MEDICO CLINICO                                     223115
+   1763  MEDICO DE SAUDE DA FAMILIA                         223116
+   1764  MEDICO DERMATOLOGISTA                              223117
+   1765  MEDICO DO TRABALHO                                 223118
+   1766  MEDICO EM ELETROENCEFALOGRAFIA                     223119
+   1767  MEDICO EM ENDOSCOPIA                               223120
+   1768  MEDICO EM MEDICINA DE TRAFEGO                      223121
+   1769  MEDICO EM MEDICINA INTENSIVA                       223122
+   1770  MEDICO EM MEDICINA NUCLEAR                         223123
+   1771  MEDICO EM RADIOLOGIA E DIAGNOSTICO POR IMAGEM      223124
+   1772  MEDICO ENDOCRINOLOGISTA E METABOLOGISTA            223125
+   1773  MEDICO FISIATRA                                    223126
+   1774  MEDICO FONIATRA                                    223127
+   1775  MEDICO GASTROENTEROLOGISTA                         223128
+   1776  MEDICO GENERALISTA                                 223129
+   1777  MEDICO GENETICISTA                                 223130
+   1778  MEDICO GERIATRA                                    223131
+   1779  MEDICO GINECOLOGISTA E OBSTETRA                    223132
+   1780  MEDICO HEMATOLOGISTA                               223133
+   1781  MEDICO HEMOTERAPEUTA                               223134
+   1782  MEDICO HOMEOPATA                                   223135
+   1783  MEDICO INFECTOLOGISTA                              223136
+   1784  MEDICO LEGISTA                                     223137
+   1785  MEDICO MASTOLOGISTA                                223138
+   1786  MEDICO NEFROLOGISTA                                223139
+   1787  MEDICO NEUROCIRURGIAO                              223140
+   1788  MEDICO NEUROFISIOLOGISTA                           223141
+   1789  MEDICO NEUROLOGISTA                                223142
+   1790  MEDICO NUTROLOGISTA                                223143
+   1791  MEDICO OFTALMOLOGISTA                              223144
+   1792  MEDICO ONCOLOGISTA                                 223145
+   1793  MEDICO ORTOPEDISTA E TRAUMATOLOGISTA               223146
+   1794  MEDICO OTORRINOLARINGOLOGISTA                      223147
+   1795  MEDICO PATOLOGISTA CLINICO                         223148
+   1796  MEDICO PEDIATRA                                    223149
+   1797  MEDICO PERITO                                      223150
+   1798  MEDICO PNEUMOLOGISTA                               223151
+   1799  MEDICO PROCTOLOGISTA                               223152
+   1800  MEDICO PSIQUIATRA                                  223153
+   1801  MEDICO RADIOTERAPEUTA                              223154
+   1802  MEDICO REUMATOLOGISTA                              223155
+   1803  MEDICO SANITARISTA                                 223156
+   1804  MEDICO UROLOGISTA                                  223157
+   1805  CIRURGIAO DENTISTA - AUDITOR                       223204
+   1806  CIRURGIAO DENTISTA - CLINICO GERAL                 223208
+   1807  CIRURGIAO DENTISTA - ENDODONTISTA                  223212
+   1808  CIRURGIAO DENTISTA - EPIDEMIOLOGISTA               223216
+   1809  CIRURGIAO DENTISTA - ESTOMATOLOGISTA               223220
+   1810  CIRURGIAO DENTISTA - IMPLANTODONTISTA              223224
+   1811  CIRURGIAO DENTISTA - ODONTOGERIATRA                223228
+   1812  CIRURGIAO DENTISTA - ODONTOLOGISTA LEGAL           223232
+   1813  CIRURGIAO DENTISTA - ODONTOPEDIATRA                223236
+   1814  CIRURGIAO DENTISTA - ORTOPEDISTA E ORTODONTISTA    223240
+   1815  CIRURGIAO DENTISTA - PATOLOGISTA BUCAL             223244
+   1816  CIRURGIAO DENTISTA - PERIODONTISTA                 223248
+   1817  CIRURGIAO DENTISTA - PROTESIOLOGO BUCOMAXILOFACIAL 223252
+   1818  CIRURGIAO DENTISTA - PROTESISTA                    223256
+   1819  CIRURGIAO DENTISTA - RADIOLOGISTA                  223260
+   1820  CIRURGIAO DENTISTA - REABILITADOR ORAL             223264
+   1821  CIRURGIAO DENTISTA - TRAUMATOLOGISTA BUCOMAXILOFAC 223268
+   1822  CIRURGIAO DENTISTA DE SAUDE COLETIVA               223272
+   1823  MEDICO VETERINARIO                                 223305
+   1824  ZOOTECNISTA                                        223310
+   1825  FARMACEUTICO                                       223405
+   1826  FARMACEUTICO BIOQUIMICO                            223410
+   1827  ENFERMEIRO                                         223505
+   1828  ENFERMEIRO AUDITOR                                 223510
+   1829  ENFERMEIRO DE BORDO                                223515
+   1830  ENFERMEIRO DE CENTRO CIRURGICO                     223520
+   1831  ENFERMEIRO DE TERAPIA INTENSIVA                    223525
+   1832  ENFERMEIRO DO TRABALHO                             223530
+   1833  ENFERMEIRO NEFROLOGISTA                            223535
+   1834  ENFERMEIRO NEONATOLOGISTA                          223540
+   1835  ENFERMEIRO OBSTETRICO                              223545
+   1836  ENFERMEIRO PSIQUIATRICO                            223550
+   1837  ENFERMEIRO PUERICULTOR E PEDIATRICO                223555
+   1838  ENFERMEIRO SANITARISTA                             223560
+   1839  FISIOTERAPEUTA                                     223605
+   1840  FONOAUDIOLOGO                                      223610
+   1841  ENGENHEIRO QUIMICO (MINERACAO, METALURGIA, SIDERUR 214515
+   1842  ORTOPTISTA                                         223615
+   1843  TERAPEUTA OCUPACIONAL                              223620
+   1844  DIETISTA                                           223705
+   1845  NUTRICIONISTA                                      223710
+   1846  AVALIADOR FISICO                                   224105
+   1847  LUDOMOTRICISTA                                     224110
+   1848  PREPARADOR DE ATLETA                               224115
+   1849  PREPARADOR FISICO                                  224120
+   1850  TECNICO DE DESPORTO INDIVIDUAL E COLETIVO (EXCETO  224125
+   1851  TECNICO DE LABORATORIO E FISCALIZACAO DESPORTIVA   224130
+   1852  TREINADOR PROFISSIONAL DE FUTEBOL                  224135
+   1853  PROFESSOR DE NIVEL SUPERIOR NA EDUCACAO INFANTIL ( 231105
+   1854  PROFESSOR DA EDUCACAO DE JOVENS E ADULTOS DO ENSIN 231205
+   1855  PROFESSOR DE NIVEL SUPERIOR DO ENSINO FUNDAMENTAL  231210
+   1856  PROFESSOR DE CIENCIAS EXATAS E NATURAIS DO ENSINO  231305
+   1857  PROFESSOR DE EDUCACAO ARTISTICA DO ENSINO FUNDAMEN 231310
+   1858  PROFESSOR DE EDUCACAO FISICA DO ENSINO FUNDAMENTAL 231315
+   1859  PROFESSOR DE GEOGRAFIA DO ENSINO FUNDAMENTAL       231320
+   1860  PROFESSOR DE HISTORIA DO ENSINO FUNDAMENTAL        231325
+   1861  PROFESSOR DE LINGUA ESTRANGEIRA MODERNA DO ENSINO  231330
+   1862  PROFESSOR DE LINGUA PORTUGUESA DO ENSINO FUNDAMENT 231335
+   1863  PROFESSOR DE MATEMATICA DO ENSINO FUNDAMENTAL      231340
+   1864  PROFESSOR DE ARTES NO ENSINO MEDIO                 232105
+   1865  OFICIAL DO REGISTRO DE DISTRIBUICOES               241320
+   1866  OFICIAL DO REGISTRO DE IMOVEIS                     241325
+   1867  OFICIAL DO REGISTRO DE TITULOS E DOCUMENTOS        241330
+   1868  TABELIAO DE NOTAS                                  241335
+   1869  TABELIAO DE PROTESTOS                              241340
+   1870  PROCURADOR DA REPUBLICA                            242205
+   1871  PROCURADOR DE JUSTICA                              242210
+   1872  PROCURADOR DE JUSTICA MILITAR                      242215
+   1873  PROCURADOR DO TRABALHO                             242220
+   1874  PROCURADOR REGIONAL DA REPUBLICA                   242225
+   1875  PROCURADOR REGIONAL DO TRABALHO                    242230
+   1876  PROMOTOR DE JUSTICA                                242235
+   1877  SUBPROCURADOR DE JUSTICA MILITAR                   242240
+   1878  SUBPROCURADOR-GERAL DA REPUBLICA                   242245
+   1879  SUBPROCURADOR-GERAL DO TRABALHO                    242250
+   1880  DELEGADO DE POLICIA                                242305
+   1881  DEFENSOR PUBLICO                                   242405
+   1882  PROCURADOR DA ASSISTENCIA JUDICIARIA               242410
+   1883  ANTROPOLOGO                                        251105
+   1884  ARQUEOLOGO                                         251110
+   1885  CIENTISTA POLITICO                                 251115
+   1886  SOCIOLOGO                                          251120
+   1887  ECONOMISTA                                         251205
+   1888  ECONOMISTA AGROINDUSTRIAL                          251210
+   1889  ECONOMISTA FINANCEIRO                              251215
+   1890  ECONOMISTA INDUSTRIAL                              251220
+   1891  ECONOMISTA DO SETOR PUBLICO                        251225
+   1892  ECONOMISTA AMBIENTAL                               251230
+   1893  ECONOMISTA REGIONAL E URBANO                       251235
+   1894  GEOGRAFO                                           251305
+   1895  FILOSOFO                                           251405
+   1896  PSICOLOGO EDUCACIONAL                              251505
+   1897  PSICOLOGO CLINICO                                  251510
+   1898  PSICOLOGO DO ESPORTE                               251515
+   1899  PSICOLOGO HOSPITALAR                               251520
+   1900  PSICOLOGO JURIDICO                                 251525
+   1901  PSICOLOGO SOCIAL                                   251530
+   1902  PSICOLOGO DO TRANSITO                              251535
+   1903  PSICOLOGO DO TRABALHO                              251540
+   1904  NEUROPSICOLOGO                                     251545
+   1905  PSICANALISTA                                       251550
+   1906  ASSISTENTE SOCIAL                                  251605
+   1907  ECONOMISTA DOMESTICO                               251610
+   1908  ADMINISTRADOR                                      252105
+   1909  AUDITOR (CONTADORES E AFINS)                       252205
+   1910  CONTADOR                                           252210
+   1911  PERITO CONTABIL                                    252215
+   1912  SECRETARIA EXECUTIVA                               252305
+   1913  SECRETARIO BILINGUE                                252310
+   1914  SECRETARIA TRILINGUE                               252315
+   1915  ANALISTA DE RECURSOS HUMANOS                       252405
+   1916  ADMINISTRADOR DE FUNDOS E CARTEIRAS DE INVESTIMENT 252505
+   1917  ANALISTA DE CAMBIO                                 252510
+   1918  ANALISTA DE COBRANCA (INSTITUICOES FINANCEIRAS)    252515
+   1919  ANALISTA DE CREDITO (INSTITUICOES FINANCEIRAS)     252525
+   1920  ANALISTA DE CREDITO RURAL                          252530
+   1921  ANALISTA DE LEASING                                252535
+   1922  ANALISTA DE PRODUTOS BANCARIOS                     252540
+   1923  ANALISTA FINANCEIRO (INSTITUICOES FINANCEIRAS)     252545
+   1924  RELACOES PUBLICAS                                  253105
+   1925  REDATOR DE PUBLICIDADE                             253110
+   1926  AGENTE PUBLICITARIO                                253115
+   1927  ANALISTA DE NEGOCIOS                               253120
+   1928  ANALISTA DE PESQUISA DE MERCADO                    253125
+   1929  GERENTE DE CAPTACAO (FUNDOS E INVESTIMENTOS INSTIT 253205
+   1930  GERENTE DE CLIENTES ESPECIAIS (PRIVATE)            253210
+   1931  GERENTE DE CONTAS - PESSOA FISICA E JURIDICA       253215
+   1932  GERENTE DE GRANDES CONTAS (CORPORATE)              253220
+   1933  OPERADOR DE NEGOCIOS                               253225
+   1934  CORRETOR DE VALORES, ATIVOS FINANCEIROS, MERCADORI 253305
+   1935  AUDITOR-FISCAL DA RECEITA FEDERAL                  254105
+   1936  TECNICO DA RECEITA FEDERAL                         254110
+   1937  AUDITOR-FISCAL DA PREVIDENCIA SOCIAL               254205
+   1938  AUDITOR-FISCAL DO TRABALHO                         254305
+   1939  AGENTE DE HIGIENE E SEGURANCA                      254310
+   1940  FISCAL DE TRIBUTOS ESTADUAL                        254405
+   1941  FISCAL DE TRIBUTOS MUNICIPAL                       254410
+   1942  TECNICO DE TRIBUTOS ESTADUAL                       254415
+   1943  TECNICO DE TRIBUTOS MUNICIPAL                      254420
+   1944  ARQUIVISTA PESQUISADOR (JORNALISMO)                261105
+   1945  ASSESSOR DE IMPRENSA                               261110
+   1946  DIRETOR DE REDACAO                                 261115
+   1947  EDITOR                                             261120
+   1948  JORNALISTA                                         261125
+   1949  PRODUTOR DE TEXTO                                  261130
+   1950  REPORTER (EXCLUSIVE RADIO E TELEVISAO)             261135
+   1951  REVISOR                                            261140
+   1952  BIBLIOTECARIO                                      261205
+   1953  DOCUMENTALISTA                                     261210
+   1954  ANALISTA DE INFORMACOES (PESQUISADOR DE INFORMACOE 261215
+   1955  ARQUIVISTA                                         261305
+   1956  MUSEOLOGO                                          261310
+   1957  FILOLOGO                                           261405
+   1958  INTERPRETE                                         261410
+   1959  LINGUISTA                                          261415
+   1960  PSICOPEDAGOGO                                      239425
+   1961  TRADUTOR                                           261420
+   1962  AUTOR-ROTEIRISTA                                   261505
+   1963  CRITICO                                            261510
+   1964  ESCRITOR DE FICCAO                                 261515
+   1965  ESCRITOR DE NAO FICCAO                             261520
+   1966  POETA                                              261525
+   1967  REDATOR DE TEXTOS TECNICOS                         261530
+   1968  EDITOR DE JORNAL                                   261605
+   1969  EDITOR DE LIVRO                                    261610
+   1970  EDITOR DE MIDIA ELETRONICA                         261615
+   1971  EDITOR DE REVISTA                                  261620
+   1972  EDITOR DE REVISTA CIENTIFICA                       261625
+   1973  ANCORA DE RADIO E TELEVISAO                        261705
+   1974  COMENTARISTA DE RADIO E TELEVISAO                  261710
+   1975  LOCUTOR DE RADIO E TELEVISAO                       261715
+   1976  LOCUTOR PUBLICITARIO DE RADIO E TELEVISAO          261720
+   1977  NARRADOR EM PROGRAMAS DE RADIO E TELEVISAO         261725
+   1978  REPORTER DE RADIO E TELEVISAO                      261730
+   1979  FOTOGRAFO                                          261805
+   1980  FOTOGRAFO PUBLICITARIO                             261810
+   1981  FOTOGRAFO RETRATISTA                               261815
+   1982  REPOTER FOTOGRAFICO                                261820
+   1983  EMPRESARIO DE ESPETACULO                           262105
+   1984  PRODUTOR CINEMATOGRAFICO                           262110
+   1985  PRODUTOR DE RADIO                                  262115
+   1986  PRODUTOR DE TEATRO                                 262120
+   1987  PRODUTOR DE TELEVISAO                              262125
+   1988  DIRETOR DE CINEMA                                  262205
+   1989  DIRETOR DE PROGRAMAS DE RADIO                      262210
+   1990  DIRETOR DE PROGRAMAS DE TELEVISAO                  262215
+   1991  DIRETOR TEATRAL                                    262220
+   1992  CENOGRAFO CARNAVALESCO E FESTAS POPULARES          262305
+   1993  CENOGRAFO DE CINEMA                                262310
+   1994  CENOGRAFO DE EVENTOS                               262315
+   1995  CENOGRAFO DE TEATRO                                262320
+   1996  CENOGRAFO DE TV                                    262325
+   1997  DIRETOR DE ARTE                                    262330
+   1998  ARTISTA (ARTES VISUAIS)                            262405
+   1999  DESENHISTA INDUSTRIAL (DESIGNER)                   262410
+   2000  ATOR                                               262505
+   2001  COMPOSITOR                                         262605
+   2002  MUSICO ARRANJADOR                                  262610
+   2003  MUSICO REGENTE                                     262615
+   2004  MUSICOLOGO                                         262620
+   2005  MUSICO INTERPRETE CANTOR                           262705
+   2006  MUSICO INTERPRETE INSTRUMENTISTA                   262710
+   2007  BAILARINO (EXCETO DANCAS POPULARES)                262810
+   2008  COREOGRAFO                                         262815
+   2009  DRAMATURGO DE DANCA                                262820
+   2010  ENSAIADOR DE DANCA                                 262825
+   2011  PROFESSOR DE DANCA                                 262830
+   2012  DECORADOR DE INTERIORES DE NIVEL SUPERIOR          262905
+   2013  MINISTRO DE CULTO RELIGIOSO                        263105
+   2014  MISSIONARIO                                        263110
+   2015  TEOLOGO                                            263115
+   2016  TECNICO EM MECATRONICA - AUTOMACAO DA MANUFATURA   300105
+   2017  TECNICO EM MECATRONICA - ROBOTICA                  300110
+   2018  TECNICO EM ELETROMECANICA                          300305
+   2019  TECNICO DE LABORATORIO INDUSTRIAL                  301105
+   2020  TECNICO DE LABORATORIO DE ANALISES FISICO-QUIMICAS 301110
+   2021  TECNICO QUIMICO DE PETROLEO                        301115
+   2022  TECNICO DE APOIO A BIOENGENHARIA                   301205
+   2023  TECNICO QUIMICO                                    311105
+   2024  PROFESSOR DE BIOLOGIA NO ENSINO MEDIO              232110
+   2025  PROFESSOR DE DISCIPLINAS PEDAGOGICAS NO ENSINO MED 232115
+   2026  PROFESSOR DE EDUCACAO FISICA NO ENSINO MEDIO       232120
+   2027  PROFESSOR DE FILOSOFIA NO ENSINO MEDIO             232125
+   2028  PROFESSOR DE FISICA NO ENSINO MEDIO                232130
+   2029  PROFESSOR DE GEOGRAFIA NO ENSINO MEDIO             232135
+   2030  PROFESSOR DE HISTORIA NO ENSINO MEDIO              232140
+   2031  PROFESSOR DE LINGUA E LITERATURA BRASILEIRA NO ENS 232145
+   2032  PROFESSOR DE LINGUA ESTRANGEIRA MODERNA NO ENSINO  232150
+   2033  PROFESSOR DE MATEMATICA NO ENSINO MEDIO            232155
+   2034  PROFESSOR DE PSICOLOGIA NO ENSINO MEDIO            232160
+   2035  PROFESSOR DE QUIMICA NO ENSINO MEDIO               232165
+   2036  PROFESSOR DE SOCIOLOGIA NO ENSINO MEDIO            232170
+   2037  PROFESSOR DA AREA DE MEIO AMBIENTE                 233105
+   2038  PROFESSOR DE DESENHO TECNICO                       233110
+   2039  PROFESSOR DE TECNICAS AGRICOLAS                    233115
+   2040  PROFESSOR DE TECNICAS COMERCIAIS E SECRETARIAIS    233120
+   2041  PROFESSOR DE TECNICAS DE ENFERMAGEM                233125
+   2042  PROFESSOR DE TECNICAS INDUSTRIAIS                  233130
+   2043  PROFESSOR DE TECNOLOGIA E CALCULO TECNICO          233135
+   2044  INSTRUTOR DE APRENDIZAGEM E TREINAMENTO AGROPECUAR 233205
+   2045  INSTRUTOR DE APRENDIZAGEM E TREINAMENTO INDUSTRIAL 233210
+   2046  PROFESSOR DE APRENDIZAGEM E TREINAMENTO COMERCIAL  233215
+   2047  PROFESSOR INSTRUTOR DE ENSINO E APRENDIZAGEM AGROF 233220
+   2048  PROFESSOR INSTRUTOR DE ENSINO E APRENDIZAGEM EM SE 233225
+   2049  PROFESSOR DE MATEMATICA APLICADA (NO ENSINO SUPERI 234105
+   2050  PROFESSOR DE MATEMATICA PURA (NO ENSINO SUPERIOR)  234110
+   2051  PROFESSOR DE ESTATISTICA (NO ENSINO SUPERIOR)      234115
+   2052  PROFESSOR DE COMPUTACAO (NO ENSINO SUPERIOR)       234120
+   2053  PROFESSOR DE PESQUISA OPERACIONAL (NO ENSINO SUPER 234125
+   2054  PROFESSOR DE FISICA (ENSINO SUPERIOR)              234205
+   2055  PROFESSOR DE QUIMICA (ENSINO SUPERIOR)             234210
+   2056  PROFESSOR DE ASTRONOMIA (ENSINO SUPERIOR)          234215
+   2057  PROFESSOR DE ARQUITETURA                           234305
+   2058  PROFESSOR DE ENGENHARIA                            234310
+   2059  PROFESSOR DE GEOFISICA                             234315
+   2060  PROFESSOR DE GEOLOGIA                              234320
+   2061  PROFESSOR DE CIENCIAS BIOLOGICAS DO ENSINO SUPERIO 234405
+   2062  PROFESSOR DE EDUCACAO FISICA NO ENSINO SUPERIOR    234410
+   2063  PROFESSOR DE ENFERMAGEM DO ENSINO SUPERIOR         234415
+   2064  PROFESSOR DE FARMACIA E BIOQUIMICA                 234420
+   2065  PROFESSOR DE FISIOTERAPIA                          234425
+   2066  PROFESSOR DE FONOAUDIOLOGIA                        234430
+   2067  PROFESSOR DE MEDICINA                              234435
+   2068  PROFESSOR DE MEDICINA VETERINARIA                  234440
+   2069  PROFESSOR DE NUTRICAO                              234445
+   2070  PROFESSOR DE ODONTOLOGIA                           234450
+   2071  PROFESSOR DE TERAPIA OCUPACIONAL                   234455
+   2072  PROFESSOR DE ZOOTECNIA DO ENSINO SUPERIOR          234460
+   2073  PROFESSOR DE ENSINO SUPERIOR NA AREA DE DIDATICA   234505
+   2074  PROFESSOR DE ENSINO SUPERIOR NA AREA DE ORIENTACAO 234510
+   2075  PROFESSOR DE ENSINO SUPERIOR NA AREA DE PESQUISA E 234515
+   2076  PROFESSOR DE ENSINO SUPERIOR NA AREA DE PRATICA DE 234520
+   2077  PROFESSOR DE LINGUA ALEMA                          234604
+   2078  PROFESSOR DE LINGUA ITALIANA                       234608
+   2079  PROFESSOR DE LINGUA FRANCESA                       234612
+   2080  PROFESSOR DE LINGUA INGLESA                        234616
+   2081  PROFESSOR DE LINGUA ESPANHOLA                      234620
+   2082  PROFESSOR DE LINGUA PORTUGUESA                     234624
+   2083  PROFESSOR DE LITERATURA BRASILEIRA                 234628
+   2084  PROFESSOR DE LITERATURA PORTUGUESA                 234632
+   2085  PROFESSOR DE LITERATURA ALEMA                      234636
+   2086  PROFESSOR DE LITERATURA COMPARADA                  234640
+   2087  PROFESSOR DE LITERATURA ESPANHOLA                  234644
+   2088  PROFESSOR DE LITERATURA FRANCESA                   234648
+   2089  PROFESSOR DE LITERATURA INGLESA                    234652
+   2090  PROFESSOR DE LITERATURA ITALIANA                   234656
+   2091  PROFESSOR DE LITERATURA DE LINGUAS ESTRANGEIRAS MO 234660
+   2092  PROFESSOR DE OUTRAS LINGUAS E LITERATURAS          234664
+   2093  PROFESSOR DE LINGUAS ESTRANGEIRAS MODERNAS         234668
+   2094  PROFESSOR DE LINGUISTICA E LINGUISTICA APLICADA    234672
+   2095  PROFESSOR DE FILOLOGIA E CRITICA TEXTUAL           234676
+   2096  PROFESSOR DE SEMIOTICA                             234680
+   2097  PROFESSOR DE TEORIA DA LITERATURA                  234684
+   2098  PROFESSOR DE ANTROPOLOGIA DO ENSINO SUPERIOR       234705
+   2099  PROFESSOR DE ARQUIVOLOGIA DO ENSINO SUPERIOR       234710
+   2100  PROFESSOR DE BIBLIOTECONOMIA DO ENSIO SUPERIOR     234715
+   2101  PROFESSOR DE CIENCIA POLITICA DO ENSINO SUPERIOR   234720
+   2102  PROFESSOR DE COMUNICACAO SOCIAL DO ENSINO SUPERIOR 234725
+   2103  PROFESSOR DE DIREITO DO ENSINO SUPERIOR            234730
+   2104  PROFESSOR DE FILOSOFIA DO ENSINO SUPERIOR          234735
+   2105  PROFESSOR DE GEOGRAFIA DO ENSINO SUPERIOR          234740
+   2106  PROFESSOR DE HISTORIA DO ENSINO SUPERIOR           234745
+   2107  PROFESSOR DE JORNALISMO                            234750
+   2108  PROFESSOR DE MUSEOLOGIA DO ENSINO SUPERIOR         234755
+   2109  PROFESSOR DE PSICOLOGIA DO ENSINO SUPERIOR         234760
+   2110  PROFESSOR DE SERVICO SOCIAL DO ENSINO SUPERIOR     234765
+   2111  PROFESSOR DE SOCIOLOGIA DO ENSINO SUPERIOR         234770
+   2112  PROFESSOR DE ECONOMIA                              234805
+   2113  PROFESSOR DE ADMINISTRACAO                         234810
+   2114  PROFESSOR DE CONTABILIDADE                         234815
+   2115  PROFESSOR DE ARTES DO ESPETACULO NO ENSINO SUPERIO 234905
+   2116  PROFESSOR DE ARTES VISUAIS NO ENSINO SUPERIOR (ART 234910
+   2117  PROFESSOR DE MUSICA NO ENSINO SUPERIOR             234915
+   2118  PROFESSOR DE ALUNOS COM DEFICIENCIA AUDITIVA E SUR 239205
+   2119  PROFESSOR DE ALUNOS COM DEFICIENCIA FISICA         239210
+   2120  PROFESSOR DE ALUNOS COM DEFICIENCIA MENTAL         239215
+   2121  PROFESSOR DE ALUNOS COM DEFICIENCIA MULTIPLA       239220
+   2122  PROFESSOR DE ALUNOS COM DEFICIENCIA VISUAL         239225
+   2123  COORDENADOR PEDAGOGICO                             239405
+   2124  ORIENTADOR EDUCACIONAL                             239410
+   2125  PEDAGOGO                                           239415
+   2126  PROFESSOR DE TECNICAS E RECURSOS AUDIOVISUAIS      239420
+   2127  PROFESSOR DE NIVEL SUPERIOR NA EDUCACAO INFANTIL ( 231110
+   2128  SUPERVISOR DE ENSINO                               239430
+   2129  ADVOGADO                                           241005
+   2130  ADVOGADO DE EMPRESA                                241010
+   2131  ADVOGADO (DIREITO CIVIL)                           241015
+   2132  ADVOGADO (DIREITO PUBLICO)                         241020
+   2133  ADVOGADO (DIREITO PENAL)                           241025
+   2134  ADVOGADO (AREAS ESPECIAIS)                         241030
+   2135  ADVOGADO (DIREITO DO TRABALHO)                     241035
+   2136  CONSULTOR JURIDICO                                 241040
+   2137  ADVOGADO DA UNIAO                                  241205
+   2138  PROCURADOR AUTARQUICO                              241210
+   2139  PROCURADOR DA FAZENDA NACIONAL                     241215
+   2140  PROCURADOR DO ESTADO                               241220
+   2141  PROCURADOR DO MUNICIPIO                            241225
+   2142  PROCURADOR FEDERAL                                 241230
+   2143  PROCURADOR FUNDACIONAL                             241235
+   2144  OFICIAL DE REGISTRO DE CONTRATOS MARITIMOS         241305
+   2145  OFICIAL DO REGISTRO CIVIL DE PESSOAS JURIDICAS     241310
+   2146  OFICIAL DO REGISTRO CIVIL DE PESSOAS NATURAIS      241315
+   2147  PRESIDIARIO ( PESSOAS CONFINADAS EM INSTITUICOES P 999995
+   2148  TECNICO DE CELULOSE E PAPEL                        311110
+   2149  TECNICO EM CURTIMENTO                              311115
+   2150  TECNICO EM PETROQUIMICA                            311205
+   2151  TECNICO EM MATERIAIS, PRODUTOS CERAMICOS E VIDROS  311305
+   2152  TECNICO EM BORRACHA                                311405
+   2153  TECNICO EM PLASTICO                                311410
+   2154  TECNICO DE CONTROLE DE MEIO AMBIENTE               311505
+   2155  TECNICO DE METEOROLOGIA                            311510
+   2156  TECNICO DE UTILIDADE (PRODUCAO E DISTRIBUICAO DE V 311515
+   2157  TECNICO EM TRATAMENTO DE EFLUENTES                 311520
+   2158  TECNICO TEXTIL                                     311605
+   2159  TECNICO TEXTIL (TRATAMENTOS QUIMICOS)              311610
+   2160  TECNICO TEXTIL DE FIACAO                           311615
+   2161  TECNICO TEXTIL DE MALHARIA                         311620
+   2162  TECNICO TEXTIL DE TECELAGEM                        311625
+   2163  COLORISTA DE PAPEL                                 311705
+   2164  COLORISTA TEXTIL                                   311710
+   2165  PREPARADOR DE TINTAS                               311715
+   2166  PREPARADOR DE TINTAS (FABRICA DE TECIDOS)          311720
+   2167  TINGIDOR DE COUROS E PELES                         311725
+   2168  TECNICO DE OBRAS CIVIS                             312105
+   2169  TECNICO DE ESTRADAS                                312205
+   2170  TECNICO DE SANEAMENTO                              312210
+   2171  TECNICO EM AGRIMENSURA                             312305
+   2172  TECNICO EM GEODESIA E CARTOGRAFIA                  312310
+   2173  TECNICO EM HIDROGRAFIA                             312315
+   2174  TOPOGRAFO                                          312320
+   2175  ELETROTECNICO                                      313105
+   2176  ELETROTECNICO (PRODUCAO DE ENERGIA)                313110
+   2177  ELETROTENICO NA FABRICACAO, MONTAGEM E INSTALACAO  313115
+   2178  TECNICO DE MANUTENCAO ELETRICA                     313120
+   2179  TECNICO DE MANUTENCAO ELETRICA DE MAQUINA          313125
+   2180  TECNICO ELETRICISTA                                313130
+   2181  TECNICO DE MANUTENCAO ELETRONICA                   313205
+   2182  TECNICO DE MANUTENCAO ELETRONICA (CIRCUITOS DE MAQ 313210
+   2183  TECNICO ELETRONICO                                 313215
+   2184  TECNICO EM MANUTENCAO DE EQUIPAMENTOS DE INFORMATI 313220
+   2185  TECNICO DE COMUNICACAO DE DADOS                    313305
+   2186  TECNICO DE REDE (TELECOMUNICACOES)                 313310
+   2187  TECNICO DE TELECOMUNICACOES (TELEFONIA)            313315
+   2188  TECNICO DE TRANSMISSAO (TELECOMUNICACOES)          313320
+   2189  TECNICO EM CALIBRACAO                              313405
+   2190  TECNICO EM INSTRUMENTACAO                          313410
+   2191  ENCARREGADO DE MANUTENCAO DE INSTRUMENTOS DE CONTR 313415
+   2192  TECNICO EM FOTONICA                                313505
+   2193  TECNICO EM MECANICA DE PRECISAO                    314105
+   2194  TECNICO MECANICO                                   314110
+   2195  TECNICO MECANICO (CALEFACAO, VENTILACAO E REFRIGER 314115
+   2196  TECNICO MECANICO (MAQUINAS)                        314120
+   2197  TECNICO MECANICO (MOTORES)                         314125
+   2198  TECNICO MECANICO NA FABRICACAO DE FERRAMENTAS      314205
+   2199  TECNICO MECANICO NA MANUTENCAO DE FERRAMENTAS      314210
+   2200  TECNICO EM AUTOMOBILISTICA                         314305
+   2201  TECNICO MECANICO (AERONAVES)                       314310
+   2202  TECNICO MECANICO (EMBARCACOES)                     314315
+   2203  TECNICO DE MANUTENCAO DE SISTEMAS E INSTRUMENTOS   314405
+   2204  TECNICO EM MANUTENCAO DE MAQUINAS                  314410
+   2205  INSPETOR DE SOLDAGEM                               314605
+   2206  TECNICO EM CALDEIRARIA                             314610
+   2207  TECNICO EM ESTRUTURAS METALICAS                    314615
+   2208  TECNICO EM SOLDAGEM                                314620
+   2209  TECNICO DE ACABAMENTO EM SIDERURGIA                314705
+   2210  TECNICO DE ACIARIA EM SIDERURGIA                   314710
+   2211  TECNICO DE FUNDICAO EM SIDERURGIA                  314715
+   2212  TECNICO DE LAMINACAO EM SIDERURGIA                 314720
+   2213  TECNICO DE REDUCAO NA SIDERURGIA (PRIMEIRA FUSAO)  314725
+   2214  TECNICO DE REFRATARIO EM SIDERURGIA                314730
+   2215  TECNICO EM GEOFISICA                               316105
+   2216  TECNICO EM GEOLOGIA                                316110
+   2217  TECNICO EM GEOQUIMICA                              316115
+   2218  TECNICO EM GEOTECNIA                               316120
+   2219  TECNICO DE MINERACAO                               316305
+   2220  TECNICO DE MINERACAO (OLEO E PETROLEO)             316310
+   2221  TECNICO EM PROCESSAMENTO MINERAL (EXCETO PETROLEO) 316315
+   2222  TECNICO EM PESQUISA MINERAL                        316320
+   2223  TECNICO DE PRODUCAO EM REFINO DE PETROLEO          316325
+   2224  TECNICO EM PLANEJAMENTO DE LAVRA DE MINAS          316330
+   2225  DESINCRUSTADOR (POCOS DE PETROLEO)                 316335
+   2226  CIMENTADOR (POCOS DE PETROLEO)                     316340
+   2227  PROGRAMADOR DE INTERNET                            317105
+   2228  PROGRAMADOR DE SISTEMAS DE INFORMACAO              317110
+   2229  PROGRAMADOR DE MAQUINAS - FERRAMENTA COM COMANDO N 317115
+   2230  PROGRAMADOR DE MULTIMIDIA                          317120
+   2231  OPERADOR DE COMPUTADOR (INCLUSIVE MICROCOMPUTADOR) 317205
+   2232  TECNICO DE APOIO AO USUARIO DE INFORMATICA (HELPDE 317210
+   2233  DESENHISTA TECNICO                                 318005
+   2234  DESENHISTA COPISTA                                 318010
+   2235  DESENHISTA DETALHISTA                              318015
+   2236  DESENHISTA TECNICO (ARQUITETURA)                   318105
+   2237  DESENHISTA TECNICO (CARTOGRAFIA)                   318110
+   2238  DESENHISTA TECNICO (CONSTRUCAO CIVIL)              318115
+   2239  DESENHISTA TECNICO (INSTALACOES HIDROSSANITARIAS)  318120
+   2240  DESENHISTA TECNICO MECANICO                        318205
+   2241  DESENHISTA TECNICO AERONAUTICO                     318210
+   2242  DESENHISTA TECNICO NAVAL                           318215
+   2243  DESENHISTA TECNICO (ELETRICIDADE E ELETRONICA)     318305
+   2244  DESENHISTA TECNICO (CALEFACAO, VENTILACAO E REFRIG 318310
+   2245  DESENHISTA TECNICO (ARTES GRAFICAS)                318405
+   2246  DESENHISTA TECNICO (ILUSTRACOES ARTISTICAS)        318410
+   2247  DESENHISTA TECNICO (ILUSTRACOES TECNICAS)          318415
+   2248  DESENHISTA TECNICO (INDUSTRIA TEXTIL)              318420
+   2249  DESENHISTA TECNICO (MOBILIARIO)                    318425
+   2250  DESENHISTA TECNICO DE EMBALAGENS, MAQUETES E LEIAU 318430
+   2251  DESENHISTA PROJETISTA DE ARQUITETURA               318505
+   2252  DESENHISTA PROJETISTA DE CONSTRUCAO CIVIL          318510
+   2253  DESENHISTA PROJETISTA DE MAQUINAS                  318605
+   2254  DESENHISTA PROJETISTA MECANICO                     318610
+   2255  DESENHISTA PROJETISTA DE ELETRICIDADE              318705
+   2256  DESENHISTA PROJETISTA ELETRONICO                   318710
+   2257  PROJETISTA DE MOVEIS                               318805
+   2258  MODELISTA DE ROUPAS                                318810
+   2259  MODELISTA DE CALCADOS                              318815
+   2260  TECNICO EM CALCADOS E ARTEFATOS DE COURO           319105
+   2261  TECNICO EM CONFECCOES DO VESTUARIO                 319110
+   2262  TECNICO DO MOBILIARIO                              319205
+   2263  TECNICO EM BIOTERISMO                              320105
+   2264  TECNICO EM HISTOLOGIA                              320110
+   2265  ASSISTENTE DE COREOGRAFIA                          262805
+   2266  TECNICO AGROPECUARIO                               321110
+   2267  TECNICO EM MADEIRA                                 321205
+   2268  TECNICO FLORESTAL                                  321210
+   2269  TECNICO EM PISCICULTURA                            321305
+   2270  TECNICO EM CARCINICULTURA                          321310
+   2271  TECNICO EM MITILICULTURA                           321315
+   2272  TECNICO EM RANICULTURA                             321320
+   2273  ACUPUNTURISTA                                      322105
+   2274  PODOLOGO                                           322110
+   2275  QUIROPRAXISTA                                      322115
+   2276  TECNICO DE ENFERMAGEM                              322205
+   2277  TECNICO DE ENFERMAGEM DE TERAPIA INTENSIVA         322210
+   2278  TECNICO DE ENFERMAGEM DO TRABALHO                  322215
+   2279  TECNICO DE ENFERMAGEM PSIQUIATRICA                 322220
+   2280  INSTRUMENTADOR CIRURGICO                           322225
+   2281  AUXILIAR DE ENFERMAGEM                             322230
+   2282  AUXILIAR DE ENFERMAGEM DO TRABALHO                 322235
+   2283  AUXILIAR DE SAUDE (NAVEGACAO MARITIMA)             322240
+   2284  TECNICO EM OPTICA                                  322305
+   2285  TECNICO EM OPTOMETRIA                              322310
+   2286  TECNICO EM HIGIENE DENTAL                          322405
+   2287  PROTETICO DENTARIO                                 322410
+   2288  ATENDENTE DE CONSULTORIO DENTARIO                  322415
+   2289  AUXILIAR DE PROTESE DENTARIA                       322420
+   2290  TECNICO DE ORTOPEDIA                               322505
+   2291  TECNICO DE IMOBILIZACAO ORTOPEDICA                 322605
+   2292  TECNICO EM PECUARIA                                323105
+   2293  TECNICO EM METODOS ELETROGRAFICOS EM ENCEFALOGRAFI 324105
+   2294  TECNICO EM METODOS GRAFICOS EM CARDIOLOGIA         324110
+   2295  TECNICO EM RADIOLOGIA E IMAGENOLOGIA               324115
+   2296  TECNICO EM PATOLOGIA CLINICA                       324205
+   2297  AUXILIAR TECNICO EM PATOLOGIA CLINICA              324210
+   2298  ENOLOGO                                            325005
+   2299  AROMISTA                                           325010
+   2300  PERFUMISTA                                         325015
+   2301  AUXILIAR TECNICO EM LABORATORIO DE FARMACIA        325105
+   2302  TECNICO EM LABORATORIO DE FARMACIA                 325110
+   2303  TECNICO DE ALIMENTOS                               325205
+   2304  TECNICO EM BIOTECNOLOGIA                           325305
+   2305  TECNICO EM IMUNOBIOLOGICOS                         325310
+   2306  EMBALSAMADOR                                       328105
+   2307  TAXIDERMISTA                                       328110
+   2308  PROFESSOR DE NIVEL MEDIO NA EDUCACAO INFANTIL      331105
+   2309  AUXILIAR DE DESENVOLVIMENTO INFANTIL               331110
+   2310  PROFESSOR DE NIVEL MEDIO NO ENSINO FUNDAMENTAL     331205
+   2311  PROFESSOR DE NIVEL MEDIO NO ENSINO PROFISSIONALIZA 331305
+   2312  PROFESSOR LEIGO NO ENSINO FUNDAMENTAL              332105
+   2313  PROFESSOR PRATICO NO ENSINO PROFISSIONALIZANTE     332205
+   2314  INSTRUTOR DE AUTO-ESCOLA                           333105
+   2315  INSTRUTOR DE CURSOS LIVRES                         333110
+   2316  PROFESSORES DE CURSOS LIVRES                       333115
+   2317  INSPETOR DE ALUNOS DE ESCOLA PRIVADA               334105
+   2318  INSPETOR DE ALUNOS DE ESCOLA PUBLICA               334110
+   2319  PILOTO COMERCIAL (EXCETO LINHAS AEREAS)            341105
+   2320  PILOTO COMERCIAL DE HELICOPTERO (EXCETO LINHAS AER 341110
+   2321  MECANICO DE VOO                                    341115
+   2322  PILOTO AGRICOLA                                    341120
+   2323  CONTRAMESTRE DE CABOTAGEM                          341205
+   2324  MESTRE DE CABOTAGEM                                341210
+   2325  MESTRE FLUVIAL                                     341215
+   2326  PATRAO DE PESCA DE ALTO-MAR                        341220
+   2327  PATRAO DE PESCA NA NAVEGACAO INTERIOR              341225
+   2328  PILOTO FLUVIAL                                     341230
+   2329  CONDUTOR MAQUINISTA FLUVIAL                        341305
+   2330  CONDUTOR MAQUINISTA MARITIMO                       341310
+   2331  ELETRICISTA DE BORDO                               341315
+   2332  ANALISTA DE TRANSPORTE EM COMERCIO EXTERIOR        342105
+   2333  OPERADOR DE TRANSPORTE MULTIMODAL                  342110
+   2334  CONTROLADOR DE SERVICOS DE MAQUINAS E VEICULOS     342115
+   2335  AFRETADOR                                          342120
+   2336  AJUDANTE DE DESPACHANTE ADUANEIRO                  342205
+   2337  DESPACHANTE ADUANEIRO                              342210
+   2338  CHEFE DE SERVICO DE TRANSPORTE RODOVIARIO (PASSAGE 342305
+   2339  INSPETOR DE SERVICOS DE TRANSPORTES RODOVIARIOS (P 342310
+   2340  SUPERVISOR DE CARGA E DESCARGA                     342315
+   2341  AGENTE DE ESTACAO (FERROVIA E METRO)               342405
+   2342  OPERADOR DE CENTRO DE CONTROLE (FERROVIA E METRO)  342410
+   2343  CONTROLADOR DE TRAFEGO AEREO                       342505
+   2344  DESPACHANTE OPERACIONAL DE VOO                     342510
+   2345  FISCAL DE AVIACAO CIVIL (FAC)                      342515
+   2346  GERENTE DA ADMINISTRACAO DE AEROPORTOS             342520
+   2347  GERENTE DE EMPRESA AEREA EM AEROPORTOS             342525
+   2348  INSPETOR DE AVIACAO CIVIL                          342530
+   2349  OPERADOR DE ATENDIMENTO AEROVIARIO                 342535
+   2350  SUPERVISOR DA ADMINISTRACAO DE AEROPORTOS          342540
+   2351  SUPERVISOR DE EMPRESA AEREA EM AEROPORTOS          342545
+   2352  CHEFE DE ESTACAO PORTUARIA                         342605
+   2353  SUPERVISOR DE OPERACOES PORTUARIAS                 342610
+   2354  TECNICO DE CONTABILIDADE                           351105
+   2355  CHEFE DE CONTABILIDADE (TECNICO)                   351110
+   2356  CONSULTOR CONTABIL (TECNICO)                       351115
+   2357  TECNICO EM ADMINISTRACAO                           351305
+   2358  TECNICO EM ADMINISTRACAO DE COMERCIO EXTERIOR      351310
+   2359  AGENTE DE RECRUTAMENTO E SELECAO                   351315
+   2360  ESCREVENTE                                         351405
+   2361  ESCRIVAO JUDICIAL                                  351410
+   2362  ESCRIVAO EXTRA - JUDICIAL                          351415
+   2363  ESCRIVAO DE POLICIA                                351420
+   2364  OFICIAL DE JUSTICA                                 351425
+   2365  AUXILIAR DE SERVICOS JURIDICOS                     351430
+   2366  TECNICO EM SECRETARIADO                            351505
+   2367  TAQUIGRAFO                                         351510
+   2368  ESTENOTIPISTA                                      351515
+   2369  TECNICO EM SEGURANCA NO TRABALHO                   351605
+   2370  ANALISTA DE SEGUROS (TECNICO)                      351705
+   2371  ANALISTA DE SINISTROS                              351710
+   2372  ASSISTENTE COMERCIAL DE SEGUROS                    351715
+   2373  ASSISTENTE TECNICO DE SEGUROS                      351720
+   2374  INSPETOR DE RISCO                                  351725
+   2375  INSPETOR DE SINISTROS                              351730
+   2376  TECNICO DE RESSEGUROS                              351735
+   2377  TECNICO DE SEGUROS                                 351740
+   2378  DETETIVE PROFISSIONAL                              351805
+   2379  INVESTIGADOR DE POLICIA                            351810
+   2380  PAPILOSCOPISTA POLICIAL                            351815
+   2381  AGENTE DE DEFESA AMBIENTAL                         352205
+   2382  AGENTE DE SAUDE PUBLICA                            352210
+   2383  METROLOGISTA                                       352305
+   2384  AGENTE FISCAL DE QUALIDADE                         352310
+   2385  AGENTE FISCAL METROLOGICO                          352315
+   2386  AGENTE FISCAL TEXTIL                               352320
+   2387  AGENTE DE DIREITOS AUTORAIS                        352405
+   2388  AVALIADOR DE PRODUTOS DO MEIO DE COMUNICACAO       352410
+   2389  OUVIDOR (OMBUDSMAN) DO MEIO DE COMUNICACAO         352415
+   2390  TECNICO EM DIREITOS AUTORAIS                       352420
+   2391  TECNICO DE OPERACOES E SERVICOS BANCARIOS - CAMBIO 353205
+   2392  TECNICO DE OPERACOES E SERVICOS BANCARIOS - CREDIT 353210
+   2393  TECNICO DE OPERACOES E SERVICOS BANCARIOS - CREDIT 353215
+   2394  TECNICO DE OPERACOES E SERVICOS BANCARIOS - LEASIN 353220
+   2395  TECNICO DE OPERACOES E SERVICOS BANCARIOS - RENDA  353225
+   2396  TESOUREIRO DE BANCO                                353230
+   2397  CHEFE DE SERVICOS BANCARIOS                        353235
+   2398  AGENCIADOR DE PROPAGANDA                           354110
+   2399  AGENTE DE VENDAS DE SERVICOS                       354120
+   2400  ASSISTENTE DE VENDAS                               354125
+   2401  PROMOTOR DE VENDAS ESPECIALIZADO                   354130
+   2402  TECNICO DE VENDAS                                  354135
+   2403  TECNICO EM ATENDIMENTO E VENDAS                    354140
+   2404  VENDEDOR PRACISTA                                  354145
+   2405  COMPRADOR                                          354205
+   2406  SUPERVISOR DE COMPRAS                              354210
+   2407  ANALISTA DE EXPORTACAO E IMPORTACAO                354305
+   2408  LEILOEIRO                                          354405
+   2409  AVALIADOR DE IMOVEIS                               354410
+   2410  TECNICO AGRICOLA                                   321105
+   2411  CORRETOR DE SEGUROS                                354505
+   2412  CORRETOR DE IMOVEIS                                354605
+   2413  REPRESENTANTE COMERCIAL AUTONOMO                   354705
+   2414  TECNICO EM TURISMO                                 354805
+   2415  OPERADOR DE TURISMO                                354810
+   2416  AGENTE DE VIAGEM                                   354815
+   2417  ORGANIZADOR DE EVENTO                              354820
+   2418  AUXILIAR DE BIBLIOTECA                             371105
+   2419  TECNICO EM BIBLIOTECONOMIA                         371110
+   2420  COLECIONADOR DE SELOS E MOEDAS                     371205
+   2421  TECNICO EM MUSEOLOGIA                              371210
+   2422  TECNICO EM PROGRAMACAO VISUAL                      371305
+   2423  TECNICO GRAFICO                                    371310
+   2424  RECREADOR DE ACANTONAMENTO                         371405
+   2425  RECREADOR                                          371410
+   2426  DIRETOR DE FOTOGRAFIA                              372105
+   2427  ILUMINADOR (TELEVISAO)                             372110
+   2428  OPERADOR DE CAMERA DE TELEVISAO                    372115
+   2429  Especialista de pol¡ticas p£blicas e gestÆo govern 111505
+   2430  NÆo Informado                                      XXX   ,
+   2431  Analista de planejamento e oramento - apo         111510
+   2432  Especialista em desenvolvimento de cigarros        142610
+   2433  Ocean¢grafo                                        213440
+   2434  ENGENHEIRO AMBIENTAL                               214275
+   2435  Biomdico                                          221205
+   2436  CirurgiÆo dentista - odontologia do trabalho       223276
+   2437  CirurgiÆo dentista - dent¡stica                    223280
+   2438  CirurgiÆo dentista - disfunÆo temporomandibular e 223284
+   2439  CirurgiÆo dentista - odontologia para pacientes co 223288
+   2440  Fisioterapeuta respirat¢ria                        223625
+   2441  Fisioterapeuta neurofuncional                      223630
+   2442  Fisioterapeuta traumato-ortopdica funcional       223635
+   2443  Fisioterapeuta osteopata                           223640
+   2444  Fisioterapeuta quiropraxista                       223645
+   2445  Fisioterapeuta acupunturista                       223650
+   2446  Fisioterapeuta esportivo                           223655
+   2447  Fisioterapeuta  do trabalho                        223660
+   2448  Terapeuta ocupacional                              223905
+   2449  Ortoptista                                         223910
+   2450  Designer educacional                               239435
+   2451  Intrprete de l¡ngua de sinais                     261425
+   2452  Conservador-restaurador de bens  culturais         262415
+   2453  Massoterapeuta                                     322120
+   2454  Terapeuta hol¡stico                                322125
+   2455  Tcnico em nutriÆo e diettica                    325210
+   2456  Auxiliar nos servios de alimentaÆo               513505
+   2457  Churrasqueiro                                      513605
+   2458  Pizzaiolo                                          513610
+   2459  Sushiman                                           513615
+   2460  Coletor de res¡duos s¢lidos de servios de sa£de   514230
+   2461  Limpador de vidros                                 514305
+   2462  Auxiliar de manutenÆo predial                     514310
+   2463  Limpador de fachadas                               514315
+   2464  Faxineiro                                          514320
+   2465  Trabalhador da manutenÆo de edificaäes           514325
+   2466  Limpador de piscinas                               514330
+   2467  Educador social                                    515305
+   2468  Agente de aÆo social                              515310
+   2469  Monitor de dependente qu¡mico                      515315
+   2470  Conselheiro tutelar                                515320
+   2471  Ajudante de confecÆo                              763125
+   2472  Marinheiro de esporte e recreio                    782725
+   2473  Operador de m quina (fabricaÆo de cigarros)       842125
+   2474  Operador de m quina de preparaÆo de matria prima 842135
+   2475  Classificador de grÆos                             848425
+   2476  Urbanista                                          214130
+   2477  Fonoaudi¢logo geral                                223810
+   2478  Tcnico em farm cia                                325115
+   2479  Marinheiro de esporte e recreio                    782721
+   2480  MEDICO BRONCOESOFALOGISTA                          2231A1
+   2481  MEDICO HANSENOLOGISTA                              2231A2
+   2482  MEDICO CIRURGIAO VASCULAR                          2231F3
+   2483  MEDICO CANCEROLOGISTA PEDIATRICO                   2231F4
+   2484  MEDICO CANCEROLOGISTA CIRURGICO                    2231F5
+   2485  MEDICO CANCEROLOGISTA CLINICO                      2231F6
+   2486  MEDICO EM MEDICINA DE FAMILIA E COMUNIDADE         2231F7
+   2487  MEDICO EM MEDICINA PREVENTIVA E SOCIAL             2231F8
+   2488  MEDICO RESIDENTE                                   2231F9
+   2489  CIRURGIAO DENTISTA DE SAUDE DA FAMILIA             2232B1
+   2490  ENFERMEIRO SAUDE DA FAMILIA                        2235C1
+   2491  ENFERMEIRO DA ESTRATEGIA DE AGENTE COMUNITARIO DE  2235C2
+   2492  TECNICO EM ORIENTACAO E MOBILIDADE DE CEGOS E DEF  2236I1
+   2493  TECNICO EM REABILITACAO                            3135D1
+   2494  TECNICO EM EQUIPAMENTO MEDICO HOSPITALAR           3135D2
+   2495  SOCORRISTA HABILITADO                              3222B3
+   2496  TECNICO DE ENFERMAGEM DE SAUDE DA FAMILIA          3222E1
+   2497  AUXILIAR DE ENFERMAGEM DE SAUDE DA FAMILIA         3222E2
+   2498  TECNICO DE HIGIENE DENTAL DE SAUDE DA FAMILIA      3224F1
+   2499  AUXILIAR DE CONSULTORIO DENTARIO DE SAUDE DA FAMIL 3224F2
+   2500  AGENTE INDIGENA DE SAUDE                           3522G1
+   2501  Agente Indigena de saneamento                      3522G2
+   2502  CUIDADOR EM SAUDE                                  5151H1
+   2503  MICROSCOPISTA                                      5152A1
+   2504  Relaäes p£blicas                                  142325
+   2505  Analista de neg¢cios                               142330
+   2506  Analista de pesquisa de mercado                    142335
+   2507  Ouvidor                                            142340
+   2508  Engenheiro de controle e automaÆo                 202110
+   2509  Tecn¢logo em mecatrnica                           202115
+   2510  Tecn¢logo em automaÆo industrial                  202120
+   2511  Farmacutico analista cl¡nico                      223415
+   2512  Farmacutico de alimentos                          223420
+   2513  Farmacutico pr ticas integrativas e complementare 223425
+   2514  Farmacutico em sa£de p£blica                      223430
+   2515  Farmacutico industrial                            223435
+   2516  Farmacutico toxicologista                         223440
+   2517  Farmacutico hospitalar e cl¡nico                  223445
+   2518  Fonoaudi¢logo educacional                          223815
+   2519  Fonoaudi¢logo em audiologia                        223820
+   2520  Fonoaudi¢logo em disfagia                          223825
+   2521  Fonoaudi¢logo em linguagem                         223830
+   2522  Fonoaudi¢logo em motricidade orofacial             223835
+   2523  Fonoaudi¢logo em sa£de coletiva                    223840
+   2524  Fonoaudi¢logo em voz                               223845
+   2525  Audiodescritor                                     261430
+   2526  Doula                                              322135
+   2527  Tecn¢logo oft lmico                                324125
+   2528  Agente de proteÆo de aviaÆo civil                342550
+   2529  Propagandista de produtos famacuticos             354150
+   2530  Dj (disc jockey)                                   374145
+   2531  Barista                                            513440
+   2532  S¢cioeducador                                      515325
+   2533  Bloqueiro (trabalhador portu rio)                  783230
+   2534  CBO sem definiÆo                                  000000
+   2535  Musicoterapeuta                                    226305
+   2536  Tecn¢logo em gestÆo hospitalar                     131215
+   2537  Gerente de turismo                                 141525
+   2538  Tecn¢logo em gestÆo administrativo- financeira     142120
+   2539  Tecn¢logo em gestÆo da tecnologia da informaÆo    142535
+   2540  Tecn¢logo em sistemas biomdicos                   142710
+   2541  Administrador em segurana da informaÆo           212320
+   2542  Tecn¢logo em processos qu¡micos                    213215
+   2543  Engenheiro ambiental                               214005
+   2544  Tecn¢logo em meio ambiente                         214010
+   2545  Tecn¢logo em construÆo civil                      214280
+   2546  Tecn¢logo em telecomunicaäes                      214370
+   2547  Tecn¢logo em fabricaÆo mecnica                   214435
+   2548  Tecn¢logo em produÆo sulcroalcooleira             214535
+   2549  Tecn¢logo em metalurgia                            214615
+   2550  Tecn¢logo em petr¢leo e g s                        214745
+   2551  Tecn¢logo em rochas ornamentais                    214750
+   2552  Tecn¢logo em produÆo industrial                   214930
+   2553  Tecn¢logo em segurana do trabalho                 214935
+   2554  Tecn¢logo em alimentos                             222215
+   2555  CirurgiÆo-dentista da estratgia de sa£de da fam¡l 223293
+   2556  Enfermeiro da estratgia de sa£de da fam¡lia       223565
+   2557  Perfusionista                                      223570
+   2558  Musicoterapeuta                                    223915
+   2559  Mdico infectologista                              225103
+   2560  Mdico acupunturista                               225105
+   2561  Mdico legista                                     225106
+   2562  Mdico nefrologista                                225109
+   2563  Mdico alergista e imunologista                    225110
+   2564  Mdico neurologista                                225112
+   2565  Mdico angiologista                                225115
+   2566  Mdico nutrologista                                225118
+   2567  Mdico cardiologista                               225120
+   2568  Mdico oncologista cl¡nico                         225121
+   2569  Mdico cancerologista pedi trico                   225122
+   2570  Mdico pediatra                                    225124
+   2571  Mdico cl¡nico                                     225125
+   2572  Mdico pneumologista                               225127
+   2573  Mdico de fam¡lia e comunidade                     225130
+   2574  Mdico psiquiatra                                  225133
+   2575  Mdico dermatologista                              225135
+   2576  Mdico reumatologista                              225136
+   2577  Mdico sanitarista                                 225139
+   2578  Mdico do trabalho                                 225140
+   2579  Mdico da estratgia de sa£de da fam¡lia           225142
+   2580  Mdico em medicina de tr fego                      225145
+   2581  Mdico anatomopatologista                          225148
+   2582  Mdico em medicina intensiva                       225150
+   2583  Mdico anestesiologista                            225151
+   2584  Mdico endocrinologista e metabologista            225155
+   2585  Mdico fisiatra                                    225160
+   2586  Mdico gastroenterologista                         225165
+   2587  Mdico generalista                                 225170
+   2588  Mdico geneticista                                 225175
+   2589  Mdico geriatra                                    225180
+   2590  Mdico hematologista                               225185
+   2591  Mdico homeopata                                   225195
+   2592  Mdico em cirurgia vascular                        225203
+   2593  Mdico cirurgiÆo cardiovascular                    225210
+   2594  Mdico cirurgiÆo de cabea e pescoo               225215
+   2595  Mdico cirurgiÆo do aparelho digestivo             225220
+   2596  Mdico cirurgiÆo geral                             225225
+   2597  Mdico cirurgiÆo pedi trico                        225230
+   2598  Mdico cirurgiÆo pl stico                          225235
+   2599  Mdico cirurgiÆo tor cico                          225240
+   2600  Mdico ginecologista e obstetra                    225250
+   2601  Mdico mastologista                                225255
+   2602  Mdico neurocirurgiÆo                              225260
+   2603  Mdico oftalmologista                              225265
+   2604  Mdico ortopedista e traumatologista               225270
+   2605  Mdico otorrinolaringologista                      225275
+   2606  Mdico coloproctologista                           225280
+   2607  Mdico urologista                                  225285
+   2608  Mdico cancerologista cirurg¡co                    225290
+   2609  Mdico cirurgiÆo da mÆo                            225295
+   2610  Mdico citopatologista                             225305
+   2611  Mdico em endoscopia                               225310
+   2612  Mdico em medicina nuclear                         225315
+   2613  Mdico em radiologia e diagn¢stico por imagem      225320
+   2614  Mdico patologista                                 225325
+   2615  Mdico radioterapeuta                              225330
+   2616  Mdico patologista cl¡nico / medicina laboratorial 225335
+   2617  Mdico hemoterapeuta                               225340
+   2618  Mdico hiperbarista                                225345
+   2619  Mdico neurofisiologista cl¡nico                   225350
+   2620  Psic¢logo acupunturista                            251555
+   2621  Tecn¢logo em secretariado escolar                  252320
+   2622  Gestor em segurana                                252605
+   2623  Tecn¢logo em produÆo fonogr fica                  262130
+   2624  Tecn¢logo em produÆo audiovisual                  262135
+   2625  Desenhista industrial de produto (designer de prod 262420
+   2626  Desenhista industrial de produto de moda (designer 262425
+   2627  Chefe de cozinha                                   271105
+   2628  Tecn¢logo em gastronomia                           271110
+   2629  Esteticista                                        322130
+   2630  Tcnico de enfermagem da estratgia de sa£de da fa 322245
+   2631  Auxiliar de enfermagem da estratgia de sa£de da f 322250
+   2632  Tcnico em sa£de bucal da estratgia de sa£de da f 322425
+   2633  Auxiliar em sa£de bucal da estratgia de sa£de da  322430
+   2634  Tecn¢logo em radiologia                            324120
+   2635  Monitor de transporte escolar                      334115
+   2636  Tecn¢logo em log¡stica de transporte               342125
+   2637  Decorador de eventos                               375120
+   2638  Agente de microcrdito                             411050
+   2639  Despachante de trnsito                            423110
+   2640  Agente ind¡gena de sa£de                           515125
+   2641  Agente ind¡gena de saneamento                      515130
+   2642  Socorrista (exceto mdicos e enfermeiros)          515135
+   2643  Cuidador em sa£de                                  516220
+   2644  Guarda portu rio                                   517335
+   2645  Selecionador de material recicl vel                519210
+   2646  Operador de prensa de material recicl vel          519215
+   2647  ArtesÆo bordador                                   791105
+   2648  ArtesÆo ceramista                                  791110
+   2649  ArtesÆo com material recicl vel                    791115
+   2650  ArtesÆo confeccionador de bioj¢ias e ecoj¢ias      791120
+   2651  ArtesÆo do couro                                   791125
+   2652  ArtesÆo escultor                                   791130
+   2653  ArtesÆo moveleiro (exceto reciclado)               791135
+   2654  ArtesÆo tecelÆo                                    791140
+   2655  ArtesÆo tranador                                  791145
+   2656  ArtesÆo crocheteiro                                791150
+   2657  ArtesÆo tricoteiro                                 791155
+   2658  Engenheiro de alimentos                            222205
+   2659  ArtesÆo rendeiro                                   791160
+   2660  Agente de inteligncia                             351905
+   2661  Agente tcnico de inteligncia                     351910
+   2662  Oficial de inteligncia                            242905
+   2663  Oficial tcnico de inteligncia                    242910
+   2664  Turism¢logo                                        122520
+   2665  Mdico cardiologista intervencionista              2231G1
+   2666  Mdico hemoterapeuta                               225190
+   2667  Mdico foniatra                                    225245
+   2668  Arteterapeuta                                      226310
+   2669  Equoterapeuta                                      226315
+   2670  Osteopata                                          226110
+   2671  Quiropraxista                                      226105

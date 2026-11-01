@@ -1,0 +1,75 @@
+; Municípios da região sul e Mato Grosso do Sul que fazem fronteira com outros países
+73  6
+      1  41 Paraná                                          ------
+  1   2  ....410260 Barracão                                410260
+  1   3  ....410450 Capanema                                410450
+  1   4  ....410753 Entre Rios do Oeste                     410753
+  1   5  ....410830 Foz do Iguaçu                           410830
+  1   6  ....410880 Guaíra                                  410880
+  1   7  ....411095 Itaipulândia                            411095
+  1   8  ....411460 Marechal Cândido Rondon                 411460
+  1   9  ....411585 Mercedes                                411585
+  1  10  ....411605 Missal                                  411605
+  1  11  ....411845 Pato Bragado                            411845
+  1  12  ....411900 Pérola d'Oeste                          411900
+  1  13  ....411980 Planalto                                411980
+  1  14  ....412035 Pranchita                               412035
+  1  15  ....412350 Santa Helena                            412350
+  1  16  ....412405 Santa Terezinha de Itaipu               412405
+  1  17  ....412440 Santo Antônio do Sudoeste               412440
+  1  18  ....412570 São Miguel do Iguaçu                    412570
+  1  19  ....412635 Serranópolis do Iguaçu                  412635
+     20  42 Santa Catarina                                  ------
+ 20  21  ....420208 Bandeirante                             420208
+ 20  22  ....420215 Belmonte                                420215
+ 20  23  ....420500 Dionísio Cerqueira                      420500
+ 20  24  ....420640 Guaraciaba                              420640
+ 20  25  ....420840 Itapiranga                              420840
+ 20  26  ....421223 Paraíso                                 421223
+ 20  27  ....421415 Princesa                                421415
+ 20  28  ....421555 Santa Helena                            421555
+ 20  29  ....421670 São José do Cedro                       421670
+ 20  30  ....421875 Tunápolis                               421875
+     31  43 Rio Grande do Sul                               ------
+ 31  32  ....430003 Aceguá                                  430003
+ 31  33  ....430030 Alecrim                                 430030
+ 31  34  ....430160 Bagé                                    430160
+ 31  35  ....430187 Barra do Quaraí                         430187
+ 31  36  ....430543 Chuí                                    430543
+ 31  37  ....430600 Crissiumal                              430600
+ 31  38  ....430632 Derrubadas                              430632
+ 31  39  ....430660 Dom Pedrito                             430660
+ 31  40  ....430673 Doutor Maurício Cardoso                 430673
+ 31  41  ....430710 Herval                                  430710
+ 31  42  ....430745 Esperança do Sul                        430745
+ 31  43  ....430865 Garruchos                               430865
+ 31  44  ....431060 Itaqui                                  431060
+ 31  45  ....431100 Jaguarão                                431100
+ 31  46  ....431342 Novo Machado                            431342
+ 31  47  ....431417 Pedras Altas                            431417
+ 31  48  ....431455 Pirapó                                  431455
+ 31  49  ....431500 Porto Lucena                            431500
+ 31  50  ....431505 Porto Mauá                              431505
+ 31  51  ....431507 Porto Vera Cruz                         431507
+ 31  52  ....431510 Porto Xavier                            431510
+ 31  53  ....431530 Quaraí                                  431530
+ 31  54  ....431630 Roque Gonzales                          431630
+ 31  55  ....431710 Santana do Livramento                   431710
+ 31  56  ....431730 Santa Vitória do Palmar                 431730
+ 31  57  ....431800 São Borja                               431800
+ 31  58  ....431920 São Nicolau                             431920
+ 31  59  ....432147 Tiradentes do Sul                       432147
+ 31  60  ....432240 Uruguaiana                              432240
+     61  50 Mato Grosso do Sul                              ------
+ 61  62  ....500090 Antônio João                            500090
+ 61  63  ....500124 Aral Moreira                            500124
+ 61  64  ....500210 Bela Vista                              500210
+ 61  65  ....500280 Caracol                                 500280
+ 61  66  ....500315 Coronel Sapucaia                        500315
+ 61  67  ....500320 Corumbá                                 500320
+ 61  68  ....500480 Japorã                                  500480
+ 61  69  ....500568 Mundo Novo                              500568
+ 61  70  ....500635 Paranhos                                500635
+ 61  71  ....500660 Ponta Porã                              500660
+ 61  72  ....500690 Porto Murtinho                          500690
+ 61  73  ....500770 Sete Quedas                             500770

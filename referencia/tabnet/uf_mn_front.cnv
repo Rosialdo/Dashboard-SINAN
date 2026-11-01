@@ -1,0 +1,134 @@
+; UFMNFRONT.CNV
+132  6
+      1  11 Rondônia                                        ------
+  1   2  ....110001 Alta Floresta D'Oeste                   110001
+  1   3  ....110003 Cabixi                                  110003
+  1   4  ....110008 Costa Marques                           110008
+  1   5  ....110010 Guajará-Mirim                           110010
+  1   6  ....110020 Porto Velho                             110020
+  1   7  ....110033 Nova Mamoré                             110033
+  1   8  ....110037 Alto Alegre dos Parecis                 110037
+  1   9  ....110146 Pimenteiras do Oeste                    110146
+  1  10  ....110149 São Francisco do Guaporé                110149
+     11  12 Acre                                            ------
+ 11  12  ....120001 Acrelândia                              120001
+ 11  13  ....120005 Assis Brasil                            120005
+ 11  14  ....120010 Brasiléia                               120010
+ 11  15  ....120017 Capixaba                                120017
+ 11  16  ....120020 Cruzeiro do Sul                         120020
+ 11  17  ....120025 Epitaciolândia                          120025
+ 11  18  ....120030 Feijó                                   120030
+ 11  19  ....120032 Jordão                                  120032
+ 11  20  ....120033 Mâncio Lima                             120033
+ 11  21  ....120034 Manoel Urbano                           120034
+ 11  22  ....120035 Marechal Thaumaturgo                    120035
+ 11  23  ....120038 Plácido de Castro                       120038
+ 11  24  ....120039 Porto Walter                            120039                                 m
+ 11  25  ....120042 Rodrigues Alves                         120042
+ 11  26  ....120043 Santa Rosa do Purus                     120043
+ 11  27  ....120050 Sena Madureira                          120050
+ 11  28  ....120070 Xapuri                                  120070
+     29  13 Amazonas                                        ------
+ 29  30  ....130020 Atalaia do Norte                        130020
+ 29  31  ....130040 Barcelos                                130040
+ 29  32  ....130060 Benjamin Constant                       130060
+ 29  33  ....130210 Japurá                                  130210
+ 29  34  ....130360 Santa Isabel do Rio Negro               130360
+ 29  35  ....130370 Santo Antônio do Içá                    130370
+ 29  36  ....130380 São Gabriel da Cachoeira                130380
+ 29  37  ....130406 Tabatinga                               130406
+     38  14 Roraima                                         ------
+ 38  39  ....140002 Amajari                                 140002
+ 38  40  ....140005 Alto Alegre                             140005
+ 38  41  ....140015 Bonfim                                  140015
+ 38  42  ....140020 Caracaraí                               140020
+ 38  43  ....140023 Caroebe                                 140023
+ 38  44  ....140028 Iracema                                 140028
+ 38  45  ....140040 Normandia                               140040
+ 38  46  ....140045 Pacaraima                               140045
+ 38  47  ....140070 Uiramutã                                140070
+     48  15 Pará                                            ------
+ 48  49  ....150050 Almeirim                                150050
+ 48  50  ....150510 Óbidos                                  150510
+ 48  51  ....150530 Oriximiná                               150530
+     52  16 Amapá                                           ------
+ 52  53  ....160027 Laranjal do Jari                        160027
+ 52  54  ....160050 Oiapoque                                160050
+     55  41 Paraná                                          ------
+ 55  56  ....410260 Barracão                                410260
+ 55  57  ....410450 Capanema                                410450
+ 55  58  ....410753 Entre Rios do Oeste                     410753
+ 55  59  ....410830 Foz do Iguaçu                           410830
+ 55  60  ....410880 Guaíra                                  410880
+ 55  61  ....411095 Itaipulândia                            411095
+ 55  62  ....411460 Marechal Cândido Rondon                 411460
+ 55  63  ....411585 Mercedes                                411585
+ 55  64  ....411605 Missal                                  411605
+ 55  65  ....411845 Pato Bragado                            411845
+ 55  66  ....411900 Pérola d'Oeste                          411900
+ 55  67  ....411980 Planalto                                411980
+ 55  68  ....412035 Pranchita                               412035
+ 55  69  ....412350 Santa Helena                            412350
+ 55  70  ....412405 Santa Terezinha de Itaipu               412405
+ 55  71  ....412440 Santo Antônio do Sudoeste               412440
+ 55  72  ....412570 São Miguel do Iguaçu                    412570
+ 55  73  ....412635 Serranópolis do Iguaçu                  412635
+     74  42 Santa Catarina                                  ------
+ 74  75  ....420208 Bandeirante                             420208
+ 74  76  ....420215 Belmonte                                420215
+ 74  77  ....420500 Dionísio Cerqueira                      420500
+ 74  78  ....420640 Guaraciaba                              420640
+ 74  79  ....420840 Itapiranga                              420840
+ 74  80  ....421223 Paraíso                                 421223
+ 74  81  ....421415 Princesa                                421415
+ 74  82  ....421555 Santa Helena                            421555
+ 74  83  ....421670 São José do Cedro                       421670
+ 74  84  ....421875 Tunápolis                               421875
+     85  43 Rio Grande do Sul                               ------
+ 85  86  ....430003 Aceguá                                  430003
+ 85  87  ....430030 Alecrim                                 430030
+ 85  88  ....430160 Bagé                                    430160
+ 85  89  ....430187 Barra do Quaraí                         430187
+ 85  90  ....430543 Chuí                                    430543
+ 85  91  ....430600 Crissiumal                              430600
+ 85  92  ....430632 Derrubadas                              430632
+ 85  93  ....430660 Dom Pedrito                             430660
+ 85  94  ....430673 Doutor Maurício Cardoso                 430673
+ 85  95  ....430710 Herval                                  430710
+ 85  96  ....430745 Esperança do Sul                        430745
+ 85  97  ....430865 Garruchos                               430865
+ 85  98  ....431060 Itaqui                                  431060
+ 85  99  ....431100 Jaguarão                                431100
+ 85 100  ....431342 Novo Machado                            431342
+ 85 101  ....431417 Pedras Altas                            431417
+ 85 102  ....431455 Pirapó                                  431455
+ 85 103  ....431500 Porto Lucena                            431500
+ 85 104  ....431505 Porto Mauá                              431505
+ 85 105  ....431507 Porto Vera Cruz                         431507
+ 85 106  ....431510 Porto Xavier                            431510
+ 85 107  ....431530 Quaraí                                  431530
+ 85 108  ....431630 Roque Gonzales                          431630
+ 85 109  ....431710 Santana do Livramento                   431710
+ 85 110  ....431730 Santa Vitória do Palmar                 431730
+ 85 111  ....431800 São Borja                               431800
+ 85 112  ....431920 São Nicolau                             431920
+ 85 113  ....432147 Tiradentes do Sul                       432147
+ 85 114  ....432240 Uruguaiana                              432240
+    115  50 Mato Grosso do Sul                              ------
+115 116  ....500090 Antônio João                            500090
+115 117  ....500124 Aral Moreira                            500124
+115 118  ....500210 Bela Vista                              500210
+115 119  ....500280 Caracol                                 500280
+115 120  ....500315 Coronel Sapucaia                        500315
+115 121  ....500320 Corumbá                                 500320
+115 122  ....500480 Japorã                                  500480
+115 123  ....500568 Mundo Novo                              500568
+115 124  ....500635 Paranhos                                500635
+115 125  ....500660 Ponta Porã                              500660
+115 126  ....500690 Porto Murtinho                          500690
+115 127  ....500770 Sete Quedas                             500770
+    128  51 Mato Grosso                                     ------
+128 129  ....510250 Cáceres                                 510250
+128 130  ....510330 Comodoro                                510330
+128 131  ....510550 Vila Bela da Santíssima Trindade        510550
+128 132  ....510682 Porto Esperidião                        510682

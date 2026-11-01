@@ -1,0 +1,41 @@
+; CLASCATN.CNV
+; Acrescido categorias 59, 68, 69 em função da mudança do instrumento de coleta de dados no SinanNet
+; Atualizado pela UT_Sinan em fev/2019, acrescimo do "em branco" (  ,00)
+37 2 L
+      1  Em Branco/Ignorado                                   ,00-90
+      2  Homossexual                                        10
+      3  Homossexual/Drogas                                 11
+      4  Homossexual/Hemofílico                             12
+      5  Homossexual/Transfusão                             13
+      6  Homossexual/Droga/Hemofílico                       14
+      7  Homossexual/Droga/Transfusão                       15
+      8  Bissexual                                          20
+      9  Bissexual/Drogas                                   21
+     10  Bissexual/Hemofílico                               22
+     11  Bissexual/Transfusão                               23
+     12  Bissexual/Drogas/Hemofílico                        24
+     13  Bissexual/Drogas/Transfusão                        25
+     14  Heterossexual                                      30 
+     15  Heterossexual/Drogas                               31
+     16  Heterossexual/Hemofílico                           32
+     17  Heterossexual/Transfusão                           33
+     18  Heterossexual/Drogas/Hemofílico                    34
+     19  Heterossexual/Drogas/Transfusão                    35
+     20  Heterossexual C/parc.de risco indefinido           36
+     21  Drogas                                             40
+     22  Drogas/Hemofílico                                  41
+     23  Drogas/Transfusão                                  42
+     24  Hemofílico                                         50
+     25  Transfusão/Drogas/Heterossexual/Hemofílico         59
+     26  Transfusão                                         60
+     27  Transfusão/Drogas                                  61
+     28  Transfusão/Homossexual                             62
+     29  Transfusão/Bissexual                               63
+     30  Transfusão/Drogas/Homossexual                      64
+     31  Transfusão/Drogas/Bissexual                        65
+     32  Transfusão/Heterossexual                           66
+     33  Transfusão/Drogas/Heterossexual                    67
+     34  Transfusão/Drogas/Homossexual/Hemofílico           68
+     35  Transfusão/Drogas/Bissexual/Hemofílico             69
+     36  Acidente de Trabalho exp mat biologico             70
+     37  Perinatal                                          80

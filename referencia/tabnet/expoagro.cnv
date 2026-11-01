@@ -1,0 +1,14 @@
+; Expoagro.cnv
+; revisado pela UT-Sinan março 2019
+11 2
+      1  Ign/Branco                                           ,00-99
+      2  Diluição                                           01
+      3  Pulverização                                       02
+      4  Trat. sementes                                     03
+      5  Armazenagem                                        04
+      6  Colheita                                           05
+      7  Transporte                                         06
+      8  Desinsetização                                     07
+      9  Produção/formulação                                08
+     10  Outros                                             09
+     11  Não se aplica                                      10

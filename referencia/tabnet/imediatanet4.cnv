@@ -1,0 +1,34 @@
+; Lista Nacional de Compulsória Imediata
+; Doença Exantemáticas:
+;            - Sarampo tabular utilizando CS_SUSPEIT = 1
+;            - Rubéola tabular utilizando CS_SUSPEIT = 2
+; Dengue sorotipo DENV 4 não incluído neste CNV; selecionar no DBF de dengue pelo sorotipo
+; Atualizado em 29/09/2014 pela UT-Sinan/MS - Alteração da lista de acordo com a Portaria nº 1.271 de 06/06/2014 "Imediatas para MS" 
+; Atualizado em 15/03/2017 pela UT-Sinan/MS - Alteração da lista de acordo com a Portaria nº 204 de 17/02/2016 "Imediatas para MS" - não consta na lista SRAG considerando que a fonte é formSus
+; Atualizado em 29/01/2019 pela UT-Sinan/MS - Portaria Consolidação 4 28/09/2017 - "Imediatas para MS"
+24 4
+
+      1  Botulismo                                          A051
+      2  Carbúnculo ou Antraz                               A22 ,
+      3  Cólera                                             A009
+      4  Dengue (óbito)                                     A90 ,
+      5  Doença Aguda pelo vírus Zika (óbitos suspeitos)    A928
+      6  Doenças Exantemáticas                              B09 ,
+      7  Doença pelo virus Ebola                            A984
+      8  Doença de Marburg                                  A983
+      9  Febre de Chikungunya (óbitos suspeitos)            A920
+     10  Febre do Nilo Ocidental                            A923
+     11  Febre Amarela                                      A959
+     12  Febre Hemorragica por Arenavirus, não especif      A969
+     13  Febre Maculosa                                     A779
+     14  Febre Purpúrica Brasileira                         A484
+     15  Hantavirose                                        A988
+     16  Influenza Humana produzida por novo subtipo viral  J11 ,
+     17  Febre de Lassa                                     A962
+     18  Malária                                            B54 ,
+     19  Peste                                              A209
+     20  Poliomielite / Paralisia Flácida Aguda             A809
+     21  Raiva Humana                                       A829
+     22  Síndrome da Rubéola Congênita                      P350
+     23  Tularemia                                          A21 ,
+     24  Varíola                                            B03 ,

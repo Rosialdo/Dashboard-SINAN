@@ -1,0 +1,26 @@
+;Lista Nacional de compulsórios de notificação imediata nacional Port. nº 204_2016
+; Agravos para calculo do indicador 7 do PQAVS (P328/2016)
+; Exceto Influenza (Deve ser usado o Sinan Online)
+20  4
+      1  Arenavírus                                         A969
+      2  Botulismo                                          A051
+      3  Carbúnculo ou Antraz                               A229
+      4  Cólera                                             A009
+      5  Doenças Exantemáticas                              B09 ,
+      6  Ebola                                              A984
+      7  Febre Amarela                                      A959
+      8  Febre do Nilo                                      A923
+      9  Febre Maculosa                                     A779
+     10  Febre Purpurica Brasileira                         A484
+     11  Hantavirose                                        A988
+     12  Influenza humana por novo subtipo                  J11 ,
+     13  Lassa                                              A962
+     14  Malária                                            B54 ,
+     15  Marburg                                            A983
+     16  Paralisia Flácida Aguda/Poliomielite               A809
+     17  Peste                                              A209
+     18  Raiva Humana                                       A829
+     19  Tularemia                                          A219
+     20  Varíola                                            B03 ,
+    
+     

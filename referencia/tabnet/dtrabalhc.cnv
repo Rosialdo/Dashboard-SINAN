@@ -1,0 +1,14 @@
+;agravos relacionados à saude do trabalhador listados em portaria específica
+;Intoxicação exógena por incluir notificações de não trabalhadores está no cnv
+;de agravos compulsórios e de crônicos (por ser notificado confirmado)
+9  4
+      1  Acid.Mat.Bio.                                      Z209
+      2  Acid.Grave                                         Y96 ,
+      3  Câncer Trab.                                       C80 ,
+      4  Derm.Ocupac.                                       L989
+      5  Intox.Exóg                                         T659
+      6  LER/DORT                                           Z579
+      7  PAIR                                               H833
+      8  Pneumoc.                                           J64 ,
+      9  Tr.Mental                                          F99 ,
+

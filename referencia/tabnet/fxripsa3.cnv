@@ -1,0 +1,7 @@
+;FXRIPSA3.CNV
+; Revisado UT-Sinan 2019
+4 4
+      1  Em branco/IGN/Outros                              ,0000,9999,A000-M999
+      2  0 a 6 dias                                         H000-H072,D000-D006
+      3  7 a 27 dias                                        D007-D027
+      4  28 a 364 dias                                      D028-D364

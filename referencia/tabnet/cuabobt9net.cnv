@@ -1,0 +1,16 @@
+; CUABOBT9net.CNV corrigido 10/08/2007
+14  2 l
+      1  Ign/Branco                                           ,00-99
+      2  Cura                                               1 ,01, 1
+      3  Abandono                                           2 ,02, 2
+      4  Óbito por tuberculose                              3 ,03, 3
+      5  Óbito por outras causas                            4 ,04, 4
+      6  Transferência p/ mesmo município                   5 ,05, 5
+      7  Transferência p/ Outro Município                   6 ,06, 6
+      8  Transferência p/ Outra UF                          7 ,07, 7
+      9  Transferência p/ Outro País                        8 ,08, 8
+     10  Mudança de Esquema                                 9 ,09, 9
+     11  Mudança de Diagnóstico                             10
+     12  Falência                                           11
+     13  Continua em Tratamento                             12
+     14  TB Multirresistente                                13

@@ -1,0 +1,15 @@
+; Partescorpo.cnv
+; revisado pela UT-Sinan março 2019
+12 2
+      1  Ign/Branco                                           ,00-99
+      2  Olho                                               01
+      3  Cabeça                                             02
+      4  Pescoço                                            03
+      5  Tórax                                              04
+      6  Abdome                                             05
+      7  Mão                                                06
+      8  Membro superior                                    07
+      9  Membro inferior                                    08
+     10  Pé                                                 09
+     11  Todo o corpo                                       10
+     12  Outro                                              11

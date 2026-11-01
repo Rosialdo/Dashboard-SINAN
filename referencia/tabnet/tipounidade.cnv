@@ -1,0 +1,29 @@
+; Tipo de unidade de saúde (definição cnes)
+27 2 L
+      1  01 Posto de Saúde                                  01
+      2  02 Centro de saúde/Unidade básica                  02
+      3  04 Policlínica                                     04
+      4  05 Hospital geral                                  05
+      5  07 Hospital especializado                          07
+      6  15 Unidade mista                                   15
+      7  20 Pronto socorro geral                            20
+      8  21 Pontro socorro especializado                    21
+      9  22 Consultório isolado                             22
+     10  32 Unidade móvel fluvial                           32
+     11  36 Clínica especializada/Amb. de especialidade     36
+     12  39 Unid.de apoio diagnose e terapia (SADT ISOLADO) 39
+     13  40 Unidade movel terrestre                         40
+     14  42 Unid. movel nível pré-hosp(Urgência/Emergência) 42
+     15  43 Farmácia                                        43
+     16  50 Unidade de vigilânci em saúde                   50
+     17  60 Cooperativa                                     60
+     18  61 Centro de parto normal - isolado                61
+     19  62 Hospital/DIA - isolado                          62
+     20  64 Central de regulação de serviços de saúde       64
+     21  67 Laboratório central de saúde pública - LACEN    67
+     22  68 Secretaria de saúde                             68
+     23  69 Centro de atenção hemoterapia e ou hematológica 69
+     24  70 Centro de atenção psicossocial                  70
+     25  71 Centro de apoio a saúde da família              71
+     26  72 Unidade de atenção a saúde indígena             72
+     27  73 Pronto atendimento                              73

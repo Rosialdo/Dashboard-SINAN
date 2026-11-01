@@ -1,0 +1,142 @@
+; CAPITAL.CNV  
+27  6
+      1  110020 Porto Velho                                 110020
+      2  120040 Rio Branco                                  120040
+      3  130260 Manaus                                      130260
+      3  130260 Manaus                                      132603
+      4  140010 Boa Vista                                   140010
+      4  140010 Boa Vista                                   140100
+      5  150140 Belém                                       150140
+      6  160030 Macapá                                      160030
+      7  172100 Palmas                                      172100
+      8  211130 São Luís                                    211130
+      9  221100 Teresina                                    221100
+     10  230440 Fortaleza                                   230440
+     11  240810 Natal                                       240810
+     12  250750 João Pessoa                                 250750
+     12  250750 João Pessoa                                 257507
+     13  261160 Recife                                      261160
+     14  270430 Maceió                                      270430
+     15  280030 Aracaju                                     280030
+     16  292740 Salvador                                    292740
+     17  310620 Belo Horizonte                              310620
+     18  320530 Vitória                                     320530
+     19  330455 Rio de Janeiro                              330455
+     19  330455 Rio de Janeiro                              334501
+     19  330455 Rio de Janeiro                              334502
+     19  330455 Rio de Janeiro                              334503
+     19  330455 Rio de Janeiro                              334504
+     19  330455 Rio de Janeiro                              334505
+     19  330455 Rio de Janeiro                              334506
+     19  330455 Rio de Janeiro                              334507
+     19  330455 Rio de Janeiro                              334508
+     19  330455 Rio de Janeiro                              334509
+     19  330455 Rio de Janeiro                              334510
+     19  330455 Rio de Janeiro                              334511
+     19  330455 Rio de Janeiro                              334512
+     19  330455 Rio de Janeiro                              334513
+     19  330455 Rio de Janeiro                              334514
+     19  330455 Rio de Janeiro                              334515
+     19  330455 Rio de Janeiro                              334516
+     19  330455 Rio de Janeiro                              334517
+     19  330455 Rio de Janeiro                              334518
+     19  330455 Rio de Janeiro                              334519
+     19  330455 Rio de Janeiro                              334520
+     19  330455 Rio de Janeiro                              334521
+     19  330455 Rio de Janeiro                              334522
+     19  330455 Rio de Janeiro                              334523
+     19  330455 Rio de Janeiro                              334524
+     19  330455 Rio de Janeiro                              334525
+     19  330455 Rio de Janeiro                              334526
+     19  330455 Rio de Janeiro                              334527
+     19  330455 Rio de Janeiro                              334528
+     19  330455 Rio de Janeiro                              334529
+     19  330455 Rio de Janeiro                              334530
+     20  355030 São Paulo                                   355030
+     20  355030 São Paulo                                   358001
+     20  355030 São Paulo                                   358002
+     20  355030 São Paulo                                   358003
+     20  355030 São Paulo                                   358004
+     20  355030 São Paulo                                   358005
+     20  355030 São Paulo                                   358006
+     20  355030 São Paulo                                   358007
+     20  355030 São Paulo                                   358008
+     20  355030 São Paulo                                   358009
+     20  355030 São Paulo                                   358010
+     20  355030 São Paulo                                   358011
+     20  355030 São Paulo                                   358012
+     20  355030 São Paulo                                   358013
+     20  355030 São Paulo                                   358014
+     20  355030 São Paulo                                   358015
+     20  355030 São Paulo                                   358016
+     20  355030 São Paulo                                   358017
+     20  355030 São Paulo                                   358018
+     20  355030 São Paulo                                   358019
+     20  355030 São Paulo                                   358020
+     20  355030 São Paulo                                   358021
+     20  355030 São Paulo                                   358022
+     20  355030 São Paulo                                   358023
+     20  355030 São Paulo                                   358024
+     20  355030 São Paulo                                   358025
+     20  355030 São Paulo                                   358026
+     20  355030 São Paulo                                   358027
+     20  355030 São Paulo                                   358028
+     20  355030 São Paulo                                   358029
+     20  355030 São Paulo                                   358030
+     20  355030 São Paulo                                   358031
+     20  355030 São Paulo                                   358032
+     20  355030 São Paulo                                   358033
+     20  355030 São Paulo                                   358034
+     20  355030 São Paulo                                   358035
+     20  355030 São Paulo                                   358036
+     20  355030 São Paulo                                   358037
+     20  355030 São Paulo                                   358038
+     20  355030 São Paulo                                   358039
+     20  355030 São Paulo                                   358040
+     20  355030 São Paulo                                   358041
+     20  355030 São Paulo                                   358042
+     20  355030 São Paulo                                   358043
+     20  355030 São Paulo                                   358044
+     20  355030 São Paulo                                   358045
+     20  355030 São Paulo                                   358046
+     20  355030 São Paulo                                   358047
+     20  355030 São Paulo                                   358048
+     20  355030 São Paulo                                   358049
+     20  355030 São Paulo                                   358050
+     20  355030 São Paulo                                   358051
+     20  355030 São Paulo                                   358052
+     20  355030 São Paulo                                   358053
+     20  355030 São Paulo                                   358054
+     20  355030 São Paulo                                   358055
+     20  355030 São Paulo                                   358056
+     20  355030 São Paulo                                   358057
+     20  355030 São Paulo                                   358058
+     21  410690 Curitiba                                    410690
+     22  420540 Florianópolis                               420540
+     23  431490 Porto Alegre                                431490
+     24  500270 Campo Grande                                500270
+     25  510340 Cuiabá                                      510340
+     26  520870 Goiânia                                     520870
+     26  520870 Goiânia                                     528707
+     27  530010 Brasília                                    530000
+     27  530010 Brasília                                    530010
+     27  530010 Brasília                                    530100
+     27  530010 Brasília                                    530200
+     27  530010 Brasília                                    530300
+     27  530010 Brasília                                    530400
+     27  530010 Brasília                                    530500
+     27  530010 Brasília                                    530600
+     27  530010 Brasília                                    530700
+     27  530010 Brasília                                    530800
+     27  530010 Brasília                                    530900
+     27  530010 Brasília                                    531000
+     27  530010 Brasília                                    531100
+     27  530010 Brasília                                    531200
+     27  530010 Brasília                                    531300
+     27  530010 Brasília                                    531400
+     27  530010 Brasília                                    531500
+     27  530010 Brasília                                    531600
+     27  530010 Brasília                                    531700
+     27  530010 Brasília                                    531800
+     27  530010 Brasília                                    539999
+

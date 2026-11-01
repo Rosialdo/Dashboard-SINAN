@@ -1,0 +1,13 @@
+; CRITAIDSC.CNV
+11 3 
+      1  CDC                                                100
+      2  CDC + CDC/LABORATÓRIO                              120
+      3  CDC + CDC/LABORATÓRIO + SINAIS MAIORES E MENORES   123
+      4  CDC + SINAIS MAIORES E MENORES                     130
+      5  CDC/LABORATÓRIO + SINAIS MAIORES E MENORES         140
+      6  CDC/LABORATÓRIO                                    200
+      7  SINAIS MAIORES E MENORES                           300
+      8  ARC + ÓBITO                                        500
+      9  ÓBITO                                              600
+     10  DESCARTADO                                         900
+     11  HIV+                                               901

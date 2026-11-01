@@ -1,0 +1,7 @@
+;FXRIPSA3NET.CNV
+; Revisado UT-Sinan 2019
+4 4
+      1  Em branco/IGN/Outros                              ,0000,9999,1000-4999
+      2  0 a 6 dias                                         1000-1072,2000-2006
+      3  7 a 27 dias                                        2007-2027
+      4  28 e mais dias                                     2028-2364

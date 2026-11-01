@@ -1,0 +1,412 @@
+; Municípios com A-Aeroporto, F-Município de fronteira e/ou Porto ; Patch 4.2
+; Revisado pela UT-Sinan 2019
+409  6
+      1  110012 JI-PARANÁ               A                   110012
+      2  110030 VILHENA                 A                   110030
+      3  150503 NOVO PROGRESSO          A                   150503
+      4  150543 OURILÂNDIA DO NORTE     A                   150543
+      5  150553 PARAUPEBAS              A                   150553
+      6  150613 REDENÇÃO                A                   150613
+      7  150670 SANTANA DO ARAGUAIA     A                   150670
+      8  170210 ARAGUAÍNA               A                   170210
+      9  170950 GURUPI                  A                   170950
+     10  230730 JUAZEIRO DO NORTE       A                   230730
+     11  250400 CAMPINA GRANDE          A                   250400
+     12  260545 FERNANDO  DE NORONHA    A                   260545
+     13  280750 JOAO PESSOA             A                   280750
+     14  291170 GUANAMBI                A                   291170
+     15  292200 MUCURI                  A                   292200
+     16  292530 PORTO SEGURO            A                   292530
+     17  293330 VITÓRIA DA CONQUISTA    A                   293330
+     18  310400 ARAXÁ                   A                   310400
+     19  310620 BELO HORIZONTE          A                   310620
+     20  312160 DIAMANTINA              A                   312160
+     21  312770 GOVERNADOR VALADARES    A                   312770
+     22  313130 IPATINGA                A                   313130
+     23  313670 JUIZ DE FORA            A                   313670
+     24  314330 MONTES CLAROS           A                   314330
+     25  314800 PATOS DE MINAS          A                   314800
+     26  316250 SÃO JOÃO DEL REI        A                   316250
+     27  317010 UBERABA                 A                   317010
+     28  317020 UBERLÂNDIA              A                   317020
+     29  330070 CABO FRIO               A                   330070
+     30  330240 MACAÉ                   A                   330240
+     31  350280 ARAÇATUBA               A                   350280
+     32  350600 BAURU                   A                   350600
+     33  350950 CAMPINAS                A                   350950
+     34  352900 MARÍLIA                 A                   352900
+     35  354140 PRESIDENTE PRUDENTE     A                   354140
+     36  354340 RIBEIRÃO PRETO          A                   354340
+     37  354980 SÃO JOSÉ DO RIO PRETO   A                   354980
+     38  354990 SÃO JOSÉ DOS CAMPOS     A                   354990
+     39  355030 SÃO PAULO               A                   355030
+     40  410480 CASCAVEL                A                   410480
+     41  410690 CURITIBA                A                   410690
+     42  411370 LONDRINA                A                   411370
+     43  411520 MARINGÁ                 A                   411520
+     44  420300 CAÇADOR                 A                   420300
+     45  420420 CHAPECÓ                 A                   420420
+     46  420540 FLORIANÓPOLIS           A                   420540
+     47  420545 FORQUILINHA             A                   420545
+     48  420900 JOAÇABA                 A                   420900
+     49  420910 JOINVILLE               A                   420910
+     50  420930 LAGES                   A                   420930
+     51  430510 CAXIAS DO SUL           A                   430510
+     52  430700 ERECHIM                 A                   430700
+     53  431410 PASSO FUNDO             A                   431410
+     54  431690 SANTA MARIA             A                   431690
+     55  431720 SANTA ROSA              A                   431720
+     56  431750 SANTO ÂNGELO            A                   431750
+     57  500270 CAMPO GRANDE            A                   500270
+     58  500370 DOURADOS                A                   500370
+     59  510025 ALTA FLORESTA           A                   510025
+     60  510140 ARIPUANÃ                A                   510140
+     61  510335 CONFRESA                A                   510335
+     62  510410 GUARANTÃ DO NORTE       A                   510410
+     63  510510 JUARA                   A                   510510
+     64  510515 JUÍNA                   A                   510515
+     65  510525 LUCAS DO RIO VERDE      A                   510525
+     66  510785 SÃO FÉLIX DO ARAGUAIA   A                   510785
+     67  510790 SINOP                   A                   510790
+     68  520870 GOIÂNIA                 A                   520870
+     69  521308 MINAÇU                  A                   521308
+     70  521880 RIO VERDE               A                   521880
+     71  530010 BRASÍLIA                A                   530010
+     72  150050 ALMEIRIM                A                   150050
+     73  110020 PORTO VELHO             AFP                 110020
+     74  120020 CRUZEIRO DO SUL         AFP                 120020
+     75  130040 BARCELOS                AFP                 130040
+     76  130360 SANTA ISABEL  RIO NEGRO AFP                 130360
+     77  130380 SÃO GABRIEL CACHOEIRA   AFP                 130380
+     78  130406 TABATINGA               AFP                 130406
+     79  150530 ORIXIMINÁ               AFP                 150530
+     80  410830 FOZ DO IGUAÇU           AFP                 410830
+     81  432240 URUGUAIANA              AFP                 432240
+     82  500320 CORUMBÁ                 AFP                 500320
+     83  120040 RIO BRANCO              AP                  120040
+     84  130080 BORBA                   AP                  130080
+     85  130100 CARAUARI                AP                  130100
+     86  130120 COARI                   AP                  130120
+     87  130140 EIRUNEPÉ                AP                  130140
+     88  130160 FONTE BOA               AP                  130160
+     89  130170 HUMAITÁ                 AP                  130170
+     90  130240 LÁBREA                  AP                  130240
+     91  130260 MANAUS                  AP                  130260
+     92  130270 MANICORÉ                AP                  130270
+     93  130290 MAUÉS                   AP                  130290
+     94  130340 PARINTINS               AP                  130340
+     95  130390 SÃO PAULO DE OLIVENÇA   AP                  130390
+     96  130420 TEFÉ                    AP                  130420
+     97  140010 BOA VISTA               AP                  140010
+     98  150060 ALTAMIRA                AP                  150060
+     99  150140 BELÉM                   AP                  150140
+    100  150270 CONCEIÇÃO DO ARAGUAIA   AP                  150270
+    101  150360 ITAITUBA                AP                  150360
+    102  150420 MARABÁ                  AP                  150420
+    103  150680 SANTARÉM                AP                  150680
+    104  150730 SÃO FÉLIX DO XINGU      AP                  150730
+    105  150810 TUCURUÍ                 AP                  150810
+    106  160030 MACAPÁ                  AP                  160030
+    107  172100 PALMAS                  AP                  172100
+    108  210140 BALSAS                  AP                  210140
+    109  210530 IMPERATRIZ              AP                  210530
+    110  211130 SÃO LUÍS                AP                  211130
+    111  221100 TERESINA                AP                  221100
+    112  230440 FORTALEZA               AP                  230440
+    113  240810 NATAL                   AP                  240810
+    114  261110 PETROLINA               AP                  261110
+    115  261160 RECIFE                  AP                  261160
+    116  270430 MACEIÓ                  AP                  270430
+    117  280030 ARACAJU                 AP                  280030
+    118  290320 BARREIRAS               AP                  290320
+    119  290390 BOM JESUS DA LAPA       AP                  290390
+    120  291360 ILHÉUS                  AP                  291360
+    121  292740 SALVADOR                AP                  292740
+    122  320530 VITÓRIA                 AP                  320530
+    123  330455 RIO DE JANEIRO          AP                  330455
+    124  421130 NAVEGANTES              AP                  421130
+    125  431440 PELOTAS                 AP                  431440
+    126  431560 RIO GRANDE              AP                  431560
+    127  431790 PORTO ALEGRE            AP                  431790
+    128  510340 CUIABÁ                  AP                  510340
+    129  510760 RONDONÓPOLIS            AP                  510760
+    130  110001 ALTA FLORESTA D'OESTE   F                   110001
+    131  110003 CABIXI                  F                   110003
+    132  110008 COSTA MARQUES           F                   110008
+    133  110033 NOVA MAMORÉ             F                   110033
+    134  110037 ALTO ALEGRE DOS PARECIS F                   110037
+    135  110146 PIMENTEIRAS DO OESTE    F                   110146
+    136  110149 SÃO FRANCISCO GUAPORÉ   F                   110149
+    137  120001 ACRELÂNDIA              F                   120001
+    138  120005 ASSIS BRASIL            F                   120005
+    139  120017 CAPIXABA                F                   120017
+    140  120025 EPITACIOLÂNDIA          F                   120025
+    141  120032 JORDÃO                  F                   120032
+    142  120033 MÂNCIO LIMA             F                   120033
+    143  120034 MANOEL URBANO           F                   120034
+    144  120035 MARECHAL THAUMATURGO    F                   120035
+    145  120038 PLÁCIDO DE CASTRO       F                   120038
+    146  120039 PORTO WALTER            F                   120039
+    147  120042 RODRIGUES ALVES         F                   120042
+    148  120043 SANTA ROSA DO PURUS     F                   120043
+    149  120050 SENA MADUREIRA          F                   120050
+    150  120070 XAPURI                  F                   120070
+    151  140002 AMAJARI                 F                   140002
+    152  140005 ALTO ALEGRE             F                   140005
+    153  140015 BONFIM                  F                   140015
+    154  140023 CARAOBE                 F                   140023
+    155  140028 IRACEMA                 F                   140028
+    156  140040 NORMANDIA               F                   140040
+    157  140045 PACARAIMA               F                   140045
+    158  140070 UIRAMUTÃ                F                   140070
+    159  160027 LARANJAL DO JARÍ        F                   160027
+    160  160050 OIAPOQUE                F                   160050
+    161  410260 BARRACÃO                F                   410260
+    162  410315 BOM JESUS DO SUL        F                   410315
+    163  410450 CAPANEMA                F                   410450
+    164  410753 ENTRE RIOS DO OESTE     F                   410753
+    165  411095 ITAIPULÂNDIA            F                   411095
+    166  411460 MARECHAL CÂNDIDO RONDOM F                   411460
+    167  411585 MERCEDES                F                   411585
+    168  411845 PATO BRAGADO            F                   411845
+    169  411900 PÉROLA D'OESTE          F                   411900
+    170  411980 PLANALTO                F                   411980
+    171  412035 PRANCHITA               F                   412035
+    172  412350 SANTA HELENA            F                   412350
+    173  412440 SANTO ANTÔNIO SUDOESTE  F                   412440
+    174  412570 SÃO MIGUEL DO IGUAÇÚ    F                   412570
+    175  412635 SERRANÓPOLIS DO IGUAÇÚ  F                   412635
+    176  420208 BANDEIRANTE             F                   420208
+    177  420215 BELMONTE                F                   420215
+    178  420500 DIONÍSIO CERQUEIRA      F                   420500
+    179  420640 GUARACIABA              F                   420640
+    180  420840 ITAPIRANGA              F                   420840
+    181  421223 PARAÍSO                 F                   421223
+    182  421415 PRINCESA                F                   421415
+    183  421555 SANTA HELENA            F                   421555
+    184  421670 SÃO JOSÉ DO CEDRO       F                   421670
+    185  421875 TUNÁPOLIS               F                   421875
+    186  430003 ACEGUÁ                  F                   430003
+    187  430030 ALECRIM                 F                   430030
+    188  430160 BAGÉ                    F                   430160
+    189  430543 CHUÍ                    F                   430543
+    190  430600 CRISSIUMAL              F                   430600
+    191  430632 DERRUBADAS              F                   430632
+    192  430660 DOM PEDRITO             F                   430660
+    193  430673 DOUTOR MAURÍCIO CARDOSO F                   430673
+    194  430710 HERVAL                  F                   430710
+    195  430745 ESPERANÇA DO SUL        F                   430745
+    196  430865 GARRUCHOS               F                   430865
+    197  431060 ITAQUI                  F                   431060
+    198  431342 NOVO MACHADO            F                   431342
+    199  431417 PEDRAS ALTAS            F                   431417
+    200  431455 PIRAPÓ                  F                   431455
+    201  431500 PORTO LUCENA            F                   431500 
+    202  431505 PORTO MAUÁ              F                   431505
+    203  431507 PORTO VERA CRUZ         F                   431507
+    204  431510 PORTO XAVIER            F                   431510
+    205  431530 QUARAÍ                  F                   431530
+    206  431630 ROQUE GONZALES          F                   431630
+    207  431710 SANT'ANA DO LIVRAMENTO  F                   431710
+    208  431920 SÃO NICOLAU             F                   431920
+    209  432147 TIRADENTES DO SUL       F                   432147
+    210  500090 ANTÔNIO JOÃO            F                   500090
+    211  500124 ARAL MOREIRA            F                   500124
+    212  500210 BELA VISTA              F                   500210
+    213  500280 CARACOL                 F                   500280
+    214  500315 CORONEL SAPUCAIA        F                   500315
+    215  500480 JAPORÃ                  F                   500480
+    216  500568 MUNDO NOVO              F                   500568
+    217  500635 PARANHOS                F                   500635
+    218  500660 PONTA PORÃ              F                   500660
+    219  500770 SETE QUEDAS             F                   500770
+    220  510330 COMODORO                F                   510330
+    221  510682 PORTO ESPERIDIÃO        F                   510682
+    222  110010 GUAJARÁ MIRIM           FP                  110010
+    223  120010 BRASILÉIA               FP                  120010
+    224  120030 FEIJÓ                   FP                  120030
+    225  130020 ATALAIA DO NORTE        FP                  130020
+    226  130060 BENJAMIN CONSTANT       FP                  130060
+    227  130135 GUAJARÁ                 FP                  130135
+    228  130210 JAPURÁ                  FP                  130210
+    229  130370 SANTO ANTÔNIO DO IÇÁ    FP                  130370
+    230  140015 CARACARAÍ               FP                  140015
+    231  150510 ÓBIDOS                  FP                  150510
+    232  410880 GUAÍRA                  FP                  410880
+    233  430187 BARRA DO QUARAÍ         FP                  430187
+    234  431100 JAGUARÃO                FP                  431100
+    235  431730 SANTA VITÓRIA DO PALMAR FP                  431730
+    236  431800 SÃO BORJA               FP                  431800
+    237  500690 PORTO MURTINHO          FP                  500690
+    238  510250 CÁCERES                 FP                  510250
+    239  510550 VILA B. SANT. TRINDADE  FP                  510550
+    240  510650 POCONÉ                  FP                  510650
+    241  120060 TARAUACÁ                P                   120060
+    242  130002 ALVARÃES                P                   130002
+    243  130006 AMATURÁ                 P                   130006
+    244  130008 ANAMÃ                   P                   130008
+    245  130010 ANORI                   P                   130010
+    246  130014 APUÍ                    P                   130014
+    247  130030 AUTAZES                 P                   130030
+    248  130050 BARREIRINHA             P                   130050
+    249  130063 BERURI                  P                   130063
+    250  130068 BOA VISTA DO RAMOS      P                   130068
+    251  130070 BOCA DO ACRE            P                   130070
+    252  130083 CAAPIRANGA              P                   130083
+    253  130090 CANUTAMA                P                   130090
+    254  130115 CAREIRO DA VÁRZEA       P                   130115
+    255  130130 CODAJÁS                 P                   130130
+    256  130150 ENVIRA                  P                   130150
+    257  130180 IPIXUNA                 P                   130180
+    258  130185 IRANDUBA                P                   130185
+    259  130190 ITACOATIARA             P                   130190
+    260  130195 ITAMARATI               P                   130195
+    261  130200 ITAPIRANGA              P                   130200
+    262  130220 JURUÁ                   P                   130220
+    263  130230 JUTAÍ                   P                   130230
+    264  130250 MANACAPURU              P                   130250
+    265  130255 MANAQUIRI               P                   130255
+    266  130280 MARAÃ                   P                   130280
+    267  130300 NHAMUNDÁ                P                   130300
+    268  130310 NOVA OLINDA DO NORTE    P                   130310
+    269  130320 NOVO AIRÃO              P                   130320
+    270  130330 NOVO ARIPUANÃ           P                   130330
+    271  130350 PAUINÍ                  P                   130350
+    272  130356 RIO PRETO DA EVA        P                   130356
+    273  130395 SÃO SEBASTIÃO DO UATUMÃ P                   130395
+    274  130400 SILVES                  P                   130400
+    275  130410 TAPAUÃ                  P                   130410
+    276  130423 TONANTINS               P                   130423
+    277  130426 UARINI                  P                   130426
+    278  130430 URUCARÁ                 P                   130430
+    279  130440 URUCURITUBA             P                   130440
+    280  150010 ABAETETUBA              P                   150010
+    281  150090 AUGUSTO CORREA          P                   150090
+    282  150100 AVEIRO                  P                   150100
+    283  150130 BARBACENA               P                   150130
+    284  150180 BREVES                  P                   150180
+    285  150210 CAMETÁ                  P                   150210
+    286  150260 COLARES                 P                   150260
+    287  150290 CURUÇA                  P                   150290
+    288  150304 FLORESTA DO ARAGUAIA    P                   150304
+    289  150310 GURUPÁ                  P                   150310
+    290  150370 ITUPIRANGA              P                   150370
+    291  150390 JURUTI                  P                   150390
+    292  150400 LIMOEIRO DO AJURU       P                   150400
+    293  150470 MOJU                    P                   150470
+    294  150480 MONTE ALEGRE            P                   150480
+    295  150490 MUANÁ                   P                   150490
+    296  150520 OEIRAS DO PARÁ          P                   150520
+    297  150580 PORTEL                  P                   150580
+    298  150590 PORTO DE MOZ            P                   150590
+    299  150600 PRAINHA                 P                   150600
+    300  150611 QUATIPURU               P                   150611
+    301  150620 SALINÓPOLIS             P                   150620
+    302  150635 SANTA BÁRBARA DO PARÁ   P                   150635
+    303  150658 SANTA MARIA BARREIRAS   P                   150658
+    304  150690 SANTARÉM NOVO           P                   150690
+    305  150700 SANTO ANTÕNIO DO TAUÁ   P                   150700
+    306  150750 SÃO JOÃO DO ARAGUAIA    P                   150750
+    307  150760 SÃO MIGUEL DO GUAMÃ     P                   150760
+    308  150770 SÃO SEBASTIÃO BOA VISTA P                   150770
+    309  150780 SENADOR JOSÉ PORFÍLIO   P                   150780
+    310  150797 TERRA SANTA             P                   150797
+    311  150835 VITÓRIA DO XINGU        P                   150835
+    312  158030 VISEU                   P                   158030
+    313  170030 AGUIARNÓPOLIS           P                   170030
+    314  170190 ARAGUACEMA              P                   170190
+    315  170220 ARAGUATINS              P                   170220
+    316  170390 CASEARA                 P                   170390
+    317  170600 COUTO MAGALHÃES         P                   170600
+    318  171320 MIRACEMA DO TOCANTINS   P                   171320
+    319  171630 PAU D'ARCO              P                   171630
+    320  171820 PORTO NACIONAL          P                   171820
+    321  172015 SÃO FÉLIX DO TOCANTINS  P                   172015
+    322  172210 XAMBIOÁ                 P                   172210
+    323  180080 ANANINDEUA              P                   180080
+    324  210015 ÁGUA DOCE DO MARANHÃO   P                   210015
+    325  210050 ALTO PARNAÍBA           P                   210050
+    326  210090 ARAIOSES                P                   210090
+    327  210100 ARARI                   P                   210100
+    328  210160 BARRA DO CORDA          P                   210160
+    329  210190 BEQUIMÃO                P                   210190 
+    330  210280 CAROLINA                P                   210280
+    331  210300 CAXIAS                  P                   210300
+    332  210370 CURURUPU                P                   210370
+    333  210490 GUIMARÃES               P                   210490
+    334  210760 PALMEIRÃNDIA            P                   210760
+    335  210830 PENALVA                 P                   210830
+    336  210850 PINDARÉ-MIRIM           P                   210850
+    337  210860 PINHEIRO                P                   210860
+    338  210900 PORTO FRANCO            P                   210900
+    339  210905 PORTO RICO DO MARANHÃO  P                   210905
+    340  210990 SANTA INÊS              P                   210990
+    341  211050 SÃO BENTO DO MARANHÃO   P                   211050
+    342  211220 TIMON                   P                   211220
+    343  211240 TURIAÇU                 P                   211240
+    344  211250 TUTÓIA                  P                   211250
+    345  220030 ALTO LONGA              P                   220030
+    346  220050 AMARANTE                P                   220050
+    347  220390 FLORIANO                P                   220390
+    348  220570 LUÍS CORREIA            P                   220570
+    349  220770 PARNAÍBA                P                   220770
+    350  220920 SANTA FILOMENA          P                   220920
+    351  221120 URUÇU                   P                   221120
+    352  230260 CAMOCIM                 P                   230260
+    353  231240 SÃO GONÇALO DO AMARANTE P                   231240
+    354  240110 AREIA BRANCA            P                   240110
+    355  240720 MACAU                   P                   240720
+    356  250320 CABEDELO                P                   250320
+    357  260290 CABO DE SANTO AGOSTINHO P                   260290
+    358  270670 PENEDO                  P                   270670
+    359  280060 BARRA DOS COQUEIROS     P                   280060
+    360  280570 PROPRIÁ                 P                   280570
+    361  290270 BARRA                   P                   290270
+    362  290650 CANDEIAS                P                   290650
+    363  290940 COTEGIPE                P                   290940
+    364  291110 FORMOSA DO RIO PRETO    P                   291110
+    365  291320 IBOTIRAMA               P                   291320
+    366  291840 JUAZEIRO                P                   291840
+    367  292070 MARAÚ                   P                   292070
+    368  292620 RIACHÃO DAS NEVES       P                   292620
+    369  292840 SANTA RITA DE CÁSSIA    P                   292840
+    370  313030 IGUATAMA                P                   313030
+    371  313440 ITURAMA                 P                   313440
+    372  315120 PIRAPORA                P                   315120
+    373  315980 SANTA VITÓRIA           P                   315980
+    374  320060 ARACRUZ                 P                   320060
+    375  320320 LINHARES                P                   320320
+    376  330010 ANGRA DOS REIS          P                   330010
+    377  330025 ARRAIAL DO CABO         P                   330025
+    378  330100 CAMPOS DE GOYCATAZES    P                   330100
+    379  330200 ITAGUAÍ                 P                   330200
+    380  330330 NITERÓI                 P                   330330
+    381  351270 CORUMBATAÍ              P                   351270
+    382  352070 INDIAPORÃ               P                   352070 
+    383  352530 JAÚ                     P                   352530
+    384  353540 PANORAMA                P                   353540
+    385  353670 PEDERNEIRAS             P                   353670
+    386  354130 PRESIDENTE EPITÁCEO     P                   354130
+    387  354425 ROSANA                  P                   354425
+    388  354850 SANTOS                  P                   354850
+    389  355070 SÃO SEBASTIÃO           P                   355070
+    390  410120 ANTONINA                P                   410120
+    391  411820 PARANAGUÁ               P                   411820
+    392  420730 IMBITUBA                P                   420730
+    393  420820 ITAJAÍ                  P                   420820
+    394  420940 LAGUNA                  P                   420940
+    395  421620 SÃO FRANCISCO DO SUL    P                   421620
+    396  430300 CACHOEIRA DO SUL        P                   430300
+    397  430535 CHARQUEADAS             P                   430535
+    398  430780 ESTRELA                 P                   430780
+    399  431570 RIO PARDO               P                   431570
+    400  431840 SÃO JERÔNIMO            P                   431840
+    401  431850 SÃO JOSÉ DO NORTE       P                   431850
+    402  500520 LADÁRIO                 P                   500520
+    403  510020 ÁGUA BOA                P                   510020
+    404  510180 BARRA DO GARÇA          P                   510180
+    405  510625 NOVA XAVANTINA          P                   510625
+    406  510840 VARZEA GRANDE           P                   510840
+    407  520170 ARAGARÇAS               P                   520170
+    408  520250 ARUANÃ                  P                   520250
+    409  522040 SÃO SIMÃO               P                   522040

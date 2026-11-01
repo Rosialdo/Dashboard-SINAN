@@ -1,0 +1,9 @@
+;REGIAOC.CNV
+6 1
+      1  Ign/Ext                                             ,0,6-9
+      2  Norte                                              1
+      3  Nordeste                                           2 
+      4  Sudeste                                            3
+      5  Sul                                                4
+      6  C.Oeste                                            5
+

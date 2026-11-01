@@ -1,0 +1,317 @@
+    316  6                                                                                    
+      1  42001 S.Miguel Oeste                               420080                            
+  1   2  ..... Anchieta                                     420080                            
+  1   3  ..... Bandeirante                                  420208                            
+  1   4  ..... Barra Bonita                                 420209                            
+  1   5  ..... Belmonte                                     420215                            
+  1   6  ..... Descanso                                     420490                            
+  1   7  ..... Dionísio Cerqueira                           420500                            
+  1   8  ..... Guaraciaba                                   420640                            
+  1   9  ..... Guarujá do Sul                               420660                            
+  1  10  ..... Iporã do Oeste                               420765                            
+  1  11  ..... Itapiranga                                   420840                            
+  1  12  ..... Mondaí                                       421100                            
+  1  13  ..... Palma Sola                                   421200                            
+  1  14  ..... Paraíso                                      421223                            
+  1  15  ..... Princesa                                     421415                            
+  1  16  ..... Riqueza                                      421507                            
+  1  17  ..... Romelândia                                   421520                            
+  1  18  ..... Santa Helena                                 421555                            
+  1  19  ..... São João do Oeste                            421625                            
+  1  20  ..... São José do Cedro                            421670                            
+  1  21  ..... São Miguel do Oeste                          421720                            
+  1  22  ..... Tunápolis                                    421875                            
+     23  42002 Chapecó                                      420050                            
+ 23  24  ..... Águas de Chapecó                             420050                            
+ 23  25  ..... Águas Frias                                  420055                            
+ 23  26  ..... Bom Jesus do Oeste                           420257                            
+ 23  27  ..... Caibi                                        420310                            
+ 23  28  ..... Campo Erê                                    420350                            
+ 23  29  ..... Caxambu do Sul                               420410                            
+ 23  30  ..... Chapecó                                      420420                            
+ 23  31  ..... Cordilheira Alta                             420435                            
+ 23  32  ..... Coronel Freitas                              420440                            
+ 23  33  ..... Cunha Porã                                   420470                            
+ 23  34  ..... Cunhataí                                     420475                            
+ 23  35  ..... Flor do Sertão                               420535                            
+ 23  36  ..... Formosa do Sul                               420543                            
+ 23  37  ..... Guatambú                                     420665                            
+ 23  38  ..... Iraceminha                                   420775                            
+ 23  39  ..... Irati                                        420785                            
+ 23  40  ..... Jardinópolis                                 420895                            
+ 23  41  ..... Maravilha                                    421050                            
+ 23  42  ..... Modelo                                       421090                            
+ 23  43  ..... Nova Erechim                                 421140                            
+ 23  44  ..... Nova Itaberaba                               421145                            
+ 23  45  ..... Novo Horizonte                               421165                            
+ 23  46  ..... Palmitos                                     421210                            
+ 23  47  ..... Pinhalzinho                                  421290                            
+ 23  48  ..... Planalto Alegre                              421315                            
+ 23  49  ..... Quilombo                                     421420                            
+ 23  50  ..... Saltinho                                     421535                            
+ 23  51  ..... Santa Terezinha do Progresso                 421568                            
+ 23  52  ..... Santiago do Sul                              421569                            
+ 23  53  ..... São Bernardino                               421575                            
+ 23  54  ..... São Carlos                                   421600                            
+ 23  55  ..... São Lourenço do Oeste                        421690                            
+ 23  56  ..... São Miguel da Boa Vista                      421715                            
+ 23  57  ..... Saudades                                     421730                            
+ 23  58  ..... Serra Alta                                   421755                            
+ 23  59  ..... Sul Brasil                                   421775                            
+ 23  60  ..... Tigrinhos                                    421795                            
+ 23  61  ..... União do Oeste                               421885                            
+     62  42003 Xanxerê                                      420010                            
+ 62  63  ..... Abelardo Luz                                 420010                            
+ 62  64  ..... Bom Jesus                                    420253                            
+ 62  65  ..... Coronel Martins                              420445                            
+ 62  66  ..... Entre Rios                                   420517                            
+ 62  67  ..... Faxinal dos Guedes                           420530                            
+ 62  68  ..... Galvão                                       420560                            
+ 62  69  ..... Ipuaçu                                       420768                            
+ 62  70  ..... Jupiá                                        420917                            
+ 62  71  ..... Lajeado Grande                               420945                            
+ 62  72  ..... Marema                                       421055                            
+ 62  73  ..... Ouro Verde                                   421185                            
+ 62  74  ..... Passos Maia                                  421227                            
+ 62  75  ..... Ponte Serrada                                421340                            
+ 62  76  ..... São Domingos                                 421610                            
+ 62  77  ..... Vargeão                                      421910                            
+ 62  78  ..... Xanxerê                                      421950                            
+ 62  79  ..... Xaxim                                        421970                            
+     80  42004 Joaçaba                                      420040                            
+ 80  81  ..... Água Doce                                    420040                            
+ 80  82  ..... Arroio Trinta                                420160                            
+ 80  83  ..... Caçador                                      420300                            
+ 80  84  ..... Calmon                                       420315                            
+ 80  85  ..... Capinzal                                     420390                            
+ 80  86  ..... Catanduvas                                   420400                            
+ 80  87  ..... Erval Velho                                  420520                            
+ 80  88  ..... Fraiburgo                                    420550                            
+ 80  89  ..... Herval d'Oeste                               420670                            
+ 80  90  ..... Ibiam                                        420675                            
+ 80  91  ..... Ibicaré                                      420680                            
+ 80  92  ..... Iomerê                                       420757                            
+ 80  93  ..... Jaborá                                       420860                            
+ 80  94  ..... Joaçaba                                      420900                            
+ 80  95  ..... Lacerdópolis                                 420920                            
+ 80  96  ..... Lebon Régis                                  420970                            
+ 80  97  ..... Luzerna                                      421003                            
+ 80  98  ..... Macieira                                     421005                            
+ 80  99  ..... Matos Costa                                  421070                            
+ 80 100  ..... Ouro                                         421180                            
+ 80 101  ..... Pinheiro Preto                               421300                            
+ 80 102  ..... Rio das Antas                                421440                            
+ 80 103  ..... Salto Veloso                                 421540                            
+ 80 104  ..... Tangará                                      421790                            
+ 80 105  ..... Treze Tílias                                 421850                            
+ 80 106  ..... Vargem Bonita                                421917                            
+ 80 107  ..... Videira                                      421930                            
+    108  42005 Concórdia                                    420075                            
+108 109  ..... Alto Bela Vista                              420075                            
+108 110  ..... Arabutã                                      420127                            
+108 111  ..... Arvoredo                                     420165                            
+108 112  ..... Concórdia                                    420430                            
+108 113  ..... Ipira                                        420760                            
+108 114  ..... Ipumirim                                     420770                            
+108 115  ..... Irani                                        420780                            
+108 116  ..... Itá                                          420800                            
+108 117  ..... Lindóia do Sul                               420985                            
+108 118  ..... Paial                                        421187                            
+108 119  ..... Peritiba                                     421260                            
+108 120  ..... Piratuba                                     421310                            
+108 121  ..... Presidente Castello Branco                   421390                            
+108 122  ..... Seara                                        421750                            
+108 123  ..... Xavantina                                    421960                            
+    124  42006 Canoinhas                                    420213                            
+124 125  ..... Bela Vista do Toldo                          420213                            
+124 126  ..... Canoinhas                                    420380                            
+124 127  ..... Irineópolis                                  420790                            
+124 128  ..... Itaiópolis                                   420810                            
+124 129  ..... Mafra                                        421010                            
+124 130  ..... Major Vieira                                 421030                            
+124 131  ..... Monte Castelo                                421110                            
+124 132  ..... Papanduva                                    421220                            
+124 133  ..... Porto União                                  421360                            
+124 134  ..... Santa Terezinha                              421567                            
+124 135  ..... Timbó Grande                                 421825                            
+124 136  ..... Três Barras                                  421830                            
+    137  42007 S.Bento do Sul                               420330                            
+137 138  ..... Campo Alegre                                 420330                            
+137 139  ..... Rio Negrinho                                 421500                            
+137 140  ..... São Bento do Sul                             421580                            
+    141  42008 Joinville                                    420130                            
+141 142  ..... Araquari                                     420130                            
+141 143  ..... Balneário Barra do Sul                       420205                            
+141 144  ..... Corupá                                       420450                            
+141 145  ..... Garuva                                       420580                            
+141 146  ..... Guaramirim                                   420650                            
+141 147  ..... Itapoá                                       420845                            
+141 148  ..... Jaraguá do Sul                               420890                            
+141 149  ..... Joinville                                    420910                            
+141 150  ..... Massaranduba                                 421060                            
+141 151  ..... São Francisco do Sul                         421620                            
+141 152  ..... Schroeder                                    421740                            
+    153  42009 Curitibanos                                  420005                            
+153 154  ..... Abdon Batista                                420005                            
+153 155  ..... Brunópolis                                   420287                            
+153 156  ..... Campos Novos                                 420360                            
+153 157  ..... Curitibanos                                  420480                            
+153 158  ..... Frei Rogério                                 420555                            
+153 159  ..... Monte Carlo                                  421105                            
+153 160  ..... Ponte Alta                                   421330                            
+153 161  ..... Ponte Alta do Norte                          421335                            
+153 162  ..... Santa Cecília                                421550                            
+153 163  ..... São Cristovão do Sul                         421605                            
+153 164  ..... Vargem                                       421915                            
+153 165  ..... Zortéa                                       421985                            
+    166  42010 Campos de Lages                              420100                            
+166 167  ..... Anita Garibaldi                              420100                            
+166 168  ..... Bocaina do Sul                               420243                            
+166 169  ..... Bom Jardim da Serra                          420250                            
+166 170  ..... Bom Retiro                                   420260                            
+166 171  ..... Campo Belo do Sul                            420340                            
+166 172  ..... Capão Alto                                   420325                            
+166 173  ..... Celso Ramos                                  420415,420411                     
+166 174  ..... Cerro Negro                                  420417                            
+166 175  ..... Correia Pinto                                420455                            
+166 176  ..... Lages                                        420930                            
+166 177  ..... Otacílio Costa                               421175                            
+166 178  ..... Painel                                       421189                            
+166 179  ..... Palmeira                                     421205                            
+166 180  ..... Rio Rufino                                   421505                            
+166 181  ..... São Joaquim                                  421650                            
+166 182  ..... São José do Cerrito                          421680                            
+166 183  ..... Urubici                                      421890                            
+166 184  ..... Urupema                                      421895                            
+    185  42011 Rio do Sul                                   420030                            
+185 186  ..... Agronômica                                   420030                            
+185 187  ..... Aurora                                       420190                            
+185 188  ..... Braço do Trombudo                            420285                            
+185 189  ..... Dona Emma                                    420510                            
+185 190  ..... Ibirama                                      420690                            
+185 191  ..... José Boiteux                                 420915                            
+185 192  ..... Laurentino                                   420950                            
+185 193  ..... Lontras                                      420990                            
+185 194  ..... Mirim Doce                                   421085                            
+185 195  ..... Pouso Redondo                                421370                            
+185 196  ..... Presidente Getúlio                           421400                            
+185 197  ..... Presidente Nereu                             421410                            
+185 198  ..... Rio do Campo                                 421450                            
+185 199  ..... Rio do Oeste                                 421460                            
+185 200  ..... Rio do Sul                                   421480                            
+185 201  ..... Salete                                       421530                            
+185 202  ..... Taió                                         421780                            
+185 203  ..... Trombudo Central                             421860                            
+185 204  ..... Vitor Meireles                               421935                            
+185 205  ..... Witmarsum                                    421940                            
+    206  42012 Blumenau                                     420125                            
+206 207  ..... Apiúna                                       420125                            
+206 208  ..... Ascurra                                      420170                            
+206 209  ..... Benedito Novo                                420220                            
+206 210  ..... Blumenau                                     420240                            
+206 211  ..... Botuverá                                     420270                            
+206 212  ..... Brusque                                      420290                            
+206 213  ..... Doutor Pedrinho                              420515                            
+206 214  ..... Gaspar                                       420590                            
+206 215  ..... Guabiruba                                    420630                            
+206 216  ..... Indaial                                      420750                            
+206 217  ..... Luiz Alves                                   421000                            
+206 218  ..... Pomerode                                     421320                            
+206 219  ..... Rio dos Cedros                               421470                            
+206 220  ..... Rodeio                                       421510                            
+206 221  ..... Timbó                                        421820                            
+    222  42013 Itajaí                                       420200                            
+222 223  ..... Balneário Camboriú                           420200                            
+222 224  ..... Balneário Piçarras                           421280                            
+222 225  ..... Barra Velha                                  420210                            
+222 226  ..... Bombinhas                                    420245                            
+222 227  ..... Camboriú                                     420320                            
+222 228  ..... Ilhota                                       420710                            
+222 229  ..... Itajaí                                       420820                            
+222 230  ..... Itapema                                      420830                            
+222 231  ..... Navegantes                                   421130                            
+222 232  ..... Penha                                        421250                            
+222 233  ..... Porto Belo                                   421350                            
+222 234  ..... São João do Itaperiú                         421635                            
+    235  42014 Ituporanga                                   420020                            
+235 236  ..... Agrolândia                                   420020                            
+235 237  ..... Atalanta                                     420180                            
+235 238  ..... Chapadão do Lageado                          420419                            
+235 239  ..... Imbuia                                       420740                            
+235 240  ..... Ituporanga                                   420850                            
+235 241  ..... Petrolândia                                  421270                            
+235 242  ..... Vidal Ramos                                  421920                            
+    243  42015 Tijucas                                      420090                            
+243 244  ..... Angelina                                     420090                            
+243 245  ..... Canelinha                                    420370                            
+243 246  ..... Leoberto Leal                                420980                            
+243 247  ..... Major Gercino                                421020                            
+243 248  ..... Nova Trento                                  421150                            
+243 249  ..... São João Batista                             421630                            
+243 250  ..... Tijucas                                      421800                            
+    251  42016 Florianópolis                                420120                            
+251 252  ..... Antônio Carlos                               420120                            
+251 253  ..... Biguaçu                                      420230                            
+251 254  ..... Florianópolis                                420540                            
+251 255  ..... Governador Celso Ramos                       420600                            
+251 256  ..... Palhoça                                      421190                            
+251 257  ..... Paulo Lopes                                  421230                            
+251 258  ..... Santo Amaro da Imperatriz                    421570                            
+251 259  ..... São José                                     421660                            
+251 260  ..... São Pedro de Alcântara                       421725                            
+    261  42017 Tabuleiro                                    420060                            
+261 262  ..... Águas Mornas                                 420060                            
+261 263  ..... Alfredo Wagner                               420070                            
+261 264  ..... Anitápolis                                   420110                            
+261 265  ..... Rancho Queimado                              421430                            
+261 266  ..... São Bonifácio                                421590                            
+    267  42018 Tubarão                                      420150                            
+267 268  ..... Armazém                                      420150                            
+267 269  ..... Braço do Norte                               420280                            
+267 270  ..... Capivari de Baixo                            420395                            
+267 271  ..... Garopaba                                     420570                            
+267 272  ..... Grão Pará                                    420610                            
+267 273  ..... Gravatal                                     420620                            
+267 274  ..... Imaruí                                       420720                            
+267 275  ..... Imbituba                                     420730                            
+267 276  ..... Jaguaruna                                    420880                            
+267 277  ..... Laguna                                       420940                            
+267 278  ..... Orleans                                      421170                            
+267 279  ..... Pedras Grandes                               421240                            
+267 280  ..... Pescaria Brava                               421265                            
+267 281  ..... Rio Fortuna                                  421490                            
+267 282  ..... Sangão                                       421545                            
+267 283  ..... Santa Rosa de Lima                           421560                            
+267 284  ..... São Ludgero                                  421700                            
+267 285  ..... São Martinho                                 421710                            
+267 286  ..... Treze de Maio                                421840                            
+267 287  ..... Tubarão                                      421870                            
+    288  42019 Criciúma                                     422000                            
+288 289  ..... Balneário Rincão                             422000                            
+288 290  ..... Cocal do Sul                                 420425                            
+288 291  ..... Criciúma                                     420460                            
+288 292  ..... Forquilhinha                                 420545                            
+288 293  ..... Içara                                        420700                            
+288 294  ..... Lauro Muller                                 420960                            
+288 295  ..... Morro da Fumaça                              421120                            
+288 296  ..... Nova Veneza                                  421160                            
+288 297  ..... Siderópolis                                  421760                            
+288 298  ..... Treviso                                      421835                            
+288 299  ..... Urussanga                                    421900                            
+    300  42020 Araranguá                                    420140                            
+300 301  ..... Araranguá                                    420140                            
+300 302  ..... Balneário Arroio do Silva                    420195                            
+300 303  ..... Balneário Gaivota                            420207                            
+300 304  ..... Ermo                                         420519                            
+300 305  ..... Jacinto Machado                              420870                            
+300 306  ..... Maracajá                                     421040                            
+300 307  ..... Meleiro                                      421080                            
+300 308  ..... Morro Grande                                 421125                            
+300 309  ..... Passo de Torres                              421225                            
+300 310  ..... Praia Grande                                 421380                            
+300 311  ..... Santa Rosa do Sul                            421565                            
+300 312  ..... São João do Sul                              421640                            
+300 313  ..... Sombrio                                      421770                            
+300 314  ..... Timbé do Sul                                 421810                            
+300 315  ..... Turvo                                        421880                            
+    316  42000 Ignorado - SC                                420000,429999                     

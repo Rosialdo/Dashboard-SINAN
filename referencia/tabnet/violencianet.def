@@ -1,0 +1,740 @@
+; INVESTIGAÇÃO DE VIOLENCIA DOMÉSTICA, SEXUAL E/OU OUTRS VIOLENCIAS - Sinan NET
+; Criado em 30/07/2008 pelo GT- Sinan/MS
+; Alterado em 02/09/2010 pelo GT - Sinan/MS correção de ocupação
+; Atualizado em 24/09/2010 pelo GT- Sinan/MS - inclusão de consulta segundo Núcleos Hospitalares de Epidemiologia-NHE (190 nucleos)
+
+Ac:\SinanNet\BaseDBF\VIOL*.DB?
+
+;    Definições para Ano, Mes, Semana e Trimestre da Notificação
+XAno da Notific,       DT_NOTIFIC,  1, ANOS.CNV
+LMes da Notific,       DT_NOTIFIC,  5, MESES.CNV
+CMes da Notific,       DT_NOTIFIC,  5, MESESC.CNV
+SMes da Notific,       DT_NOTIFIC,  5, MESES.CNV
+XTrim.da Notific,      DT_NOTIFIC,  5, TRIME.CNV
+
+
+; Definições para Ano, Trimestre, Mes da Ocorrência
+XAno Ocorrencia,       DT_OCOR,     1, ANOS.CNV
+LMes Ocorrencia,       DT_OCOR,     5, MESES.CNV
+CMes Ocorrencia,       DT_OCOR,     5, MESESC.CNV
+SMes Ocorrencia,       DT_OCOR,     5, MESES.CNV
+XTrim Ocorrencia,      DT_OCOR,     5, TRIME.CNV
+
+;    Definições para Ano e Semana epidemiologica de notificação
+xSem.Epid Notific,    SEM_NOT,     5, SEMANAEP.CNV
+xAno Epid notific,    SEM_NOT,     1, ANOS.CNV
+
+; Definições para Ano e Semana epidemiologica de inícos de sintomas
+
+xSem.Epid.Ocorr.,    SEM_PRI,     5, SEMANAEP.CNV
+XAno Epid.Ocorr.,    SEM_PRI,     1, ANOS.CNV
+
+;Definicoes para Faixa Etaria do paciente por ocasião da Notificação
+
+XFx Etária RIPSA6, NU_IDADE_N,   1,  FXRIPSA6NET.CNV
+XFx Etaria (5),    NU_IDADE_N,   1,  FXIDAD5NET.CNV
+XFx Etaria (9),    NU_IDADE_N,   1,  FXIDAD9NET.CNV
+XFx Etaria SINAN,  NU_IDADE_N,   1,  FXIDAD10NET.CNV
+XFx Etaria (13),   NU_IDADE_N,   1,  FXIDAD13NET.CNV
+XIdade detalhada,  NU_IDADE_N,   1,  IDADEDETNET.CNV
+
+;       Definicoes para Escolaridade
+XEscolar SinanNET,         CS_ESCOL_N,   1,  ESCOLARNET.CNV
+
+;       Definições para Raça
+XRaça,              CS_RACA,     1,  RAÇA.CNV
+
+;       Definicoes para Sexo
+XSexo,              CS_SEXO,      1,  SEXO.CNV
+
+;Definicoes para GESTANTE
+XGestante,          CS_GESTANT,      1,  GESTANTE.CNV
+
+; Definições para Identificação da Unidade de Saúde Notificante
+LUnid Saude Not, ID_UNIDADE, NM_UNIDADE,  unidanet.dbf
+SUnid Saude Not, ID_UNIDADE, NM_UNIDADE,  unidanet.dbf
+
+;       Definições para identificação dos 190 Núcleos Hospitalares de Epidemiologia-NHE
+LHosp NHE-UF e mun,    ID_UNIDADE,    1,  NHE.CNV
+SHosp NHE-UF e mun,    ID_UNIDADE,    1,  NHE.CNV
+
+;       Definições para identificação dos 190 Núcleos Hospitalares de Epidemiologia-NHE segundo nível hospitalar
+LHosp NHE-Nível,       ID_UNIDADE,    1,     NHENIVEL.CNV
+SHosp NHE-Nível,       ID_UNIDADE,    1,     NHENIVEL.CNV
+
+;       Definições para identificação dos 190 Núcleos Hospitalares de Epidemiologia-NHE segundo município
+LHosp NHE-Nível Mun,   ID_UNIDADE,    1,     NHE_NIVEL_MUN.CNV
+SHosp NHE-Nível Mun,   ID_UNIDADE,    1,     NHE_NIVEL_MUN.CNV
+
+; Definicoes para localização da UF Notificante
+LUF Notificação,    ID_MUNICIP,  1,  UFCODIGO.CNV
+CUF Notificação,    ID_MUNICIP,  1,  UFCCODIG.CNV
+SUF Notificação,    ID_MUNICIP,  1,  UFCODIGO.CNV
+
+;     Definicoes para Regionais de Notificaçao
+LRegional Notificação,  ID_REGIONA, NM_REGIONA,  regionet.dbf
+SRegional Notificação,  ID_REGIONA, NM_REGIONA,  regionet.dbf
+
+;     Definicoes para Região metropolitana de notificação
+LReg Metrop Not,  ID_MUNICIP,   1,  RMETRBR.CNV
+SReg Metrop Not,  ID_MUNICIP,   1,  RMETRBR.CNV
+
+; Definicoes para Capitais de Notificação
+XCapitais Not.,       ID_MUNICIP,  1,  CAPITAL.CNV
+
+; Definicoes para municípios de Notificação
+LMun US Noti AC,   ID_MUNICIP,  1,  MUNICAC.CNV
+SMun US Noti AC,   ID_MUNICIP,  1,  MUNICAC.CNV
+LMun US Noti AL,   ID_MUNICIP,  1,  MUNICAL.CNV
+SMun US Noti AL,   ID_MUNICIP,  1,  MUNICAL.CNV
+LMun US Noti AM,   ID_MUNICIP,  1,  MUNICAM.CNV
+SMun US Noti AM,   ID_MUNICIP,  1,  MUNICAM.CNV
+LMun US Noti AP,   ID_MUNICIP,  1,  MUNICAP.CNV
+SMun US Noti AP,   ID_MUNICIP,  1,  MUNICAP.CNV
+LMun US Noti BA,   ID_MUNICIP,  1,  MUNICBA.CNV
+SMun US Noti BA,   ID_MUNICIP,  1,  MUNICBA.CNV
+LMun US Noti BR,   ID_MUNICIP,  1,  MUNICBR.CNV
+SMun US Noti BR,   ID_MUNICIP,  1,  MUNICBR.CNV
+LMun US Noti CE,   ID_MUNICIP,  1,  MUNICCE.CNV
+SMun US Noti CE,   ID_MUNICIP,  1,  MUNICCE.CNV
+LMun US Noti DF,   ID_MUNICIP,  1,  MUNICDF.CNV
+SMun US Noti DF,   ID_MUNICIP,  1,  MUNICDF.CNV
+LMun US Noti ES,   ID_MUNICIP,  1,  MUNICES.CNV
+SMun US Noti ES,   ID_MUNICIP,  1,  MUNICES.CNV
+LMun US Noti GO,   ID_MUNICIP,  1,  MUNICGO.CNV
+SMun US Noti GO,   ID_MUNICIP,  1,  MUNICGO.CNV
+LMun US Noti MA,   ID_MUNICIP,  1,  MUNICMA.CNV
+SMun US Noti MA,   ID_MUNICIP,  1,  MUNICMA.CNV
+LMun US Noti MG,   ID_MUNICIP,  1,  MUNICMG.CNV
+SMun US Noti MG,   ID_MUNICIP,  1,  MUNICMG.CNV
+LMun US Noti MS,   ID_MUNICIP,  1,  MUNICMS.CNV
+SMun US Noti MS,   ID_MUNICIP,  1,  MUNICMS.CNV
+LMun US Noti MT,   ID_MUNICIP,  1,  MUNICMT.CNV
+SMun US Noti MT,   ID_MUNICIP,  1,  MUNICMT.CNV
+LMun US Noti PA,   ID_MUNICIP,  1,  MUNICPA.CNV
+SMun US Noti PA,   ID_MUNICIP,  1,  MUNICPA.CNV
+LMun US Noti PB,   ID_MUNICIP,  1,  MUNICPB.CNV
+SMun US Noti PB,   ID_MUNICIP,  1,  MUNICPB.CNV
+LMun US Noti PE,   ID_MUNICIP,  1,  MUNICPE.CNV
+SMun US Noti PE,   ID_MUNICIP,  1,  MUNICPE.CNV
+LMun US Noti PI,   ID_MUNICIP,  1,  MUNICPI.CNV
+SMun US Noti PI,   ID_MUNICIP,  1,  MUNICPI.CNV
+LMun US Noti PR,   ID_MUNICIP,  1,  MUNICPR.CNV
+SMun US Noti PR,   ID_MUNICIP,  1,  MUNICPR.CNV
+LMun US Noti RJ,   ID_MUNICIP,  1,  MUNICRJ.CNV
+SMun US Noti RJ,   ID_MUNICIP,  1,  MUNICRJ.CNV
+LMun US Noti RN,   ID_MUNICIP,  1,  MUNICRN.CNV
+SMun US Noti RN,   ID_MUNICIP,  1,  MUNICRN.CNV
+LMun US Noti RO,   ID_MUNICIP,  1,  MUNICRO.CNV
+SMun US Noti RO,   ID_MUNICIP,  1,  MUNICRO.CNV
+LMun US Noti RR,   ID_MUNICIP,  1,  MUNICRR.CNV
+SMun US Noti RR,   ID_MUNICIP,  1,  MUNICRR.CNV
+LMun US Noti RS,   ID_MUNICIP,  1,  MUNICRS.CNV
+SMun US Noti RS,   ID_MUNICIP,  1,  MUNICRS.CNV
+LMun US Noti SC,   ID_MUNICIP,  1,  MUNICSC.CNV
+SMun US Noti SC,   ID_MUNICIP,  1,  MUNICSC.CNV
+LMun US Noti SE,   ID_MUNICIP,  1,  MUNICSE.CNV
+SMun US Noti SE,   ID_MUNICIP,  1,  MUNICSE.CNV
+LMun US Noti SP,   ID_MUNICIP,  1,  MUNICSP.CNV
+SMun US Noti SP,   ID_MUNICIP,  1,  MUNICSP.CNV
+LMun US Noti TO,   ID_MUNICIP,  1,  MUNICTO.CNV
+SMun US Noti TO,   ID_MUNICIP,  1,  MUNICTO.CNV
+
+;   Definicoes para localização da Residência do paciente por ocasião da Notificação
+;País de residência
+LPAIS Residência,   ID_PAIS,NM_PAIS,      paisnet.dbf
+SPAIS Residência,   ID_PAIS,NM_PAIS,      paisnet.dbf
+
+;Unidade federada de residência
+LUF Residência,      ID_MN_RESI,        1,  UFcodigo.CNV
+CUF Residência,      ID_MN_RESI,        1,  UFCcodig.CNV
+SUF Residência,      ID_MN_RESI,        1,  UFcodigo.CNV
+
+DUF Mercosul,             ID_MN_RESI,           1,  UFMSUL.CNV
+CUF Mercosul,             ID_MN_RESI,           1,  UFMSULC.CNV
+SUF Mercosul,             ID_MN_RESI,           1,  UFMSUL.CNV
+
+;regional de saúde de residência
+LRegional Residência,     ID_RG_RESI, NM_REGIONA,   regionet.dbf
+SRegional Residência,     ID_RG_RESI, NM_REGIONA,   regionet.dbf
+
+;região metropolitana de residência
+LReg Metrop Residência,    ID_MN_RESI,   1,  RMETRBR.CNV
+SReg Metrop Residência,    ID_MN_RESI,   1,  RMETRBR.CNV
+
+
+
+;município de residência
+DMun Resid AC,    ID_MN_RESI,   1,  MUNICAC.CNV
+SMun Resid AC,    ID_MN_RESI,   1,  MUNICAC.CNV
+DMun Resid AL,    ID_MN_RESI,   1,  MUNICAL.CNV
+SMun Resid AL,    ID_MN_RESI,   1,  MUNICAL.CNV
+DMun Resid AM,    ID_MN_RESI,   1,  MUNICAM.CNV
+SMun Resid AM,    ID_MN_RESI,   1,  MUNICAM.CNV
+DMun Resid AP,    ID_MN_RESI,   1,  MUNICAP.CNV
+SMun Resid AP,    ID_MN_RESI,   1,  MUNICAP.CNV
+DMun Resid BA,    ID_MN_RESI,   1,  MUNICBA.CNV
+SMun Resid BA,    ID_MN_RESI,   1,  MUNICBA.CNV
+DMun Resid BR,    ID_MN_RESI,   1,  MUNICBR.CNV
+SMun Resid BR,    ID_MN_RESI,   1,  MUNICBR.CNV
+DMun Resid CE,    ID_MN_RESI,   1,  MUNICCE.CNV
+SMun Resid CE,    ID_MN_RESI,   1,  MUNICCE.CNV
+DMun Resid DF,    ID_MN_RESI,   1,  MUNICDF.CNV
+SMun Resid DF,    ID_MN_RESI,   1,  MUNICDF.CNV
+DMun Resid ES,    ID_MN_RESI,   1,  MUNICES.CNV
+SMun Resid ES,    ID_MN_RESI,   1,  MUNICES.CNV
+DMun Resid GO,    ID_MN_RESI,   1,  MUNICGO.CNV
+SMun Resid GO,    ID_MN_RESI,   1,  MUNICGO.CNV
+DMun Resid MA,    ID_MN_RESI,   1,  MUNICMA.CNV
+SMun Resid MA,    ID_MN_RESI,   1,  MUNICMA.CNV
+DMun Resid MG,    ID_MN_RESI,   1,  MUNICMG.CNV
+SMun Resid MG,    ID_MN_RESI,   1,  MUNICMG.CNV
+DMun Resid MS,    ID_MN_RESI,   1,  MUNICMS.CNV
+SMun Resid MS,    ID_MN_RESI,   1,  MUNICMS.CNV
+DMun Resid MT,    ID_MN_RESI,   1,  MUNICMT.CNV
+SMun Resid MT,    ID_MN_RESI,   1,  MUNICMT.CNV
+DMun Resid PA,    ID_MN_RESI,   1,  MUNICPA.CNV
+SMun Resid PA,    ID_MN_RESI,   1,  MUNICPA.CNV
+DMun Resid PB,    ID_MN_RESI,   1,  MUNICPB.CNV
+SMun Resid PB,    ID_MN_RESI,   1,  MUNICPB.CNV
+DMun Resid PE,    ID_MN_RESI,   1,  MUNICPE.CNV
+SMun Resid PE,    ID_MN_RESI,   1,  MUNICPE.CNV
+DMun Resid PI,    ID_MN_RESI,   1,  MUNICPI.CNV
+SMun Resid PI,    ID_MN_RESI,   1,  MUNICPI.CNV
+DMun Resid PR,    ID_MN_RESI,   1,  MUNICPR.CNV
+SMun Resid PR,    ID_MN_RESI,   1,  MUNICPR.CNV
+DMun Resid RJ,    ID_MN_RESI,   1,  MUNICRJ.CNV
+SMun Resid RJ,    ID_MN_RESI,   1,  MUNICRJ.CNV
+DMun Resid RN,    ID_MN_RESI,   1,  MUNICRN.CNV
+SMun Resid RN,    ID_MN_RESI,   1,  MUNICRN.CNV
+DMun Resid RO,    ID_MN_RESI,   1,  MUNICRO.CNV
+SMun Resid RO,    ID_MN_RESI,   1,  MUNICRO.CNV
+DMun Resid RR,    ID_MN_RESI,   1,  MUNICRR.CNV
+SMun Resid RR,    ID_MN_RESI,   1,  MUNICRR.CNV
+DMun Resid RS,    ID_MN_RESI,   1,  MUNICRS.CNV
+SMun Resid RS,    ID_MN_RESI,   1,  MUNICRS.CNV
+DMun Resid SC,    ID_MN_RESI,   1,  MUNICSC.CNV
+SMun Resid SC,    ID_MN_RESI,   1,  MUNICSC.CNV
+DMun Resid SE,    ID_MN_RESI,   1,  MUNICSE.CNV
+SMun Resid SE,    ID_MN_RESI,   1,  MUNICSE.CNV
+DMun Resid SP,    ID_MN_RESI,   1,  MUNICSP.CNV
+SMun Resid SP,    ID_MN_RESI,   1,  MUNICSP.CNV
+DMun Resid TO,    ID_MN_RESI,   1,  MUNICTO.CNV
+SMun Resid TO,    ID_MN_RESI,   1,  MUNICTO.CNV
+
+;Zona de Residência
+XZona Residência,    ZONA,      1,  ZONA.CNV
+
+;Distritos de Residencia
+DDistr Resid,   ID_DISTRIT, NM_DISTRIT,   distrnet.dbf
+SDistr Resid,   ID_DISTRIT, NM_DISTRIT,   distrnet.dbf
+
+;Bairros de Residencia
+DBairro Resid,     ID_BAIRRO, NM_BAIRRO,     bairrnet.dbf
+SBairro Resid,     ID_BAIRRO, NM_BAIRRO,     bairrnet.dbf
+
+; Capitais de Residência
+DCapitais Residência,       ID_MN_RESI,  1,  CAPITAL.CNV
+SCapitais Residência,       ID_MN_RESI,  1,  CAPITAL.CNV
+
+*------FIM DO NOTINDIV-------------------------------
+
+DOcupação,ID_OCUPA_N, NM_OCUPACA, ocupanet.dbf
+SOcupação,ID_OCUPA_N, NM_OCUPACA, ocupanet.dbf
+
+TSituação Conjugal,  SIT_CONJUG,   1,  SIT_CONJUG.cnv
+SSituação Conjugal,  SIT_CONJUG,   1,  SIT_CONJUG.cnv
+
+TRelações  sexuais,   REL_SEXUAL,  1,  REL_SEX_VIOL.cnv
+SRelações  sexuais,   REL_SEXUAL,  1,  REL_SEX_VIOL.cnv
+
+TDefic/Transtorno,    DEF_TRANS,   1,  SIM_NAO.CNV
+SDefic/Transtorno,    DEF_TRANS,   1,  SIM_NAO.CNV
+
+;Sim, Qual o tipo de transtorno
+
+TDef. Fisica,         DEF_FISICA,  1, SIM_NAO_VIOL.CNV
+SDef. Fisica,         DEF_FISICA,  1, SIM_NAO_VIOL.CNV
+
+TDef. Mental,         DEF_MENTAL,  1, SIM_NAO_VIOL.CNV
+SDef. Mental,         DEF_MENTAL,  1, SIM_NAO_VIOL.CNV
+
+TDef. Visual,         DEF_VISUAL,  1, SIM_NAO_VIOL.CNV
+SDef. Visual,         DEF_VISUAL,  1, SIM_NAO_VIOL.CNV
+
+TDef. Auditiva,       DEF_AUDITI,  1, SIM_NAO_VIOL.CNV
+SDef. Auditiva,       DEF_AUDITI,  1, SIM_NAO_VIOL.CNV
+
+TDef. Trans Mental,   TRAN_MENT, 1, SIM_NAO_VIOL.CNV
+SDef. Trans Mental,   TRAN_MENT, 1, SIM_NAO_VIOL.CNV
+
+TDef. Trans Comport,  TRAN_COMP,   1, SIM_NAO_VIOL.CNV
+SDef. Trans Comport,  TRAN_COMP,   1, SIM_NAO_VIOL.CNV
+
+TOutra Deficiencia,   DEF_OUT,     1, SIM_NAO_VIOL.CNV
+SOutra Deficiencia,   DEF_OUT,     1, SIM_NAO_VIOL.CNV
+
+;  Definicoes para localização da Ocorrência do paciente por ocasião da Notificação
+;País de OCORRENCIA
+;LPAIS Ocorrencia,   ID_PAIS,NM_PAIS,      paisnet.dbf
+;SPAIS Ocorrencia,   ID_PAIS,NM_PAIS,      paisnet.dbf
+
+;Unidade federada de OCORRENCIA
+LUF Ocorrencia,      ID_MN_OCOR,        1,  UFcodigo.CNV
+CUF Ocorrencia,      ID_MN_OCOR,        1,  UFCcodig.CNV
+SUF Ocorrencia,      ID_MN_OCOR,        1,  UFcodigo.CNV
+
+DUF Mercosul,             ID_MN_OCOR,           1,  UFMSUL.CNV
+CUF Mercosul,             ID_MN_OCOR,           1,  UFMSULC.CNV
+SUF Mercosul,             ID_MN_OCOR,           1,  UFMSUL.CNV
+
+;regional de saúde de OCORRENCIA
+;LRegional Ocorrencia,     ID_RG_OCOR, NM_REGIONA,   regionet.dbf
+;SRegional Ocorrencia,     ID_RG_OCOR, NM_REGIONA,   regionet.dbf
+
+;região metropolitana de OCORRENCIA
+LReg Metrop Ocorrencia,    ID_MN_OCOR,   1,  RMETRBR.CNV
+SReg Metrop Ocorrencia,    ID_MN_OCOR,   1,  RMETRBR.CNV
+
+;município de OCORRENCIA
+DMun Ocorr AC,    ID_MN_OCOR,   1,  MUNICAC.CNV
+SMun Ocorr AC,    ID_MN_OCOR,   1,  MUNICAC.CNV
+DMun Ocorr AL,    ID_MN_OCOR,   1,  MUNICAL.CNV
+SMun Ocorr AL,    ID_MN_OCOR,   1,  MUNICAL.CNV
+DMun Ocorr AM,    ID_MN_OCOR,   1,  MUNICAM.CNV
+SMun Ocorr AM,    ID_MN_OCOR,   1,  MUNICAM.CNV
+DMun Ocorr AP,    ID_MN_OCOR,   1,  MUNICAP.CNV
+SMun Ocorr AP,    ID_MN_OCOR,   1,  MUNICAP.CNV
+DMun Ocorr BA,    ID_MN_OCOR,   1,  MUNICBA.CNV
+SMun Ocorr BA,    ID_MN_OCOR,   1,  MUNICBA.CNV
+DMun Ocorr BR,    ID_MN_OCOR,   1,  MUNICBR.CNV
+SMun Ocorr BR,    ID_MN_OCOR,   1,  MUNICBR.CNV
+DMun Ocorr CE,    ID_MN_OCOR,   1,  MUNICCE.CNV
+SMun Ocorr CE,    ID_MN_OCOR,   1,  MUNICCE.CNV
+DMun Ocorr DF,    ID_MN_OCOR,   1,  MUNICDF.CNV
+SMun Ocorr DF,    ID_MN_OCOR,   1,  MUNICDF.CNV
+DMun Ocorr ES,    ID_MN_OCOR,   1,  MUNICES.CNV
+SMun Ocorr ES,    ID_MN_OCOR,   1,  MUNICES.CNV
+DMun Ocorr GO,    ID_MN_OCOR,   1,  MUNICGO.CNV
+SMun Ocorr GO,    ID_MN_OCOR,   1,  MUNICGO.CNV
+DMun Ocorr MA,    ID_MN_OCOR,   1,  MUNICMA.CNV
+SMun Ocorr MA,    ID_MN_OCOR,   1,  MUNICMA.CNV
+DMun Ocorr MG,    ID_MN_OCOR,   1,  MUNICMG.CNV
+SMun Ocorr MG,    ID_MN_OCOR,   1,  MUNICMG.CNV
+DMun Ocorr MS,    ID_MN_OCOR,   1,  MUNICMS.CNV
+SMun Ocorr MS,    ID_MN_OCOR,   1,  MUNICMS.CNV
+DMun Ocorr MT,    ID_MN_OCOR,   1,  MUNICMT.CNV
+SMun Ocorr MT,    ID_MN_OCOR,   1,  MUNICMT.CNV
+DMun Ocorr PA,    ID_MN_OCOR,   1,  MUNICPA.CNV
+SMun Ocorr PA,    ID_MN_OCOR,   1,  MUNICPA.CNV
+DMun Ocorr PB,    ID_MN_OCOR,   1,  MUNICPB.CNV
+SMun Ocorr PB,    ID_MN_OCOR,   1,  MUNICPB.CNV
+DMun Ocorr PE,    ID_MN_OCOR,   1,  MUNICPE.CNV
+SMun Ocorr PE,    ID_MN_OCOR,   1,  MUNICPE.CNV
+DMun Ocorr PI,    ID_MN_OCOR,   1,  MUNICPI.CNV
+SMun Ocorr PI,    ID_MN_OCOR,   1,  MUNICPI.CNV
+DMun Ocorr PR,    ID_MN_OCOR,   1,  MUNICPR.CNV
+SMun Ocorr PR,    ID_MN_OCOR,   1,  MUNICPR.CNV
+DMun Ocorr RJ,    ID_MN_OCOR,   1,  MUNICRJ.CNV
+SMun Ocorr RJ,    ID_MN_OCOR,   1,  MUNICRJ.CNV
+DMun Ocorr RN,    ID_MN_OCOR,   1,  MUNICRN.CNV
+SMun Ocorr RN,    ID_MN_OCOR,   1,  MUNICRN.CNV
+DMun Ocorr RO,    ID_MN_OCOR,   1,  MUNICRO.CNV
+SMun Ocorr RO,    ID_MN_OCOR,   1,  MUNICRO.CNV
+DMun Ocorr RR,    ID_MN_OCOR,   1,  MUNICRR.CNV
+SMun Ocorr RR,    ID_MN_OCOR,   1,  MUNICRR.CNV
+DMun Ocorr RS,    ID_MN_OCOR,   1,  MUNICRS.CNV
+SMun Ocorr RS,    ID_MN_OCOR,   1,  MUNICRS.CNV
+DMun Ocorr SC,    ID_MN_OCOR,   1,  MUNICSC.CNV
+SMun Ocorr SC,    ID_MN_OCOR,   1,  MUNICSC.CNV
+DMun Ocorr SE,    ID_MN_OCOR,   1,  MUNICSE.CNV
+SMun Ocorr SE,    ID_MN_OCOR,   1,  MUNICSE.CNV
+DMun Ocorr SP,    ID_MN_OCOR,   1,  MUNICSP.CNV
+SMun Ocorr SP,    ID_MN_OCOR,   1,  MUNICSP.CNV
+DMun Ocorr TO,    ID_MN_OCOR,   1,  MUNICTO.CNV
+SMun Ocorr TO,    ID_MN_OCOR,   1,  MUNICTO.CNV
+
+;Zona de OCORRENCIA
+XZona Ocorrencia,    ZONA_OCOR,      1,  ZONA.CNV
+
+;Distritos de OCORRENCIA
+DDistr Ocorr,   ID_DIS_OCO, NM_DISTRIT,   distrnet.dbf
+SDistr Ocorr,   ID_DIS_OCO, NM_DISTRIT,   distrnet.dbf
+
+;Bairros de Ocorrencia
+DBairro Ocorr,     ID_BA_OCOR, NM_BA_OCOR,     bairrnet.dbf
+SBairro Ocorr,     ID_BA_OCOR, NM_BA_OCOR,     bairrnet.dbf
+
+; Capitais de Ocorrencia
+DCapitais Ocorr,       ID_MN_OCOR,  1,  CAPITAL.CNV
+SCapitais Ocorr,       ID_MN_OCOR,  1,  CAPITAL.CNV
+
+TLocal de Ocorr,       LOCAL_OCOR,  1,  LOCAL_OCOR.cnv
+SLocal de Ocorr,       LOCAL_OCOR,  1,  LOCAL_OCOR.cnv
+
+TOcorreu Out vezes,    OUT_VEZES,   1,  SIM_NAO.CNV
+SOcorreu Out vezes,    OUT_VEZES,   1,  SIM_NAO.CNV
+
+TLesao auto provoc,    LES_AUTOP,   1,  SIM_NAO.CNV
+SLesao auto provoc,    LES_AUTOP,   1,  SIM_NAO.CNV
+
+;Tipos de Violência
+
+TViol Física,         VIOL_FISIC,   1,  SIM_NAO.CNV
+SViol Física,         VIOL_FISIC,   1,  SIM_NAO.CNV
+
+TViol Psico/moral,    VIOL_PSICO,   1,  SIM_NAO.CNV
+SViol Psico/moral,    VIOL_PSICO,   1,  SIM_NAO.CNV
+
+TViol Tortura,        VIOL_TORT,    1,  SIM_NAO.CNV
+SViol Tortura,        VIOL_TORT,    1,  SIM_NAO.CNV
+
+TViol Sexual,         VIOL_SEXU,    1,  SIM_NAO.CNV
+SViol Sexual,         VIOL_SEXU,    1,  SIM_NAO.CNV
+
+TTraf. Seres Huma,    VIOL_TRAF,    1,  SIM_NAO.CNV
+STraf. Seres Huma,    VIOL_TRAF,    1,  SIM_NAO.CNV
+
+TViol Finan/Econo,    VIOL_FINAN,   1,  SIM_NAO.CNV
+SViol Finan/Econo,    VIOL_FINAN,   1,  SIM_NAO.CNV
+
+TViol Negli/Aband,    VIOL_NEGLI,   1,  SIM_NAO.CNV
+SViol Negli/Aband,    VIOL_NEGLI,   1,  SIM_NAO.CNV
+
+TViol Trab. Infant,   VIOL_INFAN,   1,  SIM_NAO.CNV
+SViol Trab. Infant    VIOL_INFAN,   1,  SIM_NAO.CNV
+
+TViol Interv Legal,    VIOL_LEGAL,   1,  SIM_NAO.CNV
+SViol Interv Legal,    VIOL_LEGAL,   1,  SIM_NAO.CNV
+
+TOutra Violência,     VIOL_OUTR,    1,  SIM_NAO.CNV
+SOutra Violencia,     VIOL_OUTR,    1,  SIM_NAO.CNV
+
+;Meio de Agressão
+
+TForç corp. Espanc,   AG_FORCA,     1,  SIM_NAO.CNV
+SForç corp. espanc,   AG_FORCA,     1,  SIM_NAO.CNV
+
+TEnforcamento,        AG_ENFOR,     1,  SIM_NAO.CNV
+SEnforcamento,        AG_ENFOR,     1,  SIM_NAO.CNV
+
+TObj. Contundente,    AG_OBJETO,    1,  SIM_NAO.CNV
+SObj. Contundente,    AG_OBJETO,    1,  SIM_NAO.CNV
+
+TObj. perf-cortant,   AG_CORTE,     1,  SIM_NAO.CNV
+SObj. perf-cortant,   AG_CORTE,     1,  SIM_NAO.CNV
+
+TSubs Obj Quente,     AG_QUENTE,    1,  SIM_NAO.CNV
+SSubs Obj Quente,     AG_QUENTE,    1,  SIM_NAO.CNV
+
+TEnvenenamento,       AG_ENVEN,     1,  SIM_NAO.CNV
+SEnvenenamento,       AG_ENVEN,     1,  SIM_NAO.CNV
+
+TArma de fogo,        AG_FOGO,      1,  SIM_NAO.CNV
+SArma de fogo,        AG_FOGO,      1,  SIM_NAO.CNV
+
+TAmeaça,              AG_AMEACA,    1,  SIM_NAO.CNV
+SAmeaça,              AG_AMEACA,    1,  SIM_NAO.CNV
+
+TOutra Agressão,      AG_OUTROS,    1,  SIM_NAO.CNV
+SOutra Agressão,      AG_OUTROS,    1,  SIM_NAO.CNV
+
+; Definição se ocorreu violência sexual
+
+TAssédio Sexual,         SEX_ASSEDI,    1, SIM_NAO_VIOL.CNV
+SAssédio Sexual,         SEX_ASSEDI,    1, SIM_NAO_VIOL.CNV
+
+TEstupro,                SEX_ESTUPR,    1, SIM_NAO_VIOL.CNV
+SEstupro,                SEX_ESTUPR,    1, SIM_NAO_VIOL.CNV
+
+TAtent. viol pudor,      SEX_PUDOR,     1, SIM_NAO_VIOL.CNV
+SAtent. viol pudor,      SEX_PUDOR,     1, SIM_NAO_VIOL.CNV
+
+TPornog Infantil,        SEX_PORNO,     1, SIM_NAO_VIOL.CNV
+SPornog Infantil,        SEX_PORNO,     1, SIM_NAO_VIOL.CNV
+
+TExploração Sexual,      SEX_EXPLO,     1, SIM_NAO_VIOL.CNV
+SExploração Sexual,      SEX_EXPLO,     1, SIM_NAO_VIOL.CNV
+
+TOutras Violencias,      SEX_OUTRO,     1, SIM_NAO_VIOL.CNV
+SOutras Violencias,      SEX_OUTRO,     1, SIM_NAO_VIOL.CNV
+
+;Definições se ocorreu penetração, qual o tipo
+
+
+TPenetração Oral,        PEN_ORAL,      1, SIM_NAO_VIOL.CNV
+SPenetração Oral,        PEN_ORAL,      1, SIM_NAO_VIOL.CNV
+
+TPenetração Anal,        PEN_ANAL,      1, SIM_NAO_VIOL.CNV
+SPenetração Anal,        PEN_ANAL,      1, SIM_NAO_VIOL.CNV
+
+TPenetração Vaginal,     PEN_VAGINA,    1, SIM_NAO_VIOL.CNV
+SPenetração Vaginal,     PEN_VAGINA,    1, SIM_NAO_VIOL.CNV
+
+;Definições para Procedimento realizado
+
+TProfilaxia DST,         PROC_DST,      1, SIM_NAO_VIOL.CNV
+SProfialxia DST,         PROC_DST,      1, SIM_NAO_VIOL.CNV
+
+TProfilaxia HIV,         PROC_HIV,      1, SIM_NAO_VIOL.CNV
+SProfilaxia HIV,         PROC_HIV,      1, SIM_NAO_VIOL.CNV
+
+TProfilaxia Hepa B,      PROC_HEPB,     1, SIM_NAO_VIOL.CNV
+SProfilaxia Hepa B,      PROC_HEPB,     1, SIM_NAO_VIOL.CNV
+
+TColeta de Sangue,       PROC_SANG,     1, SIM_NAO_VIOL.CNV
+SColeta de Sangue,       PROC_SANG,     1, SIM_NAO_VIOL.CNV
+
+TColeta de Sêmen,        PROC_SEMEN,     1, SIM_NAO_VIOL.CNV
+SColeta de Sêmen,        PROC_SEMEN,     1, SIM_NAO_VIOL.CNV
+
+TCol. Sec. Vaginal,      PROC_VAGIN,     1, SIM_NAO_VIOL.CNV
+SCol. Sec. Vaginal,      PROC_VAGIN,     1, SIM_NAO_VIOL.CNV
+
+TContracep Emerg,        PROC_CONTR,     1, SIM_NAO_VIOL.CNV
+SContracep Emerg,        PROC_CONTR,     1, SIM_NAO_VIOL.CNV
+
+TAborto prev Lei,        PROC_ABORT,    1, SIM_NAO_VIOL.CNV
+SAborto prev Lei,        PROC_ABORT,    1, SIM_NAO_VIOL.CNV
+
+;Definições para Consequencias da decorrência no momento da notificação
+
+TConseq Aborto,          CONS_ABORT,    1, SIM_NAO_VIOL.CNV
+SConseq Aborto,          CONS_ABORT,    1, SIM_NAO_VIOL.CNV
+
+TConseq Gravidez,        CONS_GRAV,     1, SIM_NAO_VIOL.CNV
+SConseq Gravidez,        CONS_GRAV,     1, SIM_NAO_VIOL.CNV
+
+TConseq DST,             CONS_DST,      1, SIM_NAO_VIOL.CNV
+SConseq DST,             CONS_DST,      1, SIM_NAO_VIOL.CNV
+
+TConseq Tent suicidio,   CONS_SUIC,     1, SIM_NAO_VIOL.CNV
+SConseq Tent suicidio,   CONS_SUIC,     1, SIM_NAO_VIOL.CNV
+
+TConseq Trans Mental,    CONS_MENT,     1, SIM_NAO_VIOL.CNV
+SConseq Trans Mental,    CONS_MENT,     1, SIM_NAO_VIOL.CNV
+
+TConseq Trans Comport,   CONS_COMP,     1, SIM_NAO_VIOL.CNV
+SConseq Trans Comport,   CONS_COMP,     1, SIM_NAO_VIOL.CNV
+
+TConseq Estr Pós-Trau,   CONS_ESTRE,    1, SIM_NAO_VIOL.CNV
+SConseq Estr Pós-Trau,   CONS_ESTRE,    1, SIM_NAO_VIOL.CNV
+
+TOutras Consequencias,   CONS_OUTR,     1, SIM_NAO_VIOL.CNV
+SOutras Consequencias,   CONS_OUTR,     1, SIM_NAO_VIOL.CNV
+
+;Definições para Natureza da Lesão
+
+TLesão Cabeça/face,      LESAO_NAT,      1,  NAT_LES_VIOL.CNV
+SLesão Cabeça/face,      LESAO_NAT,      1,  NAT_LES_VIOL.CNV
+
+;Definições para parte do corpo atingida
+
+TPart corpo atingida,    LESAO_CORP,      1,  LES_CORP_VIOL.CNV
+SPart corpo atingida,    LESAO_CORP,      1,  LES_CORP_VIOL.CNV
+
+TNúm Envolvidos,         NUM_ENVOLV,      1,  ENV_VIOL.CNV
+SNúm Envolvidos,         NUM_ENVOLV,      1,  ENV_VIOL.CNV
+
+;Definições para vínculo  / grau de parentesco com a pessoa atendida
+
+TPai,                     REL_PAI,          1,  SIM_NAO.CNV
+SPai,                     REL_PAI,          1,  SIM_NAO.CNV
+
+TMãe,                     REL_MAE,          1,  SIM_NAO.CNV
+SMãe,                     REL_MAE,          1,  SIM_NAO.CNV
+
+TPadrasto,                REL_PAD,          1,  SIM_NAO.CNV
+SPadrasto,                REL_PAD,          1,  SIM_NAO.CNV
+
+TMadrasta,                REL_MAD,          1,  SIM_NAO.CNV
+SMadrasta,                REL_MAD,          1,  SIM_NAO.CNV
+
+TConjuge,                REL_CONJ,         1,  SIM_NAO.CNV
+SConjuge,                REL_CONJ,         1,  SIM_NAO.CNV
+
+TEx-Conjuge,             REL_EXCON,       1,  SIM_NAO.CNV
+SEx-Conjuge,             REL_EXCON,       1,  SIM_NAO.CNV
+
+TNamorado(a),            REL_NAMO,         1,  SIM_NAO.CNV
+SNamorado(a),            REL_NAMO,         1,  SIM_NAO.CNV
+
+TEx-Namorado(a),         REL_EXNAM,        1,  SIM_NAO.CNV
+SEx-Namorado(a),         REL_EXNAM,        1,  SIM_NAO.CNV
+
+TFilho(a),               REL_FILHO,        1,  SIM_NAO.CNV
+SFilha(a),               REL_FILHO,        1,  SIM_NAO.CNV
+
+TIrmâo(a),                REL_IRMAO,        1,  SIM_NAO.CNV
+SIrmão(a),                REL_IRMAO,        1,  SIM_NAO.CNV
+
+TAmigos/Conhec,          REL_CONHEC,        1,  SIM_NAO.CNV
+SAmigos/Conhec,          REL_CONHEC,        1,  SIM_NAO.CNV
+
+TDesconhecido(a),        REL_DESCO,         1,  SIM_NAO.CNV
+SDesconhecida(a),        REL_DESCO,         1,  SIM_NAO.CNV
+
+TCuidador(a),            REL_CUIDA,        1,  SIM_NAO.CNV
+SCuidador(a),            REL_CUIDA,        1,  SIM_NAO.CNV
+
+TPatrao/Chefe,           REL_PATRAO,       1,  SIM_NAO.CNV
+Spatrao/Chefe,           REL_PATRAO,       1,  SIM_NAO.CNV
+
+TPes com Rel Inst,       REL_INST,         1,  SIM_NAO.CNV
+SPes com Rel Inst,       REL_INST,         1,  SIM_NAO.CNV
+
+TPolicial Ag.Lei,        REL_POL,          1,  SIM_NAO.CNV
+SPolicial Ag.Lei,        REL_POL,          1,  SIM_NAO.CNV
+
+TPropria Pessoa,         REL_PROPRI,       1,  SIM_NAO.CNV
+SPropria Pessoa,         REL_PROPRI,       1,  SIM_NAO.CNV
+
+TOutros Vínculos,        REL_OUTROS,        1,  SIM_NAO.CNV
+SOutros Vínculos,        REL_OUTROS,        1,  SIM_NAO.CNV
+
+;sexo do provável autor da agressão
+
+XSexo Autor Agressão,              AUTOR_SEXO,      1,  AUTOR_SEXO.CNV
+
+TSusp. uso alcool,                 AUTOR_ALCO,      1,  SIM_NAO.CNV 
+SSusp. uso alcool,                 AUTOR_ALCO,      1,  SIM_NAO.CNV
+
+;Encaminhamento para o Setor Saúde e para outros setores 
+
+TEnc. Setor Saude,                 ENC_SAUDE,       1, ENC_SAUDE.CNV 
+SEnc. Setor Saude,                 ENC_SAUDE,       1, ENC_SAUDE.CNV
+
+;Encaminhamento da pessoa atendida para outros setores
+
+TCons.Tut(crian/adoles),       ENC_TUTELA,      1, SIM_NAO.CNV
+SCons.Tut(crian/adoles),       ENC_TUTELA,      1, SIM_NAO.CNV 
+
+TVara da Inf /Juventude,       ENC_VARA,        1, SIM_NAO.CNV
+SVara da Inf /Juventude,       ENC_VARA,        1, SIM_NAO.CNV
+
+TCasa de Abrigo,               ENC_ABRIGO,      1, SIM_NAO.CNV 
+SCasa de Abrigo,               ENC_ABRIGO,      1, SIM_NAO.CNV
+
+SProg Sentinela,               ENC_SENTIN,      1, SIM_NAO.CNV
+TProg Sentinela,               ENC_SENTIN,      1, SIM_NAO.CNV
+
+TDel Atend a Mulher(DEM),      ENC_DEAM,        1, SIM_NAO.CNV
+SDel Atend a Mulher(DEM),      ENC_DEAM,        1, SIM_NAO.CNV 
+
+TDel Prot Criança/Adoles,      ENC_DPCA,        1, SIM_NAO.CNV
+SDel Prot Criança/Adoles,      ENC_DPCA,        1, SIM_NAO.CNV
+
+TOutras Delegacias,            ENC_DELEG,       1, SIM_NAO.CNV
+SOutras Delegacias,            ENC_DELEG,       1, SIM_NAO.CNV  
+
+TMinisterio Publico,           ENC_MPU,         1, SIM_NAO.CNV
+sMinisterio Publico,           ENC_MPU,         1, SIM_NAO.CNV
+
+TCentro Ref da Mulher,         ENC_MULHER,      1, SIM_NAO.CNV
+SCentro Ref da Mulher,         ENC_MULHER,      1, SIM_NAO.CNV
+
+TCent Ref Assist Social,       ENC_CREAS,       1, SIM_NAO.CNV
+SCent Ref Assist Social,       ENC_CREAS,       1, SIM_NAO.CNV
+
+TInstituto Medico Legal,       ENC_IML,         1, SIM_NAO.CNV
+SInstituto Medico Legal,       ENC_IML,         1, SIM_NAO.CNV
+
+TOutros Setores,               ENC_OUTR,        1, SIM_NAO.CNV
+SOutros Setores,               ENC_OUTR,        1, SIM_NAO.CNV
+
+
+; DEFINIÇÕES P/ VIOLÊNCIA RELACIONADA AO TRABALHO
+
+TViol Relac Trabalho,    REL_TRAB,   1, SIM_NAO.CNV
+SViol Relac Trabalho,    REL_TRAB,   1, SIM_NAO.CNV
+
+TComun Acid Trab (CAT),  REL_CAT,    1, SIM_NAO_VIOL.CNV
+SComun Acid Trab (CAT),  REL_CAT,    1, SIM_NAO_VIOL.CNV
+
+;TCirc da Lesão CID,      CIRC_LESAO,  1,  XXXXXXXXXXXX.CNV
+;SCirc da Lesão CID,      CIRC_LESAO,  1,  XXXXXXXXXXXX.CNV
+
+TClassif Final,           CLASSI_FIN,  1,  CLAS_FI_VIOL.CNV
+SClassif Final,           CLASSI_FIN,  1,  CLAS_FI_VIOL.CNV
+
+TEvolução do Caso,       EVOLUCAO,    1,  EVOL_VIOL.CNV
+SEvolução do Caso,       EVOLUCAO,    1,  EVOL_VIOL.CNV
+
+; Definições para Ano, Mes e Trimestre do Óbito por violência
+TAno do Óbito,       DT_OBITO,     1, ANOS.CNV
+SAno do Óbito,       DT_OBITO,     1, ANOS.CNV
+DMês do Óbito,       DT_OBITO,     5, MESES.CNV
+CMês do Óbito,       DT_OBITO,     5, MESESC.CNV
+SMes do Óbito,       DT_OBITO,     5, MESES.CNV
+TTrim. do Óbito,       DT_OBITO,     5, TRIME.CNV
+STrim. do Óbito,       DT_OBITO,     5, TRIME.CNV
+
+; Definições para Ano, Mes e Trimestre de Encerramento
+TAno Encerramento,       DT_ENCERRA,     1, ANOS.CNV
+SAno Encerramento,       DT_ENCERRA,     1, ANOS.CNV
+DMês Encerramento,       DT_ENCERRA,     5, MESES.CNV
+CMês Encerramento,       DT_ENCERRA,     5, MESESC.CNV
+SMes Encerramento,       DT_ENCERRA,     5, MESES.CNV
+TTrim.Encerramento,       DT_ENCERRA,     5, TRIME.CNV
+STrim.Encerramento,       DT_ENCERRA,     5, TRIME.CNV
+;----------FIM DA INVESTIGAÇÃO------------------------------
+
+;Definições para Orientação Sexual
+TOrientação Sexual,       ORIENT_SEX,      1, ORIENTSEXVIOL.CNV
+SOrientação Sexual,       ORIENT_SEX,      1, ORIENTSEXVIOL.CNV
+
+;Definições para Identidade de gênero
+TIdentidade gênero,       IDENT_GEN,      1, IDENTGENVIOL.CNV
+SIdentidade gênero,       IDENT_GEN,      1, IDENTGENVIOL.CNV
+
+;Definições para Motivo da Violência
+TViol motivada por,       VIOL_MOTIV,      1, MOTIVOVIOL.CNV
+SViol motivada por,       VIOL_MOTIV,      1, MOTIVOVIOL.CNV
+
+;Definições para o Clico de vida do provável autor da agressão
+TCiclo vida autor,       CICL_VID,      1, CICVIDAUTVIOL.CNV
+SCiclo vida autor,       CICL_VID,      1, CICVIDAUTVIOL.CNV
+
+;Encaminhamento da pessoa atendida para outros setores
+
+TRede da Saúde,       REDE_SAU,      1, SIM_NAO.CNV
+SRede da Saúde,       REDE_SAU,      1, SIM_NAO.CNV 
+
+TAssistência Social,       ASSIST_SOC,      1, SIM_NAO.CNV
+SAssistência Social,       ASSIST_SOC,      1, SIM_NAO.CNV 
+
+TRede da Educação,       REDE_EDUCA,      1, SIM_NAO.CNV
+SRede da Educação,       REDE_EDUCA,      1, SIM_NAO.CNV 
+
+TRede Atend Mulher,       ATEND_MULH,      1, SIM_NAO.CNV
+SRede Atend Mulher,       ATEND_MULH,      1, SIM_NAO.CNV 
+
+TConselho Tutelar,       CONS_TUTEL,      1, SIM_NAO.CNV
+SConselho Tutelar,       CONS_TUTEL,      1, SIM_NAO.CNV 
+
+TConselho do Idoso,       CONS_IDO,      1, SIM_NAO.CNV
+SConselho do Idoso,       CONS_IDO,      1, SIM_NAO.CNV 
+
+TDeleg Atend Idoso,       DELEG_IDOS,      1, SIM_NAO.CNV
+SDeleg Atend Idoso,       DELEG_IDOS,      1, SIM_NAO.CNV 
+
+TCentro Ref Dir Hum,       DIR_HUMAN,      1, SIM_NAO.CNV
+SCentro Ref Dir Hum,       DIR_HUMAN,      1, SIM_NAO.CNV 
+
+TMinistério Público,       MPU,      1, SIM_NAO.CNV
+SMinistério Público,       MPU,      1, SIM_NAO.CNV 
+
+TDeleg crian/adoles,       DELEG_CRIA,      1, SIM_NAO.CNV
+SDeleg crian/adoles,       DELEG_CRIA,      1, SIM_NAO.CNV 
+
+TDeleg Atend Mulher,       DELEG_MULH,      1, SIM_NAO.CNV
+SDeleg Atend Mulher,       DELEG_MULH,      1, SIM_NAO.CNV 
+
+TOutras delegacias,       DELEG,      1, SIM_NAO.CNV
+SOutras delegacias,       DELEG,      1, SIM_NAO.CNV 
+
+TJust Infânc Juvent,       INFAN_JUV,      1, SIM_NAO.CNV
+SJust Infânc Juvent,       INFAN_JUV,      1, SIM_NAO.CNV 
+
+TDefensoria Pública,       DEFEN_PUBL,      1, SIM_NAO.CNV
+SDefensoria Pública,       DEFEN_PUBL,      1, SIM_NAO.CNV

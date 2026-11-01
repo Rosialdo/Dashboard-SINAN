@@ -1,0 +1,16 @@
+;AgenteDerma.cnv
+; revisado pela UT-Sinan março 2019
+13 2
+      1  Ign/Branco                                            ,00-99
+      2  Cimento                                             01
+      3  Borracha                                            02
+      4  Plástico                                            03
+      5  Solventes                                           04
+      6  Graxas                                              05
+      7  Óleo de corte                                       06
+      8  Resinas                                             07
+      9  Níquel                                              08
+     10  Cosméticos                                          09
+     11  Madeiras                                            10
+     12  Cromo                                               11
+     13  Outros                                              12

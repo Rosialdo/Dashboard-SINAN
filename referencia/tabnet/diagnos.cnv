@@ -1,0 +1,42 @@
+; DIAGNOS.CNV
+40 4 
+      1  Branco                                                 ,
+      2  Acid vasc cereb, não especif como hemorrág ou isqu I64
+      3  Amiotrofia nevrálgica                              G122
+      4  Compressões das raízes e dos plexos nervosos       G55
+      5  Diplegia dos membros superiores                    G830
+      6  Encefalite aguda disseminada                       G040
+      7  Encefalite seguida a processos de imunização       G040
+      8  Encefalites, mielites e encefalomielites não espec G049
+      9  Hemiplegia flácida                                 G810
+     10  Hemiplegia não especificada                        G819
+     11  Intoxicações alimentares bacterianas não especific A059
+     12  Lesão de nervo ciático                             G570
+     13  Meningoencefalite e meningomielite bact não class  G042
+     14  Miastenia gravis                                   G700
+     15  Mielite transversa aguda                           G373
+     16  Outras encefalites, mielites e encefalomielites    G048
+     17  Mononeuropatias de membros inferiores não especifi G579
+     18  Mononeuropatias de membros superiores não especifi G569
+     19  Monoplegia do membro inferior                      G831
+     20  Monoplegia do membro superior                      G832
+     21  Monoplegia, não especificada                       G833
+     22  Encefalites, mielites e encefalomielites           G051
+     23  Miopatia, não especificada                         G729
+     24  Mononeuropatia, não especificada                   G589
+     25  Neoplasia maligna  do sistema nervoso central      C729
+     26  Paralisia periódica                                G723
+     27  Paraplegia flácida                                 G820
+     28  Polineuropatia inflamatória não especificada       G619
+     29  Polineuropatia não especificada                    G629
+     30  Polineuropatia devido a outros agentes tóxicos     G622
+     31  Polineuropatia induzida por drogas                 G620
+     32  Síndrome da cauda equina                           G834
+     33  Síndrome de Guillain Barré                         G610
+     34  Síndrome paralítica não especificada (IGN)         G839
+     35  Tetraplegia flácida                                G823
+     36  Transtornos mioneurais não especificado            G709
+     37  Traumatismo não especificado da cabeça             S099
+     38  Traumatismo da medula nível não especificado       T093
+     39  Traumat não especif membro sup nível não especif   T119
+     40  Traumat não especif membro inf nível não especif   T139

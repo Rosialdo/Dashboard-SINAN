@@ -1,0 +1,87 @@
+; Lista Nacional de compulsórios e de interesse Nacional
+; Exceto Influenza (deve ser usado o Sinan Online)
+; Atualizado em 29/09/2014 pela UT-Sinan/MS - Alteração da lista de acordo com a Portaria nº 1.271 de 06/06/2014
+; Atualizado em 23/08/2016 pela UT-Sinan/MS - Alteração da lista de acordo com a Portaria nº 204 de 17/02/2016
+; Atualizado em 29/01/2019 pela UT-Sinan/MS - Portaria Consolidação 4 de 28/09/2017
+80 4
+
+      1  Acidente de Trabalho c/Expos. a Material Biológico Z209
+      2  Acidente de Trabalho Grave                         Y96 ,
+      3  Acidente por animais peçonhentos                   X29 ,
+      4  AIDS                                               B24 ,
+      5  Atendimento Anti-Rabico                            W64 ,
+      6  Botulismo                                          A051
+      7  Brucelose                                          A23 ,
+      8  Câncer Relacionado ao Trabalho                     C80 ,
+      9  Carbúnculo ou Antraz                               A229
+     10  Caxumba [Parotidite Epidemica]                     B26 ,
+     11  Cólera                                             A009
+     12  Coqueluche                                         A379
+     13  Criança Exposta ao HIV                             Z206
+     14  Dengue                                             A90 ,
+     15  Dermatoses Ocupacionais                            L989
+     16  Difteria                                           A369
+     17  Doença Aguda pelo Virus Zika                       A928	 
+     18  Doenças de Chagas Aguda                            B571
+     19  Doença de Creutzfeldt-Jakob                        A810
+     20  Doenças Exantemáticas                              B09 ,
+     21  Doença de Lyme                                     A692
+     22  Doença de Marburg                                  A983
+     23  Doença pelo virus Ebola                            A984
+     24  Doenças causadas por protozoar complic gravidez    O986
+     25  Epizootias                                         EPI ,
+     26  Esquistossomose                                    B659
+     27  Eventos Adversos Pós-vacina                        Y59 ,
+     28  Febre Amarela                                      A959
+     29  Febre de Chikungunya                               A920
+     30  Febre de Lassa                                     A962
+     31  Febre do Nilo                                      A923
+     32  Febre hemorragica por Arenavírus, não especif      A969
+     33  Febre Maculosa / Rickettsioses                     A779
+     34  Febre Purpúrica Brasilieira                        A484
+     35  Febre Tifóide                                      A010
+     36  Filariose não especificada                         B749
+     37  Gestantes HIV +                                    Z21 ,
+     38  Hanseníase                                         A309
+     39  Hantaviroses                                       A988
+     40  Hepatites Virais                                   B19 ,
+     41  Influenza Humana produzida por novo subtipo viral  J11 ,
+     42  Intoxicações Exógenas                              T659
+     43  Leishmaniose Tegumentar Americana                  B551
+     44  Leishmaniose Visceral                              B550
+     45  Leptospirose                                       A279
+     46  LER DORT                                           Z579
+     47  Malária                                            B54 ,
+     48  Meningite                                          G039
+     49  Outras Sindromes                                   R699
+     50  PAIR                                               H833
+     51  Paralisia Flácida Aguda/Poliomielite               A809
+     52  Peste                                              A209
+     53  Pneumoconiose                                      J64 ,
+     54  Raiva Humana                                       A829
+     55  Rotavirus                                          A080
+     56  Sífilis Adquirida                                  A539
+     57  Sífilis Congênita                                  A509
+     58  Sífilis em Gestante                                O981
+     59  Síndrome da Rubéola Congênita                      P350
+     60  Síndrome Diarreica Aguda                           A08 ,
+     61  Síndrome da Febre hemorrágica Aguda                D699
+     62  Síndrome da Insuficiência Renal Aguda              N199
+     63  Síndrome do corrimento uretral em homem            R36 ,
+     64  Síndrome Gripal                                    J06 ,
+     65  Síndrome Hemolítico-Uremica                        D593
+     66  Síndrome Ictérica Aguda                            R17 ,
+     67  Síndrome Neurológica Aguda                         G043
+     68  Síndrome Respiratória Aguda                        J07 ,
+     69  Tétano Acidental                                   A35 ,
+     70  Tétano Neonatal                                    A33 ,
+     71  Toxoplasmose congenita                             P371
+     72  Toxoplasmose                                       B58 ,
+     73  Tracoma                                            A719
+     74  Transtorno Mental                                  F99 ,
+     75  Tuberculose                                        A169
+     76  Tularemia                                          A219
+     77  Varicela sem complicações                          B019
+     78  Varicela                                           B01 ,
+     79  Varíola                                            B03 ,
+     80  Violência doméstica, sexual e/ou outras violências Y09 ,

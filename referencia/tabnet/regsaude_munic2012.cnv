@@ -1,0 +1,84 @@
+83       6 
+      1  000001 1 - NORTE                                   320016,
+  1   2  320016 Água Doce do Norte                          320016
+  1   3  320090 Barra de São Francisco                      320090
+  1   4  320100 Boa Esperança                               320100
+  1   5  320160 Conceição da Barra                          320160
+  1   6  320210 Ecoporanga                                  320210
+  1   7  320305 Jaguaré                                     320305
+  1   8  320350 Montanha                                    320350
+  1   9  320360 Mucurici                                    320360
+  1  10  320390 Nova Venécia                                320390
+  1  11  320405 Pedro Canário                               320405
+  1  12  320410 Pinheiros                                   320410
+  1  13  320425 Ponto Belo                                  320425
+  1  14  320490 São Mateus                                  320490
+  1  15  320515 Vila Pavão                                  320515
+     16  000002 2 - CENTRAL                                 320013,
+ 16  17  320013 Águia Branca                                320013 
+ 16  18  320035 Alto Rio Novo                               320035
+ 16  19  320060 Aracruz                                     320060 
+ 16  20  320080 Baixo Guandu                                320080
+ 16  21  320150 Colatina                                    320150
+ 16  22  320225 Governador Lindenberg                       320225   
+ 16  23  320250 Ibiraçu                                     320250
+ 16  24  320313 João Neiva                                  320313 
+ 16  25  320320 Linhares                                    320320
+ 16  26  320330 Mantenópolis                                320330
+ 16  27  320335 Marilândia                                  320335
+ 16  28  320400 Pancas                                      320400
+ 16  29  320435 Rio Bananal                                 320435    
+ 16  30  320465 São Domingos do Norte                       320465
+ 16  31  320470 São Gabriel da Palha                        320470
+ 16  32  320495 São Roque do Canaã                          320495 
+ 16  33  320501 Sooretama                                   320501
+ 16  34  320517 Vila Valério                                320517
+     35  000003 3 - METROPOLITANA                           320010,
+ 35  36  320010 Afonso Cláudio                              320010
+ 35  37  320115 Brejetuba                                   320115
+ 35  38  320130 Cariacica                                   320130
+ 35  39  320170 Conceição do Castelo                        320170
+ 35  40  320190 Domingos Martins                            320190
+ 35  41  320220 Fundão                                      320220
+ 35  42  320240 Guarapari                                   320240
+ 35  43  320245 Ibatiba                                     320245
+ 35  44  320270 Itaguaçu                                    320270
+ 35  45  320290 Itarana                                     320290
+ 35  46  320316 Laranja da Terra                            320316
+ 35  47  320334 Marechal Floriano                           320334
+ 35  48  320450 Santa Leopoldina                            320450
+ 35  49  320455 Santa Maria de Jetibá                       320455
+ 35  50  320460 Santa Teresa                                320460
+ 35  51  320500 Serra                                       320500 
+ 35  52  320506 Venda Nova do Imigrante                     320506   
+ 35  53  320510 Viana                                       320510 
+ 35  54  320520 Vila Velha                                  320520     
+ 35  55  320530 Vitória                                     320530                                   
+     56  000004 4 - SUL                                     320020,
+ 56  57  320020 Alegre                                      320020 
+ 56  58  320030 Alfredo Chaves                              320030
+ 56  59  320040 Anchieta                                    320040
+ 56  60  320050 Apiacá                                      320050
+ 56  61  320070 Atílio Vivacqua                             320070
+ 56  62  320110 Bom Jesus do Norte                          320110
+ 56  63  320120 Cachoeiro de Itapemirim                     320120
+ 56  64  320140 Castelo                                     320140
+ 56  65  320180 Divino de São Lourenço                      320180
+ 56  66  320200 Dores do Rio Preto                          320200
+ 56  67  320230 Guaçuí                                      320230
+ 56  68  320255 Ibitirama                                   320255
+ 56  69  320260 Iconha                                      320260
+ 56  70  320265 Irupi                                       320265
+ 56  71  320280 Itapemirim                                  320280
+ 56  72  320300 Iúna                                        320300
+ 56  73  320310 Jerônimo Monteiro                           320310
+ 56  74  320332 Marataizes                                  320332
+ 56  75  320340 Mimoso do Sul                               320340
+ 56  76  320370 Muniz Freire                                320370
+ 56  77  320380 Muqui                                       320380
+ 56  78  320420 Piúma                                       320420
+ 56  79  320430 Presidente Kennedy                          320430
+ 56  80  320440 Rio Novo do Sul                             320440
+ 56  81  320480 São José do Calçado                         320480         
+ 56  82  320503 Vargem Alta                                 320503        
+     83  320000 Município ignorado - ES                     320000,329999

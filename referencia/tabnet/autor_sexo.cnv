@@ -1,0 +1,7 @@
+;AUTOR_SEXO.CNV
+5  1  L
+      1  Em Branco                                           ,
+      2  Ignorado                                           0-9
+      3  Masculino                                          1
+      4  Feminino                                           2
+      5  Ambos sexos                                        3

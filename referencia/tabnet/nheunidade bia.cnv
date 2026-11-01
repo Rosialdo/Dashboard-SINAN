@@ -1,0 +1,239 @@
+;NHENIVEL - Unidades e respectivos niveis ; Patch 4.2
+;Atualização realizada pela UT-VEH em 14 maio 2015.
+233 7 L
+      1	 Hospital e P.Socorro Dr Aristóteles P.B.de Araújo  5169976
+      2	 Hospital e P. Socorro Dr. João Lúcio P. Machado    2019574
+      3	Hospital e Pronto Socorro da Criança Zona Leste	                        2012030
+      4	Hospital e Pronto Socorro da Criança Zona Oeste				2018071
+      5	Hospital de Emergências - HE						2020653
+      6	Hospital de Clínicas Dr. Alberto Lima - HCAL				2020645
+      7	Hospital Estadual da Criança						6602533
+      8	Hospital Regional Asa Sul						0010537
+      9	Hospital Regional de Santa Maria					5717515
+     10	Hospital de Base de Brasília						0010456
+     11	Hospital Drº Roberto Arnizaut Silvares					2550687
+     12	Hospital de Urgências de Aparecida de Goiânia/HUAPA			5419662
+     13	Hospital de Urgência da Região Sudoeste/HURSO/SES/PRÓ SAÚDE		6665322
+     14	Hospital Geral de Goiânia/HGG						2338734
+     15	Centro Médico Municipal Serafim de Carvalho/CMMSC			2535556
+     16	Hospital de Referência Estadual de Alta Complexidade Dr.Carlos Macieira 2464594
+     17	Hospital Macrorregional de Coroatá Alexandre Mamed Trovão		7088302
+     18	Complexo Hospitalar Materno Infantil do Maranhão  Juvêncio Matos	2702886
+     19	Hospital Regional Materno Infantil de Imperatriz			2452383
+     20	Hospital Regional de Urgência e Emergência de Presidente Dutra		6483089
+     21	Hospital Regional Alarico Nunes Pacheco					2452782
+     22	Hospital Regional Adélia Matos Fonseca					2530236
+     23	Hospital Geral de Caxias						3388301
+     24	Hospital Municipal de Imperatriz					2456672
+     25	Hospital Municipal de Contagem						2200473
+     26	Santa Casa de Bom Despacho						2168707
+     27	Hospital Regional de Cametá						2313367
+     28	Hospital Regional de Conceição do Araguaia				2328992
+     29	Hospital de Clínicas Gaspar Viana					2333031
+     30	Hospital Municipal de Oriximiná						2331969
+     31	Hospital e Policlínica Jaboatão Prazeres				2711990
+     32	Hospital Barão de Lucena						2427427
+     33	Hospital João Murilo de Oliveira					2712008
+     34	Hospital Reginal de Limoeiro José Fernandes Salsa			2712032
+     35	Hospital Regional de Palmares Dr Silvio Magalhães			2428393
+     36 Hospital Regional do Agreste						2427419
+     37	Hospital Reginal Dom Moura						2702983
+     38	Hospital Regional Rui de Barros Correia					2551764
+     39	Hospital Regional Inácio de Sá						2356287
+     40	Hospital Dom Malan							2430711
+     41	Hospital Regional Fernando Bezerra					2712040
+     42	Hospital Regional Emília Câmara						2428385
+     43	Hospital Regional Professor Agamenon Magalhães				2348489
+     44	Hospital Geral de Areias						2711974
+     45	Hospital Regional Tibério Nunes						2365146
+     46	Hospital Estadual Dirceu Arcoverde					8015899
+     47	Hospital Regional Chagas Rodrigues					2777746
+     48	Hospital Regional de Bom Jesus						2364816
+     49	Maternidade Dona Evangelina Rosa  MDER					2323397
+     50	Hospital Geral de Japuíba Jorge Elias Miguel				7354746
+     51	Hospital São José do Avaí						2278855
+     52	Hospital Municipal Raul Sertã						2272784
+     53	Hospital Geral de Nova Iguaçu						2798662
+     54	Hospital Universitário Antônio Pedro					0012505
+     55	Hospital Municipal de Rio das Ostras 					6069134
+     56	Hospital Universitário Sul Fluminense					2273748
+     57	Hospital São João Batista						0025135
+     58	Irmandade da Santa Casa de Misericórdia de Fernandópolis		2093324
+     59	Casa de Saúde Stella Maris						2082926
+     60	Hospital das Clínicas da Faculdade de Medicina de Marília		2025507
+     61	Hospital de Urgência e Emergência de Rio Branco				2001578
+     62	Hospital-Escola Dr. Hélvio Auto						2720035
+     63	Maternidade-Escola Santa Mônica						2009250
+     64	Hospital Universitário Professor Alberto Antunes			2006197
+     65	Fundação de Medicina Tropical  Dr. Heitor Vieira Dourado		2013606
+     66	Hospital e Pronto Socorro 28 de Agosto					2013649
+     67	Hospital e Pronto Socorro da Criança Zona Sul				2012472
+     68	Hospital da Criança e do Adolescente - HCA				2019647
+     69	Hospital Geral Prado Valadares						2400693
+     70	Hospital Santa Izabel							0003832
+     71	Hospital Geral Roberto Santos						0003859
+     72	Hospital Geral de Vitória da Conquista					2402076
+     73	Complexo Hospitalar Universitário Professor Edgard Santos 		0003816
+     74	Hospital Espanhol							0004057
+     75	Hospital Geral do Estado						0004294
+     76	Hospital Santo Antonio							2802104
+     77	Hospital Couto Maia							0005428
+     78	Hospital Geral Ernesto Simões Filho					0004073
+     79	Hospital São Rafael							0003808
+     80	Hospital Geral Cleriston Andrade					2799758
+     81	Hospital Especializado Octávio Mangabeira				0004065
+     82	Hospital Universitário Walter Cantídio					2561492
+     83	Hospital Infantil Albert Sabin						2563681
+     84	Hospital Geral Dr. César Cals						2499363
+     85	Hospital Geral de Fortaleza						2497654
+     86	Hospital São José de Doenças Infecciosas				2561417
+     87	Hospital e Maternidade São Vicente de Paulo				2564211
+     88	Instituto Dr. José Frota	      					2529149
+     89	Santa Casa de Misericórdia de Sobral					3021114
+     90	Hospital Regional Asa Norte						0010464
+     91	Hospital Universitário Cassiano Antônio de Moraes			4044916
+     92	Irmandade da Santa Casa de Misericórdia de Vitória			0011746
+     93	Hospital Infantil Nossa Senhora da Glória				0011800
+     94	Hospital das Clínicas da Universidade Federal de Goiás/HC-UFG		2338434
+     95	Hospital de Doenças Tropicais Dr. Anuar Auad/HDT/HAA			2506661
+     96	Hospital de Urgências de Goiânia/HUGO					2338262
+     97	Hospital Materno Infantil/Igh						2339196
+     98	Santa Casa Municipal de Goiânia						2338351
+     99	Hospital Municipal Jamel Cecílio					2361744
+    100	Hospital Universitário da Universidade Federal do maranhão  HUUFMA	2726653
+    101	Hospital Tarquínio Lopes Filho						2646536
+    102	Hospital Presidente Vagas						2458292
+    103	Hospital Municipal Djalma Marques  Socorrão I				2308762
+    104	Hospital Municipal de Urgência Emergência Clementino Moura Socorrão II  2308800
+    105	Hospital da Criança Dr. Odorico Amaral de Matos				2458799
+    106	Hospital das Clínicas da Universidade Federal de Minas Gerais		0027049
+    107	Hospital Universitário da Universidade Federal de Juiz de Fora		2218798
+    108	Hospital das Clínicas da Universidade Federal do triângulo Mineiro	2206595
+    109	Hospital das Clínicas da Universidade Federal de Uberlândia		2146355
+    110	Hospital Regional Antônio Dias						2726726
+    111	Hospital Eduardo de Menezes						2181770
+    112	Hospital Infantil João Paulo II						0026948
+    113	Hospital Universitário Alzira Velano					2171988
+    114	Associação de Assistência Social da Santa Casa de Misericórdia de Araxá	2164620
+    115	Hospital Municipal Odilon Bherens					2192896
+    116	Casa de Caridade de Carangola						2764776
+    117	Hospital Municipal de Governador Valadares				2222043
+    118	Santa Casa de Misericórdia de Passos  Hospital Regional		2775999
+    119	Irmandade do Hospital de Nossa Senhora das Dores			2111640
+    120	Hospital das Clínicas Samuel Libânio					2127989
+    121	Hospital Santa Rosália							2208172
+    122	Hospital Bom Pastor - Fundação Hospitalar do Município de Varginha	2761092
+    123	Hospital Universitário Clemente de Faria				2219654
+    124	Associação Beneficente de Campo Grande-Santa Casa			0009717
+    125	Hospital Regional de Mato Grosso do Sul  HRMS				0009725
+    126	Hospital Universitário Maria Aparecida Pedrossian  HU			0009709
+    127	Hospital universitário Júlio Muller					2655411
+    128	Hospital e Pronto Socorro Municipal de Cuiabá				2495015
+    129	Hospital e Pronto Socorro Municipal de Várzea Grande			2391635
+    130	Hospital Universitário João de Barros Barreto  HUJBB			2332981
+    131	Fundação Santa Casa de Misericórdia do Pará  FSCMPA			2752700
+    132	Hospital Regional de Tucuruí  HRT					2621614
+    133	Hospital Antônio Maria Zacarias  HAMZ					2678403
+    134	Hospital Municipal São Rafael  HMSR					2330830
+    135	Hospital Municipal de Santarém  HMS					2329905
+    136	Hospital Universitário Alcides Carneiro					2676060
+    137	Hospital Universitário Lauro Wanderley					2400243
+    138	Hospital Regional de Urg Emerg Dom Luiz Gonzaga Fernandes		2362856
+    139	Complexo Hospitalar de Doenças Infecto-Contagiosas Dr. Clementino Fraga	2399717
+    140	Hospital Agamenon Magalhães						0000418
+    141	Instituto de Medicina Integral Prof. Fernando Figueira  IMIP		0000434
+    142	Hospital da Restauração							0000655
+    143	Hospital Getúlio Vargas							2802783
+    144	Hospital Otávio de Freitas						0000426
+    145	Hospital Correia Picanço						0000981
+    146	Hospital Universitário Oswaldo Cruz	       				0000477
+    147	Hospital das Clínicas Universidade Federal de Pernambuco		0000396
+    148	Instituo de Doenças Tropicais Natan Portela  IDTNP			2323338
+    149	Hospital Getúlio Vargas  HGV						2726971
+    150	Hospital Infantil Lucílio Portela  HILP				2323249
+    151	Hospital Regional Justino Luz						4009622
+    152	Hospital Angelina Caron							0013633
+    153	Hospital Universitário do Oeste do Paraná  UNIOESTE			2738368
+    154	Hospital das Clínicas da Universidade Federal do Paraná  HC-UFPR	2384299
+    155	Hospital Universitário Evangélico de Curitiba				0015245
+    156	Hospital Infantil Pequeno Príncipe					0015563
+    157	Hospital do Trabalhador							0015369
+    158	Hospital Cajuru  Associação Paranaense de Cultura			0015407
+    159	Hospital Municipal de Foz do Iguaçu Padre Germano Lauck			5061989
+    160	Hospital Universitário Regional de Maringá - UEM			2587335
+    161	Hospital Universitário Regional do Norte do Paraná 			2781859
+    162	Hospital Municipal Ferreira Machado					2287579
+    163	Hospital Municipal Miguel Couto						2270269
+    164	Hospital Municipal Souza Aguiar						2280183
+    165	Hospital universitário Clementino Fraga Filho				2280167
+    166	Hospital dos Servidores do Estado					2269988
+    167	Instituto Nacional de Infectologia Evandro Chagas  Fiocruz		2288338
+    168	Hospital Federal de Bonsucesso						2269880
+    169	Hospital Universitário Onofre Lopes  HUOL				2653982
+    170	Hospital Monsenhor Walfredo Gurgel					2653923
+    171	Hospital Giselda Trigueiro						4013484
+    172	Centro de Medicina Tropical de Rondônia					2493853
+    173	Hospital de Base Dr. Ary Pinheiro					4001303
+    174	Hospital Geral de Roraima - HGR						2319659
+    175	Hospital Nossa Senhora da Conceição					2237571
+    176	Hospital Universitário de Santa Maria					2244306
+    177	Hospital Nossa Senhora das Graças					2232014
+    178	Hospital Pompéia							2223546
+    179	Hospital São Vicente de Paulo						2246988
+    180	Hospital Santa Casa de Misericórdia de Pelotas				2253054
+    181	Hospital São Lucas da PUCRS						2262568
+    182	Hospital Santa Casa de Misericórdia de Rio Grande			2232995
+    183	Hospital Santa Cruz							2254964
+    184	Hospital Vida e Saúde							2254611
+    185	Santa Casa de Misericórdia de Uruguaiana				2248190
+    186	Hospital Nereu Ramos							2664879
+    187	Hospital Regional Hans Dieter Schmidt					2436450
+    188	Hospital Infantil Joana de Gusmão					2691868
+    189	Hospital Santa Isabel							2558246
+    190	Hospital Regional DOeste  Associação Hospitalar Lenoir Vargas		2537788
+    191	Hospital Nossa Senhora da Conceição					2491710
+    192	Hospital Universitário de Sergipe					0002534
+    193	Hospital Geral de Referência Estadual Gov. João Alves Filho		2816210
+    194	Hospital São Paulo - Hospital de Ensino  UNIFESP			2077485
+    195	Hospital das Clínicas da Faculdade de Medicina da USP			2078015
+    196	Irmandade da Santa Casa de Misericórdia de São Paulo			2688689
+    197	Instituto de Infectologia Emílio Ribas 					2028840
+    198	Conjunto Hospitalar do Mandaqui 					2077574
+    199	Hospital Casa de Saúde Santa Marcelina					2077477
+    200	Hospital Regional Sul							2091313
+    201	Hospital Infantil Cândido Fontoura					2088517
+    202	Hospital Regional de Assis						2083094
+    203	Santa Casa de Misericórdia de Araçatuba					2078775
+    204	Hospital das Clínicas da Faculdade de Medicina de Botucatu  UNESP	2748223
+    205	Hospital Estadual de Bauru	  					2790602
+    206	Hospital das Clínicas da Universidade Estadual de Campinas		2079798
+    207	Hospital Regional Dr. Osíris Florindo Coelho				2080079
+    208	Hospital Estadual Prof. Carlos Silva Lacaz				3028399
+    209	Hospital Geral de Guarulhos Prof. Dr. Waldemar de Carvalho		2080338
+    210	Hospital Regional Dr Leopoldo Bevilacqua				2077434
+    211	Hospital Guilherme Álvaro						2079720
+    212	Hospital das Clínicas da Faculdade de Medicina de Ribeirão Preto/USP	2082187
+    213	Hospital de Base de São José do Rio Preto				2077396
+    214	Conjunto Hospitalar de Sorocaba						2081695
+    215	Hospital Estadual de Sumaré						2083981
+    216	Hospital Geral de Pirajussara						2079828
+    217	Hospital Universitário de Taubaté					2749319
+    218	Santa Casa de Misericórdia de Franca					2705982
+    219	Santa Casa de Misericórdia de Barretos					2092611
+    220	Hospital e Maternidade Celso Pierro					2082128
+    221	Hospital Municipal Mário Gatti						2081490
+    222	Santa Casa de Misericórdia de Itapeva					2027186
+    223	Irmandade Santa Casa de Misericórdia de Limeira				2081458
+    224	Hospital de Clínicas Dr. Radamés Nardini				5661099
+    225	Irmandade da Santa Casa de Misericórdia de Mococa			2705222
+    226	Hospital Municipal Antonio Giglio					0008028
+    227	Centro Hospitalar do Município de Santo André				0008923
+    228	Irmandade da Santa Casa de Misericórdia de São Carlos			2080931
+    229	Hospital Municipal Dr. José Carvalho Florence				0009628
+    230	Hospital Infantil Menino Jesus						2078325
+    231	Hospital Municipal Dr. Carmino Caricchio				2080346
+    232	Hospital Geral de Palmas Dr. Francisco Ayres				2786117
+    233	Hospital Regional de Araguaina						2600536
+
+
+

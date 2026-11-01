@@ -1,0 +1,14 @@
+;LESAO.cnv
+; revisado pela UT-Sinan março 2019
+11 2
+      1  Ign/Branco                                           ,00-99
+      2  Mão                                                01
+      3  Membro superior                                    02
+      4  Cabeça                                             03
+      5  Pescoço                                            04
+      6  Tórax                                              05
+      7  Abdome                                             06
+      8  Membro inferior                                    07
+      9  Pé                                                 08
+     10  Todo o corpo                                       09
+     11  Outro                                              10

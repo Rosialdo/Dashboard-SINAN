@@ -1,0 +1,109 @@
+;NHEMUNIC.CNV ; Patch 4.2
+107  6
+      1  110020 Porto Velho                                 110020
+      2  120040 Rio Branco                                  120040
+      3  130260 Manaus                                      130260
+      4  130406 Tabatinga                                   130406
+      5  140010 Boa Vista                                   140010
+      6  150060 Altamira                                    150060
+      7  150140 Belém                                       150140
+      8  150170 Bragança                                    150170
+      9  150613 Redenção                                    150613
+     10  150680 Santarém                                    150680
+     11  150810 Tucuruí                                     150810
+     12  160030 Macapá                                      160030
+     13  170210 Araguaína                                   170210
+     14  172100 Palmas                                      172100
+     15  211130 São Luís                                    211130
+     16  220800 Picos                                       220800
+     17  221100 Teresina                                    221100
+     18  230190 Barbalha                                    230190
+     19  230440 Fortaleza                                   230440
+     20  231290 Sobral                                      231290
+     21  240810 Natal                                       240810
+     22  250400 Campina Grande                              250400
+     23  250750 João Pessoa                                 250750
+     24  261160 Recife                                      261160
+     25  270430 Maceió                                      270430
+     26  280030 Aracaju                                     280030
+     27  291080 Feira de Santana                            291080
+     28  291800 Jequié                                      291800
+     29  292740 Salvador                                    292740
+     30  293330 Vitória da Conquista                        293330
+     31  310160 Alfenas                                     310160
+     32  310400 Araxá                                       310400
+     33  310620 Belo Horizonte                              310620
+     34  311330 Carangola                                   311330
+     35  312770 Governador Valadares                        312770
+     36  313670 Juiz de Fora                                313670
+     37  314330 Montes Claros                               314330
+     38  314710 Pará de Minas                               314710
+     39  314790 Passos                                      314790
+     40  314800 Patos de Minas                              314800
+     41  315210 Ponte Nova                                  315210
+     42  315250 Pouso Alegre                                315250
+     43  316860 Teófilo Otoni                               316860
+     44  317010 Uberaba                                     317010
+     45  317020 Uberlândia                                  317020
+     46  317070 Varginha                                    317070
+     47  320530 Vitória                                     320530
+     48  330100 Campos dos Goytacazes                       330100
+     49  330170 Duque de Caxias                             330170
+     50  330330 Niterói                                     330330
+     51  330455 Rio de Janeiro                              330455
+     52  330490 São Gonçalo                                 330490
+     53  350280 Araçatuba                                   350280
+     54  350400 Assis                                       350400
+     55  350550 Barretos                                    350550
+     56  350600 Bauru                                       350600
+     57  350750 Botucatu                                    350750
+     58  350950 Campinas                                    350950
+     59  351570 Ferraz de Vasconcelos                       351570
+     60  351620 Franca                                      351620
+     61  351630 Francisco Morato                            351630
+     62  351880 Guarulhos                                   351880
+     63  352240 Itapeva                                     352240
+     64  352690 Limeira                                     352690
+     65  352900 Marília                                     352900
+     66  352940 Mauá                                        352940
+     67  353050 Mococa                                      353050
+     68  353440 Osasco                                      353440
+     69  353620 Pariquera-Açu                               353620
+     70  354340 Ribeirão Preto                              354340
+     71  354780 Santo André                                 354780
+     72  354850 Santos                                      354850
+     73  354890 São Carlos                                  354890
+     74  354980 São José do Rio Preto                       354980
+     75  354990 São José dos Campos                         354990
+     76  355030 São Paulo                                   355030
+     77  355220 Sorocaba                                    355220
+     78  355240 Sumaré                                      355240
+     79  355280 Taboão da Serra                             355280
+     80  355410 Taubaté                                     355410
+     81  410400 Campina Grande do Sul                       410400
+     82  410480 Cascavel                                    410480
+     83  410690 Curitiba                                    410690
+     84  410830 Foz do Iguaçu                               410830
+     85  411370 Londrina                                    411370
+     86  411520 Maringá                                     411520
+     87  420240 Blumenau                                    420240
+     88  420420 Chapecó                                     420420
+     89  420540 Florianópolis                               420540
+     90  420910 Joinville                                   420910
+     91  421870 Tubarão                                     421870
+     92  430460 Canoas                                      430460
+     93  430510 Caxias do Sul                               430510
+     94  431410 Passo Fundo                                 431410
+     95  431440 Pelotas                                     431440
+     96  431490 Porto Alegre                                431490
+     97  431560 Rio Grande                                  431560
+     98  431680 Santa Cruz do Sul                           431680
+     99  431690 Santa Maria                                 431690
+    100  431720 Santa Rosa                                  431720
+    101  432240 Uruguaiana                                  432240
+    102  500270 Campo Grande                                500270
+    103  510340 Cuiabá                                      510340
+    104  510840 Várzea Grande                               510840
+    105  520110 Anápolis                                    520110
+    106  520870 Goiânia                                     520870
+    107  530010 Brasília                                    530010      

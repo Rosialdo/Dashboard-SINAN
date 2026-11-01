@@ -1,0 +1,110 @@
+; NOTIFICAÇÃO NEGATIVA - SinanNet 
+; Elaborado em 11/2005 pelo GT- Sinan/MS
+; Atualizado em 16/10/2007 pelo GT - Sinan/MS
+; Atualizado em 24/09/2010 pelo GT - Sinan/MS - inclusão de consulta segundo Núcleos Hospitalares de Epidemiologia-NHE (190 nucleos)
+
+Ac:\SinanNet\BaseDBF\NNEGA*.DB?
+
+;    Definições para Ano, Mes, Semana e Trimestre da Notificação
+XAno da Notific,       DT_NOTIFIC,  1, ANOS.CNV
+LMes da Notific,       DT_NOTIFIC,  5, MESES.CNV
+CMes da Notific,       DT_NOTIFIC,  5, MESESC.CNV
+SMes da Notific,       DT_NOTIFIC,  5, MESES.CNV
+XTrim.da Notific,      DT_NOTIFIC,  5, TRIME.CNV
+
+;    Definições para Ano e Semana epidemiologica de notificação
+xSem.Epid Notific,    SEM_NOT,     5, SEMANAEP.CNV
+xAno Epid notific,    SEM_NOT,     1, ANOS.CNV
+
+; Definições para Identificação da Unidade de Saúde Notificante
+LUnid Saude Not, ID_UNIDADE, NM_UNIDADE,  unidanet.dbf
+SUnid Saude Not, ID_UNIDADE, NM_UNIDADE,  unidanet.dbf
+
+;       Definições para identificação dos 190 Núcleos Hospitalares de Epidemiologia-NHE
+LHosp NHE-UF e mun,    ID_UNIDADE,    1,  NHE.CNV
+SHosp NHE-UF e mun,    ID_UNIDADE,    1,  NHE.CNV
+
+;       Definições para identificação dos 190 Núcleos Hospitalares de Epidemiologia-NHE segundo nível hospitalar
+LHosp NHE-Nível,       ID_UNIDADE,    1,     NHENIVEL.CNV
+SHosp NHE-Nível,       ID_UNIDADE,    1,     NHENIVEL.CNV
+
+;       Definições para identificação dos 190 Núcleos Hospitalares de Epidemiologia-NHE segundo município
+LHosp NHE-Nível Mun,   ID_UNIDADE,    1,     NHE_NIVEL_MUN.CNV
+SHosp NHE-Nível Mun,   ID_UNIDADE,    1,     NHE_NIVEL_MUN.CNV
+
+
+; Definicoes para localização da UF Notificante
+LUF Notificação,    ID_MUNICIP,  1,  UFCODIGO.CNV
+CUF Notificação,    ID_MUNICIP,  1,  UFCCODIG.CNV
+SUF Notificação,    ID_MUNICIP,  1,  UFCODIGO.CNV
+
+;     Definicoes para Regionais de Notificaçao
+LRegional Notificação,  ID_REGIONA, NM_REGIONA,  regionet.DBF
+SRegional Notificação,  ID_REGIONA, NM_REGIONA,  regionet.dbf
+
+;     Definicoes para Região metropolitana de notificação
+LReg Metrop Not,  ID_MUNICIP,   1,  RMETRIDB2007.CNV
+SReg Metrop Not,  ID_MUNICIP,   1,  RMETRIDB2007.CNV
+
+; Definicoes para Capitais de Notificação
+XCapitais Not.,       ID_MUNICIP,  1,  CAPITAL.CNV
+
+XUF e Mun Not Front,    ID_MUNICIP,  1,  UF_MN_Front.cnv
+
+; Definicoes para municípios de Notificação
+LMun US Noti AC,   ID_MUNICIP,  1,  MUNICAC.CNV
+SMun US Noti AC,   ID_MUNICIP,  1,  MUNICAC.CNV
+LMun US Noti AL,   ID_MUNICIP,  1,  MUNICAL.CNV
+SMun US Noti AL,   ID_MUNICIP,  1,  MUNICAL.CNV
+LMun US Noti AM,   ID_MUNICIP,  1,  MUNICAM.CNV
+SMun US Noti AM,   ID_MUNICIP,  1,  MUNICAM.CNV
+LMun US Noti AP,   ID_MUNICIP,  1,  MUNICAP.CNV
+SMun US Noti AP,   ID_MUNICIP,  1,  MUNICAP.CNV
+LMun US Noti BA,   ID_MUNICIP,  1,  MUNICBA.CNV
+SMun US Noti BA,   ID_MUNICIP,  1,  MUNICBA.CNV
+LMun US Noti BR,   ID_MUNICIP,  1,  MUNICBR.CNV
+SMun US Noti BR,   ID_MUNICIP,  1,  MUNICBR.CNV
+LMun US Noti CE,   ID_MUNICIP,  1,  MUNICCE.CNV
+SMun US Noti CE,   ID_MUNICIP,  1,  MUNICCE.CNV
+LMun US Noti DF,   ID_MUNICIP,  1,  MUNICDF.CNV
+SMun US Noti DF,   ID_MUNICIP,  1,  MUNICDF.CNV
+LMun US Noti ES,   ID_MUNICIP,  1,  MUNICES.CNV
+SMun US Noti ES,   ID_MUNICIP,  1,  MUNICES.CNV
+LMun US Noti GO,   ID_MUNICIP,  1,  MUNICGO.CNV
+SMun US Noti GO,   ID_MUNICIP,  1,  MUNICGO.CNV
+LMun US Noti MA,   ID_MUNICIP,  1,  MUNICMA.CNV
+SMun US Noti MA,   ID_MUNICIP,  1,  MUNICMA.CNV
+LMun US Noti MG,   ID_MUNICIP,  1,  MUNICMG.CNV
+SMun US Noti MG,   ID_MUNICIP,  1,  MUNICMG.CNV
+LMun US Noti MS,   ID_MUNICIP,  1,  MUNICMS.CNV
+SMun US Noti MS,   ID_MUNICIP,  1,  MUNICMS.CNV
+LMun US Noti MT,   ID_MUNICIP,  1,  MUNICMT.CNV
+SMun US Noti MT,   ID_MUNICIP,  1,  MUNICMT.CNV
+LMun US Noti PA,   ID_MUNICIP,  1,  MUNICPA.CNV
+SMun US Noti PA,   ID_MUNICIP,  1,  MUNICPA.CNV
+LMun US Noti PB,   ID_MUNICIP,  1,  MUNICPB.CNV
+SMun US Noti PB,   ID_MUNICIP,  1,  MUNICPB.CNV
+LMun US Noti PE,   ID_MUNICIP,  1,  MUNICPE.CNV
+SMun US Noti PE,   ID_MUNICIP,  1,  MUNICPE.CNV
+LMun US Noti PI,   ID_MUNICIP,  1,  MUNICPI.CNV
+SMun US Noti PI,   ID_MUNICIP,  1,  MUNICPI.CNV
+LMun US Noti PR,   ID_MUNICIP,  1,  MUNICPR.CNV
+SMun US Noti PR,   ID_MUNICIP,  1,  MUNICPR.CNV
+LMun US Noti RJ,   ID_MUNICIP,  1,  MUNICRJ.CNV
+SMun US Noti RJ,   ID_MUNICIP,  1,  MUNICRJ.CNV
+LMun US Noti RN,   ID_MUNICIP,  1,  MUNICRN.CNV
+SMun US Noti RN,   ID_MUNICIP,  1,  MUNICRN.CNV
+LMun US Noti RO,   ID_MUNICIP,  1,  MUNICRO.CNV
+SMun US Noti RO,   ID_MUNICIP,  1,  MUNICRO.CNV
+LMun US Noti RR,   ID_MUNICIP,  1,  MUNICRR.CNV
+SMun US Noti RR,   ID_MUNICIP,  1,  MUNICRR.CNV
+LMun US Noti RS,   ID_MUNICIP,  1,  MUNICRS.CNV
+SMun US Noti RS,   ID_MUNICIP,  1,  MUNICRS.CNV
+LMun US Noti SC,   ID_MUNICIP,  1,  MUNICSC.CNV
+SMun US Noti SC,   ID_MUNICIP,  1,  MUNICSC.CNV
+LMun US Noti SE,   ID_MUNICIP,  1,  MUNICSE.CNV
+SMun US Noti SE,   ID_MUNICIP,  1,  MUNICSE.CNV
+LMun US Noti SP,   ID_MUNICIP,  1,  MUNICSP.CNV
+SMun US Noti SP,   ID_MUNICIP,  1,  MUNICSP.CNV
+LMun US Noti TO,   ID_MUNICIP,  1,  MUNICTO.CNV
+SMun US Noti TO,   ID_MUNICIP,  1,  MUNICTO.CNV

@@ -1,0 +1,6 @@
+;Fxhans.CNV
+; Revisado UT-Sinan 2019
+3  4
+      1  Em branco/IGN                                          ,0000,9999,A000-M999
+      2  0 a 14 anos                                        M000-M011,A001-A014
+      3  15 anos e mais                                     A015-A125

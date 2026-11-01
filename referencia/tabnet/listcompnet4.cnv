@@ -1,0 +1,65 @@
+; Listados todos os agravos da portaria de notificação compulsória
+; Exceto Influenza (deve ser usado dados do Sinan Online)
+; Atualizado em 29/09/2014 pela UT-Sinan/MS - Alteração da lista de acordo com a Portaria nº 1.271 de 06/06/2014
+; Atualizado em 08/09/2015 pela UT-Sinan/MS - Inclusão do agravo A92.8 - Febre pelo Virus Zika
+; Atualizado em 17/11/2017 pela UT-Sinan/MS - Portaria 204 de 17 de fevereiro de 2016
+; Atualizado em 21/01/2019 pela UT-Sinan/MS - Portaria de Consolidação 4 de 28/09/2017
+58 4
+      1  Acidente trabalho com exp. material biologico      Z209
+      2  Acid. trab: grave, fatal e em crianças e adolesc.  Y96 ,
+      3  Acidente por animais peçonhentos                   X29 ,
+      4  AIDS                                               B24 ,
+      5  Acid. por animal potencialmente transm. da raiva   W64 ,
+      6  Botulismo                                          A051
+      7  Carbúnculo ou Antraz                               A229
+      8  Cólera                                             A009
+      9  Coqueluche                                         A379
+     10  Criança Exposta ao HIV                             Z206
+     11  Dengue                                             A90 ,
+     12  Difteria                                           A369
+     13  Doenças de Chagas Aguda                            B571
+     14  Doença de Creutzfeldt-Jakob                        A810
+     15  Doença de Marburg                                  A983
+     16  Doença pelo virus Ebola                            A984                     ,
+     17  Doenças causadas por protozoarios compl gravidez   O986
+     18  Doenças Exantemáticas                              B09 ,
+     19  Doença aguda pelo virus Zika                       A928
+     20  Epizootias                                         EPI ,
+     21  Esquistossomose                                    B659
+     22  Eventos Adversos Pós-vacina                        Y59 ,
+     23  Febre Amarela                                      A959
+     24  Febre de Chikungunya                               A920
+     25  Febre de Lassa                                     A962
+     26  Febre do Nilo                                      A923
+     27  Febre Hemorragica por Arenavirus não especificada  A969
+     28  Febre Maculosa / Rickettsioses                     A779
+     29  Febre Purpúrica Brasileira                         A484
+     30  Febre Tifóide                                      A010
+     31  Gestantes HIV +                                    Z21 ,
+     32  Hanseníase                                         A309
+     33  Hantaviroses                                       A988
+     34  Hepatites Virais                                   B19 ,
+     35  Influenza humana produzida pornovo subtipo viral   J11 ,
+     36  Intoxicações Exógenas                              T659
+     37  Leishmaniose Tegumentar Americana                  B551
+     38  Leishmaniose Visceral                              B550
+     39  Leptospirose                                       A279
+     40  Malária                                            B54 ,
+     41  Meningite                                          G039
+     42  Paralisia Flácida Aguda/Poliomielite               A809
+     43  Peste                                              A209
+     44  Pneumonia não especificada                         J189
+     45  Raiva Humana                                       A829
+     46  Sífilis Adquirida                                  A539
+     47  Sífilis Congênita                                  A509
+     48  Sífilis em Gestante                                O981
+     49  Síndrome da Rubéola Congênita                      P350
+     50  Tétano Acidental                                   A35 ,
+     51  Tétano Neonatal                                    A33 ,
+     52  Toxoplasmose Congenita                             P371
+     53  Tuberculose                                        A169
+     54  Tularemia                                          A219
+     55  Varicela (B01.9)                                   B019
+     56  Varicela (B01)                                     B01 ,
+     57  Varíola                                            B03 ,
+     58  Violência doméstica, sexual e/ou outras violências Y09 ,

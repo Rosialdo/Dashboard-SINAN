@@ -1,0 +1,14 @@
+; EXTRAPULNET.CNV
+; Revisado UT-Sinan 2019
+11 2 l
+      1  IGN                                                  ,00-99,0 , 0
+      2  PLEURAL                                            1 ,01, 1
+      3  GANG. PERIF.                                       2 ,02, 2
+      4  GENITOURINÁRIA                                     3 ,03, 3
+      5  ÓSSEA                                              4 ,04, 4
+      6  OCULAR                                             5 ,05, 5
+      7  MILIAR                                             6 ,06, 6
+      8  MENINGOENCEFÁLICA                                  7 ,07, 7
+      9  CUTÂNEA                                            8 ,08, 8
+     10  LARÍNGEA                                           9 ,09, 9
+     11  OUTRA                                              10

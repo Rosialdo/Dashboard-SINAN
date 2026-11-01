@@ -1,0 +1,19 @@
+; CLAMENASSNET.cnv
+; Verificado pela UT_Sinan em fev/2019
+16 2 L 
+      1  Ign/em branco                                        ,00-99
+      2  Não identificado                                   75
+      3  Caxumba                                            37
+      4  Sarampo                                            38
+      5  Herpes simples                                     39
+      6  Varicela/Catapora/ Herpes Zoster                   40
+      7  Rubéola                                            41
+      8  Influenza                                          55
+      9  Adenovirus                                         70
+     10  Echovirus                                          56
+     11  Coxasackie                                         63
+     12  Outros Enterovirus                                 59
+     13  Virus do Nilo Ocidental                            71
+     14  Dengue                                             72
+     15  Outros Arbovirus                                   73
+     16  Outros vírus                                       74

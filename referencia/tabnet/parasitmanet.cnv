@@ -1,0 +1,14 @@
+; parasitmanet.CNV 
+; Revisado UT-Sinan 2019
+11 2  l
+      1  Ign/Em Branco                                        ,00-99
+      2  negativo                                           1 ,01, 1
+      3  Falciparum                                         2 ,02, 2
+      4  F+FG                                               3 ,03, 3
+      5  Vivax                                              4 ,04, 4
+      6  F+V                                                5 ,05, 5
+      7  V+FG                                               6 ,06, 6
+      8  FG                                                 7 ,07, 7
+      9  Malariae                                           8 ,08, 8
+     10  F+M                                                9 ,09, 9
+     11  Ovale                                              10

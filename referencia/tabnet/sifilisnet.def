@@ -1,0 +1,503 @@
+; INVESTIGAÇÃO DE SÍFILIS CONGENITA - Sinan NET
+; Elaborado em 16/10/2007 pelo GT- Sinan/MS
+; Revisado em 15/08/2007 pelo PN de DST/Aids
+; Revisado em 08/12/2008 pelo GT- Sinan/MS (incluido diagnostico final)
+; Revisado em 30/06/2009 pelo GT- Sinan/MS (alteração da faixa etária RIPSA - fxsic.cnv)
+; Atualizado em 24/09/2010 pelo GT - Sinan/MS - inclusão de consulta segundo Núcleos Hospitalares de Epidemiologia-NHE (190 nucleos)
+; Atualizado em 06/11/2012 pelo GT - Sinan/MS - correção faixa etária RIPSA.
+
+
+Ac:\SinanNet\BaseDBF\Sifc*.DB?
+
+;    Definições para Ano, Mes, Semana e Trimestre da Notificação
+XAno da Notific,       DT_NOTIFIC,  1, ANOS.CNV
+LMes da Notific,       DT_NOTIFIC,  5, MESES.CNV
+CMes da Notific,       DT_NOTIFIC,  5, MESESC.CNV
+SMes da Notific,       DT_NOTIFIC,  5, MESES.CNV
+XTrim.da Notific,      DT_NOTIFIC,  5, TRIME.CNV
+
+
+; Definições para Ano, Trimestre, Mes do Diagnóstico
+XAno Diagnóstico,    DT_DIAG,  1, ANOS.CNV
+LMes Diagnóstico,    DT_DIAG,  5, MESES.CNV
+CMes Diagnóstico,    DT_DIAG,  5, MESESC.CNV
+SMes Diagnóstico,    DT_DIAG,  5, MESES.CNV
+XTrim.Diagnóstico,   DT_DIAG,  5, TRIME.CNV
+
+
+;Definicoes para Faixa Etaria do paciente por ocasião da Notificação
+
+XFx Etária RIPSA,  NU_IDADE_N,   1,  FXRIPSA3NET.CNV
+XFx Etária (5),    NU_IDADE_N,   1,  FXIDAD5NET.CNV
+XFx Etária (9),    NU_IDADE_N,   1,  FXIDAD9NET.CNV
+XFx Etária SINAN,  NU_IDADE_N,   1,  FXIDAD10NET.CNV
+XFx Etária (13),   NU_IDADE_N,   1,  FXIDAD13NET.CNV
+XIdade detalhada,  NU_IDADE_N,   1,  IDADEDETNET.CNV
+
+
+;       Definições para Raça
+XRaça,              CS_RACA,     1,  RAÇA.CNV
+
+;       Definicoes para Sexo
+XSexo,              CS_SEXO,      1,  SEXO.CNV
+
+
+
+; Definições para Identificação da Unidade de Saúde Notificante
+LUnid Saude Not, ID_UNIDADE, NM_UNIDADE,  unidanet.dbf
+SUnid Saude Not, ID_UNIDADE, NM_UNIDADE,  unidanet.dbf
+
+;       Definições para identificação dos 190 Núcleos Hospitalares de Epidemiologia-NHE
+LHosp NHE-UF e mun,    ID_UNIDADE,    1,  NHE.CNV
+SHosp NHE-UF e mun,    ID_UNIDADE,    1,  NHE.CNV
+
+;       Definições para identificação dos 190 Núcleos Hospitalares de Epidemiologia-NHE segundo nível hospitalar
+LHosp NHE-Nível,       ID_UNIDADE,    1,     NHENIVEL.CNV
+SHosp NHE-Nível,       ID_UNIDADE,    1,     NHENIVEL.CNV
+
+;       Definições para identificação dos 190 Núcleos Hospitalares de Epidemiologia-NHE segundo município
+LHosp NHE-Nível Mun,   ID_UNIDADE,    1,     NHE_NIVEL_MUN.CNV
+SHosp NHE-Nível Mun,   ID_UNIDADE,    1,     NHE_NIVEL_MUN.CNV
+
+; Definicoes para localização da UF Notificante
+LUF Notificação,    ID_MUNICIP,  1,  UFCODIGO.CNV
+CUF Notificação,    ID_MUNICIP,  1,  UFCCODIG.CNV
+SUF Notificação,    ID_MUNICIP,  1,  UFCODIGO.CNV
+
+;     Definicoes para Regionais de Notificaçao
+LRegional Notificação,  ID_REGIONA, NM_REGIONA,  regionet.dbf
+SRegional Notificação,  ID_REGIONA, NM_REGIONA,  regionet.dbf
+
+;     Definicoes para Região metropolitana de notificação
+LReg Metrop Not,  ID_MUNICIP,   1,  RMETRIDB2007.CNV
+SReg Metrop Not,  ID_MUNICIP,   1,  RMETRIDB2007.CNV
+
+; Definicoes para Capitais de Notificação
+XCapitais Not.,       ID_MUNICIP,  1,  CAPITAL.CNV
+
+; Definicoes para municípios de Notificação
+LMun US Noti AC,   ID_MUNICIP,  1,  MUNICAC.CNV
+SMun US Noti AC,   ID_MUNICIP,  1,  MUNICAC.CNV
+LMun US Noti AL,   ID_MUNICIP,  1,  MUNICAL.CNV
+SMun US Noti AL,   ID_MUNICIP,  1,  MUNICAL.CNV
+LMun US Noti AM,   ID_MUNICIP,  1,  MUNICAM.CNV
+SMun US Noti AM,   ID_MUNICIP,  1,  MUNICAM.CNV
+LMun US Noti AP,   ID_MUNICIP,  1,  MUNICAP.CNV
+SMun US Noti AP,   ID_MUNICIP,  1,  MUNICAP.CNV
+LMun US Noti BA,   ID_MUNICIP,  1,  MUNICBA.CNV
+SMun US Noti BA,   ID_MUNICIP,  1,  MUNICBA.CNV
+LMun US Noti BR,   ID_MUNICIP,  1,  MUNICBR.CNV
+SMun US Noti BR,   ID_MUNICIP,  1,  MUNICBR.CNV
+LMun US Noti CE,   ID_MUNICIP,  1,  MUNICCE.CNV
+SMun US Noti CE,   ID_MUNICIP,  1,  MUNICCE.CNV
+LMun US Noti DF,   ID_MUNICIP,  1,  MUNICDF.CNV
+SMun US Noti DF,   ID_MUNICIP,  1,  MUNICDF.CNV
+LMun US Noti ES,   ID_MUNICIP,  1,  MUNICES.CNV
+SMun US Noti ES,   ID_MUNICIP,  1,  MUNICES.CNV
+LMun US Noti GO,   ID_MUNICIP,  1,  MUNICGO.CNV
+SMun US Noti GO,   ID_MUNICIP,  1,  MUNICGO.CNV
+LMun US Noti MA,   ID_MUNICIP,  1,  MUNICMA.CNV
+SMun US Noti MA,   ID_MUNICIP,  1,  MUNICMA.CNV
+LMun US Noti MG,   ID_MUNICIP,  1,  MUNICMG.CNV
+SMun US Noti MG,   ID_MUNICIP,  1,  MUNICMG.CNV
+LMun US Noti MS,   ID_MUNICIP,  1,  MUNICMS.CNV
+SMun US Noti MS,   ID_MUNICIP,  1,  MUNICMS.CNV
+LMun US Noti MT,   ID_MUNICIP,  1,  MUNICMT.CNV
+SMun US Noti MT,   ID_MUNICIP,  1,  MUNICMT.CNV
+LMun US Noti PA,   ID_MUNICIP,  1,  MUNICPA.CNV
+SMun US Noti PA,   ID_MUNICIP,  1,  MUNICPA.CNV
+LMun US Noti PB,   ID_MUNICIP,  1,  MUNICPB.CNV
+SMun US Noti PB,   ID_MUNICIP,  1,  MUNICPB.CNV
+LMun US Noti PE,   ID_MUNICIP,  1,  MUNICPE.CNV
+SMun US Noti PE,   ID_MUNICIP,  1,  MUNICPE.CNV
+LMun US Noti PI,   ID_MUNICIP,  1,  MUNICPI.CNV
+SMun US Noti PI,   ID_MUNICIP,  1,  MUNICPI.CNV
+LMun US Noti PR,   ID_MUNICIP,  1,  MUNICPR.CNV
+SMun US Noti PR,   ID_MUNICIP,  1,  MUNICPR.CNV
+LMun US Noti RJ,   ID_MUNICIP,  1,  MUNICRJ.CNV
+SMun US Noti RJ,   ID_MUNICIP,  1,  MUNICRJ.CNV
+LMun US Noti RN,   ID_MUNICIP,  1,  MUNICRN.CNV
+SMun US Noti RN,   ID_MUNICIP,  1,  MUNICRN.CNV
+LMun US Noti RO,   ID_MUNICIP,  1,  MUNICRO.CNV
+SMun US Noti RO,   ID_MUNICIP,  1,  MUNICRO.CNV
+LMun US Noti RR,   ID_MUNICIP,  1,  MUNICRR.CNV
+SMun US Noti RR,   ID_MUNICIP,  1,  MUNICRR.CNV
+LMun US Noti RS,   ID_MUNICIP,  1,  MUNICRS.CNV
+SMun US Noti RS,   ID_MUNICIP,  1,  MUNICRS.CNV
+LMun US Noti SC,   ID_MUNICIP,  1,  MUNICSC.CNV
+SMun US Noti SC,   ID_MUNICIP,  1,  MUNICSC.CNV
+LMun US Noti SE,   ID_MUNICIP,  1,  MUNICSE.CNV
+SMun US Noti SE,   ID_MUNICIP,  1,  MUNICSE.CNV
+LMun US Noti SP,   ID_MUNICIP,  1,  MUNICSP.CNV
+SMun US Noti SP,   ID_MUNICIP,  1,  MUNICSP.CNV
+LMun US Noti TO,   ID_MUNICIP,  1,  MUNICTO.CNV
+SMun US Noti TO,   ID_MUNICIP,  1,  MUNICTO.CNV
+
+;   Definicoes para localização da Residência do paciente por ocasião da Notificação
+;País de residência
+LPAIS Residência,   ID_PAIS,NM_PAIS,      paisnet.dbf
+SPAIS Residência,   ID_PAIS,NM_PAIS,      paisnet.dbf
+
+;Unidade federada de residência
+LUF Residência,      ID_MN_RESI,        1,  UFcodigo.CNV
+CUF Residência,      ID_MN_RESI,        1,  UFCcodig.CNV
+SUF Residência,      ID_MN_RESI,        1,  UFcodigo.CNV
+
+;regional de saúde de residência
+LRegional Residência,     ID_RG_RESI, NM_REGIONA,   regionet.dbf
+SRegional Residência,     ID_RG_RESI, NM_REGIONA,   regionet.dbf
+
+;região metropolitana de residência
+LReg Metrop Residência,    ID_MN_RESI,   1,  RMETRIDB2007.CNV
+SReg Metrop Residência,    ID_MN_RESI,   1,  RMETRIDB2007.CNV
+
+;município de residência
+DMun Resid AC,    ID_MN_RESI,   1,  MUNICAC.CNV
+SMun Resid AC,    ID_MN_RESI,   1,  MUNICAC.CNV
+DMun Resid AL,    ID_MN_RESI,   1,  MUNICAL.CNV
+SMun Resid AL,    ID_MN_RESI,   1,  MUNICAL.CNV
+DMun Resid AM,    ID_MN_RESI,   1,  MUNICAM.CNV
+SMun Resid AM,    ID_MN_RESI,   1,  MUNICAM.CNV
+DMun Resid AP,    ID_MN_RESI,   1,  MUNICAP.CNV
+SMun Resid AP,    ID_MN_RESI,   1,  MUNICAP.CNV
+DMun Resid BA,    ID_MN_RESI,   1,  MUNICBA.CNV
+SMun Resid BA,    ID_MN_RESI,   1,  MUNICBA.CNV
+DMun Resid BR,    ID_MN_RESI,   1,  MUNICBR.CNV
+SMun Resid BR,    ID_MN_RESI,   1,  MUNICBR.CNV
+DMun Resid CE,    ID_MN_RESI,   1,  MUNICCE.CNV
+SMun Resid CE,    ID_MN_RESI,   1,  MUNICCE.CNV
+DMun Resid DF,    ID_MN_RESI,   1,  MUNICDF.CNV
+SMun Resid DF,    ID_MN_RESI,   1,  MUNICDF.CNV
+DMun Resid ES,    ID_MN_RESI,   1,  MUNICES.CNV
+SMun Resid ES,    ID_MN_RESI,   1,  MUNICES.CNV
+DMun Resid GO,    ID_MN_RESI,   1,  MUNICGO.CNV
+SMun Resid GO,    ID_MN_RESI,   1,  MUNICGO.CNV
+DMun Resid MA,    ID_MN_RESI,   1,  MUNICMA.CNV
+SMun Resid MA,    ID_MN_RESI,   1,  MUNICMA.CNV
+DMun Resid MG,    ID_MN_RESI,   1,  MUNICMG.CNV
+SMun Resid MG,    ID_MN_RESI,   1,  MUNICMG.CNV
+DMun Resid MS,    ID_MN_RESI,   1,  MUNICMS.CNV
+SMun Resid MS,    ID_MN_RESI,   1,  MUNICMS.CNV
+DMun Resid MT,    ID_MN_RESI,   1,  MUNICMT.CNV
+SMun Resid MT,    ID_MN_RESI,   1,  MUNICMT.CNV
+DMun Resid PA,    ID_MN_RESI,   1,  MUNICPA.CNV
+SMun Resid PA,    ID_MN_RESI,   1,  MUNICPA.CNV
+DMun Resid PB,    ID_MN_RESI,   1,  MUNICPB.CNV
+SMun Resid PB,    ID_MN_RESI,   1,  MUNICPB.CNV
+DMun Resid PE,    ID_MN_RESI,   1,  MUNICPE.CNV
+SMun Resid PE,    ID_MN_RESI,   1,  MUNICPE.CNV
+DMun Resid PI,    ID_MN_RESI,   1,  MUNICPI.CNV
+SMun Resid PI,    ID_MN_RESI,   1,  MUNICPI.CNV
+DMun Resid PR,    ID_MN_RESI,   1,  MUNICPR.CNV
+SMun Resid PR,    ID_MN_RESI,   1,  MUNICPR.CNV
+DMun Resid RJ,    ID_MN_RESI,   1,  MUNICRJ.CNV
+SMun Resid RJ,    ID_MN_RESI,   1,  MUNICRJ.CNV
+DMun Resid RN,    ID_MN_RESI,   1,  MUNICRN.CNV
+SMun Resid RN,    ID_MN_RESI,   1,  MUNICRN.CNV
+DMun Resid RO,    ID_MN_RESI,   1,  MUNICRO.CNV
+SMun Resid RO,    ID_MN_RESI,   1,  MUNICRO.CNV
+DMun Resid RR,    ID_MN_RESI,   1,  MUNICRR.CNV
+SMun Resid RR,    ID_MN_RESI,   1,  MUNICRR.CNV
+DMun Resid RS,    ID_MN_RESI,   1,  MUNICRS.CNV
+SMun Resid RS,    ID_MN_RESI,   1,  MUNICRS.CNV
+DMun Resid SC,    ID_MN_RESI,   1,  MUNICSC.CNV
+SMun Resid SC,    ID_MN_RESI,   1,  MUNICSC.CNV
+DMun Resid SE,    ID_MN_RESI,   1,  MUNICSE.CNV
+SMun Resid SE,    ID_MN_RESI,   1,  MUNICSE.CNV
+DMun Resid SP,    ID_MN_RESI,   1,  MUNICSP.CNV
+SMun Resid SP,    ID_MN_RESI,   1,  MUNICSP.CNV
+DMun Resid TO,    ID_MN_RESI,   1,  MUNICTO.CNV
+SMun Resid TO,    ID_MN_RESI,   1,  MUNICTO.CNV
+
+;Zona de Residência
+XZona Residência,    CS_ZONA,      1,  ZONA.CNV
+
+;Distritos de Residencia
+DDistr Resid,   ID_DISTRIT, NM_DISTRIT,   distrnet.dbf
+SDistr Resid,   ID_DISTRIT, NM_DISTRIT,   distrnet.dbf
+
+;Bairros de Residencia
+DBairro Resid,     ID_BAIRRO, NM_BAIRRO,     bairrnet.dbf
+SBairro Resid,     ID_BAIRRO, NM_BAIRRO,     bairrnet.dbf
+
+; Capitais de Residência
+DCapitais Residência,       ID_MN_RESI,  1,  CAPITAL.CNV
+SCapitais Residência,       ID_MN_RESI,  1,  CAPITAL.CNV
+
+
+
+;-------------------FIM NOTINDIV------------------------
+
+;  Definições para a Faixa etária da Mãe
+;TFx Etaria Mãe,    ANT_IDADE,   1,  Fximae14.CNV
+;SFx Etaria Mãe,    ANT_IDADE,   1,  Fximae14.CNV
+
+XFx Etaria Mãe,    ANT_IDADE,   1,  Fxid10maenet.CNV
+
+;       Definições para Raça
+XRaça Mãe,              ANT_RACA,     1,  RAÇA.CNV
+
+ ;   Definições para Ocupação
+DOcupação,ID_OCUPA_N, NM_OCUPACA, ocupanet.dbf
+SOcupação,ID_OCUPA_N, NM_OCUPACA, ocupanet.dbf
+
+;       Definicoes para Escolaridade
+XEscolar mãe,         ESCOLMAE,   1,  ESCOLARNET.CNV
+
+; Definições para a Realização do Pré-Natal
+TRealizou Pré-Natal,    ANT_PRE_NA, 1, SIM_NAO.CNV
+SRealizou Pré-Natal,    ANT_PRE_NA, 1, SIM_NAO.CNV
+
+; Definições para UF de Realização do Pré-Natal
+
+DUF US Pré-natal,      MUN_PRE_NA,        1,  UFcodigo.CNV
+CUF US Pré-natal,      MUN_PRE_NA,        1,  UFCcodig.CNV
+SUF US Pré-natal,      MUN_PRE_NA,        1,  UFcodigo.CNV
+
+; Definições para município de Realização do Pré-Natal
+
+DMun AC pré-natal,MUN_PRE_NA, 1,  MUNICAC.CNV
+SMun AC pré-natal,MUN_PRE_NA, 1,  MUNICAC.CNV
+DMun AL pré-natal,MUN_PRE_NA, 1,  MUNICAL.CNV
+SMun AL pré-natal,MUN_PRE_NA, 1,  MUNICAL.CNV
+DMun AM pré-natal,MUN_PRE_NA, 1,  MUNICAM.CNV
+SMun AM pré-natal,MUN_PRE_NA, 1,  MUNICAM.CNV
+DMun AP pré-natal,MUN_PRE_NA, 1,  MUNICAP.CNV
+SMun AP pré-natal,MUN_PRE_NA, 1,  MUNICAP.CNV
+DMun BA pré-natal,MUN_PRE_NA, 1,  MUNICBA.CNV
+SMun BA pré-natal,MUN_PRE_NA, 1,  MUNICBA.CNV
+DMun BR pré-natal,MUN_PRE_NA, 1,  MUNICBR.CNV
+SMun BR pré-natal,MUN_PRE_NA, 1,  MUNICBR.CNV
+DMun CE pré-natal,MUN_PRE_NA, 1,  MUNICCE.CNV
+SMun CE pré-natal,MUN_PRE_NA, 1,  MUNICCE.CNV
+DMun DF pré-natal,MUN_PRE_NA, 1,  MUNICDF.CNV
+SMun DF pré-natal,MUN_PRE_NA, 1,  MUNICDF.CNV
+DMun ES pré-natal,MUN_PRE_NA, 1,  MUNICES.CNV
+SMun ES pré-natal,MUN_PRE_NA, 1,  MUNICES.CNV
+DMun GO pré-natal,MUN_PRE_NA, 1,  MUNICGO.CNV
+SMun GO pré-natal,MUN_PRE_NA, 1,  MUNICGO.CNV
+DMun MA pré-natal,MUN_PRE_NA, 1,  MUNICMA.CNV
+SMun MA pré-natal,MUN_PRE_NA, 1,  MUNICMA.CNV
+DMun MG pré-natal,MUN_PRE_NA, 1,  MUNICMG.CNV
+SMun MG pré-natal,MUN_PRE_NA, 1,  MUNICMG.CNV
+DMun MS pré-natal,MUN_PRE_NA, 1,  MUNICMS.CNV
+SMun MS pré-natal,MUN_PRE_NA, 1,  MUNICMS.CNV
+DMun MT pré-natal,MUN_PRE_NA, 1,  MUNICMT.CNV
+SMun MT pré-natal,MUN_PRE_NA, 1,  MUNICMT.CNV
+DMun PA pré-natal,MUN_PRE_NA, 1,  MUNICPA.CNV
+SMun PA pré-natal,MUN_PRE_NA, 1,  MUNICPA.CNV
+DMun PB pré-natal,MUN_PRE_NA, 1,  MUNICPB.CNV
+SMun PB pré-natal,MUN_PRE_NA, 1,  MUNICPB.CNV
+DMun PE pré-natal,MUN_PRE_NA, 1,  MUNICPE.CNV
+SMun PE pré-natal,MUN_PRE_NA, 1,  MUNICPE.CNV
+DMun PI pré-natal,MUN_PRE_NA, 1,  MUNICPI.CNV
+SMun PI pré-natal,MUN_PRE_NA, 1,  MUNICPI.CNV
+DMun PR pré-natal,MUN_PRE_NA, 1,  MUNICPR.CNV
+SMun PR pré-natal,MUN_PRE_NA, 1,  MUNICPR.CNV
+DMun RJ pré-natal,MUN_PRE_NA, 1,  MUNICRJ.CNV
+SMun RJ pré-natal,MUN_PRE_NA, 1,  MUNICRJ.CNV
+DMun RN pré-natal,MUN_PRE_NA, 1,  MUNICRN.CNV
+SMun RN pré-natal,MUN_PRE_NA, 1,  MUNICRN.CNV
+DMun RO pré-natal,MUN_PRE_NA, 1,  MUNICRO.CNV
+SMun RO pré-natal,MUN_PRE_NA, 1,  MUNICRO.CNV
+DMun RR pré-natal,MUN_PRE_NA, 1,  MUNICRR.CNV
+SMun RR pré-natal,MUN_PRE_NA, 1,  MUNICRR.CNV
+DMun RS pré-natal,MUN_PRE_NA, 1,  MUNICRS.CNV
+SMun RS pré-natal,MUN_PRE_NA, 1,  MUNICRS.CNV
+DMun SC pré-natal,MUN_PRE_NA, 1,  MUNICSC.CNV
+SMun SC pré-natal,MUN_PRE_NA, 1,  MUNICSC.CNV
+DMun SE pré-natal,MUN_PRE_NA, 1,  MUNICSE.CNV
+SMun SE pré-natal,MUN_PRE_NA, 1,  MUNICSE.CNV
+DMun SP pré-natal,MUN_PRE_NA, 1,  MUNICSP.CNV
+SMun SP pré-natal,MUN_PRE_NA, 1,  MUNICSP.CNV
+DMun TO pré-natal,MUN_PRE_NA, 1,  MUNICTO.CNV
+SMun TO pré-natal,MUN_PRE_NA, 1,  MUNICTO.CNV
+
+; Definições para Identificação da Unidade de Saúde de PRE-NATAL
+LUs pré-natal, UNI_PRE_NA, NM_UNIDADE,  UNIDINVEST.dbf
+SUs pré-natal, UNI_PRE_NA, NM_UNIDADE,  UNIDINVEST.dbf
+
+;Definições para Sífilis diagnosticada durante a gravidez
+xSífilis materna, ANTSIFIL_N, 1, diagsifi.cnv
+
+; Definições para teste nao treponemico (Parto)
+TTeste nao Trep Parto,  LAB_PARTO, 1, REAGE.CNV
+STeste nao Trep Parto,  LAB_PARTO, 1, REAGE.CNV
+
+; Definições para Título do teste nao treponemico (Parto)
+ITIT Teste nao treponemico Parto,  LAB_TITU_2
+
+;    Definições para Ano, Mes, Semana e Trimestre do teste nao treponemico
+XAno do teste,       LAB_DT3,  1, ANOS.CNV
+LMes do teste,       LAB_DT3,  5, MESES.CNV
+CMes do teste,       LAB_DT3,  5, MESESC.CNV
+SMes do teste,       LAB_DT3,  5, MESES.CNV
+XTrim.do teste,      LAB_DT3,  5, TRIME.CNV
+
+; Definições para teste confirmatorio treponemico (Parto)
+TTeste conf Trep Parto,  LAB_CONF, 1, REAGE.CNV
+STeste conf Trep Parto,  LAB_CONF, 1, REAGE.CNV
+
+; Definições para tratamento da mãe
+xEsquema de tratamento, TRA_ESQUEM, 1,  trata.cnv
+
+; Definições para Resultado de Exame teste nao traponemico(PRÉ-NATAL)
+;--TTeste nao Trep ,  LAB_VDRL1, 1, REAGE.CNV
+;--STeste nao Trep ,  LAB_VDRL1, 1, REAGE.CNV
+
+; Definições para Ano e Mes do Inicio do tratamento da Mãe
+DAno Inic Trat Mãe,      TRA_DT, 1, ANOS.CNV
+SAno Inic Trat Mãe,      TRA_DT, 1, ANOS.CNV
+DMes Inic Trat Mãe,      TRA_DT, 5, MESES.CNV
+CMes Inic Trat Mãe,      TRA_DT, 5, MESESC.CNV
+SMes Inic Trat Mãe,      TRA_DT, 5, MESES.CNV
+
+; Definições para  tratamento da parceiro
+TTrat parceiro,  ANT_TRATAD, 1, SIM_NAO.CNV
+STrat parceiro,  ANT_TRATAD, 1, SIM_NAO.CNV
+
+; Definições para Local de Nascimento
+DUS Nascimento, ANT_LOCAL_, NM_UNIDADE, UNIDINVEST.dbf
+SUS Nascimento, ANT_LOCAL_, NM_UNIDADE, UNIDINVEST.dbf
+
+DMun Nasciment AC,   ANT_MUNI_C,  1,  MUNICAC.CNV
+SMun Nasciment AC,   ANT_MUNI_C,  1,  MUNICAC.CNV
+DMun Nasciment AL,   ANT_MUNI_C,  1,  MUNICAL.CNV
+SMun Nasciment AL,   ANT_MUNI_C,  1,  MUNICAL.CNV
+DMun Nasciment AM,   ANT_MUNI_C,  1,  MUNICAM.CNV
+SMun Nasciment AM,   ANT_MUNI_C,  1,  MUNICAM.CNV
+DMun Nasciment AP,   ANT_MUNI_C,  1,  MUNICAP.CNV
+SMun Nasciment AP,   ANT_MUNI_C,  1,  MUNICAP.CNV
+DMun Nasciment BA,   ANT_MUNI_C,  1,  MUNICBA.CNV
+SMun Nasciment BA,   ANT_MUNI_C,  1,  MUNICBA.CNV
+DMun Nasciment BR,   ANT_MUNI_C,  1,  MUNICBR.CNV
+SMun Nasciment BR,   ANT_MUNI_C,  1,  MUNICBR.CNV
+DMun Nasciment CE,   ANT_MUNI_C,  1,  MUNICCE.CNV
+SMun Nasciment CE,   ANT_MUNI_C,  1,  MUNICCE.CNV
+DMun Nasciment DF,   ANT_MUNI_C,  1,  MUNICDF.CNV
+SMun Nasciment DF,   ANT_MUNI_C,  1,  MUNICDF.CNV
+DMun Nasciment ES,   ANT_MUNI_C,  1,  MUNICES.CNV
+SMun Nasciment ES,   ANT_MUNI_C,  1,  MUNICES.CNV
+DMun Nasciment GO,   ANT_MUNI_C,  1,  MUNICGO.CNV
+SMun Nasciment GO,   ANT_MUNI_C,  1,  MUNICGO.CNV
+DMun Nasciment MA,   ANT_MUNI_C,  1,  MUNICMA.CNV
+SMun Nasciment MA,   ANT_MUNI_C,  1,  MUNICMA.CNV
+DMun Nasciment MG,   ANT_MUNI_C,  1,  MUNICMG.CNV
+SMun Nasciment MG,   ANT_MUNI_C,  1,  MUNICMG.CNV
+DMun Nasciment MS,   ANT_MUNI_C,  1,  MUNICMS.CNV
+SMun Nasciment MS,   ANT_MUNI_C,  1,  MUNICMS.CNV
+DMun Nasciment MT,   ANT_MUNI_C,  1,  MUNICMT.CNV
+SMun Nasciment MT,   ANT_MUNI_C,  1,  MUNICMT.CNV
+DMun Nasciment PA,   ANT_MUNI_C,  1,  MUNICPA.CNV
+SMun Nasciment PA,   ANT_MUNI_C,  1,  MUNICPA.CNV
+DMun Nasciment PB,   ANT_MUNI_C,  1,  MUNICPB.CNV
+SMun Nasciment PB,   ANT_MUNI_C,  1,  MUNICPB.CNV
+DMun Nasciment PE,   ANT_MUNI_C,  1,  MUNICPE.CNV
+SMun Nasciment PE,   ANT_MUNI_C,  1,  MUNICPE.CNV
+DMun Nasciment PI,   ANT_MUNI_C,  1,  MUNICPI.CNV
+SMun Nasciment PI,   ANT_MUNI_C,  1,  MUNICPI.CNV
+DMun Nasciment PR,   ANT_MUNI_C,  1,  MUNICPR.CNV
+SMun Nasciment PR,   ANT_MUNI_C,  1,  MUNICPR.CNV
+DMun Nasciment RJ,   ANT_MUNI_C,  1,  MUNICRJ.CNV
+SMun Nasciment RJ,   ANT_MUNI_C,  1,  MUNICRJ.CNV
+DMun Nasciment RN,   ANT_MUNI_C,  1,  MUNICRN.CNV
+SMun Nasciment RN,   ANT_MUNI_C,  1,  MUNICRN.CNV
+DMun Nasciment RO,   ANT_MUNI_C,  1,  MUNICRO.CNV
+SMun Nasciment RO,   ANT_MUNI_C,  1,  MUNICRO.CNV
+DMun Nasciment RR,   ANT_MUNI_C,  1,  MUNICRR.CNV
+SMun Nasciment RR,   ANT_MUNI_C,  1,  MUNICRR.CNV
+DMun Nasciment RS,   ANT_MUNI_C,  1,  MUNICRS.CNV
+SMun Nasciment RS,   ANT_MUNI_C,  1,  MUNICRS.CNV
+DMun Nasciment SC,   ANT_MUNI_C,  1,  MUNICSC.CNV
+SMun Nasciment SC,   ANT_MUNI_C,  1,  MUNICSC.CNV
+DMun Nasciment SE,   ANT_MUNI_C,  1,  MUNICSE.CNV
+SMun Nasciment SE,   ANT_MUNI_C,  1,  MUNICSE.CNV
+DMun Nasciment SP,   ANT_MUNI_C,  1,  MUNICSP.CNV
+SMun Nasciment SP,   ANT_MUNI_C,  1,  MUNICSP.CNV
+DMun Nasciment TO,   ANT_MUNI_C,  1,  MUNICTO.CNV
+SMun Nasciment TO,   ANT_MUNI_C,  1,  MUNICTO.CNV
+
+ ; Definições para TESTE NÃO TREPONÊMICO (SANGUE PERIFÉRICO)
+TTeste Sangue Periférico,  LABC_SANGU, 1, REATIVO.CNV
+STeste Sangue Periférico,  LABC_SANGU, 1, REATIVO.CNV
+
+; Definições para Título do TESTE NÃO TREPONÊMICO (SANGUE PERIFÉRICO)
+ITIT Teste Sangue Periférico,  LABC_TIT_1
+
+; Definições para Ano, Mes e Trimestre do TESTE NÃO TREPONÊMICO (SANGUE PERIFÉRICO)
+TAno tes n trep peri,        LABC_DT_1,     1, ANOS.CNV
+SAno tes n trep peri,        LABC_DT_1,     1, ANOS.CNV
+DMes tes n trep peri,        LABC_DT_1,     5, MESES.CNV
+CMes tes n trep peri,        LABC_DT_1,     5, MESESC.CNV
+SMes tes n trep peri,        LABC_DT_1,     5, MESES.CNV
+
+ ; Definições para Teste treponêmico(após 18 meses)
+TTeste trep 18meses,  LABC_IGG, 1, REAGE.CNV
+STeste trep 18meses,  LABC_IGG, 1, REAGE.CNV
+
+; Definições para Ano, Mes e Trimestre do TESTE  TREPONÊMICO (APÓS 18 MESES)
+TAno teste treponemico cça,        LABC_DT,     1, ANOS.CNV
+SAno teste treponemico cça,        LABC_DT,     1, ANOS.CNV
+DMes teste treponemico cça,        LABC_DT,     5, MESES.CNV
+CMes teste treponemico cça,        LABC_DT,     5, MESESC.CNV
+SMes teste treponemico cça,        LABC_DT,     5, MESES.CNV
+
+; Definições para TESTE NÃO TREPONÊMICO(LIQUOR)
+TTeste LIQUOR,  LABC_LIQUO, 1, REAGE.CNV
+STeste LIQUOR,  LABC_LIQUO, 1, REAGE.CNV
+
+; Definições para Título do TESTE NÃO TREPONÊMICO(LIQUOR)
+ITIT Teste LIQUOR,  LABC_TIT_2
+
+; Definições para Ano, Mes e Trimestre do TESTE NÃO TREPONÊMICO(LIQUOR)
+TAno Liquor,        LABC_DT_2,     1, ANOS.CNV
+SAno Liquor,        LABC_DT_2,     1, ANOS.CNV
+DMes Liquor,        LABC_DT_2,     5, MESES.CNV
+CMes Liquor,        LABC_DT_2,     5, MESESC.CNV
+SMes Liquor,        LABC_DT_2,     5, MESES.CNV
+
+; Definições para Titulaçao Ascendente
+TTitulaçao Ascendente,   LABC_TITUL, 1, sim_naonre.cnv
+STitulaçao Ascendente,   LABC_TITUL, 1, sim_naonre.cnv
+
+; Definições para Evidencia de T. Pallidum
+TT. Palidum,   LABC_EVIDE, 1, sim_naonre.cnv
+ST. Palidum,   LABC_EVIDE, 1, sim_naonre.cnv
+
+; Definições para a Alteração Liquórica
+TAlt. Liquórica, LABC_LIQ_1, 1, sim_naonre.cnv
+SAlt. Liquórica, LABC_LIQ_1, 1, sim_naonre.cnv
+
+; Definições para Alteração Ossos Longos
+TAlt Ossos Longos, TRA_DIAG_T, 1, sim_naonre.cnv
+SAlt Ossos Longos, TRA_DIAG_T, 1, sim_naonre.cnv
+
+; Definições para o Esquema de Tratamento do paciente
+
+xTratamento Caso,  TRA_ESQU_1, 1, PENSIFI.CNV
+
+; Definições para o Critério de definição de caso de sífilis congênita
+
+xMãe inadeq. tratada,                   CRI_MAE,    1, sim_nao.cnv
+xParceiro inadeq.tratado,               CRI_PARCEI, 1, SIM_NAO.CNV
+xRecém nascido sintomático,             CRI_RECEM,  1, SIM_NAO.CNV
+xTrep. pallidum mãe,                    CRI_EVIMAE, 1, SIM_NAO.CNV
+xTrep. pallidum em <13 anos,            CRI_EVIMEN, 1, SIM_NAO.CNV
+xAborto/natimorto,                      CRI_ABORTO, 1, SIM_NAO.CNV
+xTrep. pallidum em tecido de placenta,  CRI_EVIPLA, 1, SIM_NAO.CNV
+
+XEvolução,               EVOLUCAO,  1,  Vivoobit.cnv
+
+; Definições para diagnóstico final ( campo interno preenchido automaticamente pelo sistema)
+XDiagnóstico Final, EVO_DIAG_N, 1 , diagsifC.cnv
+
+; Definições para Ano, Trimestre, Mes da Data do Óbito
+TAno Encerramento,    DT_OBITO,     1, ANOS.CNV
+SAno Encerramento,    DT_OBITO,     1, ANOS.CNV  
+DMes Encerramento,    DT_OBITO,     5, MESES.CNV
+CMes Encerramento,    DT_OBITO,     5, MESESC.CNV
+SMes Encerramento,    DT_OBITO,     5, MESES.CNV
+TTrim.Encerramento,   DT_OBITO,     5, TRIME.CNV
+STrim.Encerramento,   DT_OBITO,     5, TRIME.CNV 
+
+

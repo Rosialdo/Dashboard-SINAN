@@ -1,0 +1,11 @@
+; nudoseMB.cnv
+; Revisado UT-Sinan 2019
+7 2
+      1  não preenchido/Ign                                   ,00-99
+      2  nenhuma dose                                       00, 0,0 ,
+      3  <12                                                01-11
+      4  12 doses                                           12
+      5  13 a 23                                            13-23
+      6  24 doses                                           24
+      7  > 24                                               25-48
+

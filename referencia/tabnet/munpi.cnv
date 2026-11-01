@@ -1,0 +1,97 @@
+;MUNPI - Municípios Prioridade I para Notificação no Sinan Online
+95  6 L
+      1  Rondônia                                           ------
+  1   2  110020 PORTO VELHO                                 110020
+      3  Acre                                               ------
+  3   4  120040 RIO BRANCO                                  120040
+      5  Amazonas                                           ------
+  5   6  130260 MANAUS                                      130260
+      7  Roraima                                            ------
+  7   8  140010 BOA VISTA                                   140010
+      9  Pará                                               ------
+  9  10  150080 ANANINDEUA                                  150080
+  9  11  150140 BELEM                                       150140
+     12  Amapá                                              ------
+ 12  13  160030 MACAPA                                      160030
+     14  Tocantins                                          ------
+ 14  15  172100 PALMAS                                      172100
+     16  Maranhão                                           ------
+ 16  17  211130 SAO LUIS                                    211130
+     18  Piauí                                              ------
+ 18  19  221100 TERESINA                                    221100
+     20  Ceará                                              ------
+ 20  21  230370 CAUCAIA                                     230370
+     22  230440 FORTALEZA                                   230440
+     23  Rio Grande do Norte                                ------
+ 23  24  240810 NATAL                                       240810
+     25  Paraíba                                            ------
+ 25  26  250750 JOAO PESSOA                                 250750
+     27  Pernambuco                                         ------
+ 27  28  260790 JABOATAO DOS GUARARAPES                     260790
+ 27  29  260960 OLINDA                                      260960
+ 27  30  261070 PAULISTA                                    261070
+ 27  31  261110 PETROLINA                                   261110
+ 27  32  261160 RECIFE                                      261160
+     33  Alagoas                                            ------
+ 33  34  270430 MACEIO                                      270430
+     35  Sergipe                                            ------
+ 35  36  280030 ARACAJU                                     280030
+     37  Bahia                                              ------
+ 37  38  290570 CAMACARI                                    290570
+ 37  39  291080 FEIRA DE SANTANA                            291080
+ 37  40  291360 ILHEUS                                      291360
+ 37  41  291480 ITABUNA                                     291480
+ 37  42  291840 JUAZEIRO                                    291840
+ 37  43  292740 SALVADOR                                    292740
+ 37  44  293330 VITORIA DA CONQUISTA                        293330
+     45  Minas Gerais                                       ------
+ 45  46  310620 BELO HORIZONTE                              310620
+ 45  47  310670 BETIM                                       310670
+ 45  48  311860 CONTAGEM                                    311860
+ 45  49  311940 CORONEL FABRICIANO                          311940
+ 45  50  312770 GOVERNADOR VALADARES                        312770
+ 45  51  313130 IPATINGA                                    313130
+ 45  52  313670 JUIZ DE FORA                                313670
+ 45  53  315460 RIBEIRAO DAS NEVES                          315460
+ 45  54  315780 SANTA LUZIA                                 315780
+ 45  55  316870 TIMOTEO                                     316870
+ 45  56  317010 UBERABA                                     317010
+ 45  57  317020 UBERLANDIA                                  317020
+     58  Espírito Santo                                     ------
+ 58  59  320130 CARIACICA                                   320130
+ 58  60  320500 SERRA                                       320500
+ 58  61  320520 VILA VELHA                                  320520
+ 58  62  320530 VITORIA                                     320530
+     63  Rio de Janeiro                                     ------
+ 63  64  330045 BELFORD ROXO                                330045
+ 63  65  330100 CAMPOS DOS GOYTACAZES                       330100
+ 63  66  330170 DUQUE DE CAXIAS                             330170
+ 63  67  330190 ITABORAI                                    330190
+ 63  68  330250 MAGE                                        330250
+ 63  69  330330 NITEROI                                     330330
+ 63  70  330350 NOVA IGUACU                                 330350
+ 63  71  330455 RIO DE JANEIRO                              330455
+ 63  72  330490 SAO GONCALO                                 330490
+ 63  73  330510 SAO JOAO DE MERITI                          330510
+     74  São Paulo                                          ------
+ 74  75  350950 CAMPINAS                                    350950
+ 74  76  351870 GUARUJA                                     351870
+ 74  77  354340 RIBEIRAO PRETO                              354340
+ 74  78  354850 SANTOS                                      354850
+ 74  79  354980 SAO JOSE DO RIO PRETO                       354980
+ 74  80  354990 SAO JOSE DOS CAMPOS                         354990
+ 74  81  355030 SAO PAULO                                   355030
+ 74  82  355100 SAO VICENTE                                 355100
+ 74  83  355220 SOROCABA                                    355220
+     84  Paraná                                             ------
+ 84  85  410690 CURITIBA                                    410690
+ 84  86  411370 LONDRINA                                    411370
+     87  Mato Grosso do Sul                                 ------
+ 87  88  500270 CAMPO GRANDE                                500270
+     89  Mato Grosso                                        ------
+ 89  90  510340 CUIABA                                      510340
+     91  Goiás                                              ------
+ 91  92  520140 APARECIDA DE GOIANIA                        520140
+ 91  93  520870 GOIANIA                                     520870
+     94  Distrito Federal                                   ------
+ 94  95  530010 BRASILIA                                    530010

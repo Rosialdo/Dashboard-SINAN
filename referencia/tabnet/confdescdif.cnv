@@ -1,0 +1,9 @@
+; CONFDESCDIF.CNV
+7 1 
+      1  Ign/Branco                                          ,0-9
+      2  Cultura c/ Prova de Toxigenicidade                 1
+      3  Cultura s/ Prova de Toxigenicidade                 2
+      4  Clínico-epidemiológico                             3
+      5  Morte Pós Clínica Compatível                       4
+      6  Clínico                                            5
+      7  Necrópsia                                          6

@@ -1,0 +1,63 @@
+; Listados todos os agravos da portaria de notificação compulsória
+; Exceto Influenza (deve ser usado dados do Sinan Online)
+; Atualizado em 29/09/2014 pela UT-Sinan/MS - Alteração da lista de acordo com a Portaria nº 1.271 de 06/06/2014
+; Atualizado em 08/09/2015 pela UT-Sinan/MS - Inclusão do agravo A92.8 - Febre pelo Virus Zika
+; Atualizado em 17/11/2017 pela UT-Sinan/MS - Portaria 204 de 17 de fevereiro de 2016
+; Revisado UT-Sinan 2019
+
+55  4
+      1  Acidente trabalho com exp. material biologico      Z209
+      2  Acid. trab: grave, fatal e em crianças e adolesc.  Y96 ,
+      3  Acidente por animais peçonhentos                   X29 ,
+      4  AIDS                                               B24 ,
+      5  Arenavírus                                         A969
+      6  Acid. por animal potencialmente transm. da raiva   W64 ,
+      7  Botulismo                                          A051
+      8  Carbúnculo ou Antraz                               A229
+      9  Cólera                                             A009
+     10  Coqueluche                                         A379
+     11  Criança Exposta ao HIV                             Z206
+     12  Dengue                                             A90 ,
+     13  Difteria                                           A369
+     14  Doenças de Chagas Aguda                            B571
+     15  Doença de Creutzfeldt-Jakob                        A810
+     16  Doenças Exantemáticas                              B09 ,
+     17  Ebola                                              A984
+     18  Esquistossomose                                    B659
+     19  Eventos Adversos Pós-vacina                        Y59 ,
+     20  Febre Amarela                                      A959
+     21  Febre de Chikungunya                               A920
+     22  Febre do Nilo                                      A923
+     23  Febre Maculosa                                     A779
+     24  Febre pelo Vírus Zika                              A928
+     25  Febre Purpúrica Brasileira                         A484
+     26  Febre Tifóide                                      A010
+     27  Gestantes HIV +                                    Z21 ,
+     28  Hanseníase                                         A309
+     29  Hantaviroses                                       A988
+     30  Hepatites Virais                                   B19 ,
+     31  Influenza humana produzida pornovo subtipo viral   J11 ,
+     32  Intoxicações Exógenas                              T659
+     33  Lassa                                              A962
+     34  Leishmaniose Tegumentar Americana                  B551
+     35  Leishmaniose Visceral                              B550
+     36  Leptospirose                                       A279
+     37  Malária                                            B54 ,
+     38  Marburg                                            A983
+     39  Meningite                                          G039
+     40  Paralisia Flácida Aguda/Poliomielite               A809
+     41  Peste                                              A209
+     42  Raiva Humana                                       A829
+     43  Sífilis Adquirida                                  A539
+     44  Sífilis Congênita                                  A509
+     45  Sífilis em Gestante                                O981
+     46  Síndrome da Rubéola Congênita                      P350
+     47  Síndrome Respiratória Aguda                        J07 ,
+     48  Tétano Acidental                                   A35 ,
+     49  Tétano Neonatal                                    A33 ,
+     50  Toxoplasmose                                       P371
+     51  Tuberculose                                        A169
+     52  Tularemia                                          A219
+     53  Varicela                                           B019
+     54  Varíola                                            B03 ,
+     55  Violência doméstica, sexual e/ou outras violências Y09 ,

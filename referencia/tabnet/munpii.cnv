@@ -1,0 +1,694 @@
+;MUNPI - Municípios Prioridade I para Notificação no Sinan Online
+;Atualizado em 14/04/2011 - Correção da tabulação dos municípios do PA
+691  6 L
+      1  Rondônia                                           ------
+  1   2  110002 ARIQUEMES                                   110002
+  1   3  110003 CABIXI                                      110003
+  1   4  110004 CACOAL                                      110004
+  1   5  110009 ESPIGAO DOESTE                              110009
+  1   6  110010 GUAJARAMIRIM                                110010
+  1   7  110012 JI-PARANA                                   110012
+  1   8  110015 OURO PRETO DO OESTE                         110015
+  1   9  110020 PORTO VELHO                                 110020
+  1  10  110025 PRESIDENTE MEDICI                           110025
+  1  11  110030 VILHENA                                     110030
+     12  Acre                                               ------
+ 12  13  120001 ACRELANDIA                                  120001
+ 12  14  120005 ASSIS BRASIL                                120005
+ 12  15  120010 BRASILEIA                                   120010
+ 12  16  120013 BUJARI                                      120013
+ 12  17  120017 CAPIXABA                                    120017
+ 12  18  120020 CRUZEIRO DO SUL                             120020
+ 12  19  120025 EPITACIOLANDIA                              120025
+ 12  20  120038 PLACIDO DE CASTRO                           120038
+ 12  21  120080 PORTO ACRE                                  120080
+ 12  22  120040 RIO BRANCO                                  120040
+ 12  23  120050 SENA MADUREIRA                              120050
+ 12  24  120045 SENADOR GUIOMARD                            120045
+ 12  25  120070 XAPURI                                      120070
+     26  Amazonas                                           ------
+ 26  27  130020 ATALAIA DO NORTE                            130020
+ 26  28  130060 BENJAMIN CONSTANT                           130060
+ 26  29  130120 COARI                                       130120
+ 26  30  130185 IRANDUBA                                    130185
+ 26  31  130190 ITACOATIARA                                 130190
+ 26  32  130250 MANACAPURU                                  130250
+ 26  33  130260 MANAUS                                      130260
+ 26  34  130320 NOVO AIRAO                                  130320
+ 26  35  130330 NOVO ARIPUANA                               130330
+ 26  36  130340 PARINTINS                                   130340
+ 26  37  130353 PRESIDENTE FIGUEIREDO                       130353
+ 26  38  130380 SAO GABRIEL DA CACHOEIRA                    130380
+ 26  39  130406 TABATINGA                                   130406
+ 26  40  130420 TEFE                                        130420
+     41  Roraima                                            ------
+ 41  42  140010 BOA VISTA                                   140010
+ 41  43  140015 BONFIM                                      140015
+ 41  44  140030 MUCAJAI                                     140030
+ 41  45  140045 PACARAIMA                                   140045
+     46  Pará                                               ------
+ 46  47  150010 ABAETETUBA                                  150010
+ 46  48  150060 ALTAMIRA                                    150060
+ 46  49  150080 ANANINDEUA                                  150080
+ 46  50  150130 BARCARENA                                   150130
+ 46  51  150140 BELEM                                       150140
+ 46  52  150150 BENEVIDES                                   150150
+ 46  53  150170 BRAGANCA                                    150170
+ 46  54  150180 BREVES                                      150180
+ 46  55  150210 CAMETA                                      150210
+ 46  56  150220 CAPANEMA                                    150220
+ 46  57  150230 CAPITAO POCO                                150230
+ 46  58  150240 CASTANHAL                                   150240
+ 46  59  150270 CONCEICAO DO ARAGUAIA                       150270
+ 46  60  150293 DOM ELISEU                                  150293
+ 46  61  150320 IGARAPEACU                                  150320
+ 46  62  150330 IGARAPEMIRIM                                150330
+ 46  63  150360 ITAITUBA                                    150360
+ 46  64  150420 MARABA                                      150420
+ 46  65  150442 MARITUBA                                    150442
+ 46  66  150480 MONTE ALEGRE                                150480
+ 46  67  150550 PARAGOMINAS                                 150550
+ 46  68  150553 PARAUAPEBAS                                 150553
+ 46  69  150613 REDENCAO                                    150613
+ 46  70  150620 SALINOPOLIS                                 150620
+ 46  71  150630 SALVATERRA                                  150630
+ 46  72  150635 SANTA BARBARA DO PARA                       150635
+ 46  73  150650 SANTA ISABEL DO PARA                        150650
+ 46  74  150680 SANTAREM                                    150680
+ 46  75  150760 SAO MIGUEL DO GUAMA                         150760
+ 46  76  150790 SOURE                                       150790
+ 46  77  150810 TUCURUI                                     150810
+ 46  78  150820 VIGIA                                       150820
+     79  Amapá                                              ------
+ 79  80  160030 MACAPA                                      160030
+ 79  81  160050 OIAPOQUE                                    160050
+ 79  82  160060 SANTANA                                     160060
+     83  Tocantins                                          ------
+ 83  84  170210 ARAGUAINA                                   170210
+ 83  85  170220 ARAGUATINS                                  170220
+ 83  86  170550 COLINAS DO TOCANTINS                        170550
+ 83  87  170930 GUARAI                                      170930
+ 83  88  170950 GURUPI                                      170950
+ 83  89  171320 MIRACEMA DO TOCANTINS                       171320
+ 83  90  172100 PALMAS                                      172100
+ 83  91  171610 PARAISO DO TOCANTINS                        171610
+ 83  92  171820 PORTO NACIONAL                              171820
+ 83  93  172120 TOCANTINOPOLIS                              172120
+     94  Maranhão                                           ------
+ 94  95  210005 ACAILANDIA                                  210005
+ 94  96  210090 ARAIOSES                                    210090
+ 94  97  210120 BACABAL                                     210120
+ 94  98  210140 BALSAS                                      210140
+ 94  99  210150 BARAO DE GRAJAU                             210150
+ 94 100  210160 BARRA DO CORDA                              210160
+ 94 101  210170 BARREIRINHAS                                210170
+ 94 102  210280 CAROLINA                                    210280
+ 94 103  210300 CAXIAS                                      210300
+ 94 104  210320 CHAPADINHA                                  210320
+ 94 105  210330 CODO                                        210330
+ 94 106  210350 COLINAS                                     210350
+ 94 107  210360 COROATA                                     210360
+ 94 108  210405 ESTREITO                                    210405
+ 94 109  210480 GRAJAU                                      210480
+ 94 110  210530 IMPERATRIZ                                  210530
+ 94 111  210540 ITAPECURU MIRIM                             210540
+ 94 112  210670 MIRADOR                                     210670
+ 94 113  210675 MIRANDA DO NORTE                            210675
+ 94 114  210750 PACO DO LUMIAR                              210750
+ 94 115  210800 PASTOS BONS                                 210800
+ 94 116  210860 PINHEIRO                                    210860
+ 94 117  210910 PRESIDENTE DUTRA                            210910
+ 94 118  210945 RAPOSA                                      210945
+ 94 119  210990 SANTA INES                                  210990
+ 94 120  211000 SANTA LUZIA                                 211000
+ 94 121  211110 SAO JOAO DOS PATOS                          211110
+ 94 122  211120 SAO JOSE DE RIBAMAR                         211120
+ 94 123  211130 SAO LUIS                                    211130
+ 94 124  211220 TIMON                                       211220
+ 94 125  211280 VIANA                                       211280
+    126  Piauí                                              ------
+126 127  220010 AGRICOLANDIA                                220010
+126 128  220020 AGUA BRANCA                                 220020
+126 129  220030 ALTO LONGA                                  220030
+126 130  220040 ALTOS                                       220040
+126 131  220120 BARRAS                                      220120
+126 132  220140 BARRO DURO                                  220140
+126 133  220160 BENEDITINOS                                 220160
+126 134  220190 BOM JESUS                                   220190
+126 135  220205 CABECEIRAS DO PIAUI                         220205
+126 136  220220 CAMPO MAIOR                                 220220
+126 137  220273 COIVARAS                                    220273
+126 138  220325 CURRALINHOS                                 220325
+126 139  220330 DEMERVAL LOBAO                              220330
+126 140  220390 FLORIANO                                    220390
+126 141  220550 JOSE DE FREITAS                             220550
+126 142  220555 LAGOA ALEGRE                                220555
+126 143  220558 LAGOA DO PIAUI                              220558
+126 144  220554 LAGOINHA DO PIAUI                           220554
+126 145  220570 LUIS CORREIA                                220570
+126 146  220630 MIGUEL LEAO                                 220630
+126 147  220640 MONSENHOR GIL                               220640
+126 148  220710 OLHO DAGUA DO PIAUI                         220710
+126 149  220750 PALMEIRAIS                                  220750
+126 150  220770 PARNAIBA                                    220770
+126 151  220800 PICOS                                       220800
+126 152  220840 PIRIPIRI                                    220840
+126 153  220860 PRATA DO PIAUI                              220860
+126 154  220980 SAO GONCALO DO PIAUI                        220980
+126 155  221000 SAO JOAO DO PIAUI                           221000
+126 156  221050 SAO PEDRO DO PIAUI                          221050
+126 157  221060 SAO RAIMUNDO NONATO                         221060
+126 158  221100 TERESINA                                    221100
+126 159  221110 UNIAO                                       221110
+    160  Ceará                                              ------
+160 161  230015 ACARAPE                                     230015
+160 162  230020 ACARAU                                      230020
+160 163  230100 AQUIRAZ                                     230100
+160 164  230110 ARACATI                                     230110
+160 165  230190 BARBALHA                                    230190
+160 166  230210 BATURITE                                    230210
+160 167  230250 BREJO SANTO                                 230250
+160 168  230260 CAMOCIM                                     230260
+160 169  230280 CANINDE                                     230280
+160 170  230350 CASCAVEL                                    230350
+160 171  230370 CAUCAIA                                     230370
+160 172  230410 CRATEUS                                     230410
+160 173  230420 CRATO                                       230420
+160 174  230428 EUZEBIO                                     230428
+160 175  230440 FORTALEZA                                   230440
+160 176  230495 GUAIUBA                                     230495
+160 177  230523 HORIZONTE                                   230523
+160 178  230540 ICO                                         230540
+160 179  230550 IGUATU                                      230550
+160 180  230625 ITAITINGA                                   230625
+160 181  230640 ITAPIPOCA                                   230640
+160 182  230730 JUAZEIRO DO NORTE                           230730
+160 183  230760 LIMOEIRO DO NORTE                           230760
+160 184  230765 MARACANAU                                   230765
+160 185  230770 MARANGUAPE                                  230770
+160 186  230870 MORADA NOVA                                 230870
+160 187  230960 PACAJUS                                     230960
+160 188  230970 PACATUBA                                    230970
+160 189  231130 QUIXADA                                     231130
+160 190  231140 QUIXERAMOBIM                                231140
+160 191  231180 RUSSAS                                      231180
+160 192  231290 SOBRAL                                      231290
+160 193  231330 TAUA                                        231330
+160 194  231340 TIANGUA                                     231340
+    195  Rio Grande do Norte                                ------
+195 196  240010 ACARI                                       240010
+195 197  240020 ACU                                         240020
+195 198  240100 APODI                                       240100
+195 199  240200 CAICO                                       240200
+195 200  240260 CEARA-MIRIM                                 240260
+195 201  240310 CURRAIS NOVOS                               240310
+195 202  240360 EXTREMOZ                                    240360
+195 203  240570 JARDIM DO SERIDO                            240570
+195 204  240580 JOAO CAMARA                                 240580
+195 205  240710 MACAIBA                                     240710
+195 206  240720 MACAU                                       240720
+195 207  240800 MOSSORO                                     240800
+195 208  240810 NATAL                                       240810
+195 209  240325 PARNAMIRIM                                  240325
+195 210  240940 PAU DOS FERROS                              240940
+195 211  241120 SANTA CRUZ                                  241120
+195 212  241200 SAO GONCALO DO AMARANTE                     241200
+195 213  241220 SAO JOSE DE MIPIBU                          241220
+195 214  241250 SAO MIGUEL                                  241250
+195 215  241260 SAO PAULO DO POTENGI                        241260
+    216  Paraíba                                            ------
+216 217  250180 BAYEUX                                      250180
+216 218  250320 CABEDELO                                    250320
+216 219  250370 CAJAZEIRAS                                  250370
+216 220  250400 CAMPINA GRANDE                              250400
+216 221  250430 CATOLE DO ROCHA                             250430
+216 222  250460 CONDE                                       250460
+216 223  250510 CUITE                                       250510
+216 224  250630 GUARABIRA                                   250630
+216 225  250690 ITABAIANA                                   250690
+216 226  250750 JOAO PESSOA                                 250750
+216 227  250860 LUCENA                                      250860
+216 228  250970 MONTEIRO                                    250970
+216 229  251080 PATOS                                       251080
+216 230  251130 PIANCO                                      251130
+216 231  251370 SANTA RITA                                  251370
+216 232  251620 SOUSA                                       251620
+    233  Pernambuco                                         ------
+233 234  260005 ABREU E LIMA                                260005
+233 235  260010 AFOGADOS DA INGAZEIRA                       260010
+233 236  260105 ARACOIABA                                   260105
+233 237  260110 ARARIPINA                                   260110
+233 238  260120 ARCOVERDE                                   260120
+233 239  260170 BELO JARDIM                                 260170
+233 240  260190 BEZERROS                                    260190
+233 241  260290 CABO DE SANTO AGOSTINHO                     260290
+233 242  260345 CAMARAGIBE                                  260345
+233 243  260400 CARPINA                                     260400
+233 244  260410 CARUARU                                     260410
+233 245  260520 ESCADA                                      260520
+233 246  260570 FLORESTA                                    260570
+233 247  260600 GARANHUNS                                   260600
+233 248  260620 GOIANA                                      260620
+233 249  260640 GRAVATA                                     260640
+233 250  260680 IGARASSU                                    260680
+233 251  260720 IPOJUCA                                     260720
+233 252  260760 ITAMARACA                                   260760
+233 253  260775 ITAPISSUMA                                  260775
+233 254  260790 JABOATAO DOS GUARARAPES                     260790
+233 255  260890 LIMOEIRO                                    260890
+233 256  260940 MORENO                                      260940
+233 257  260960 OLINDA                                      260960
+233 258  260990 OURICURI                                    260990
+233 259  261000 PALMARES                                    261000
+233 260  261060 PAUDALHO                                    261060
+233 261  261070 PAULISTA                                    261070
+233 262  261090 PESQUEIRA                                   261090
+233 263  261110 PETROLINA                                   261110
+233 264  261160 RECIFE                                      261160
+233 265  261220 SALGUEIRO                                   261220
+233 266  261250 SANTA CRUZ DO CAPIBARIBE                    261250
+233 267  261340 SAO JOSE DA COROA GRANDE                    261340
+233 268  261370 SAO LOURENCO DA MATA                        261370
+233 269  261390 SERRA TALHADA                               261390
+233 270  261485 TAMANDARE                                   261485
+233 271  261530 TIMBAUBA                                    261530
+233 272  261540 TORITAMA                                    261540
+233 273  261640 VITORIA DE SANTO ANTAO                      261640
+    274  Alagoas                                            ------
+274 275  270030 ARAPIRACA                                   270030
+274 276  270050 BARRA DE SANTO ANTONIO                      270050
+274 277  270060 BARRA DE SAO MIGUEL                         270060
+274 278  270220 COQUEIRO SECO                               270220
+274 279  270240 DELMIRO GOUVEIA                             270240
+274 280  270430 MACEIO                                      270430
+274 281  270450 MARAGOGI                                    270450
+274 282  270470 MARECHAL DEODORO                            270470
+274 283  270520 MESSIAS                                     270520
+274 284  270630 PALMEIRA DOS INDIOS                         270630
+274 285  270644 PARIPUEIRA                                  270644
+274 286  270670 PENEDO                                      270670
+274 287  270690 PILAR                                       270690
+274 288  270770 RIO LARGO                                   270770
+274 289  270790 SANTA LUZIA DO NORTE                        270790
+274 290  270800 SANTANA DO IPANEMA                          270800
+274 291  270890 SATUBA                                      270890
+274 292  270915 TEOTONIO VILELA                             270915
+274 293  270930 UNIAO DOS PALMARES                          270930
+    294  Sergipe                                            ------
+294 295  280020 AQUIDABA                                    280020
+294 296  280030 ARACAJU                                     280030
+294 297  280060 BARRA DOS COQUEIROS                         280060
+294 298  280210 ESTANCIA                                    280210
+294 299  280290 ITABAIANA                                   280290
+294 300  280320 ITAPORANGA DAJUDA                           280320
+294 301  280350 LAGARTO                                     280350
+294 302  280360 LARANJEIRAS                                 280360
+294 303  280400 MARUIM                                      280400
+294 304  280480 NOSSA SENHORA DO SOCORRO                    280480
+294 305  280570 PROPRIA                                     280570
+294 306  280670 SAO CRISTOVAO                               280670
+    307  Bahia                                              ------
+307 308  290070 ALAGOINHAS                                  290070
+307 309  290210 ARACI                                       290210
+307 310  290320 BARREIRAS                                   290320
+307 311  290390 BOM JESUS DA LAPA                           290390
+307 312  290460 BRUMADO                                     290460
+307 313  290570 CAMACARI                                    290570
+307 314  290600 CAMPO FORMOSO                               290600
+307 315  290650 CANDEIAS                                    290650
+307 316  290720 CASA NOVA                                   290720
+307 317  290840 CONCEICAO DO COITE                          290840
+307 318  290980 CRUZ DAS ALMAS                              290980
+307 319  291005 DIAS DAVILA                                 291005
+307 320  291072 EUNAPOLIS                                   291072
+307 321  291080 FEIRA DE SANTANA                            291080
+307 322  291170 GUANAMBI                                    291170
+307 323  291360 ILHEUS                                      291360
+307 324  291400 IPIRA                                       291400
+307 325  291460 IRECE                                       291460
+307 326  291470 ITABERABA                                   291470
+307 327  291480 ITABUNA                                     291480
+307 328  291560 ITAMARAJU                                   291560
+307 329  291610 ITAPARICA                                   291610
+307 330  291640 ITAPETINGA                                  291640
+307 331  291750 JACOBINA                                    291750
+307 332  291800 JEQUIE                                      291800
+307 333  291840 JUAZEIRO                                    291840
+307 334  291920 LAURO DE FREITAS                            291920
+307 335  291992 MADRE DE DEUS                               291992
+307 336  292150 MONTE SANTO                                 292150
+307 337  292210 MUNDO NOVO                                  292210
+307 338  292400 PAULO AFONSO                                292400
+307 339  292530 PORTO SEGURO                                292530
+307 340  292740 SALVADOR                                    292740
+307 341  292860 SANTO AMARO                                 292860
+307 342  292870 SANTO ANTONIO DE JESUS                      292870
+307 343  292920 SAO FRANCISCO DO CONDE                      292920
+307 344  292950 SAO SEBASTIAO DO PASSE                      292950
+307 345  292990 SEABRA                                      292990
+307 346  293010 SENHOR DO BONFIM                            293010
+307 347  293050 SERRINHA                                    293050
+307 348  293070 SIMOES FILHO                                293070
+307 349  293135 TEIXEIRA DE FREITAS                         293135
+307 350  293290 VALENCA                                     293290
+307 351  293320 VERA CRUZ                                   293320
+307 352  293330 VITORIA DA CONQUISTA                        293330
+    353  Minas Gerais                                       ------
+353 354  310110 AIMORES                                     310110
+353 355  310150 ALEM PARAIBA                                310150
+353 356  310160 ALFENAS                                     310160
+353 357  310350 ARAGUARI                                    310350
+353 358  310400 ARAXA                                       310400
+353 359  310420 ARCOS                                       310420
+353 360  310620 BELO HORIZONTE                              310620
+353 361  310630 BELO ORIENTE                                310630
+353 362  310670 BETIM                                       310670
+353 363  310730 BOCAIUVA                                    310730
+353 364  310740 BOM DESPACHO                                310740
+353 365  310990 CAETANOPOLIS                                310990
+353 366  311120 CAMPO BELO                                  311120
+353 367  311330 CARANGOLA                                   311330
+353 368  311340 CARATINGA                                   311340
+353 369  311530 CATAGUASES                                  311530
+353 370  311730 CONCEICAO DAS ALAGOAS                       311730
+353 371  311787 CONFINS                                     311787
+353 372  311830 CONSELHEIRO LAFAIETE                        311830
+353 373  311860 CONTAGEM                                    311860
+353 374  311940 CORONEL FABRICIANO                          311940
+353 375  312090 CURVELO                                     312090
+353 376  312200 DIVINO                                      312200
+353 377  312230 DIVINOPOLIS                                 312230
+353 378  312320 DORES DO INDAIA                             312320
+353 379  312610 FORMIGA                                     312610
+353 380  312710 FRUTAL                                      312710
+353 381  312770 GOVERNADOR VALADARES                        312770
+353 382  312870 GUAXUPE                                     312870
+353 383  312980 IBIRITE                                     312980
+353 384  313010 IGARAPE                                     313010
+353 385  313115 IPABA                                       313115
+353 386  313130 IPATINGA                                    313130
+353 387  313170 ITABIRA                                     313170
+353 388  313380 ITAUNA                                      313380
+353 389  313420 ITUIUTABA                                   313420
+353 390  313510 JANAUBA                                     313510
+353 391  313520 JANUARIA                                    313520
+353 392  313620 JOAO MONLEVADE                              313620
+353 393  313665 JUATUBA                                     313665
+353 394  313670 JUIZ DE FORA                                313670
+353 395  313760 LAGOA SANTA                                 313760
+353 396  313820 LAVRAS                                      313820
+353 397  313840 LEOPOLDINA                                  313840
+353 398  313940 MANHUACU                                    313940
+353 399  314015 MARIO CAMPOS                                314015
+353 400  314110 MATOZINHOS                                  314110
+353 401  314330 MONTES CLAROS                               314330
+353 402  314390 MURIAE                                      314390
+353 403  314520 NOVA SERRANA                                314520
+353 404  314690 PAPAGAIOS                                   314690
+353 405  314710 PARA DE MINAS                               314710
+353 406  314700 PARACATU                                    314700
+353 407  314790 PASSOS                                      314790
+353 408  314800 PATOS DE MINAS                              314800
+353 409  314930 PEDRO LEOPOLDO                              314930
+353 410  315110 PIRAPETINGA                                 315110
+353 411  315120 PIRAPORA                                    315120
+353 412  315180 POCOS DE CALDAS                             315180
+353 413  315200 POMPEU                                      315200
+353 414  315210 PONTE NOVA                                  315210
+353 415  315360 PRUDENTE DE MORAIS                          315360
+353 416  315460 RIBEIRAO DAS NEVES                          315460
+353 417  315630 RODEIRO                                     315630
+353 418  315670 SABARA                                      315670
+353 419  315733 SANTA CRUZ DE MINAS                         315733
+353 420  315780 SANTA LUZIA                                 315780
+353 421  315895 SANTANA DO PARAISO                          315895
+353 422  316110 SAO FRANCISCO                               316110
+353 423  316250 SAO JOAO DEL REI                            316250
+353 424  316292 SAO JOAQUIM DE BICAS                        316292
+353 425  316553 SARZEDO                                     316553
+353 426  316720 SETE LAGOAS                                 316720
+353 427  316860 TEOFILO OTONI                               316860
+353 428  316870 TIMOTEO                                     316870
+353 429  316900 TOCANTINS                                   316900
+353 430  316990 UBA                                         316990
+353 431  317010 UBERABA                                     317010
+353 432  317020 UBERLANDIA                                  317020
+353 433  317040 UNAI                                        317040
+353 434  317070 VARGINHA                                    317070
+353 435  317080 VARZEA DA PALMA                             317080
+353 436  317100 VAZANTE                                     317100
+353 437  317120 VESPASIANO                                  317120
+353 438  317200 VISCONDE DO RIO BRANCO                      317200
+    439  Espírito Santo                                     ------
+439 440  320060 ARACRUZ                                     320060
+439 441  320100 BOA ESPERANCA                               320100
+439 442  320110 BOM JESUS DO NORTE                          320110
+439 443  320120 CACHOEIRO DE ITAPEMIRIM                     320120
+439 444  320130 CARIACICA                                   320130
+439 445  320150 COLATINA                                    320150
+439 446  320240 GUARAPARI                                   320240
+439 447  320250 IBIRACU                                     320250
+439 448  320280 ITAPEMIRIM                                  320280
+439 449  320320 LINHARES                                    320320
+439 450  320332 MARATAIZES                                  320332
+439 451  320350 MONTANHA                                    320350
+439 452  320390 NOVA VENECIA                                320390
+439 453  320410 PINHEIROS                                   320410
+439 454  320420 PIUMA                                       320420
+439 455  320490 SAO MATEUS                                  320490
+439 456  320500 SERRA                                       320500
+439 457  320510 VIANA                                       320510
+439 458  320520 VILA VELHA                                  320520
+439 459  320530 VITORIA                                     320530
+    460  Rio de Janeiro                                     ------
+460 461  330010 ANGRA DOS REIS                              330010
+460 462  330020 ARARUAMA                                    330020
+460 463  330023 ARMACAO DE BUZIOS                           330023
+460 464  330025 ARRAIAL DO CABO                             330025
+460 465  330030 BARRA DO PIRAI                              330030
+460 466  330040 BARRA MANSA                                 330040
+460 467  330045 BELFORD ROXO                                330045
+460 468  330060 BOM JESUS DO ITABAPOANA                     330060
+460 469  330070 CABO FRIO                                   330070
+460 470  330100 CAMPOS DOS GOYTACAZES                       330100
+460 471  330170 DUQUE DE CAXIAS                             330170
+460 472  330185 GUAPIMIRIM                                  330185
+460 473  330187 IGUABA GRANDE                               330187
+460 474  330190 ITABORAI                                    330190
+460 475  330200 ITAGUAI                                     330200
+460 476  330220 ITAPERUNA                                   330220
+460 477  330227 JAPERI                                      330227
+460 478  330240 MACAE                                       330240
+460 479  330250 MAGE                                        330250
+460 480  330260 MANGARATIBA                                 330260
+460 481  330270 MARICA                                      330270
+460 482  330285 MESQUITA                                    330285
+460 483  330320 NILOPOLIS                                   330320
+460 484  330330 NITEROI                                     330330
+460 485  330340 NOVA FRIBURGO                               330340
+460 486  330350 NOVA IGUACU                                 330350
+460 487  330360 PARACAMBI                                   330360
+460 488  330370 PARAIBA DO SUL                              330370
+460 489  330380 PARATI                                      330380
+460 490  330390 PETROPOLIS                                  330390
+460 491  330400 PIRAI                                       330400
+460 492  330414 QUEIMADOS                                   330414
+460 493  330420 RESENDE                                     330420
+460 494  330430 RIO BONITO                                  330430
+460 495  330452 RIO DAS OSTRAS                              330452
+460 496  330455 RIO DE JANEIRO                              330455
+460 497  330470 SANTO ANTONIO DE PADUA                      330470
+460 498  330480 SAO FIDELIS                                 330480
+460 499  330475 SAO FRANCISCO DE ITABAPOANA                 330475
+460 500  330490 SAO GONCALO                                 330490
+460 501  330510 SAO JOAO DE MERITI                          330510
+460 502  330520 SAO PEDRO DA ALDEIA                         330520
+460 503  330550 SAQUAREMA                                   330550
+460 504  330555 SEROPEDICA                                  330555
+460 505  330560 SILVA JARDIM                                330560
+460 506  330575 TANGUA                                      330575
+460 507  330580 TERESOPOLIS                                 330580
+460 508  330600 TRES RIOS                                   330600
+460 509  330610 VALENCA                                     330610
+460 510  330630 VOLTA REDONDA                               330630
+    511  São Paulo                                          ------
+511 512  350160 AMERICANA                                   350160
+511 513  350210 ANDRADINA                                   350210
+511 514  350250 APARECIDA                                   350250
+511 515  350280 ARACATUBA                                   350280
+511 516  350320 ARARAQUARA                                  350320
+511 517  350330 ARARAS                                      350330
+511 518  350400 ASSIS                                       350400
+511 519  350550 BARRETOS                                    350550
+511 520  350570 BARUERI                                     350570
+511 521  350600 BAURU                                       350600
+511 522  350610 BEBEDOURO                                   350610
+511 523  350650 BIRIGUI                                     350650
+511 524  350750 BOTUCATU                                    350750
+511 525  350950 CAMPINAS                                    350950
+511 526  351050 CARAGUATATUBA                               351050
+511 527  351060 CARAPICUIBA                                 351060
+511 528  351110 CATANDUVA                                   351110
+511 529  351350 CUBATAO                                     351350
+511 530  351550 FERNANDOPOLIS                               351550
+511 531  351620 FRANCA                                      351620
+511 532  351870 GUARUJA                                     351870
+511 533  351880 GUARULHOS                                   351880
+511 534  351907 HORTOLANDIA                                 351907
+511 535  352040 ILHABELA                                    352040
+511 536  352050 INDAIATUBA                                  352050
+511 537  352250 ITAPEVI                                     352250
+511 538  352260 ITAPIRA                                     352260
+511 539  352390 ITU                                         352390
+511 540  352500 JANDIRA                                     352500
+511 541  352690 LIMEIRA                                     352690
+511 542  352710 LINS                                        352710
+511 543  352900 MARILIA                                     352900
+511 544  353070 MOGI GUACU                                  353070
+511 545  353390 OLIMPIA                                     353390
+511 546  353440 OSASCO                                      353440
+511 547  353730 PENAPOLIS                                   353730
+511 548  353870 PIRACICABA                                  353870
+511 549  354100 PRAIA GRANDE                                354100
+511 550  354140 PRESIDENTE PRUDENTE                         354140
+511 551  354340 RIBEIRAO PRETO                              354340
+511 552  354390 RIO CLARO                                   354390
+511 553  354580 SANTA BARBARA DOESTE                        354580
+511 554  354780 SANTO ANDRE                                 354780
+511 555  354850 SANTOS                                      354850
+511 556  354890 SAO CARLOS                                  354890
+511 557  354910 SAO JOAO DA BOA VISTA                       354910
+511 558  354980 SAO JOSE DO RIO PRETO                       354980
+511 559  355030 SAO PAULO                                   355030
+511 560  355070 SAO SEBASTIAO                               355070
+511 561  355100 SAO VICENTE                                 355100
+511 562  355170 SERTAOZINHO                                 355170
+511 563  355220 SOROCABA                                    355220
+511 564  355240 SUMARE                                      355240
+511 565  355500 TUPA                                        355500
+511 566  355710 VOTUPORANGA                                 355710
+    567  Paraná                                             ------
+567 568  410060 ALTO PARANA                                 410060
+567 569  410140 APUCARANA                                   410140
+567 570  410150 ARAPONGAS                                   410150
+567 571  410200 ASSIS CHATEAUBRIAND                         410200
+567 572  410370 CAMBE                                       410370
+567 573  410430 CAMPO MOURAO                                410430
+567 574  410480 CASCAVEL                                    410480
+567 575  410550 CIANORTE                                    410550
+567 576  410710 DIAMANTE DO NORTE                           410710
+567 577  410790 FLORESTA                                    410790
+567 578  410830 FOZ DO IGUACU                               410830
+567 579  410880 GUAIRA                                      410880
+567 580  410980 IBIPORA                                     410980
+567 581  411000 IGUARACU                                    411000
+567 582  411095 ITAIPULANDIA                                411095
+567 583  411270 JATAIZINHO                                  411270
+567 584  411370 LONDRINA                                    411370
+567 585  411410 MANDAGUACU                                  411410
+567 586  411420 MANDAGUARI                                  411420
+567 587  411460 MARECHAL CANDIDO RONDON                     411460
+567 588  411480 MARIALVA                                    411480
+567 589  411520 MARINGA                                     411520
+567 590  411560 MATELANDIA                                  411560
+567 591  411580 MEDIANEIRA                                  411580
+567 592  411605 MISSAL                                      411605
+567 593  411690 NOVA ESPERANCA                              411690
+567 594  411710 NOVA LONDRINA                               411710
+567 595  411750 PAICANDU                                    411750
+567 596  411820 PARANAGUA                                   411820
+567 597  411840 PARANAVAI                                   411840
+567 598  412240 ROLANDIA                                    412240
+567 599  412340 SANTA FE                                    412340
+567 600  412350 SANTA HELENA                                412350
+567 601  412405 SANTA TEREZINHA DE ITAIPU                   412405
+567 602  412570 SAO MIGUEL DO IGUACU                        412570
+567 603  412625 SARANDI                                     412625
+567 604  412770 TOLEDO                                      412770
+567 605  412810 UMUARAMA                                    412810
+    606  Mato Grosso do Sul                                 ------
+606 607  500220 BONITO                                      500220
+606 608  500270 CAMPO GRANDE                                500270
+606 609  500320 CORUMBA                                     500320
+606 610  500330 COXIM                                       500330
+606 611  500370 DOURADOS                                    500370
+606 612  500660 PONTA PORA                                  500660
+606 613  500830 TRES LAGOAS                                 500830
+    614  Mato Grosso                                        ------
+614 615  510010 ACORIZAL                                    510010
+614 616  510125 ARAPUTANGA                                  510125
+614 617  510160 BARAO DE MELGACO                            510160
+614 618  510170 BARRA DO BUGRES                             510170
+614 619  510180 BARRA DO GARCAS                             510180
+614 620  510250 CACERES                                     510250
+614 621  510340 CUIABA                                      510340
+614 622  510350 DIAMANTINO                                  510350
+614 623  510562 MIRASSOL DOESTE                             510562
+614 624  510610 NOSSA SENHORA DO LIVRAMENTO                 510610
+614 625  510650 POCONE                                      510650
+614 626  510675 PONTES E LACERDA                            510675
+614 627  510760 RONDONOPOLIS                                510760
+614 628  510770 ROSARIO OESTE                               510770
+614 629  510726 SANTO AFONSO                                510726
+614 630  510780 SANTO ANTONIO DO LEVERGER                   510780
+614 631  510790 SINOP                                       510790
+614 632  510795 TANGARA DA SERRA                            510795
+614 633  510840 VARZEA GRANDE                               510840
+    634  Goiás                                              ------
+634 635  520005 ABADIA DE GOIAS                             520005
+634 636  520010 ABADIANIA                                   520010
+634 637  520017 AGUA FRIA DE GOIAS                          520017
+634 638  520025 AGUAS LINDAS DE GOIAS                       520025
+634 639  520030 ALEXANIA                                    520030
+634 640  520110 ANAPOLIS                                    520110
+634 641  520140 APARECIDA DE GOIANIA                        520140
+634 642  520170 ARAGARCAS                                   520170
+634 643  520180 ARAGOIANIA                                  520180
+634 644  520330 BELA VISTA DE GOIAS                         520330
+634 645  520355 BONFINOPOLIS                                520355
+634 646  520360 BRAZABRANTES                                520360
+634 647  520400 CABECEIRAS                                  520400
+634 648  520450 CALDAS NOVAS                                520450
+634 649  520455 CALDAZINHA                                  520455
+634 650  520510 CATALAO                                     520510
+634 651  520520 CATURAI                                     520520
+634 652  520540 CERES                                       520540
+634 653  520549 CIDADE OCIDENTAL                            520549
+634 654  520551 COCALZINHO DE GOIAS                         520551
+634 655  520580 CORUMBA DE GOIAS                            520580
+634 656  520620 CRISTALINA                                  520620
+634 657  520800 FORMOSA                                     520800
+634 658  520840 GOIANAPOLIS                                 520840
+634 659  520870 GOIANIA                                     520870
+634 660  520880 GOIANIRA                                    520880
+634 661  520890 GOIAS                                       520890
+634 662  520920 GUAPO                                       520920
+634 663  520929 GUARAITA                                    520929
+634 664  520970 HIDROLANDIA                                 520970
+634 665  521000 INHUMAS                                     521000
+634 666  521150 ITUMBIARA                                   521150
+634 667  521180 JARAGUA                                     521180
+634 668  521190 JATAI                                       521190
+634 669  521250 LUZIANIA                                    521250
+634 670  521305 MIMOSO DE GOIAS                             521305
+634 671  521310 MINEIROS                                    521310
+634 672  521450 NEROPOLIS                                   521450
+634 673  521500 NOVA VENEZA                                 521500
+634 674  521523 NOVO GAMA                                   521523
+634 675  521560 PADRE BERNARDO                              521560
+634 676  521730 PIRENOPOLIS                                 521730
+634 677  521760 PLANALTINA                                  521760
+634 678  521800 PORANGATU                                   521800
+634 679  521850 QUIRINOPOLIS                                521850
+634 680  521880 RIO VERDE                                   521880
+634 681  521973 SANTO ANTONIO DE GOIAS                      521973
+634 682  521975 SANTO ANTONIO DO DESCOBERTO                 521975
+634 683  522020 SAO MIGUEL DO ARAGUAIA                      522020
+634 684  522045 SENADOR CANEDO                              522045
+634 685  522119 TEREZOPOLIS DE GOIAS                        522119
+634 686  522140 TRINDADE                                    522140
+634 687  522160 URUACU                                      522160
+634 688  522185 VALPARAISO DE GOIAS                         522185
+634 689  522220 VILA BOA                                    522220
+    690  Brasília                                           ------
+690 691  530010 BRASILIA                                    530010

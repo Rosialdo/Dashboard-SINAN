@@ -1,0 +1,13 @@
+; CATHIERN.CNV
+; Acrescido categorias 59, 68, 69 em função da mudança do instrumento de coleta de dados no SinanNet
+; Atualizado pela UT_Sinan em fev/2019 acrescimo do "em Branco" (  ,00)
+9 2 L
+      1  Em Branco/Ignorado                                   ,00-90
+      2  Homossexual                                        10,12,13
+      3  Bissexual                                          20,22,23
+      4  Heterossexual                                      30,36 
+      5  UDI                                                11,14,15,21,24,25,31,34,35,40,41,42
+      6  Hemofílico                                         32,50
+      7  Transfusão                                         33,59,60,61,62,63,64,65,66,67,68,69
+      8  Acid.Mat.Biológico                                 70
+      9  Perinatal                                          80

@@ -1,0 +1,16 @@
+; Atividade.cnv
+; Atualizado UT_Sinan 01/02/2019
+13 2 
+      1  Ign/Branco                                           ,00-99
+      2  Agricultura                                        01
+      3  Pecuária                                           02 
+      4  Doméstica                                          03
+      5  Turismo                                            04
+      6  Garimpagem                                         05
+      7  Exploração vegetal                                 06
+      8  Caça/pesca                                         07
+      9  Const.estrad.barragens                             08
+     10  Mineração                                          09
+     11  Viajante                                           10
+     12  Outros                                             11
+     13  Motorista                                          12

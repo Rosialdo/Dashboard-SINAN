@@ -1,0 +1,18 @@
+; Lista de agravos de interesse nacional nao compulsorios;
+; Atualizado por UT-Sinan/MS em 29/09/2014: inclusao dos agravos relacionados à saúde do trabalhador, retirada de Síndrome Respiratória Aguda e retirada de Varicela de acordo com Portaria nº 1.271 de 06/06/2014.
+; Atualizado por UT-Sinan/MS em 28/01/2019 - Portaria Consolidação nº 4/2017 e definição articulada com areas técnicas da Vigilância em Saúde
+13 4
+      
+      1  Brucelose                                          A23 ,
+      2  Caxumba [Parotidite Epidemica]                     B26 ,
+      3  Doença de Lyme                                     A692
+      4  Filariose Não Especificada                         B749
+      5  Outras Sindromes                                   R699
+      6  Síndrome da Febre Hemorrágica Aguda                D699
+      7  Síndrome da Insuficiência Renal Aguda              N199
+      8  Sindrome Diarreica Aguda                           A08 ,
+      9  Síndrome Neurológica Aguda                         G043
+     10  Toxoplasmose                                       B58 ,
+     11  Tracoma                                            A719
+     12  Varicela                                           B01 ,
+     13  Varicela sem complicações                          B019

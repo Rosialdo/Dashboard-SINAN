@@ -1,0 +1,14 @@
+; CLAMENETINET.cnv
+; Verificado pela UT_Sinan em fev/2019
+11 2 L 
+      1  Ign/branco                                           ,00-99
+      2  Outros fungos                                      42
+      3  Cryptococcus/Torula                                43
+      4  Candida albicans sp                                44
+      5  Tripanossoma cruzi                                 47
+      6  Toxoplasma Gondii sp                               48
+      7  Cisticerco                                         50
+      8  Outros Parasitas                                   52
+      9  Plasmodium sp                                      76
+     10  Taenia Solium                                      77
+     11  Aspergillus                                        64
