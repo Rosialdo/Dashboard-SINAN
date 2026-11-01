@@ -33,12 +33,12 @@ CAMPOS_HOSP = ["HOSPITALIZ", "ATE_HOSP", "HOSPITAL"]
 # colunas derivadas e seus tipos (o mesmo esquema em todos os arquivos)
 ESQUEMA_DERIVADO = {
     "agravo": pa.string(), "ano": pa.int16(),
-    "dt_notific": pa.date32(), "dt_sintomas": pa.date32(), "dt_ref": pa.date32(),
+    "data_notificacao": pa.date32(), "data_sintomas": pa.date32(), "data_referencia": pa.date32(),
     "ano_epi": pa.int16(), "sem_epi": pa.int8(), "mes": pa.int8(),
     "uf_not": pa.string(), "mun_not": pa.string(), "uf_res": pa.string(), "mun_res": pa.string(),
     "idade": pa.float32(), "faixa_etaria": pa.string(), "sexo": pa.string(), "raca": pa.string(),
     "classificacao": pa.string(), "situacao": pa.string(), "confirmado": pa.bool_(),
-    "criterio": pa.string(), "evolucao": pa.string(), "obito": pa.bool_(),
+    "criterio_confirmacao": pa.string(), "evolucao_caso": pa.string(), "obito": pa.bool_(),
     "hospitalizado": pa.string(),
 }
 
@@ -112,9 +112,9 @@ def derivar(df: pd.DataFrame, agravo: cat.Agravo, ano: int) -> pd.DataFrame:
     dt_sin = _datas(g("DT_SIN_PRI"), n)
     dt_diag = _datas(g("DT_DIAG"), n)
     dt_ref = dt_sin.fillna(dt_diag).fillna(dt_not)
-    out["dt_notific"] = dt_not.dt.date
-    out["dt_sintomas"] = dt_sin.dt.date
-    out["dt_ref"] = dt_ref.dt.date
+    out["data_notificacao"] = dt_not.dt.date
+    out["data_sintomas"] = dt_sin.dt.date
+    out["data_referencia"] = dt_ref.dt.date
     ano_epi, sem_epi = semana_epidemiologica(dt_ref)
     out["ano_epi"] = ano_epi.astype("Int16")
     out["sem_epi"] = sem_epi.astype("Int8")
@@ -163,17 +163,17 @@ def derivar(df: pd.DataFrame, agravo: cat.Agravo, ano: int) -> pd.DataFrame:
         out["situacao"] = situacao
         out["confirmado"] = confirmado.values
 
-    out["criterio"] = _mapear(_conversor(agravo, "CRITERIO"), g("CRITERIO"), {}, n) if "CRITERIO" in df else "Ign/Branco"
+    out["criterio_confirmacao"] = _mapear(_conversor(agravo, "CRITERIO"), g("CRITERIO"), {}, n) if "CRITERIO" in df else "Ign/Branco"
 
     campo_evo = agravo.campo_evolucao if agravo.campo_evolucao in df else "EVOLUCAO"
     if campo_evo in df:
         evo = _mapear(_conversor(agravo, campo_evo), df[campo_evo], {}, n)
         rot = evo.str.lower()
-        out["evolucao"] = evo
+        out["evolucao_caso"] = evo
         out["obito"] = (rot.str.startswith("óbito") | rot.str.startswith("obito")) & \
             ~rot.str.contains("outra") & ~rot.str.contains("investiga")
     else:
-        out["evolucao"] = "Sem informação"
+        out["evolucao_caso"] = "Sem informação"
         out["obito"] = False
 
     campo_h = next((c for c in CAMPOS_HOSP if c in df), None)
@@ -189,7 +189,10 @@ def _tabela_arrow(df: pd.DataFrame, derivadas: pd.DataFrame, colunas_brutas: lis
     for c in colunas_brutas:
         valores = df[c] if c in df else pd.Series(None, index=df.index, dtype="object")
         arrays.append(pa.array(valores, type=pa.string(), from_pandas=True))
-        campos.append(pa.field(c, pa.string()))
+        # o DuckDB não diferencia maiúsculas: uma coluna original com o mesmo nome
+        # de uma derivada (ex.: EVOLUCAO x evolucao) ganharia prioridade e confundiria
+        nome = f"{c}_ORIGINAL" if c.lower() in ESQUEMA_DERIVADO else c
+        campos.append(pa.field(nome, pa.string()))
     for nome, tipo in ESQUEMA_DERIVADO.items():
         col = derivadas[nome]
         if hasattr(col, "dtype") and str(col.dtype) in ("Int8", "Int16"):
@@ -214,6 +217,29 @@ def _salvar_inventario(inv: dict) -> None:
 
 def caminho_parquet(agravo: str, ano: int) -> Path:
     return PASTA_PARQUET / agravo / f"{agravo}_{ano}.parquet"
+
+
+# nomes antigos das colunas derivadas (versão 1.0), que colidiam com as originais
+_RENOMEAR_V1 = {"dt_notific": "data_notificacao", "dt_sintomas": "data_sintomas", "dt_ref": "data_referencia",
+                "criterio": "criterio_confirmacao", "evolucao": "evolucao_caso"}
+
+
+def migrar_arquivos() -> int:
+    """Atualiza Parquets gravados pela versão 1.0 para os nomes de colunas atuais."""
+    migrados = 0
+    if not PASTA_PARQUET.exists():
+        return 0
+    for arq in PASTA_PARQUET.glob("*/*.parquet"):
+        nomes = pq.read_schema(arq).names
+        if not any(n in _RENOMEAR_V1 for n in nomes):
+            continue
+        tabela = pq.read_table(arq)
+        tabela = tabela.rename_columns([_RENOMEAR_V1.get(n, n) for n in tabela.column_names])
+        temporario = arq.with_suffix(".tmp")
+        pq.write_table(tabela, temporario, compression="zstd")
+        temporario.replace(arq)
+        migrados += 1
+    return migrados
 
 
 def remover(agravo: str, ano: int) -> None:

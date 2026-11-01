@@ -132,7 +132,7 @@ def indicadores(f: Filtro) -> dict:
                        count(*) FILTER (WHERE obito AND confirmado) obitos,
                        count(*) FILTER (WHERE hospitalizado = 'Sim' AND confirmado) hospitalizados,
                        count(*) FILTER (WHERE hospitalizado IN ('Sim','Não') AND confirmado) hosp_informado,
-                       max(dt_notific) ultima_notificacao
+                       max(data_notificacao) ultima_notificacao
                 FROM {_fonte(f.agravo)} WHERE {w2}""", p2)
     return df.iloc[0].to_dict()
 
@@ -146,8 +146,8 @@ def por_semana(f: Filtro) -> pd.DataFrame:
 
 def por_mes(f: Filtro) -> pd.DataFrame:
     w, p = f.where()
-    return _q(f"""SELECT date_trunc('month', dt_ref) mes, count(*) casos FROM {_fonte(f.agravo)}
-                  WHERE {w} AND dt_ref IS NOT NULL AND year(dt_ref) BETWEEN ? AND ?
+    return _q(f"""SELECT date_trunc('month', data_referencia) mes, count(*) casos FROM {_fonte(f.agravo)}
+                  WHERE {w} AND data_referencia IS NOT NULL AND year(data_referencia) BETWEEN ? AND ?
                   GROUP BY 1 ORDER BY 1""", p + [f.ano_ini - 1, f.ano_fim])
 
 
@@ -188,8 +188,8 @@ def piramide(f: Filtro) -> pd.DataFrame:
 
 def registros(f: Filtro, limite: int | None = 1000, todas_colunas: bool = False) -> pd.DataFrame:
     w, p = f.where()
-    cols = "*" if todas_colunas else """ano, dt_notific, dt_sintomas, sem_epi, uf_not, mun_not,
-        uf_res, mun_res, idade, faixa_etaria, sexo, raca, classificacao, situacao, criterio,
-        evolucao, hospitalizado"""
+    cols = "*" if todas_colunas else """ano, data_notificacao, data_sintomas, sem_epi, uf_not, mun_not,
+        uf_res, mun_res, idade, faixa_etaria, sexo, raca, classificacao, situacao, criterio_confirmacao,
+        evolucao_caso, hospitalizado"""
     lim = f"LIMIT {int(limite)}" if limite else ""
-    return _q(f"SELECT {cols} FROM {_fonte(f.agravo)} WHERE {w} ORDER BY dt_notific DESC {lim}", p)
+    return _q(f"SELECT {cols} FROM {_fonte(f.agravo)} WHERE {w} ORDER BY data_notificacao DESC {lim}", p)

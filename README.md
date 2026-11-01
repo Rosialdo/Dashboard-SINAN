@@ -105,7 +105,7 @@ dados/               criado ao baixar (não vai para o git)
   `uv run python baixar_dados.py --agravos DENG CHIK --anos 2020-2025 --ufs RR`.
   Use `--listar` para ver os códigos das doenças.
 - Cada Parquet tem **todas as colunas originais** da ficha (em maiúsculas, como texto) e as colunas
-  derivadas em minúsculas (`dt_notific`, `sem_epi`, `faixa_etaria`, `situacao`, `confirmado`,
+  derivadas em minúsculas (`data_notificacao`, `sem_epi`, `faixa_etaria`, `situacao`, `confirmado`,
   `obito`, ...). Dá para analisar direto com pandas ou DuckDB.
 
 ## Licença

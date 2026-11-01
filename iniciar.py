@@ -3,13 +3,16 @@
 from __future__ import annotations
 
 import socket
-import subprocess
 import sys
+import threading
 import time
 import webbrowser
 from pathlib import Path
 
+import uvicorn
+
 RAIZ = Path(__file__).resolve().parent
+sys.path.insert(0, str(RAIZ))
 
 
 def porta_livre(inicial: int = 8501) -> int:
@@ -20,28 +23,25 @@ def porta_livre(inicial: int = 8501) -> int:
     return inicial
 
 
-def main() -> None:
-    porta = porta_livre()
-    url = f"http://localhost:{porta}"
-    proc = subprocess.Popen(
-        [sys.executable, "-m", "streamlit", "run", str(RAIZ / "app.py"),
-         "--server.port", str(porta), "--server.address", "localhost",
-         "--server.headless", "true", "--browser.gatherUsageStats", "false"],
-        cwd=RAIZ,
-    )
-    for _ in range(120):  # espera o servidor subir (até ~60 s)
+def abrir_quando_pronto(porta: int) -> None:
+    for _ in range(120):
         with socket.socket() as s:
             if s.connect_ex(("127.0.0.1", porta)) == 0:
                 break
-        if proc.poll() is not None:
-            sys.exit("O dashboard não conseguiu iniciar. Veja a mensagem acima.")
-        time.sleep(0.5)
+        time.sleep(0.25)
+    url = f"http://localhost:{porta}"
     print(f"\n  Dashboard aberto em {url}\n  Para encerrar, feche esta janela (ou Ctrl+C).\n")
     webbrowser.open(url)
-    try:
-        proc.wait()
-    except KeyboardInterrupt:
-        proc.terminate()
+
+
+def main() -> None:
+    porta = porta_livre()
+    if "--sem-navegador" not in sys.argv:
+        threading.Thread(target=abrir_quando_pronto, args=(porta,), daemon=True).start()
+    from sinan.processar import migrar_arquivos
+    from sinan.web import app
+    migrar_arquivos()  # ajusta dados gravados por versões anteriores
+    uvicorn.run(app, host="127.0.0.1", port=porta, log_level="warning")
 
 
 if __name__ == "__main__":

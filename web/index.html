@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vigilância Epidemiológica</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300899c' stroke-width='2.2' stroke-linejoin='round'%3E%3Cpath d='M9 3h6v6h6v6h-6v6H9v-6H3V9h6z'/%3E%3C/svg%3E">
+  <script>
+    // aplica o tema salvo antes de desenhar a página (evita "piscar")
+    try {
+      const t = new URLSearchParams(location.search).get("tema") || localStorage.getItem("tema")
+        || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      document.documentElement.dataset.theme = t === "dark" ? "dark" : "light";
+    } catch (e) {}
+  </script>
+  <link rel="stylesheet" href="/static/app.css">
+  <script src="/vendor/plotly.min.js"></script>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <svg class="brand-logo" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z"/></svg>
+        <div>
+          <div class="brand-nome" id="brand-nome">Vigilância</div>
+          <div class="brand-sub">Monitoramento epidemiológico</div>
+        </div>
+        <button class="menu-fechar" id="menu-fechar" aria-label="Fechar menu">✕</button>
+      </div>
+      <nav id="nav"></nav>
+      <div class="sidebar-rodape">
+        <div class="tema" role="radiogroup" aria-label="Tema">
+          <button data-tema="light" role="radio"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>Claro</button>
+          <button data-tema="dark" role="radio"><svg viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>Escuro</button>
+        </div>
+        <div class="fonte">Fonte: SINAN / DATASUS</div>
+      </div>
+    </aside>
+    <div class="sidebar-fundo" id="sidebar-fundo"></div>
+    <main class="conteudo">
+      <button class="menu-abrir" id="menu-abrir" aria-label="Abrir menu"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+      <div id="pagina"></div>
+    </main>
+  </div>
+  <div class="tooltip" id="tooltip" role="tooltip"></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
