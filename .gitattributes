@@ -1,0 +1,4 @@
+# scripts do Windows precisam de CRLF
+*.bat text eol=crlf
+# amostras binárias usadas nos testes
+*.dbc binary
