@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
+from collections.abc import Callable
 from dataclasses import dataclass, field
-from typing import Callable
 
 from . import agravos as cat
 from .download import baixar_arquivo, listagem_salva, listar_ftp

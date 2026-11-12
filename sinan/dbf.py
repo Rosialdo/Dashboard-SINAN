@@ -9,9 +9,9 @@ linhas que interessam.
 from __future__ import annotations
 
 import struct
+from collections.abc import Callable, Iterable, Iterator
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Callable, Iterable, Iterator
 
 import numpy as np
 import pandas as pd

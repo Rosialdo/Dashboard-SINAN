@@ -10,7 +10,7 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass, field
-from functools import lru_cache
+from functools import cache
 from pathlib import Path
 
 import pandas as pd
@@ -67,7 +67,7 @@ def _arquivo(nome: str) -> Path | None:
     return p if p.exists() else None
 
 
-@lru_cache(maxsize=None)
+@cache
 def ler_cnv(nome: str) -> Conversor | None:
     p = _arquivo(nome)
     if p is None:
@@ -118,7 +118,7 @@ class VariavelDef:
     cnv: str
 
 
-@lru_cache(maxsize=None)
+@cache
 def ler_def(nome: str) -> list[VariavelDef]:
     p = _arquivo(nome)
     if p is None:

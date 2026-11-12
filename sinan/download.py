@@ -5,10 +5,10 @@ from __future__ import annotations
 import json
 import re
 import time
+from collections.abc import Callable
 from datetime import datetime
 from ftplib import FTP, all_errors
 from pathlib import Path
-from typing import Callable
 
 from .config import ARQ_LISTAGEM_FTP, FTP_HOST, FTP_PASTAS, PASTA_BRUTOS, PASTA_DADOS
 
@@ -113,7 +113,7 @@ def baixar_arquivo(
             except all_errors:
                 pass
             if parcial.stat().st_size != total:
-                raise IOError("download incompleto")
+                raise OSError("download incompleto")
             parcial.replace(destino)
             return destino
         except all_errors as e:  # inclui OSError e erros de FTP
