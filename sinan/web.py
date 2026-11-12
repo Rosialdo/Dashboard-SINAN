@@ -27,6 +27,7 @@ from starlette.types import ASGIApp, Receive, Scope, Send
 
 from . import agravos as cat
 from . import consultas as cq
+from . import rotulos
 from .config import AMAZONIA_LEGAL, ARQ_INVENTARIO, ARQ_MAPA, RAIZ, UFS, carregar_config, salvar_config
 from .download import listagem_salva, listar_ftp
 from .pipeline import atualizar
@@ -260,18 +261,44 @@ def api_perfil(req: Request) -> Response:
     return _json(_memo(("perfil", f, tuple(area)), calc))
 
 
+# geografia já está no mapa e nos filtros; ID_AGRAVO é igual em todas as linhas do arquivo
+_CAMPOS_FORA = {"ID_AGRAVO", "ID_MUNICIP", "ID_MN_RESI", "ID_UNIDADE", "SG_UF", "SG_UF_NOT",
+                "ID_REGIONA", "ID_RG_RESI", "ID_PAIS"}
+
+
 def _variaveis(agravo: str):
     existentes = set(cq.colunas(agravo))
     excluir = ("munic", "uf", "regiao", "rmetri", "nhe", "anos", "meses", "semana", "trime", "mun", "capital")
-    return [v for v in ler_def(cat.obter(agravo).arquivo_def or "")
-            if v.campo in existentes and not v.cnv.lower().startswith(excluir)]
+    lista = [v for v in ler_def(cat.obter(agravo).arquivo_def or "")
+             if v.campo in existentes and v.campo not in _CAMPOS_FORA and not v.cnv.lower().startswith(excluir)]
+    # a ficha genérica (notindivinet.def) traz uma versão do campo para cada doença
+    # ("Evolução AIDS Adulto", "Clas. Fin. PFA"...); fica só a de "Outros Agravos"
+    genericos = {v.campo for v in lista if "outros agravos" in v.rotulo.lower()}
+    return [v for v in lista if v.campo not in genericos or "outros agravos" in v.rotulo.lower()]
+
+
+def _lista_variaveis(agravo: str) -> list[dict]:
+    """Variáveis com nome amigável e grupo, na ordem dos grupos (o id continua sendo
+    a posição em _variaveis, usada por /api/variavel)."""
+    variaveis = _variaveis(agravo)
+    itens = [{"id": i, "nome": rotulos.nome_amigavel(v.rotulo, v.campo, v.cnv),
+              "grupo": rotulos.grupo(v.rotulo, v.campo), "rotulo": v.rotulo, "campo": v.campo}
+             for i, v in enumerate(variaveis)]
+    # dois itens com o mesmo nome: acrescenta o rótulo do TabNet para diferenciar
+    contagem: dict[str, int] = {}
+    for it in itens:
+        contagem[it["nome"]] = contagem.get(it["nome"], 0) + 1
+    for it in itens:
+        if contagem[it["nome"]] > 1:
+            it["nome"] = f"{it['nome']} – {it['rotulo']}"
+    ordem = {g: i for i, g in enumerate(rotulos.GRUPOS)}
+    preferido = {i for i, v in enumerate(variaveis) if v.cnv.lower() in rotulos.PREFERIDOS}
+    return sorted(itens, key=lambda it: (ordem.get(it["grupo"], len(ordem)), it["id"] not in preferido, it["id"]))
 
 
 def api_variaveis(req: Request) -> Response:
     agravo = cq.validar_agravo(req.query_params.get("agravo", "DENG"))
-    lista = _memo(("vars", agravo), lambda: [
-        {"id": i, "rotulo": v.rotulo, "campo": v.campo} for i, v in enumerate(_variaveis(agravo))])
-    return _json(lista)
+    return _json(_memo(("vars", agravo), lambda: _lista_variaveis(agravo)))
 
 
 def api_variavel(req: Request) -> Response:
@@ -289,7 +316,8 @@ def api_variavel(req: Request) -> Response:
         d = d.groupby("valor", as_index=False)["casos"].sum()
         ordem = {r: i for i, r in enumerate(conv.rotulos)}
         d["ordem"] = d["valor"].map(ordem).fillna(999)
-        return {"rotulo": v.rotulo, "campo": v.campo, "valores": _registros(d.sort_values("ordem"))}
+        return {"rotulo": rotulos.nome_amigavel(v.rotulo, v.campo, v.cnv), "rotulo_tabnet": v.rotulo,
+                "campo": v.campo, "valores": _registros(d.sort_values("ordem"))}
     return _json(_memo(("var", f, idx), calc))
 
 

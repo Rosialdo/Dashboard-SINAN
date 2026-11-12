@@ -46,7 +46,8 @@ const estado = {
                      sexo: [], faixa: [], ufs: [] }, guardar.ler("filtros", {})),
   dispensados: new Set(),
   pedido: 0,
-  varId: 0,
+  varId: null,
+  varAgravo: null,
   mapaSel: null,
 };
 
@@ -724,7 +725,7 @@ async function paginaVariaveis(raiz, n) {
   raiz.insertAdjacentHTML("beforeend", `
     <div class="grade g-vars">
       <section class="card card-corpo"><h2>Variáveis da ficha</h2>
-        <p class="card-sub">Rótulos oficiais do TabNet/DATASUS</p>
+        <p class="card-sub">Informações da ficha de notificação, por assunto</p>
         <div class="busca" style="margin-top:10px">${ico("busca")}<input id="busca-var" type="search" placeholder="Buscar variável..." style="width:100%" aria-label="Buscar variável"></div>
         <div class="lista-vars" id="lista-vars">${esqueleto(400)}</div></section>
       <section class="card card-corpo"><div class="card-titulo"><div><h2 id="var-titulo">Variável</h2><p class="card-sub" id="var-sub"></p></div></div>
@@ -734,11 +735,21 @@ async function paginaVariaveis(raiz, n) {
   try { lista = await api(`/api/variaveis?agravo=${estado.f.agravo}`); } catch (e) { $("#var-corpo").innerHTML = erroHtml(e); return; }
   if (n !== estado.pedido) return;
   if (!lista.length) { $("#lista-vars").innerHTML = `<p class="card-sub" style="padding:12px">Não há tabela de rótulos para este agravo.</p>`; $("#var-corpo").innerHTML = ""; return; }
-  if (!lista.some((v) => v.id === estado.varId)) estado.varId = lista[0].id;
+  // ao trocar de doença o mesmo id pode ser outra variável: volta para a primeira (a principal)
+  if (estado.varAgravo !== estado.f.agravo || !lista.some((v) => v.id === estado.varId)) {
+    estado.varId = lista[0].id;
+    estado.varAgravo = estado.f.agravo;
+  }
   const desenharLista = (filtro = "") => {
     const norm = (s) => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
-    $("#lista-vars").innerHTML = lista.filter((v) => !filtro || norm(v.rotulo + v.campo).includes(norm(filtro))).map((v) =>
-      `<button data-var="${v.id}" class="${v.id === estado.varId ? "ativo" : ""}">${esc(v.rotulo)}<small>${v.campo}</small></button>`).join("");
+    const achados = lista.filter((v) => !filtro || norm(`${v.nome} ${v.rotulo} ${v.campo} ${v.grupo}`).includes(norm(filtro)));
+    let grupo = null;
+    $("#lista-vars").innerHTML = achados.map((v) => {
+      const cab = v.grupo !== grupo ? `<div class="vars-grupo">${esc(v.grupo)}</div>` : "";
+      grupo = v.grupo;
+      return `${cab}<button data-var="${v.id}" class="${v.id === estado.varId ? "ativo" : ""}"
+        title="No TabNet: ${esc(v.rotulo)} (campo ${esc(v.campo)})">${esc(v.nome)}</button>`;
+    }).join("") || `<p class="card-sub" style="padding:12px">Nenhuma variável encontrada.</p>`;
     $$("[data-var]").forEach((b) => b.onclick = () => { estado.varId = +b.dataset.var; desenharLista($("#busca-var").value); carregar(); });
   };
   const carregar = async () => {
@@ -749,7 +760,8 @@ async function paginaVariaveis(raiz, n) {
       if (minhaVez !== estado.pedidoVar) return;
       const total = d.valores.reduce((s, r) => s + r.casos, 0);
       $("#var-titulo").textContent = d.rotulo;
-      $("#var-sub").textContent = `Campo ${d.campo} · ${fmt(total)} ${termo()}`;
+      $("#var-sub").textContent = `${fmt(total)} ${termo()}`;
+      $("#var-sub").title = `No TabNet: ${d.rotulo_tabnet} (campo ${d.campo})`;
       $("#var-corpo").innerHTML = barrasHtml(d.valores, total);
     } catch (e) { $("#var-corpo").innerHTML = erroHtml(e); }
   };
