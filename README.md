@@ -83,30 +83,40 @@ só as UFs escolhidas (por residência **ou** notificação) e apaga o original.
 ## Para desenvolvedores
 
 ```
-app.py               dashboard (Streamlit)
-iniciar.py           abre o dashboard no navegador
+iniciar.py           sobe o servidor local (Starlette + Uvicorn) e abre o navegador
 baixar_dados.py      download e tratamento pelo terminal
+web/                 interface (HTML, CSS e JavaScript, sem framework; Plotly para os gráficos)
 sinan/
+  web.py             API JSON do painel + proteção do servidor local
+  consultas.py       consultas DuckDB direto nos Parquet
   download.py        FTP do DATASUS (com retomada de download)
+  dbc.py             descompressor de .dbc (tradução do blast.c, licença zlib, acelerado com Numba)
   dbf.py             leitor rápido de DBF com filtro por UF (numpy)
   processar.py       .dbc -> Parquet + colunas derivadas
   tabnet.py          leitura dos rótulos oficiais (.def/.cnv)
   agravos.py         catálogo das doenças e regras de confirmação
-  consultas.py       consultas DuckDB usadas pelo painel
   pipeline.py        junta download + tratamento
+tests/               testes automáticos (pytest), com uma amostra real de .dbc em tests/fixtures
 referencia/          municípios, população, mapa e rótulos (já vêm prontos)
 scripts/gerar_referencias.py   regenera a pasta referencia/
 dados/               criado ao baixar (não vai para o git)
 ```
 
-- Python **3.12**: é a versão mais nova em que o leitor de `.dbc` (`pyreaddbc`) tem instalador
-  pronto para Windows. O `uv` cuida disso sozinho.
-- Rodar pelo terminal: `uv run python iniciar.py`, ou
+- Python **3.12**. O `uv` instala a versão certa sozinho.
+- Instalar tudo, inclusive as ferramentas de desenvolvimento: `uv sync`.
+- Rodar: `uv run python iniciar.py`, ou
   `uv run python baixar_dados.py --agravos DENG CHIK --anos 2020-2025 --ufs RR`.
   Use `--listar` para ver os códigos das doenças.
+- Testes e qualidade: `uv run pytest` e `uv run ruff check .`.
 - Cada Parquet tem **todas as colunas originais** da ficha (em maiúsculas, como texto) e as colunas
   derivadas em minúsculas (`data_notificacao`, `sem_epi`, `faixa_etaria`, `situacao`, `confirmado`,
   `obito`, ...). Dá para analisar direto com pandas ou DuckDB.
+- **Segurança do servidor local:** ele só escuta em `127.0.0.1`, só aceita `Host` localhost, recusa
+  pedidos com `Origin` de outro site e só aceita POST com JSON. Assim, uma página aberta no navegador
+  não consegue disparar downloads nem apagar dados.
+- **Licenças:** só dependências permissivas (MIT, BSD, Apache, zlib). Por isso o leitor de `.dbc` é
+  próprio, em vez do `pyreaddbc` (AGPL).
+- Nunca versione o `.env` (já está no `.gitignore`).
 
 ## Licença
 
