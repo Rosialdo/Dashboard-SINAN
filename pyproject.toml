@@ -1,14 +1,15 @@
 [project]
 name = "dashboard-sinan"
-version = "1.0.0"
+version = "1.1.0"
 description = "Dashboard offline de doenças e agravos de notificação (SINAN/DATASUS)"
 readme = "README.md"
-# Python 3.12: é a versão mais nova com leitor de .DBC (pyreaddbc) pronto para Windows
+license = "MIT"
 requires-python = ">=3.12,<3.13"
+# Só dependências com licença permissiva (MIT/BSD/Apache/ISC/zlib).
 dependencies = [
-    "pyreaddbc>=2.0.4",
     "pandas>=2.2",
     "numpy>=1.26",
+    "numba>=0.60",       # acelera o descompressor de .dbc (sinan/dbc.py)
     "pyarrow>=16",
     "duckdb>=1.0",
     "starlette>=0.40",
@@ -17,5 +18,31 @@ dependencies = [
     "openpyxl>=3.1",
 ]
 
+[dependency-groups]
+dev = [
+    "pytest>=8",
+    "httpx>=0.27",        # cliente de teste do Starlette
+    "ruff>=0.6",
+    "datasus-dbc>=0.1.3", # referência independente (MIT) para testar o .dbc
+]
+
 [tool.uv]
 package = false
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+# aviso do próprio Starlette sobre o cliente de teste (httpx -> httpx2)
+filterwarnings = ["ignore:Using `httpx`"]
+
+[tool.ruff]
+line-length = 135
+target-version = "py312"
+
+[tool.ruff.lint]
+# E/W estilo, F erros, B bugs prováveis, I imports, UP modernização
+select = ["E", "W", "F", "B", "I", "UP"]
+ignore = [
+    "E741",  # variável chamada "l"
+    "B023",  # funções de progresso usadas dentro do próprio laço
+]

@@ -7,18 +7,18 @@ colunas derivadas (nomes em minúsculas) usadas pelo dashboard.
 from __future__ import annotations
 
 import json
+from collections.abc import Callable
 from datetime import date, datetime
 from pathlib import Path
-from typing import Callable
 
 import numpy as np
 import pandas as pd
 import pyarrow as pa
 import pyarrow.parquet as pq
-from pyreaddbc import dbc2dbf
 
 from . import agravos as cat
 from .config import ARQ_INVENTARIO, PASTA_DADOS, PASTA_PARQUET, UF_COD, UFS
+from .dbc import dbc_para_dbf
 from .dbf import colunas_dbf, iterar_dbf
 from .tabnet import Conversor, conversor_do_campo, ler_cnv
 
@@ -55,10 +55,10 @@ def _datas(s: pd.Series | None, n: int) -> pd.Series:
 def semana_epidemiologica(d: pd.Series) -> tuple[pd.Series, pd.Series]:
     """Ano e semana epidemiológica (semana de domingo a sábado; a semana 1 é a
     primeira com pelo menos 4 dias no ano, regra usada pelo Ministério da Saúde)."""
-    dias_desde_domingo = (d.dt.dayofweek + 1) % 7
+    dias_desde_domingo = (d.dt.day_of_week + 1) % 7
     quarta = d - pd.to_timedelta(dias_desde_domingo, unit="D") + pd.Timedelta(days=3)
     ano = quarta.dt.year
-    semana = (quarta.dt.dayofyear - 1) // 7 + 1
+    semana = (quarta.dt.day_of_year - 1) // 7 + 1
     return ano, semana
 
 
@@ -82,7 +82,7 @@ def _mapear(conv: Conversor | None, serie: pd.Series | None, padrao: dict[str, s
         return pd.Series("Ign/Branco", index=range(n), dtype="object")
     if conv is not None:
         return conv.mapear(serie)
-    return serie.map(padrao).fillna("Ign/Branco")
+    return serie.map(padrao).astype("object").fillna("Ign/Branco")
 
 
 def _conversor(agravo: cat.Agravo, campo: str) -> Conversor | None:
@@ -263,7 +263,7 @@ def processar_dbc(
     avisar = progresso or (lambda f, m: None)
     caminho_dbf = caminho_dbc.with_suffix(".dbf")
     avisar(0.0, "descompactando")
-    dbc2dbf(str(caminho_dbc), str(caminho_dbf))
+    dbc_para_dbf(caminho_dbc, caminho_dbf)
 
     try:
         colunas = colunas_dbf(caminho_dbf)
@@ -280,6 +280,9 @@ def processar_dbc(
 
         campos_filtro = [c for c in ("SG_UF", "SG_UF_NOT") if c in colunas] or \
                         [c for c in ("ID_MN_RESI", "ID_MUNICIP") if c in colunas]
+        if not todo_brasil and not campos_filtro:
+            raise ValueError("o arquivo não tem campo de UF nem de município, então não dá para "
+                             "filtrar por UF. Escolha \"BR\" (Brasil inteiro) para este agravo.")
 
         destino = caminho_parquet(agravo.codigo, ano)
         destino.parent.mkdir(parents=True, exist_ok=True)
