@@ -152,3 +152,30 @@ def grupo(rotulo: str, campo: str) -> str:
         if re.search(padrao, texto):
             return nome
     return "Outras informações"
+
+
+# ------------------------------------------------------------ valores das respostas
+NAO_INFORMADO = "Não informado"
+
+# grafias do DATASUS para "o campo ficou vazio ou foi marcado como ignorado"
+# ("Ign/Branco", "Em branco", "IGNORADA", "Nao Informada"...). "Branca" (raça/cor)
+# não entra: só "branco" no masculino, que nos .cnv sempre é campo vazio.
+_VAZIO = re.compile(
+    r"^(ign\.?|ignorad[oa]|ign\.?\s*/\s*(em\s+)?branc[o]?|ignorad[oa]\s*/\s*(em\s+)?branco|(em\s+)?branco"
+    r"|n[ãa]o\s+informad[oa]|sem\s+informa[çc][ãa]o)$",
+    flags=re.I,
+)
+
+_VALORES = {
+    "Em aberto/Ign.": "Em aberto (sem classificação)",
+}
+
+
+def valor_simples(valor) -> str:
+    """Troca os códigos de "sem resposta" do DATASUS por um texto que qualquer pessoa entende."""
+    if valor is None or (isinstance(valor, float) and valor != valor):  # None ou NaN
+        return NAO_INFORMADO
+    texto = str(valor).strip()
+    if not texto or _VAZIO.match(texto):
+        return NAO_INFORMADO
+    return _VALORES.get(texto, texto)

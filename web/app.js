@@ -205,8 +205,8 @@ function htmlFiltros() {
       <div class="suspenso-menu esq painel-filtros">
         ${m.ufs.length > 1 ? `<div class="grupo"><span class="rotulo">UF</span><div class="chips">${m.ufs.map((u) =>
           `<button class="chip" data-uf="${u}" aria-pressed="${f.ufs.includes(u)}">${u}</button>`).join("")}</div></div>` : ""}
-        <div class="grupo"><span class="rotulo">Sexo</span><div class="chips">${["Feminino", "Masculino", "Ignorado"].map((s) =>
-          `<button class="chip" data-sexo="${s}" aria-pressed="${f.sexo.includes(s)}">${s}</button>`).join("")}</div></div>
+        <div class="grupo"><span class="rotulo">Sexo</span><div class="chips">${[["Feminino", "Feminino"], ["Masculino", "Masculino"], ["Ignorado", "Não informado"]].map(([s, r]) =>
+          `<button class="chip" data-sexo="${s}" aria-pressed="${f.sexo.includes(s)}">${r}</button>`).join("")}</div></div>
         <div class="grupo"><span class="rotulo">Faixa etária (anos)</span><div class="chips">${m.faixas.map((s) =>
           `<button class="chip" data-faixa="${s}" aria-pressed="${f.faixa.includes(s)}">${s}</button>`).join("")}</div></div>
         <button class="btn-link" id="limpar-extras">Limpar estes filtros</button>
@@ -400,7 +400,7 @@ function barrasHtml(lista, total) {
   const max = Math.max(1, ...lista.map((d) => d.casos));
   total = total || lista.reduce((s, d) => s + d.casos, 0) || 1;
   return `<div class="barras">${lista.map((d) => `
-    <div class="barra-linha"><span class="barra-rotulo" title="${esc(d.valor)}">${esc(d.valor || "Ign/Branco")}</span>
+    <div class="barra-linha"><span class="barra-rotulo" title="${esc(d.valor)}">${esc(d.valor || "Não informado")}</span>
       <div class="barra-trilho"><div class="barra-valor-barra" style="width:${100 * d.casos / max}%"></div></div>
       <span class="barra-num"><b>${fmt(d.casos)}</b> · ${fmt(100 * d.casos / total, 1)}%</span></div>`).join("")}</div>`;
 }
@@ -963,6 +963,8 @@ function paginaSobre(raiz) {
       <dt>Óbito</dt><dd>Evolução “óbito pelo agravo” (não conta óbito por outras causas nem em investigação).</dd>
       <dt>Letalidade</dt><dd>Óbitos pelo agravo ÷ casos confirmados × 100.</dd>
       <dt>Incidência</dt><dd>Casos ÷ população × 100 mil. Com vários anos, é a média anual (casos ÷ soma da população de cada ano).</dd>
+      <dt>Não informado</dt><dd>A pergunta ficou em branco na ficha de notificação ou foi marcada como “ignorado” (no TabNet aparece como “Ign/Branco”). Muitos casos assim indicam ficha incompleta, não ausência da característica.</dd>
+      <dt>Em aberto</dt><dd>Caso que ainda não recebeu classificação final (confirmado ou descartado), em geral porque a investigação não terminou.</dd>
       <dt>Residência × notificação</dt><dd>Por padrão os casos são contados no município onde a pessoa mora.</dd>
     </dl>
     <h2 style="margin-top:22px">Cuidados na interpretação</h2>

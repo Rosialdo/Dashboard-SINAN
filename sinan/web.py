@@ -244,6 +244,32 @@ def api_geo(req: Request) -> Response:
     return _json(_geo_cache[ufs])
 
 
+# colunas derivadas que podem ter "Ign/Branco" e parecidos (ver rotulos.valor_simples)
+_COLS_TEXTO = ("sexo", "raca", "faixa_etaria", "classificacao", "situacao", "criterio_confirmacao",
+               "evolucao_caso", "hospitalizado")
+
+
+def _simplificar(df: pd.DataFrame, ordenar: bool = True) -> pd.DataFrame:
+    """Troca os rótulos de "sem resposta" por "Não informado" e soma os que viraram iguais."""
+    if df.empty:
+        return df
+    df = df.assign(valor=df["valor"].map(rotulos.valor_simples))
+    extras = {c: "min" for c in df.columns if c not in ("valor", "casos")}
+    df = df.groupby("valor", as_index=False, sort=False).agg({"casos": "sum", **extras})
+    return df.sort_values("casos", ascending=False) if ordenar else df
+
+
+def _contagem(f: cq.Filtro, coluna: str, ignorar_confirmado: bool = False) -> list[dict]:
+    return _registros(_simplificar(cq.contagem(f, coluna, ignorar_confirmado)))
+
+
+def _textos_simples(df: pd.DataFrame) -> pd.DataFrame:
+    for col in _COLS_TEXTO:
+        if col in df:
+            df[col] = df[col].map(rotulos.valor_simples)
+    return df
+
+
 def api_perfil(req: Request) -> Response:
     f, area = _filtro(req)
 
@@ -251,12 +277,12 @@ def api_perfil(req: Request) -> Response:
         return {
             "indicadores": _indicadores(f, area),
             "piramide": _registros(cq.piramide(f)),
-            "raca": _registros(cq.contagem(f, "raca")),
-            "situacao": _registros(cq.contagem(f, "situacao", True)),
-            "classificacao": _registros(cq.contagem(f, "classificacao", True)),
-            "evolucao": _registros(cq.contagem(f, "evolucao_caso")),
-            "criterio": _registros(cq.contagem(f, "criterio_confirmacao")),
-            "hospitalizado": _registros(cq.contagem(f, "hospitalizado")),
+            "raca": _contagem(f, "raca"),
+            "situacao": _contagem(f, "situacao", True),
+            "classificacao": _contagem(f, "classificacao", True),
+            "evolucao": _contagem(f, "evolucao_caso"),
+            "criterio": _contagem(f, "criterio_confirmacao"),
+            "hospitalizado": _contagem(f, "hospitalizado"),
         }
     return _json(_memo(("perfil", f, tuple(area)), calc))
 
@@ -316,6 +342,9 @@ def api_variavel(req: Request) -> Response:
         d = d.groupby("valor", as_index=False)["casos"].sum()
         ordem = {r: i for i, r in enumerate(conv.rotulos)}
         d["ordem"] = d["valor"].map(ordem).fillna(999)
+        # "Não informado" vai para o fim da lista, depois das respostas de verdade
+        d = _simplificar(d, ordenar=False)
+        d.loc[d["valor"] == rotulos.NAO_INFORMADO, "ordem"] = 1000
         return {"rotulo": rotulos.nome_amigavel(v.rotulo, v.campo, v.cnv), "rotulo_tabnet": v.rotulo,
                 "campo": v.campo, "valores": _registros(d.sort_values("ordem"))}
     return _json(_memo(("var", f, idx), calc))
@@ -334,7 +363,7 @@ def api_registros(req: Request) -> Response:
     por_pagina = 50
     # paginação feita no próprio DuckDB: só 50 linhas saem do disco por vez
     total = _memo(("total_regs", f), lambda: cq.total_registros(f))
-    trecho = cq.registros(f, limite=por_pagina, inicio=pagina * por_pagina)
+    trecho = _textos_simples(cq.registros(f, limite=por_pagina, inicio=pagina * por_pagina))
     nomes = _nomes_municipios()
     for col in ("mun_not", "mun_res"):
         trecho[col] = trecho[col].map(lambda c: nomes.get(c, c))
@@ -357,7 +386,7 @@ def api_exportar(req: Request) -> Response:
                         headers={"Content-Disposition": f'attachment; filename="{nome}_municipios.csv"'})
     completo = formato == "csv_completo"
     # o Excel aceita no máximo 1.048.576 linhas por planilha
-    df = cq.registros(f, limite=None if formato != "xlsx" else 1_000_000, todas_colunas=completo)
+    df = _textos_simples(cq.registros(f, limite=None if formato != "xlsx" else 1_000_000, todas_colunas=completo))
     for col in ("mun_not", "mun_res"):
         if col in df:
             df[col] = df[col].map(lambda c: nomes.get(c, c))

@@ -56,3 +56,35 @@ def test_api_variaveis_agrupada(cliente):
     assert lista[0]["nome"] == "Faixa etária (padrão SINAN)"  # opção principal vem primeiro
     d = cliente.get(f"/api/variavel?agravo=ACBI&id={lista[0]['id']}").json()
     assert d["rotulo"] == lista[0]["nome"]
+
+
+# ------------------------------------------------------------ "Ign/Branco" -> "Não informado"
+@pytest.mark.parametrize("valor", ["Ign/Branco", "Ign/Em Branco", "Ign/branc", "Em Branco", "Branco", "IGNORADA",
+                                   "Ignorado", "Nao Informada", "Sem informação", "Ign.", "", None, float("nan")])
+def test_sem_resposta_vira_nao_informado(valor):
+    assert rotulos.valor_simples(valor) == "Não informado"
+
+
+@pytest.mark.parametrize("valor", ["Branca", "Parda", "Sim", "Descartado", "Município ignorado - RR", "Código 7"])
+def test_respostas_de_verdade_nao_mudam(valor):
+    assert rotulos.valor_simples(valor) == valor
+
+
+def test_em_aberto_explicado():
+    assert rotulos.valor_simples("Em aberto/Ign.") == "Em aberto (sem classificação)"
+
+
+def test_nenhuma_tela_mostra_ign_branco(cliente):
+    perfil = cliente.get("/api/perfil?agravo=ACBI&contagem=todas").json()
+    variaveis = cliente.get("/api/variaveis?agravo=ACBI").json()
+    valores = [d["valor"] for k in ("raca", "evolucao", "criterio", "hospitalizado") for d in perfil[k]]
+    for v in variaveis:
+        valores += [d["valor"] for d in cliente.get(f"/api/variavel?agravo=ACBI&id={v['id']}").json()["valores"]]
+    registros = cliente.get("/api/registros?agravo=ACBI").json()["linhas"]
+    valores += [linha[c] for linha in registros for c in ("raca", "sexo", "evolucao_caso", "hospitalizado")]
+    assert "Não informado" in valores
+    proibidos = {"Ign/Branco", "Ignorado", "Em branco", "Em Branco", "Branco", "Ign/Em Branco", "IGNORADA", None}
+    assert not proibidos & set(valores)
+    # cada lista tem no máximo um "Não informado" (grafias diferentes foram somadas)
+    for k in ("raca", "evolucao", "criterio", "hospitalizado"):
+        assert [d["valor"] for d in perfil[k]].count("Não informado") <= 1
