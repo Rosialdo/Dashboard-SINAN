@@ -871,7 +871,7 @@ async function paginaAtualizar(raiz) {
     $("#busca-ag").oninput = (e) => filtrarAg(e.target.value);
     $("#consultar").onclick = async (e) => {
       e.target.disabled = true; e.target.lastChild.textContent = "Consultando...";
-      try { d = await api("/api/dados/listar", { method: "POST" }); desenhar(); }
+      try { d = await api("/api/dados/listar", { method: "POST", headers: { "Content-Type": "application/json" }, body: "{}" }); desenhar(); }
       catch (err) { $("#job").innerHTML = erroHtml(err); e.target.disabled = false; e.target.lastChild.textContent = "Consultar DATASUS"; }
     };
     $("#iniciar").onclick = async () => {

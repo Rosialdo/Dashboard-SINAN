@@ -6,8 +6,9 @@ rápido mesmo com o Brasil inteiro carregado.
 
 from __future__ import annotations
 
+import re
 import threading
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 
 import duckdb
 import pandas as pd
@@ -15,19 +16,50 @@ import pandas as pd
 from .config import ARQ_MUNICIPIOS, ARQ_POPULACAO, PASTA_PARQUET
 
 _local = threading.local()
+_base: duckdb.DuckDBPyConnection | None = None
+_base_lock = threading.Lock()
+
+# códigos de agravo são siglas curtas (DENG, CHIK, LERD...). Validar evita que
+# um parâmetro da URL entre no SQL ou no caminho dos arquivos.
+_CODIGO = re.compile(r"^[A-Z0-9]{2,8}$")
+
+
+class AgravoInvalido(ValueError):
+    """Código de agravo fora do formato ou sem dados baixados."""
+
+
+def _sql_texto(valor: str) -> str:
+    return "'" + valor.replace("'", "''") + "'"
+
+
+def _conexao_base() -> duckdb.DuckDBPyConnection:
+    """Banco em memória com as tabelas de referência, criado uma única vez."""
+    global _base
+    with _base_lock:
+        if _base is None:
+            con = duckdb.connect()
+            con.execute(f"CREATE TABLE mun AS SELECT * FROM read_csv({_sql_texto(ARQ_MUNICIPIOS.as_posix())}, all_varchar=true)")
+            con.execute(f"""CREATE TABLE pop AS SELECT cod6, CAST(ano AS INTEGER) AS ano,
+                            CAST(populacao AS BIGINT) AS populacao
+                            FROM read_csv({_sql_texto(ARQ_POPULACAO.as_posix())}, types={{'cod6': 'VARCHAR'}})""")
+            _base = con
+        return _base
 
 
 def conexao() -> duckdb.DuckDBPyConnection:
-    """Uma conexão por thread (o Streamlit atende cada sessão em uma thread)."""
+    """Um cursor por thread, todos ligados ao mesmo banco (o servidor atende em várias threads)."""
     con = getattr(_local, "con", None)
     if con is None:
-        con = duckdb.connect()
-        con.execute(f"CREATE TABLE mun AS SELECT * FROM read_csv('{ARQ_MUNICIPIOS.as_posix()}', all_varchar=true)")
-        con.execute(f"""CREATE TABLE pop AS SELECT cod6, CAST(ano AS INTEGER) AS ano,
-                        CAST(populacao AS BIGINT) AS populacao
-                        FROM read_csv('{ARQ_POPULACAO.as_posix()}', types={{'cod6': 'VARCHAR'}})""")
+        con = _conexao_base().cursor()
         _local.con = con
     return con
+
+
+def validar_agravo(agravo: str) -> str:
+    agravo = (agravo or "").upper()
+    if not _CODIGO.match(agravo):
+        raise AgravoInvalido(f"Código de agravo inválido: {agravo!r}")
+    return agravo
 
 
 def agravos_disponiveis() -> list[str]:
@@ -36,8 +68,15 @@ def agravos_disponiveis() -> list[str]:
     return sorted(p.name for p in PASTA_PARQUET.iterdir() if p.is_dir() and any(p.glob("*.parquet")))
 
 
+def tem_dados(agravo: str) -> bool:
+    return any((PASTA_PARQUET / validar_agravo(agravo)).glob("*.parquet"))
+
+
 def _fonte(agravo: str) -> str:
-    return f"read_parquet('{(PASTA_PARQUET / agravo).as_posix()}/*.parquet', union_by_name=true)"
+    agravo = validar_agravo(agravo)
+    if not tem_dados(agravo):
+        raise AgravoInvalido(f"Não há dados baixados de {agravo}. Use a tela \"Baixar dados\".")
+    return f"read_parquet({_sql_texto((PASTA_PARQUET / agravo).as_posix() + '/*.parquet')}, union_by_name=true)"
 
 
 def colunas(agravo: str) -> list[str]:
@@ -173,6 +212,8 @@ def por_ano(f: Filtro) -> pd.DataFrame:
 
 
 def contagem(f: Filtro, coluna: str, ignorar_confirmado: bool = False) -> pd.DataFrame:
+    if not re.match(r"^[A-Za-z_][A-Za-z0-9_]*$", coluna):
+        raise ValueError(f"Nome de coluna inválido: {coluna!r}")
     filtro = Filtro(**{**f.__dict__, "contagem": "todas"}) if ignorar_confirmado else f
     w, p = filtro.where()
     return _q(f"""SELECT coalesce(CAST("{coluna}" AS VARCHAR), '') valor, count(*) casos
@@ -186,10 +227,18 @@ def piramide(f: Filtro) -> pd.DataFrame:
                   GROUP BY 1, 2""", p)
 
 
-def registros(f: Filtro, limite: int | None = 1000, todas_colunas: bool = False) -> pd.DataFrame:
+_COLUNAS_TABELA = """ano, data_notificacao, data_sintomas, sem_epi, uf_not, mun_not,
+    uf_res, mun_res, idade, faixa_etaria, sexo, raca, classificacao, situacao, criterio_confirmacao,
+    evolucao_caso, hospitalizado"""
+
+
+def registros(f: Filtro, limite: int | None = 1000, todas_colunas: bool = False, inicio: int = 0) -> pd.DataFrame:
     w, p = f.where()
-    cols = "*" if todas_colunas else """ano, data_notificacao, data_sintomas, sem_epi, uf_not, mun_not,
-        uf_res, mun_res, idade, faixa_etaria, sexo, raca, classificacao, situacao, criterio_confirmacao,
-        evolucao_caso, hospitalizado"""
-    lim = f"LIMIT {int(limite)}" if limite else ""
-    return _q(f"SELECT {cols} FROM {_fonte(f.agravo)} WHERE {w} ORDER BY data_notificacao DESC {lim}", p)
+    cols = "*" if todas_colunas else _COLUNAS_TABELA
+    lim = f"LIMIT {int(limite)} OFFSET {max(0, int(inicio))}" if limite else ""
+    return _q(f"SELECT {cols} FROM {_fonte(f.agravo)} WHERE {w} ORDER BY data_notificacao DESC NULLS LAST {lim}", p)
+
+
+def total_registros(f: Filtro) -> int:
+    w, p = f.where()
+    return int(_q(f"SELECT count(*) n FROM {_fonte(f.agravo)} WHERE {w}", p)["n"].iloc[0])
