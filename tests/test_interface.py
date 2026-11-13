@@ -53,3 +53,5 @@ def test_servidor_entrega_os_modulos(cliente):
         r = cliente.get(caminho)
         assert r.status_code == 200, caminho
         assert "javascript" in r.headers["content-type"], caminho
+        # sempre confere com o servidor: evita misturar módulos de versões diferentes
+        assert r.headers["cache-control"] == "no-cache", caminho

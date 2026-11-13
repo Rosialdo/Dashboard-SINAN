@@ -21,6 +21,19 @@ PASTA_WEB = config.RAIZ / "web"
 PLOTLY_JS = Path(plotly.__file__).parent / "package_data" / "plotly.min.js"
 
 
+class ArquivosInterface(StaticFiles):
+    """Arquivos da pasta web/ sempre conferidos com o servidor ("no-cache").
+
+    A interface tem vários módulos JavaScript: se o navegador guardasse alguns
+    antigos depois de uma atualização, versões diferentes se misturariam.
+    """
+
+    def file_response(self, *args, **kwargs):
+        resposta = super().file_response(*args, **kwargs)
+        resposta.headers["Cache-Control"] = "no-cache"
+        return resposta
+
+
 def _mensagem_validacao(exc: RequestValidationError) -> str:
     """Erros de validação do FastAPI em português e numa linha só."""
     partes = []
@@ -66,7 +79,7 @@ def criar_app() -> FastAPI:
     def plotly_js():
         return FileResponse(PLOTLY_JS, headers={"Cache-Control": "max-age=86400"})
 
-    app.mount("/static", StaticFiles(directory=PASTA_WEB), name="static")
+    app.mount("/static", ArquivosInterface(directory=PASTA_WEB), name="static")
 
     # ---------------------------------------------------------------- segurança
     app.add_middleware(ProtecaoLocal)
