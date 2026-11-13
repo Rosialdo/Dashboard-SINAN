@@ -72,11 +72,14 @@ def tem_dados(agravo: str) -> bool:
     return any((PASTA_PARQUET / validar_agravo(agravo)).glob("*.parquet"))
 
 
-def _fonte(agravo: str) -> str:
+def _fonte(agravo: str, posicao: bool = False) -> str:
+    """Leitura dos Parquet do agravo. ``posicao=True`` acrescenta as colunas
+    ``filename`` e ``file_row_number``, que identificam cada linha de forma única."""
     agravo = validar_agravo(agravo)
     if not tem_dados(agravo):
         raise AgravoInvalido(f"Não há dados baixados de {agravo}. Use a tela \"Baixar dados\".")
-    return f"read_parquet({_sql_texto((PASTA_PARQUET / agravo).as_posix() + '/*.parquet')}, union_by_name=true)"
+    extra = ", filename=true, file_row_number=true" if posicao else ""
+    return f"read_parquet({_sql_texto((PASTA_PARQUET / agravo).as_posix() + '/*.parquet')}, union_by_name=true{extra})"
 
 
 def colunas(agravo: str) -> list[str]:
@@ -202,7 +205,7 @@ def por_municipio(f: Filtro) -> pd.DataFrame:
                c.casos, c.obitos, pp.pop_media populacao,
                c.casos * 100000.0 / nullif(pp.pessoas_ano, 0) incidencia
         FROM c LEFT JOIN mun m USING (cod6) LEFT JOIN pp USING (cod6)
-        ORDER BY c.casos DESC""", p + [f.ano_ini, f.ano_fim])
+        ORDER BY c.casos DESC, c.cod6""", p + [f.ano_ini, f.ano_fim])
 
 
 def por_ano(f: Filtro) -> pd.DataFrame:
@@ -217,14 +220,14 @@ def contagem(f: Filtro, coluna: str, ignorar_confirmado: bool = False) -> pd.Dat
     filtro = Filtro(**{**f.__dict__, "contagem": "todas"}) if ignorar_confirmado else f
     w, p = filtro.where()
     return _q(f"""SELECT coalesce(CAST("{coluna}" AS VARCHAR), '') valor, count(*) casos
-                  FROM {_fonte(f.agravo)} WHERE {w} GROUP BY 1 ORDER BY 2 DESC""", p)
+                  FROM {_fonte(f.agravo)} WHERE {w} GROUP BY 1 ORDER BY 2 DESC, 1""", p)
 
 
 def piramide(f: Filtro) -> pd.DataFrame:
     w, p = f.where()
     return _q(f"""SELECT faixa_etaria, sexo, count(*) casos FROM {_fonte(f.agravo)}
                   WHERE {w} AND faixa_etaria IS NOT NULL AND sexo IN ('Masculino','Feminino')
-                  GROUP BY 1, 2""", p)
+                  GROUP BY 1, 2 ORDER BY 1, 2""", p)
 
 
 _COLUNAS_TABELA = """ano, data_notificacao, data_sintomas, sem_epi, uf_not, mun_not,
@@ -234,9 +237,12 @@ _COLUNAS_TABELA = """ano, data_notificacao, data_sintomas, sem_epi, uf_not, mun_
 
 def registros(f: Filtro, limite: int | None = 1000, todas_colunas: bool = False, inicio: int = 0) -> pd.DataFrame:
     w, p = f.where()
-    cols = "*" if todas_colunas else _COLUNAS_TABELA
+    cols = "* EXCLUDE (filename, file_row_number)" if todas_colunas else _COLUNAS_TABELA
     lim = f"LIMIT {int(limite)} OFFSET {max(0, int(inicio))}" if limite else ""
-    return _q(f"SELECT {cols} FROM {_fonte(f.agravo)} WHERE {w} ORDER BY data_notificacao DESC NULLS LAST {lim}", p)
+    # o desempate pela posição no arquivo deixa a ordem sempre igual: sem ele,
+    # registros com a mesma data trocavam de lugar e se repetiam entre as páginas
+    return _q(f"""SELECT {cols} FROM {_fonte(f.agravo, posicao=True)} WHERE {w}
+                  ORDER BY data_notificacao DESC NULLS LAST, filename, file_row_number {lim}""", p)
 
 
 def total_registros(f: Filtro) -> int:

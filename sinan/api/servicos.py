@@ -39,7 +39,7 @@ def tabela_municipios(f: cq.Filtro, area: tuple[str, ...]) -> pd.DataFrame:
                 "WHERE ano BETWEEN ? AND ? GROUP BY 1", [f.ano_ini, f.ano_fim])
     t = t.merge(pop, on="cod6", how="left")
     t["incidencia"] = t["casos"] * 1e5 / t["pa"]
-    return t.drop(columns="pa").sort_values(["casos", "incidencia"], ascending=False)
+    return t.drop(columns="pa").sort_values(["casos", "incidencia", "cod6"], ascending=[False, False, True])
 
 
 def nomes_municipios() -> dict[str, str]:
@@ -71,7 +71,7 @@ def simplificar(df: pd.DataFrame, ordenar: bool = True) -> pd.DataFrame:
     df = df.assign(valor=df["valor"].map(rotulos.valor_simples))
     extras = {c: "min" for c in df.columns if c not in ("valor", "casos")}
     df = df.groupby("valor", as_index=False, sort=False).agg({"casos": "sum", **extras})
-    return df.sort_values("casos", ascending=False) if ordenar else df
+    return df.sort_values(["casos", "valor"], ascending=[False, True]) if ordenar else df
 
 
 def contagem(f: cq.Filtro, coluna: str, ignorar_confirmado: bool = False) -> list[dict]:

@@ -130,3 +130,27 @@ def test_corpo_invalido_no_post(cliente):
     assert r.status_code == 400 and "anos" in r.json()["erro"]
     r = cliente.post("/api/dados/remover", content="isto não é json", headers={"Content-Type": "application/json"})
     assert r.status_code == 400
+
+
+
+def test_paginas_sem_repeticao_nem_falta(dados_teste):
+    """Muitos registros têm a mesma data; sem desempate na ordenação, linhas se
+    repetiam entre as páginas e outras nunca apareciam."""
+    import pandas as pd
+
+    from sinan import consultas as cq
+    f = cq.Filtro("ACBI", 2006, 2006, contagem="todas")
+    completo = cq.registros(f, limite=None).reset_index(drop=True)
+    paginas = pd.concat([cq.registros(f, limite=50, inicio=i) for i in range(0, len(completo), 50)],
+                        ignore_index=True)
+    pd.testing.assert_frame_equal(paginas, completo)
+
+
+def test_mesma_resposta_sempre(cliente):
+    from sinan.api import cache
+    respostas = set()
+    for _ in range(3):
+        cache.limpar()
+        respostas.add(cliente.get("/api/registros?agravo=ACBI&contagem=todas&pagina=3").content)
+        respostas.add(cliente.get("/api/perfil?agravo=ACBI").content)
+    assert len(respostas) == 2  # uma resposta de registros e uma de perfil, sempre iguais
