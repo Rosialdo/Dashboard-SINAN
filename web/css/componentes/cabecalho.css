@@ -1,0 +1,12 @@
+/* Cabeçalho das telas: caminho, título e subtítulo. */
+
+.cabecalho { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 14px; }
+.migalha { font-size: 14px; color: var(--muted); margin: 0 0 6px; }
+.migalha span { margin: 0 8px; opacity: .7; }
+.subtitulo { font-size: 22px; color: var(--text-2); margin-top: 4px; }
+
+/* telas menores */
+@media (max-width: 900px) {
+  .subtitulo { font-size: 17px; }
+  .cabecalho { flex-direction: column; }
+}

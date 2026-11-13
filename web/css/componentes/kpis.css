@@ -1,0 +1,22 @@
+/* Quadros de indicadores do topo. */
+
+.kpis { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 14px; margin-bottom: 16px; }
+.kpi { padding: 18px 20px 16px; min-height: 120px; }
+.kpi-rotulo { display: flex; align-items: center; gap: 8px; font-size: 14.5px; color: var(--text-2); }
+.kpi-valor { font-size: 34px; font-weight: 700; letter-spacing: -.01em; line-height: 1.2; margin-top: 8px; font-variant-numeric: lining-nums; }
+.kpi-sub { font-size: 14px; color: var(--text-2); margin-top: 2px; }
+.pilula { display: inline-block; margin-top: 6px; padding: 2px 10px; border-radius: 999px; background: var(--card-2); border: 1px solid var(--border); font-size: 13px; color: var(--text-2); }
+.info { display: inline-flex; color: var(--muted); cursor: help; }
+.info svg { width: 17px; height: 17px; }
+
+/* telas menores */
+@media (max-width: 1400px) {
+  .kpis { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 900px) {
+  .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .kpi-valor { font-size: 28px; }
+}
+@media (max-width: 520px) {
+  .kpis { grid-template-columns: 1fr 1fr; gap: 10px; }
+}

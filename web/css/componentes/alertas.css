@@ -1,0 +1,12 @@
+/* Avisos (preliminar, informação e erro). */
+
+.alerta {
+  display: flex; align-items: center; gap: 12px; padding: 10px 16px; margin-bottom: 14px;
+  background: var(--warn-bg); border: 1px solid var(--warn-border); border-radius: 8px; color: var(--warn-text); font-size: 14.5px;
+}
+.alerta svg { color: var(--warn-icon); width: 22px; height: 22px; }
+.alerta.info { background: var(--info-bg); border-color: var(--info-border); color: var(--info-text); }
+.alerta.info svg { color: var(--info-text); }
+.alerta.erro { background: var(--erro-bg); border-color: transparent; color: var(--erro-text); }
+.alerta .fechar { margin-left: auto; border: 0; background: none; color: var(--text-2); padding: 2px; display: flex; }
+.alerta .fechar svg { color: var(--text-2); width: 18px; height: 18px; }

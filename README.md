@@ -107,6 +107,7 @@ web/                 interface: HTML, CSS e módulos JavaScript nativos (sem bui
   js/nucleo/         estado, filtros, API, utilidades
   js/componentes/    filtros, indicadores, gráficos, cabeçalho, avisos...
   js/paginas/        uma tela por arquivo
+  css/main.css       importa os estilos na ordem: base/ (cores do tema, estrutura), componentes/, paginas/
 tests/               testes automáticos (pytest), com uma amostra real de .dbc em tests/fixtures
 referencia/          municípios, população, mapa e rótulos (já vêm prontos)
 scripts/gerar_referencias.py   regenera a pasta referencia/
@@ -125,7 +126,8 @@ dados/               criado ao baixar (não vai para o git)
   receber os filtros do painel, use o parâmetro `ctx: Filtros`. Um arquivo novo de rotas precisa
   entrar em `ROUTERS` (`sinan/api/rotas/__init__.py`).
 - **Nova tela:** crie `web/js/paginas/<tela>.js` exportando `montar(raiz, pedido)` e registre-a em
-  `PAGINAS` (`web/js/nucleo/estado.js`) e em `MONTADORES` (`web/js/roteador.js`).
+  `PAGINAS` (`web/js/nucleo/estado.js`) e em `MONTADORES` (`web/js/roteador.js`). Se a tela tiver estilos próprios,
+  crie `web/css/paginas/<tela>.css` e acrescente o `@import` em `web/css/main.css`.
 - Cada Parquet tem **todas as colunas originais** da ficha (em maiúsculas, como texto) e as colunas
   derivadas em minúsculas (`data_notificacao`, `sem_epi`, `faixa_etaria`, `situacao`, `confirmado`,
   `obito`, ...). Dá para analisar direto com pandas ou DuckDB.

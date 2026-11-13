@@ -1,0 +1,25 @@
+/* Blocos gerais: rodapé, carregando, tela vazia, passos numerados e dica flutuante. */
+
+.rodape { display: flex; justify-content: space-between; gap: 16px; font-size: 13px; color: var(--muted); margin-top: 6px; flex-wrap: wrap; }
+.rodape b { color: var(--text-2); font-weight: 600; }
+.carregando { position: relative; min-height: 80px; }
+.esqueleto { background: linear-gradient(90deg, var(--card-2), var(--border), var(--card-2)); background-size: 200% 100%; animation: brilho 1.3s infinite; border-radius: 6px; }
+@keyframes brilho { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+.vazio { text-align: center; padding: 60px 20px; color: var(--text-2); }
+.vazio svg { width: 48px; height: 48px; color: var(--accent); margin-bottom: 10px; }
+.vazio h2 { margin-bottom: 8px; }
+
+.tooltip {
+  position: fixed; z-index: 100; pointer-events: none; display: none; max-width: 300px;
+  background: var(--text); color: var(--bg); padding: 8px 11px; border-radius: 7px; font-size: 13px; line-height: 1.4;
+  box-shadow: 0 6px 18px rgba(0,0,0,.2);
+}
+.tooltip b { font-weight: 700; }
+.passos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.passo { display: flex; gap: 12px; }
+.passo .n { flex: none; width: 30px; height: 30px; border-radius: 50%; background: var(--accent-soft); color: var(--accent-text); font-weight: 700; display: flex; align-items: center; justify-content: center; }
+
+/* telas menores */
+@media (max-width: 1100px) {
+  .passos { grid-template-columns: 1fr; }
+}

@@ -78,6 +78,7 @@ Se o usuário relatar que "não mudou nada", confira antes de tudo qual processo
 | `sinan/rotulos.py` | nomes amigáveis das variáveis, grupos e `valor_simples()` ("Não informado") |
 | `sinan/consultas.py` | consultas DuckDB nos Parquet |
 | `sinan/api/` | servidor FastAPI: `app.py` monta tudo; `rotas/` um arquivo por tela; `filtros.py` (dependência `ctx: Filtros`); `servicos.py`; `tarefa.py`; `cache.py`; `seguranca.py` (`ProtecaoLocal`); `respostas.py` (`ErroUsuario`, `json_resp`) |
+| `web/css/` | estilos em módulos: `main.css` importa `base/` (tema com as variáveis de cor, base, estrutura), `componentes/` e `paginas/`, nessa ordem; regras de `@media` ficam no arquivo do elemento. Cores sempre por variável de `base/tema.css` (claro e escuro) |
 | `web/js/` | interface em módulos JS nativos (sem build): `main.js`, `roteador.js`, `nucleo/`, `componentes/`, `paginas/` (uma tela por arquivo, exporta `montar(raiz, pedido)`) |
 
 Para criar uma rota: função em `sinan/api/rotas/<assunto>.py` com `@router.get`; filtros do
