@@ -13,7 +13,8 @@ from pathlib import Path
 
 import pytest
 
-from sinan import config, consultas, download, processar, web
+from sinan import config, consultas, download, processar
+from sinan.api import app, cache
 
 AMOSTRA = Path(__file__).parent / "fixtures" / "ACBIBR06.dbc"
 UFS_TESTE = ["PR", "SP"]
@@ -28,7 +29,7 @@ def _redirecionar(mp: pytest.MonkeyPatch, raiz: Path) -> None:
         "ARQ_LISTAGEM_FTP": raiz / "listagem_ftp.json",
         "ARQ_CONFIG": raiz / "configuracao.json",
     }
-    for modulo in (config, processar, consultas, download, web):
+    for modulo in (config, processar, consultas, download):
         for nome, valor in caminhos.items():
             if hasattr(modulo, nome):
                 mp.setattr(modulo, nome, valor)
@@ -48,14 +49,14 @@ def dados_teste(tmp_path_factory):
         (raiz / "configuracao.json").write_text(
             json.dumps({**config.CONFIG_PADRAO, "ufs": UFS_TESTE, "agravos": ["ACBI"], "anos": [2006]}),
             encoding="utf-8")
-        web._limpar_cache()
+        cache.limpar()
         yield {"raiz": raiz, "registros": n}
-        web._limpar_cache()
+        cache.limpar()
 
 
 @pytest.fixture
 def cliente(dados_teste):
     from starlette.testclient import TestClient
 
-    with TestClient(web.app, base_url="http://localhost:8501") as c:
+    with TestClient(app, base_url="http://localhost:8501") as c:
         yield c

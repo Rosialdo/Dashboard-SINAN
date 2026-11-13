@@ -1,9 +1,10 @@
-"""API do dashboard e proteção do servidor local (sinan/web.py)."""
+"""API do dashboard e proteção do servidor local (sinan/api/)."""
 
 import pytest
 from starlette.testclient import TestClient
 
-from sinan import web
+from sinan.api import app
+from sinan.api.respostas import _converter
 
 
 def test_pagina_inicial(cliente):
@@ -62,13 +63,13 @@ def test_erros_amigaveis(cliente):
 
 def test_conversao_json_de_nat():
     import pandas as pd
-    assert web._conv(pd.NaT) is None
-    assert web._conv(pd.Timestamp("2024-01-02")) == "2024-01-02"
+    assert _converter(pd.NaT) is None
+    assert _converter(pd.Timestamp("2024-01-02")) == "2024-01-02"
 
 
 # ---------------------------------------------------------------- segurança
 def test_bloqueia_host_externo(dados_teste):
-    with TestClient(web.app, base_url="http://site-malicioso.com") as c:
+    with TestClient(app, base_url="http://site-malicioso.com") as c:
         assert c.get("/api/meta").status_code == 403
 
 
@@ -100,3 +101,32 @@ def test_atualizar_valida_entrada(cliente):
     assert cliente.post("/api/dados/atualizar", json={"agravos": ["DENG"], "anos": [2024], "ufs": ["XX"]}).status_code == 400
     assert cliente.post("/api/dados/atualizar", json={"agravos": ["DE'NG"], "anos": [2024], "ufs": ["RR"]}).status_code == 400
     assert cliente.post("/api/dados/atualizar", json={"agravos": [], "anos": [], "ufs": []}).status_code == 400
+
+
+# ---------------------------------------------------------------- FastAPI
+def test_documentacao_da_api(cliente):
+    esquema = cliente.get("/api/openapi.json").json()
+    rotas = set(esquema["paths"])
+    assert {"/api/meta", "/api/visao", "/api/mapa", "/api/perfil", "/api/variaveis", "/api/variavel",
+            "/api/registros", "/api/exportar", "/api/dados", "/api/dados/atualizar", "/api/dados/remover"} <= rotas
+    assert "/" not in rotas  # a página da interface não faz parte da API
+    assert cliente.get("/api/docs").status_code == 200
+
+
+@pytest.mark.parametrize("url", [
+    "/api/visao?agravo=ACBI&contagem=xyz",
+    "/api/visao?agravo=ACBI&local=outro",
+    "/api/registros?agravo=ACBI&pagina=-1",
+    "/api/variavel?agravo=ACBI&id=abc",
+])
+def test_validacao_em_portugues(cliente, url):
+    r = cliente.get(url)
+    assert r.status_code == 400
+    assert r.json()["erro"].startswith("Parâmetro inválido.")
+
+
+def test_corpo_invalido_no_post(cliente):
+    r = cliente.post("/api/dados/atualizar", json={"agravos": ["DENG"], "anos": ["dois mil"], "ufs": ["RR"]})
+    assert r.status_code == 400 and "anos" in r.json()["erro"]
+    r = cliente.post("/api/dados/remover", content="isto não é json", headers={"Content-Type": "application/json"})
+    assert r.status_code == 400
