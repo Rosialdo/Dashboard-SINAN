@@ -1,0 +1,12 @@
+/* Tela Atualizar dados: escolha de UFs/anos/agravos e barra de progresso. */
+
+.opcoes-grade { display: grid; grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); gap: 6px; margin-top: 8px; }
+.opcoes-grade.anos { grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); }
+.opcoes-grade .chip { border-radius: 7px; padding: 6px 0; text-align: center; }
+.lista-check { max-height: 300px; overflow-y: auto; border: 1px solid var(--border); border-radius: 8px; margin-top: 8px; }
+.lista-check label { display: flex; gap: 10px; align-items: center; padding: 8px 12px; border-bottom: 1px solid var(--border); font-size: 14.5px; cursor: pointer; }
+.lista-check label:last-child { border-bottom: 0; }
+.lista-check label:hover { background: var(--card-2); }
+.lista-check small { color: var(--muted); margin-left: auto; }
+.progresso { height: 10px; background: var(--card-2); border-radius: 999px; overflow: hidden; margin: 12px 0 8px; border: 1px solid var(--border); }
+.progresso div { height: 100%; background: var(--accent); width: 0; transition: width .3s; }

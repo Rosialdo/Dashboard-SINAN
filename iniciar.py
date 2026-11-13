@@ -38,8 +38,8 @@ def main() -> None:
     porta = porta_livre()
     if "--sem-navegador" not in sys.argv:
         threading.Thread(target=abrir_quando_pronto, args=(porta,), daemon=True).start()
+    from sinan.api import app
     from sinan.processar import migrar_arquivos
-    from sinan.web import app
     migrar_arquivos()  # ajusta dados gravados por versões anteriores
     uvicorn.run(app, host="127.0.0.1", port=porta, log_level="warning")
 

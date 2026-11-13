@@ -77,8 +77,15 @@ Se o usuário relatar que "não mudou nada", confira antes de tudo qual processo
 | `sinan/tabnet.py` | rótulos oficiais (`.def`/`.cnv` em `referencia/tabnet`) |
 | `sinan/rotulos.py` | nomes amigáveis das variáveis, grupos e `valor_simples()` ("Não informado") |
 | `sinan/consultas.py` | consultas DuckDB nos Parquet |
-| `sinan/web.py` | API JSON (Starlette) e middleware `ProtecaoLocal` |
-| `web/` | interface em HTML/CSS/JS puro, gráficos com Plotly |
+| `sinan/api/` | servidor FastAPI: `app.py` monta tudo; `rotas/` um arquivo por tela; `filtros.py` (dependência `ctx: Filtros`); `servicos.py`; `tarefa.py`; `cache.py`; `seguranca.py` (`ProtecaoLocal`); `respostas.py` (`ErroUsuario`, `json_resp`) |
+| `web/css/` | estilos em módulos: `main.css` importa `base/` (tema com as variáveis de cor, base, estrutura), `componentes/` e `paginas/`, nessa ordem; regras de `@media` ficam no arquivo do elemento. Cores sempre por variável de `base/tema.css` (claro e escuro) |
+| `web/js/` | interface em módulos JS nativos (sem build): `main.js`, `roteador.js`, `nucleo/`, `componentes/`, `paginas/` (uma tela por arquivo, exporta `montar(raiz, pedido)`) |
+
+Para criar uma rota: função em `sinan/api/rotas/<assunto>.py` com `@router.get`; filtros do
+painel via `ctx: Filtros`. Para criar uma tela: `web/js/paginas/<tela>.js` + registro em
+`PAGINAS` (`nucleo/estado.js`) e `MONTADORES` (`roteador.js`). Na interface, use caminhos
+relativos nos `import` (sem CDN: o painel funciona offline); `tests/test_interface.py` confere
+que todo import existe.
 
 ## 6. Regras técnicas que não podem ser quebradas
 
@@ -94,11 +101,15 @@ Se o usuário relatar que "não mudou nada", confira antes de tudo qual processo
 - **Segurança da API local:** valores do usuário vão para o SQL sempre como parâmetro `?`. O
   código do agravo passa por `consultas.validar_agravo()`. POST só com JSON. Não afrouxe o
   `ProtecaoLocal`.
-- **Rotas pesadas são funções síncronas** (`def`), que o Starlette roda em threads. Não as
+- **Rotas pesadas são funções síncronas** (`def`), que o FastAPI roda em threads. Não as
   transforme em `async def` com trabalho bloqueante dentro.
-- **Não guarde tabelas grandes no cache** (`_memo`): só resultados agregados. Paginação é
+- **Não guarde tabelas grandes no cache** (`api/cache.memo`): só resultados agregados. Paginação é
   feita no SQL.
-- Erros que o usuário pode resolver usam `ErroUsuario` (resposta 400 com mensagem clara).
+- Erros que o usuário pode resolver usam `ErroUsuario` (resposta 400 com mensagem clara). Erros
+  de validação do FastAPI já viram 400 em português; mantenha o formato `{"erro": "..."}`, que é o
+  que a interface mostra.
+- **Ordenação com desempate:** toda consulta paginada ou exibida em lista precisa de ordem única
+  (ex.: `filename, file_row_number`), senão empates trocam de lugar e linhas se repetem entre páginas.
 
 ## 7. Forma de trabalhar
 

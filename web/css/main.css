@@ -1,0 +1,22 @@
+/* Estilos do painel: cada arquivo cuida de uma parte, como os módulos de web/js.
+
+A ordem importa (o que vem depois pode sobrescrever o que vem antes):
+base -> componentes -> páginas.
+*/
+
+@import url("base/tema.css");
+@import url("base/base.css");
+@import url("base/estrutura.css");
+@import url("componentes/botoes.css");
+@import url("componentes/suspenso.css");
+@import url("componentes/cabecalho.css");
+@import url("componentes/filtros.css");
+@import url("componentes/alertas.css");
+@import url("componentes/kpis.css");
+@import url("componentes/graficos.css");
+@import url("componentes/tabelas.css");
+@import url("componentes/blocos.css");
+@import url("paginas/mapa.css");
+@import url("paginas/variaveis.css");
+@import url("paginas/atualizar.css");
+@import url("paginas/sobre.css");

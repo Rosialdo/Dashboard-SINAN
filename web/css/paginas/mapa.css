@@ -1,0 +1,35 @@
+/* Tela Mapa e municípios: mapa, zoom, escala de cores e painel lateral. */
+
+.mapa-area { position: relative; background: var(--mapa-fundo); border-radius: 8px; height: 470px; overflow: hidden; margin-top: 14px; }
+.mapa-area svg.mapa { width: 100%; height: 100%; stroke: none; cursor: grab; }
+.mapa-area svg.mapa:active { cursor: grabbing; }
+.mapa-area path.mun { stroke: var(--mapa-borda); stroke-width: .9; vector-effect: non-scaling-stroke; transition: opacity .15s; }
+.mapa-area path.mun:hover { stroke: var(--text); stroke-width: 1.6; }
+.mapa-area path.mun.sel { stroke: var(--text); stroke-width: 2.2; }
+.mapa-area text.rot { fill: #fff; font-size: 15px; font-weight: 700; paint-order: stroke; stroke: rgba(0,0,0,.25); stroke-width: 3px; pointer-events: none; }
+.zoom { position: absolute; left: 14px; top: 14px; display: flex; flex-direction: column; background: var(--card); border: 1px solid var(--border-forte); border-radius: 8px; overflow: hidden; }
+.zoom button { width: 42px; height: 40px; border: 0; background: none; display: flex; align-items: center; justify-content: center; color: var(--text); }
+.zoom button + button { border-top: 1px solid var(--border); }
+.zoom button:hover { background: var(--accent-soft); }
+.mapa-nota { position: absolute; left: 12px; bottom: 12px; font-size: 13px; color: var(--text-2); background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 3px 9px; }
+.escala { position: absolute; right: 16px; top: 14px; bottom: 18px; display: flex; flex-direction: column; font-size: 12.5px; color: var(--text-2); }
+.escala-tit { line-height: 1.25; margin-bottom: 10px; }
+.escala-corpo { display: flex; gap: 10px; flex: 1; padding-left: 10px; }
+.escala-barra { width: 9px; border-radius: 5px; }
+.escala-ticks { display: flex; flex-direction: column; justify-content: space-between; }
+.lateral { padding: 22px 22px; display: flex; flex-direction: column; }
+.lateral h2 { font-size: 28px; }
+.lateral .uf { color: var(--muted); font-size: 16px; margin-top: 2px; padding-bottom: 18px; border-bottom: 1px solid var(--border); }
+.lateral h3 { margin: 22px 0 12px; font-size: 17px; font-weight: 600; }
+.mini-kpis { display: grid; grid-template-columns: repeat(3, auto); gap: 0; }
+.mini-kpis > div { padding: 0 14px; border-left: 1px solid var(--border); }
+.mini-kpis > div:first-child { padding-left: 0; border-left: 0; }
+.mini-kpis .r { font-size: 14px; color: var(--text-2); }
+.mini-kpis .v { font-size: 30px; font-weight: 700; margin: 4px 0 2px; }
+.mini-kpis .s { font-size: 14px; color: var(--text-2); }
+.lateral .acao { margin-top: auto; padding-top: 22px; }
+
+/* telas menores */
+@media (max-width: 900px) {
+  .mapa-area { height: 360px; }
+}

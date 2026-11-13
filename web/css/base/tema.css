@@ -1,0 +1,81 @@
+/* Cores dos temas claro e escuro. Todas as outras regras usam estas variáveis. */
+
+:root, [data-theme="light"] {
+  color-scheme: light;
+  --bg: #f3f6f8;
+  --sidebar: #f7f9fa;
+  --card: #ffffff;
+  --card-2: #f6f8fa;
+  --border: #e1e7eb;
+  --border-forte: #cfd8de;
+  --text: #0f2235;
+  --text-2: #3d4f60;
+  --muted: #6f7f8e;
+  --accent: #0e7f8c;
+  --accent-hover: #0b6d78;
+  --accent-ink: #ffffff;
+  --accent-soft: #e1f0f2;
+  --accent-text: #0b6f7a;
+  --warn-bg: #fff6e3;
+  --warn-border: #f0d49a;
+  --warn-text: #7a5200;
+  --warn-icon: #d98a00;
+  --info-bg: #e9f5f6;
+  --info-border: #b9dfe3;
+  --info-text: #0b5f69;
+  --erro-bg: #fdecec;
+  --erro-text: #a12727;
+  --ok: #1d8a3a;
+  --serie-1: #00899c;
+  --serie-2: #e8692c;
+  --serie-ctx: #b3bcc4;
+  --grid: #e8edf0;
+  --eixo: #c9d2d8;
+  --mapa-vazio: #e7ecef;
+  --mapa-borda: #ffffff;
+  --mapa-fundo: #f0f4f6;
+  --rampa-0: #d4eef1;
+  --rampa-1: #00899c;
+  --rampa-2: #004f5c;
+  --sombra: 0 1px 2px rgba(15, 34, 53, .04);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0b1622;
+  --sidebar: #0d1a27;
+  --card: #0f1d2b;
+  --card-2: #132535;
+  --border: #1e3142;
+  --border-forte: #2a4053;
+  --text: #e9eff4;
+  --text-2: #b7c4cf;
+  --muted: #8193a3;
+  --accent: #2ec7c1;
+  --accent-hover: #45d3cd;
+  --accent-ink: #052226;
+  --accent-soft: #10343c;
+  --accent-text: #4fd6d0;
+  --warn-bg: #241f0e;
+  --warn-border: #7d6420;
+  --warn-text: #f2d27c;
+  --warn-icon: #f0b429;
+  --info-bg: #0f2c33;
+  --info-border: #1d5560;
+  --info-text: #8fe0dc;
+  --erro-bg: #3a1618;
+  --erro-text: #ff9b9b;
+  --ok: #3ccf6a;
+  --serie-1: #14a8a3;
+  --serie-2: #e06a26;
+  --serie-ctx: #4f6070;
+  --grid: #1b2d3d;
+  --eixo: #2b4052;
+  --mapa-vazio: #1a2c3c;
+  --mapa-borda: #0f1d2b;
+  --mapa-fundo: #0c1925;
+  --rampa-0: #123a42;
+  --rampa-1: #14a8a3;
+  --rampa-2: #8af0eb;
+  --sombra: none;
+}

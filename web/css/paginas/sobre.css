@@ -1,0 +1,7 @@
+/* Tela Sobre os dados: texto corrido com definições. */
+
+.texto { max-width: 900px; font-size: 15.5px; color: var(--text-2); }
+.texto h2 { color: var(--text); margin: 6px 0 10px; }
+.texto dt { color: var(--text); font-weight: 600; margin-top: 12px; }
+.texto dd { margin: 2px 0 0; }
+.texto ul { padding-left: 20px; }
