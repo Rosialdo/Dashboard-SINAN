@@ -810,4 +810,151 @@ e **Correção** (defeito, não funcionalidade nova).
 
 ## 5. Priorização e roadmap
 
+### 5.1 Matriz impacto × esforço
+
+| Impacto \ Esforço | P (até 1 dia) | M (2 a 5 dias) | G (mais de 1 semana) |
+|---|---|---|---|
+| **Alto** | N16, N17 | N01, N03, N04, N11, N15, N18 | N02, N12, N13, N19 |
+| **Médio** | N05, N08, N09, N22 | N06, N07, N10, N20, N21, N24, N26 | N14, N25, N27 |
+| **Baixo** | N30 | N28, N29 | – |
+
+| Classe | Regra | Funcionalidades |
+|---|---|---|
+| **Ganhos rápidos** | Alto ou Médio, esforço P | N05, N08, N09, N16, N17, N22 |
+| **Estratégicas** | Alto, esforço M ou G | N01, N02, N03, N04, N11, N12, N13, N15, N18, N19 |
+| **Complementares** | Médio com esforço M; Baixo com esforço P | N06, N07, N10, N20, N21, N24, N26, N30 |
+| **Adiar** | Baixo com esforço M ou G; Médio com esforço G | N14, N25, N27, N28, N29 |
+
+### 5.2 Fases de entrega
+
+Cada linha é uma branch própria, criada a partir da `develop`, com um PR por funcionalidade.
+Dentro de cada fase, a ordem respeita as dependências das fichas.
+
+**Fase 0 — Correções e pré-requisitos de publicação.** O painel só vai para a internet depois desta fase.
+
+| Ordem | Funcionalidade | Branch | Depende de |
+|---|---|---|---|
+| 1 | N09 — Contraste e cores do mapa (Correção) | `feature/contraste-cores` | – |
+| 2 | N10 — Uso pelo teclado e gráficos legíveis (Correção) | `feature/acessibilidade-teclado` | – |
+| 3 | N01 — Endereço público configurável | `feature/endereco-publico` | – |
+| 4 | N04 — Limites de exportação e de pedidos | `feature/limites-exportacao` | – |
+| 5 | N02 — Login e perfis de acesso | `feature/login-perfis` | N01 |
+| 6 | N05 — Erros sem detalhes internos | `feature/erros-sem-detalhes` | N01, N02 |
+| 7 | N03 — Área aberta só com números agregados | `feature/area-aberta-agregada` | N02 |
+
+Critérios de aceite da Fase 0:
+
+1. Com o domínio configurado, `/api/meta` responde 200 para esse domínio e 403 para qualquer outro (teste em `tests/test_api.py`).
+2. Um visitante sem login recebe recusa em `/api/dados/remover`, `/api/dados/atualizar`, `/api/dados/listar`, `/api/registros` e na exportação de fichas, e consegue usar `/api/visao`, `/api/mapa` e `/api/perfil` (um teste para cada rota).
+3. Um perfil restrito a uma UF não vê números de outra UF em nenhuma rota (teste).
+4. Uma exportação acima do limite recebe mensagem clara em português; com 10 exportações simultâneas, `/api/visao` de outra pessoa responde em menos de 1 s (medição como na seção 2.4).
+5. No modo publicado, um erro interno não mostra o texto da exceção (teste).
+6. O texto secundário tem contraste de pelo menos 4,5:1 nos dois temas, o mapa distingue zero casos de sem dado, e município e ordenação da tabela funcionam só com o teclado (conferido com capturas e navegação por Tab).
+
+**Fase 1 — Primeira entrega (ganhos rápidos).**
+
+| Ordem | Funcionalidade | Branch | Depende de |
+|---|---|---|---|
+| 1 | N16 — Mapa com faixas de cor e melhor no celular | `feature/mapa-faixas` | – |
+| 2 | N17 — Link com os filtros | `feature/link-filtros` | – |
+| 3 | N22 — Imagem dos gráficos, impressão e aviso de andamento | `feature/imagem-impressao` | – |
+| 4 | N08 — Textos para quem acessa pela internet | `feature/textos-publicado` | N01 (Fase 0) |
+
+Critérios de aceite da Fase 1:
+
+1. Com a amostra do Ceará, o mapa mostra pelo menos 4 faixas de cor distintas e a legenda não cobre o mapa a 390 px (captura).
+2. Um link copiado e aberto em outro navegador mostra a mesma tela com os mesmos filtros.
+3. Cada gráfico tem botão para salvar imagem, e a impressão da tela gera PDF sem o menu lateral e sem gráficos cortados.
+4. Ao exportar, aparece "Preparando o arquivo..." até o download começar.
+5. No modo publicado, nenhuma tela fala em "no computador" nem em abrir o `.bat`.
+
+**Fase 2 — Incremento.**
+
+| Ordem | Funcionalidade | Branch | Depende de |
+|---|---|---|---|
+| 1 | N11 — Variação em relação ao ano anterior | `feature/variacao-ano-anterior` | – |
+| 2 | N15 — Primeira tela mais compacta | `feature/primeira-tela` | – |
+| 3 | N18 — Vários municípios e regionais de saúde | `feature/regionais-saude` | – |
+| 4 | N20 — Filtro por semanas epidemiológicas | `feature/filtro-semanas` | – |
+| 5 | N21 — Clicar no gráfico para filtrar | `feature/clique-filtra` | N20 |
+| 6 | N26 — Novos indicadores (óbitos em investigação, incidência por sexo e idade) | `feature/novos-indicadores` | – |
+| 7 | N30 — Data de cada ano e "Limpar todos os filtros" | `feature/data-ano-limpar` | – |
+| 8 | N24 — Filtros favoritos | `feature/favoritos` | N17 (Fase 1), N02 (Fase 0) |
+| 9 | N06 — Atualização agendada e segura | `feature/atualizacao-agendada` | N02 (Fase 0) |
+| 10 | N07 — Registro de acessos e exportações | `feature/registro-acessos` | N02 (Fase 0) |
+
+Critérios de aceite da Fase 2:
+
+1. Cada indicador mostra a variação em relação ao mesmo período do ano anterior; o cálculo tem teste e a definição está na tela "Sobre os dados".
+2. A 1366×768 e a 390×844, a curva semanal aparece na primeira tela da Visão geral (captura).
+3. O filtro com dois municípios, ou com uma regional, dá a soma dos municípios escolhidos (teste).
+4. O filtro "semanas 1 a 20" bate com o TabNet para o mesmo agravo, UF e ano (conferência registrada no PR).
+5. Clicar numa barra de faixa etária aplica o filtro em todo o painel e mostra um aviso que permite removê-lo.
+6. A atualização agendada roda sem ninguém abrir o painel, e o registro de acessos mostra quem exportou o quê.
+
+**Fase 3 — Evolução.**
+
+| Ordem | Funcionalidade | Branch | Depende de |
+|---|---|---|---|
+| 1 | N12 — Diagrama de controle na curva semanal | `feature/diagrama-controle` | – |
+| 2 | N13 — Nível de alerta por município | `feature/alerta-municipio` | N12 |
+| 3 | N19 — Tabulação cruzada | `feature/tabulacao-cruzada` | – |
+
+Critérios de aceite da Fase 3:
+
+1. A curva semanal mostra a faixa de casos esperados; o método está descrito em "Sobre os dados" e tem teste contra um exemplo calculado à mão.
+2. O mapa colore cada município pelo nível de alerta da semana, com a regra para municípios pequenos descrita e testada.
+3. A tabulação município × semana bate com o TabNet para dengue de uma UF (conferência registrada no PR).
+
+**Depois da Fase 3 (sem data, rever após a Fase 2).** Funcionalidades classificadas como "Adiar":
+
+| Funcionalidade | Branch | Depende de |
+|---|---|---|
+| N14 — Estimativa das últimas semanas | `feature/estimativa-atraso` | N12 |
+| N25 — Alertas e boletim por e-mail | `feature/alertas-email` | N02, N06, N13 |
+| N27 — Relatório do município ou da regional | `feature/relatorio-municipio` | N12, N18, N22 |
+| N28 — API pública documentada | `feature/api-publica` | N03, N04, N05 |
+| N29 — Dicionário de dados | `feature/dicionario-dados` | – |
+
+**Critérios de aceite de toda fase:** `uv run pytest` e `uv run ruff check .` passam; o modo local continua
+abrindo com dois cliques no `ABRIR_DASHBOARD.bat` e funcionando sem internet depois do download; todo texto novo
+está em português simples; cada número novo mostrado na tela tem teste; nenhuma dependência nova fora das
+licenças permitidas.
+
 ## 6. Suposições e pontos a validar
+
+Respostas que mudam o roadmap. Os itens marcados com "A validar" precisam de resposta antes da Fase 0.
+
+1. **Suposição:** o modo local (dois cliques, sem internet) continua existindo ao lado do modo publicado.
+   Depende disso: todas as fichas dizem "Modo de uso"; se o local acabar, N08 perde sentido e o `CLAUDE.md` muda.
+2. **A validar:** onde o sistema será hospedado e quem o administra (máquina, domínio, certificado, cópias de segurança).
+   Depende disso: N01, N06 e o esforço real da Fase 0.
+3. **A validar:** quem pode acessar (aberto ao público ou só com login) e quais perfis existem além de "consulta" e
+   "administração"; se haverá login do governo (gov.br) ou contas próprias.
+   Depende disso: N02 (esforço G pode virar M ou maior) e N03.
+4. **A validar:** se as fichas individuais ficam disponíveis pela internet, mesmo com login, ou só os números
+   agregados (LGPD).
+   Depende disso: N03, N07 e a exportação de fichas (F11, F12).
+5. **A validar:** quem atualiza os dados no servidor e com que frequência.
+   Depende disso: N06 e N25.
+6. **A validar:** quantas pessoas devem usar o painel ao mesmo tempo.
+   Depende disso: os limites de N04 e se basta um processo do servidor (**Suposição:** um processo).
+7. **A validar:** a régua de impacto e de esforço da seção 4 (**Suposição:** esforço inclui testes e `README.md`,
+   sem infraestrutura).
+   Depende disso: a matriz 5.1 e a ordem das fases.
+8. **A validar:** quais agravos e UFs são o uso principal.
+   Depende disso: N12, N13 e N14 (fazem mais sentido para arboviroses) e o tamanho dos downloads.
+9. **A validar:** se impressão ou PDF para reunião é uma necessidade real.
+   Depende disso: N22 e N27.
+10. **A validar:** se o celular é um uso real ou se o público usa notebook.
+    Depende disso: a parte de celular de N15 e N16.
+11. **A validar:** qual método de diagrama de controle a vigilância local usa, e se a estimativa do atraso (N14) vale
+    o esforço frente ao InfoDengue.
+    Depende disso: N12, N13 e N14.
+12. **A validar:** se a instituição fornece servidor de e-mail (SMTP).
+    Depende disso: N25.
+13. **Suposição:** as capturas e medições usaram chikungunya do Ceará (2023 e 2024), e não dengue, para evitar um
+    download de 288 MB. Com dengue de uma UF grande, os tempos de exportação da seção 2.4 serão maiores.
+    Depende disso: a urgência de N04.
+14. **Suposição:** o benchmark reflete as páginas das ferramentas em 16/11/2026; o painel do Ministério foi visto por
+    captura de tela e pode mudar.
