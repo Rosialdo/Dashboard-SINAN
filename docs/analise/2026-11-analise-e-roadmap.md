@@ -429,6 +429,385 @@ O painel do Ministério é um relatório Power BI público ("Sala Nacional de Ar
 
 ## 4. Novas funcionalidades
 
+Régua de impacto: **Alto** = muda uma decisão de gestão, elimina uma ida ao TabNet ou impede a
+publicação; **Médio** = economiza tempo numa tarefa recorrente; **Baixo** = conforto.
+Esforço: **P** até 1 dia, **M** de 2 a 5 dias, **G** mais de 1 semana, para uma pessoa que já conhece o código.
+**Suposição:** as estimativas de esforço incluem os testes e a atualização do `README.md`, e não incluem
+infraestrutura do servidor (domínio, certificado, máquina).
+
+Marcadores no título: **Pré-requisito de publicação** (o painel não pode ir para a internet sem isso)
+e **Correção** (defeito, não funcionalidade nova).
+
+### 4.1 Pré-requisitos de publicação
+
+#### N01 — Endereço público configurável · Pré-requisito de publicação
+- **Descrição:** o servidor passa a aceitar o domínio onde for publicado e a rodar atrás de um proxy com HTTPS, definidos numa configuração; sem ela, continua só local.
+- **Problema que resolve:** hoje o painel não abre fora do computador (403 em todo pedido).
+- **Origem:** G20
+- **Impacto:** Alto — sem isso não há publicação.
+- **Esforço:** M — mexe na proteção de segurança, que tem testes, e precisa de um guia de implantação.
+- **Dependências técnicas:** nenhuma dependência nova; o HTTPS fica no proxy (ex.: Caddy, Apache-2.0; ou nginx, BSD). **A validar:** onde o sistema será hospedado.
+- **Arquivos afetados:** `sinan/api/seguranca.py`, `iniciar.py`, `sinan/config.py`, `tests/test_api.py`, `README.md`
+- **Modo de uso:** Os dois — no local nada muda; no publicado, a lista de hosts e origens aceitos vem da configuração.
+- **Muda regra epidemiológica?** Não
+- **Branch:** `feature/endereco-publico`, criada a partir da `develop`
+
+#### N02 — Login e perfis de acesso · Pré-requisito de publicação
+- **Descrição:** contas com dois perfis, "consulta" e "administração"; só administração vê a tela "Atualizar dados" e usa as rotas `/api/dados/*`.
+- **Problema que resolve:** hoje qualquer visitante poderia apagar dados ou disparar downloads de centenas de MB.
+- **Origem:** G21, G22, B20
+- **Impacto:** Alto — fecha os dois riscos bloqueantes de administração.
+- **Esforço:** G — contas, senhas, sessão, telas de entrada e testes de permissão rota a rota.
+- **Dependências técnicas:** N01; senhas com `hashlib.scrypt` (biblioteca padrão); sessão com `SessionMiddleware` do Starlette (precisa de `itsdangerous`, BSD). **A validar:** se haverá login do governo (gov.br) ou contas próprias.
+- **Arquivos afetados:** novo: `sinan/api/acesso.py`, novo: `sinan/api/rotas/conta.py`, novo: `web/js/paginas/entrar.js`; `sinan/api/app.py`, `sinan/api/rotas/dados.py`, `web/js/nucleo/estado.js`, `web/js/roteador.js`, `tests/test_api.py`
+- **Modo de uso:** Só publicado — no local o login fica desligado e a pessoa é tratada como administradora.
+- **Muda regra epidemiológica?** Não
+- **Branch:** `feature/login-perfis`, criada a partir da `develop`
+
+#### N03 — Área aberta só com números agregados · Pré-requisito de publicação
+- **Descrição:** sem login, o painel mostra indicadores, gráficos e mapa; fichas individuais e exportação de fichas exigem login, e um perfil pode ficar restrito à sua UF ou aos seus municípios.
+- **Problema que resolve:** fichas com ano de nascimento, sexo, datas e município ficariam abertas na internet (risco LGPD).
+- **Origem:** G23, B21
+- **Impacto:** Alto — segue o modelo dos painéis públicos da área (seção 3.3).
+- **Esforço:** M — a restrição por UF entra no `Filtro`, que já monta todo o SQL.
+- **Dependências técnicas:** N02. **A validar:** se as fichas ficam disponíveis pela internet mesmo com login.
+- **Arquivos afetados:** `sinan/api/filtros.py`, `sinan/api/rotas/registros.py`, `sinan/consultas.py`, `web/js/paginas/dados.js`, `web/js/componentes/cabecalho.js`, `tests/test_api.py`
+- **Modo de uso:** Só publicado — no local tudo continua liberado.
+- **Muda regra epidemiológica?** Não
+- **Branch:** `feature/area-aberta-agregada`, criada a partir da `develop`
+
+#### N04 — Limites de exportação e de pedidos · Pré-requisito de publicação
+- **Descrição:** limite de linhas também no CSV, no máximo duas exportações pesadas ao mesmo tempo (as demais esperam com aviso), limite de pedidos por visitante, e `ufs` do mapa validado contra a lista de UFs.
+- **Problema que resolve:** dez exportações simultâneas levaram 30 s cada; com dengue, um pedido pode ter milhões de linhas e travar o servidor para todos.
+- **Origem:** G09, G10, G24, B27
+- **Impacto:** Alto — protege o painel para todos os usuários.
+- **Esforço:** M — limite e fila são simples; o limite por visitante precisa de testes de concorrência.
+- **Dependências técnicas:** nenhuma dependência nova (`threading.Semaphore`, contagem em memória). **Suposição:** um único processo do servidor; com vários, o limite por visitante vai para o proxy.
+- **Arquivos afetados:** `sinan/api/rotas/registros.py`, `sinan/api/rotas/meta.py`, `sinan/api/seguranca.py`, `tests/test_api.py`
+- **Modo de uso:** Os dois — no local, os limites protegem o computador da pessoa contra arquivos enormes.
+- **Muda regra epidemiológica?** Não
+- **Branch:** `feature/limites-exportacao`, criada a partir da `develop`
+
+#### N05 — Erros sem detalhes internos · Pré-requisito de publicação
+- **Descrição:** no modo publicado, erro interno mostra só uma mensagem geral e um código para o suporte; a documentação da API fica restrita à administração.
+- **Problema que resolve:** mensagens de exceção e a lista de rotas de administração apareceriam para qualquer visitante.
+- **Origem:** G26
+- **Impacto:** Médio — reduz o que um atacante aprende sobre o servidor.
+- **Esforço:** P — dois pontos do código.
+- **Dependências técnicas:** N01 (saber se está publicado), N02 (perfil de administração).
+- **Arquivos afetados:** `sinan/api/app.py`, `sinan/api/tarefa.py`, `tests/test_api.py`
+- **Modo de uso:** Os dois — no local a mensagem completa continua útil.
+- **Muda regra epidemiológica?** Não
+- **Branch:** `feature/erros-sem-detalhes`, criada a partir da `develop`
+
+### 4.2 Correções
+
+#### N09 — Contraste e cores do mapa · Correção
+- **Descrição:** escurecer o texto secundário do tema claro para pelo menos 4,5:1, dar cor própria a "sem dado" no mapa (hachura ou cinza com contorno) e reforçar as linhas dos anos antigos.
+- **Problema que resolve:** subtítulos com contraste 3,79 a 4,12; zero casos e sem dado indistinguíveis (1,02).
+- **Origem:** G04, G12
+- **Impacto:** Médio — leitura e interpretação do mapa.
+- **Esforço:** P — só variáveis de `tema.css` e uma regra no mapa.
+- **Dependências técnicas:** nenhuma.
+- **Arquivos afetados:** `web/css/base/tema.css`, `web/js/paginas/mapa.js`, `web/css/paginas/mapa.css`
+- **Modo de uso:** Os dois
+- **Muda regra epidemiológica?** Não
+- **Branch:** `feature/contraste-cores`, criada a partir da `develop`
+
+#### N10 — Uso pelo teclado e gráficos legíveis por leitor de tela · Correção
+- **Descrição:** municípios do mapa e títulos da tabela alcançáveis por Tab, dicas que abrem com o foco, e um botão "ver em tabela" em cada gráfico.
+- **Problema que resolve:** quem não usa mouse não escolhe município nem ordena a tabela; leitores de tela não leem os gráficos.
+- **Origem:** G13, G14
+- **Impacto:** Médio — exigência de acessibilidade para sistema público.
+- **Esforço:** M — mexe em mapa, tabela, dicas e no componente de gráficos.
+- **Dependências técnicas:** nenhuma.
+- **Arquivos afetados:** `web/js/paginas/mapa.js`, `web/js/componentes/dica.js`, `web/js/componentes/graficos.js`, `web/js/paginas/visao.js`, `web/js/paginas/perfil.js`
+- **Modo de uso:** Os dois
+- **Muda regra epidemiológica?** Não
+- **Branch:** `feature/acessibilidade-teclado`, criada a partir da `develop`
+
+### 4.3 Leitura epidemiológica
+
+#### N11 — Variação em relação ao ano anterior
+- **Descrição:** cada indicador mostra a variação percentual em relação ao mesmo período (mesmas semanas epidemiológicas) do ano anterior, com seta e texto ("+35% em relação a 2023").
+- **Problema que resolve:** em 5 segundos o gestor não sabe se a situação piorou.
+- **Origem:** G01
+- **Impacto:** Alto — é a primeira pergunta de quem abre o painel.
+- **Esforço:** M — o "mesmo período" do ano em curso precisa cortar pelas semanas já notificadas.
+- **Dependências técnicas:** dados do ano anterior baixados; quando faltarem, a variação não aparece.
+- **Arquivos afetados:** `sinan/api/servicos.py`, `sinan/consultas.py`, `web/js/componentes/kpis.js`, `web/js/paginas/sobre.js`, `tests/test_consultas.py`
+- **Modo de uso:** Os dois
+- **Muda regra epidemiológica?** Não, mas a definição de "mesmo período" vai para a tela "Sobre os dados".
+- **Branch:** `feature/variacao-ano-anterior`, criada a partir da `develop`
+
+#### N12 — Diagrama de controle na curva semanal
+- **Descrição:** faixa de casos esperados por semana (canal endêmico), calculada com os anos anteriores, desenhada atrás da curva do ano atual.
+- **Problema que resolve:** não há como saber se a semana está acima do esperado.
+- **Origem:** G05, B05, B26
+- **Impacto:** Alto — é a ferramenta clássica para declarar epidemia.
+- **Esforço:** G — escolher e validar o método (quartis ou média ± 2 desvios, excluindo anos epidêmicos), com testes contra um caso publicado.
+- **Dependências técnicas:** pelo menos 5 anos de dados do agravo (download maior). **A validar:** qual método a vigilância local usa.
+- **Arquivos afetados:** `sinan/consultas.py`, `sinan/api/rotas/painel.py`, `web/js/paginas/visao.js`, `web/js/paginas/sobre.js`, `tests/test_consultas.py`
+- **Modo de uso:** Os dois
+- **Muda regra epidemiológica?** Sim (exige teste e ajuste na tela "Sobre os dados")
+- **Branch:** `feature/diagrama-controle`, criada a partir da `develop`
+
+#### N13 — Nível de alerta por município
+- **Descrição:** cada município recebe uma cor de alerta na semana (abaixo, dentro ou acima do esperado), no mapa e na tabela.
+- **Problema que resolve:** o gestor estadual não vê quais municípios entraram em situação de epidemia.
+- **Origem:** B04, G18
+- **Impacto:** Alto — orienta para onde mandar equipe e insumos.
+- **Esforço:** G — usa o diagrama de controle por município, com regra para municípios pequenos.
+- **Dependências técnicas:** N12.
+- **Arquivos afetados:** `sinan/api/servicos.py`, `web/js/paginas/mapa.js`, `web/js/paginas/sobre.js`, `tests/test_consultas.py`
+- **Modo de uso:** Os dois
+- **Muda regra epidemiológica?** Sim (exige teste e ajuste na tela "Sobre os dados")
+- **Branch:** `feature/alerta-municipio`, criada a partir da `develop`
+
+#### N14 — Estimativa das últimas semanas (atraso de notificação)
+- **Descrição:** mostrar, tracejado, quantos casos as últimas semanas devem ter quando as notificações atrasadas chegarem.
+- **Problema que resolve:** a curva parece cair no fim por atraso, e isso pode levar a concluir que a epidemia acabou.
+- **Origem:** B06
+- **Impacto:** Médio — hoje há um aviso em texto que já reduz o erro de leitura.
+- **Esforço:** G — método estatístico (como o do InfoDengue) e validação.
+- **Dependências técnicas:** N12; dados preliminares atualizados com frequência. **A validar:** se vale o esforço frente aos alertas do InfoDengue.
+- **Arquivos afetados:** `sinan/consultas.py`, `web/js/paginas/visao.js`, `web/js/paginas/sobre.js`, `tests/test_consultas.py`
+- **Modo de uso:** Os dois
+- **Muda regra epidemiológica?** Sim (exige teste e ajuste na tela "Sobre os dados")
+- **Branch:** `feature/estimativa-atraso`, criada a partir da `develop`
+
+#### N26 — Novos indicadores: óbitos em investigação e incidência por sexo e idade
+- **Descrição:** indicador de óbitos em investigação e cálculo da incidência quando há filtro de sexo ou faixa etária.
+- **Problema que resolve:** hoje a incidência some com esses filtros e os óbitos em investigação não aparecem.
+- **Origem:** B12, B13
+- **Impacto:** Médio — usados nos boletins.
+- **Esforço:** M — precisa de uma tabela nova de população.
+- **Dependências técnicas:** população por município, sexo e faixa etária (IBGE), novo arquivo em `referencia/`.
+- **Arquivos afetados:** `sinan/consultas.py`, `sinan/api/servicos.py`, `sinan/config.py`, `web/js/componentes/kpis.js`, `web/js/paginas/sobre.js`, `tests/test_consultas.py`
+- **Modo de uso:** Os dois
+- **Muda regra epidemiológica?** Sim (exige teste e ajuste na tela "Sobre os dados")
+- **Branch:** `feature/novos-indicadores`, criada a partir da `develop`
+
+### 4.4 Visualização e navegação
+
+#### N15 — Primeira tela mais compacta
+- **Descrição:** filtros recolhidos numa linha de resumo (que abre ao tocar) e indicadores em faixa mais baixa, para a curva aparecer na primeira tela do notebook e do celular.
+- **Problema que resolve:** hoje filtros e indicadores ocupam toda a primeira tela.
+- **Origem:** G02, G15
+- **Impacto:** Alto — aplica a regra dos 5 segundos.
+- **Esforço:** M — CSS e componente de filtros, conferido nas três larguras com capturas.
+- **Dependências técnicas:** nenhuma.
+- **Arquivos afetados:** `web/js/componentes/filtros.js`, `web/css/componentes/filtros.css`, `web/css/componentes/kpis.css`, `web/css/base/estrutura.css`
+- **Modo de uso:** Os dois
+- **Muda regra epidemiológica?** Não
+- **Branch:** `feature/primeira-tela`, criada a partir da `develop`
+
+#### N16 — Mapa com faixas de cor e melhor no celular
+- **Descrição:** cores por faixas (quantis ou cortes fixos) com legenda de faixas, e no celular legenda abaixo do mapa e tabela só com município e a medida escolhida.
+- **Problema que resolve:** um município extremo deixa todos os outros com a mesma cor; no celular a legenda cobre o mapa.
+- **Origem:** G03, G15
+- **Impacto:** Alto — o mapa passa a mostrar onde está o problema.
+- **Esforço:** P — troca da função de cor e da legenda.
+- **Dependências técnicas:** nenhuma.
+- **Arquivos afetados:** `web/js/paginas/mapa.js`, `web/css/paginas/mapa.css`
+- **Modo de uso:** Os dois
+- **Muda regra epidemiológica?** Não
+- **Branch:** `feature/mapa-faixas`, criada a partir da `develop`
+
+#### N17 — Link com os filtros
+- **Descrição:** os filtros entram no endereço (`#/mapa?agravo=DENG&ini=2023...`), e um botão "Copiar link" copia esse endereço.
+- **Problema que resolve:** não dá para mandar a um colega o painel aberto no mesmo recorte.
+- **Origem:** G16, B22
+- **Impacto:** Alto — no modo publicado, é a forma de compartilhar.
+- **Esforço:** P — a interface já monta esses parâmetros para a API (`web/js/nucleo/filtros.js:27`).
+- **Dependências técnicas:** nenhuma.
+- **Arquivos afetados:** `web/js/nucleo/navegacao.js`, `web/js/nucleo/filtros.js`, `web/js/main.js`, `web/js/componentes/cabecalho.js`
+- **Modo de uso:** Os dois — no local o link serve para guardar um recorte.
+- **Muda regra epidemiológica?** Não
+- **Branch:** `feature/link-filtros`, criada a partir da `develop`
+
+#### N18 — Vários municípios e regionais de saúde
+- **Descrição:** escolher mais de um município e agrupar por regional de saúde (CIR) nos filtros, no mapa e na tabela.
+- **Problema que resolve:** coordenadores de regional não conseguem ver a sua região.
+- **Origem:** G07, B02
+- **Impacto:** Alto — é a unidade de gestão das secretarias estaduais.
+- **Esforço:** M — o servidor já aceita lista de municípios; falta a tabela de regionais e a interface.
+- **Dependências técnicas:** tabela oficial de regiões de saúde por município (Ministério da Saúde/IBGE), novo CSV em `referencia/`.
+- **Arquivos afetados:** `web/js/componentes/filtros.js`, `web/js/nucleo/estado.js`, `sinan/api/filtros.py`, `sinan/api/rotas/meta.py`, `sinan/config.py`, `tests/test_api.py`
+- **Modo de uso:** Os dois
+- **Muda regra epidemiológica?** Não
+- **Branch:** `feature/regionais-saude`, criada a partir da `develop`
+
+#### N19 — Tabulação cruzada
+- **Descrição:** tela nova onde a pessoa escolhe uma variável para as linhas e outra para as colunas (ex.: município × semana, faixa etária × evolução), com totais e exportação.
+- **Problema que resolve:** hoje é preciso voltar ao TabNet para cruzar duas variáveis.
+- **Origem:** G08, B01, B14
+- **Impacto:** Alto — elimina a ida ao TabNet, com rótulos oficiais já prontos.
+- **Esforço:** G — tela nova, rota nova e limites de tamanho da tabela.
+- **Dependências técnicas:** reaproveita `rotulos`, `tabnet.ler_cnv` e `consultas.contagem`.
+- **Arquivos afetados:** novo: `sinan/api/rotas/tabulacao.py`, novo: `web/js/paginas/tabulacao.js`; `sinan/consultas.py`, `sinan/api/rotas/__init__.py`, `web/js/nucleo/estado.js`, `web/js/roteador.js`, `tests/test_api.py`
+- **Modo de uso:** Os dois
+- **Muda regra epidemiológica?** Não
+- **Branch:** `feature/tabulacao-cruzada`, criada a partir da `develop`
+
+#### N20 — Filtro por semanas epidemiológicas
+- **Descrição:** escolher um intervalo de semanas (ex.: semanas 1 a 20) além dos anos.
+- **Problema que resolve:** boletins comparam "até a semana X"; hoje o período é só em anos inteiros.
+- **Origem:** B11
+- **Impacto:** Médio — usado em boletins e comparações.
+- **Esforço:** M — o `Filtro` ganha dois campos e todas as consultas passam a respeitá-los.
+- **Dependências técnicas:** nenhuma.
+- **Arquivos afetados:** `sinan/consultas.py`, `sinan/api/filtros.py`, `web/js/componentes/filtros.js`, `web/js/nucleo/filtros.js`, `tests/test_consultas.py`
+- **Modo de uso:** Os dois
+- **Muda regra epidemiológica?** Não
+- **Branch:** `feature/filtro-semanas`, criada a partir da `develop`
+
+#### N21 — Clicar no gráfico para filtrar
+- **Descrição:** clicar numa barra (faixa etária, raça, ano) ou num município aplica esse filtro em todo o painel, com um aviso de filtro ativo.
+- **Problema que resolve:** explorar os dados exige voltar aos filtros a cada pergunta.
+- **Origem:** G06, B16
+- **Impacto:** Médio — acelera a exploração.
+- **Esforço:** M — só categorias que já são filtros podem filtrar.
+- **Dependências técnicas:** N20 para clicar em semanas.
+- **Arquivos afetados:** `web/js/paginas/visao.js`, `web/js/paginas/perfil.js`, `web/js/componentes/barras.js`, `web/js/nucleo/filtros.js`
+- **Modo de uso:** Os dois
+- **Muda regra epidemiológica?** Não
+- **Branch:** `feature/clique-filtra`, criada a partir da `develop`
+
+### 4.5 Exportação, compartilhamento e alertas
+
+#### N22 — Imagem dos gráficos, impressão e aviso de andamento
+- **Descrição:** botão para salvar cada gráfico como imagem, estilo de impressão que gera um PDF limpo da tela, e aviso "Preparando o arquivo..." durante a exportação.
+- **Problema que resolve:** levar gráficos para reunião e boletim exige captura de tela; na exportação, a pessoa clica de novo achando que não funcionou.
+- **Origem:** G11, G17, B10, B17
+- **Impacto:** Médio — tarefa recorrente de quem faz boletim.
+- **Esforço:** P — o Plotly já salva imagem; a impressão é uma regra `@media print`.
+- **Dependências técnicas:** nenhuma.
+- **Arquivos afetados:** `web/js/componentes/graficos.js`, `web/js/nucleo/api.js`, novo: `web/css/base/impressao.css`, `web/css/main.css`
+- **Modo de uso:** Os dois
+- **Muda regra epidemiológica?** Não
+- **Branch:** `feature/imagem-impressao`, criada a partir da `develop`
+
+#### N24 — Filtros favoritos
+- **Descrição:** salvar recortes com nome ("Dengue · Regional Norte · 2024") e abrir com um clique.
+- **Problema que resolve:** quem acompanha os mesmos recortes refaz os filtros toda vez.
+- **Origem:** G19, B18
+- **Impacto:** Médio — economiza tempo diário.
+- **Esforço:** M — guarda no navegador no modo local e na conta no modo publicado.
+- **Dependências técnicas:** N17 (o favorito é um link); N02 para guardar na conta.
+- **Arquivos afetados:** `web/js/nucleo/estado.js`, `web/js/componentes/filtros.js`, `sinan/api/rotas/conta.py` (criado em N02)
+- **Modo de uso:** Os dois — local no navegador; publicado na conta da pessoa.
+- **Muda regra epidemiológica?** Não
+- **Branch:** `feature/favoritos`, criada a partir da `develop`
+
+#### N25 — Alertas e boletim por e-mail
+- **Descrição:** a pessoa assina um recorte e recebe por e-mail um resumo semanal e um aviso quando um município entra em alerta.
+- **Problema que resolve:** ninguém é avisado sem abrir o painel.
+- **Origem:** G18, B23, B24
+- **Impacto:** Médio — antecipa a resposta, mas depende de alguém agir.
+- **Esforço:** G — envio de e-mail, agendamento e descadastro.
+- **Dependências técnicas:** N02, N06, N13; servidor de e-mail (SMTP) da instituição, com `smtplib` da biblioteca padrão. **A validar:** se a instituição fornece SMTP.
+- **Arquivos afetados:** novo: `sinan/avisos.py`; `sinan/api/rotas/conta.py`, `sinan/api/tarefa.py`, `tests/test_api.py`
+- **Modo de uso:** Só publicado — desligado no local.
+- **Muda regra epidemiológica?** Não
+- **Branch:** `feature/alertas-email`, criada a partir da `develop`
+
+#### N27 — Relatório do município ou da regional
+- **Descrição:** página pronta para imprimir com indicadores, curva com diagrama de controle, mapa da regional e perfil, para um município ou regional.
+- **Problema que resolve:** montar o boletim semanal hoje exige juntar várias telas.
+- **Origem:** B07, B08
+- **Impacto:** Médio — produto final de muitas secretarias.
+- **Esforço:** G — tela nova que junta várias outras.
+- **Dependências técnicas:** N12, N18, N22.
+- **Arquivos afetados:** novo: `web/js/paginas/relatorio.js`; `web/js/nucleo/estado.js`, `web/js/roteador.js`, `sinan/api/rotas/painel.py`
+- **Modo de uso:** Os dois
+- **Muda regra epidemiológica?** Não
+- **Branch:** `feature/relatorio-municipio`, criada a partir da `develop`
+
+### 4.6 Operação do modo publicado
+
+#### N06 — Atualização agendada e segura
+- **Descrição:** o administrador agenda a atualização (ex.: toda segunda); a configuração de download deixa de ser alterada por quem dispara a tarefa; o inventário passa a ser gravado com arquivo temporário.
+- **Problema que resolve:** hoje a atualização é manual, muda a configuração de todos e pode deixar o inventário corrompido se o servidor cair no meio da gravação.
+- **Origem:** G25
+- **Impacto:** Médio — dados sempre em dia sem depender de alguém lembrar.
+- **Esforço:** M — agendamento simples numa thread e gravação atômica.
+- **Dependências técnicas:** N02 (só administração agenda).
+- **Arquivos afetados:** `sinan/api/tarefa.py`, `sinan/processar.py`, `sinan/config.py`, `web/js/paginas/atualizar.js`, `tests/test_processar.py`
+- **Modo de uso:** Os dois — no local o agendamento é opcional e roda só com o painel aberto.
+- **Muda regra epidemiológica?** Não
+- **Branch:** `feature/atualizacao-agendada`, criada a partir da `develop`
+
+#### N07 — Registro de acessos e exportações
+- **Descrição:** guardar quem entrou, quando e o que exportou, com tela de consulta para a administração.
+- **Problema que resolve:** sem registro, não há como responder a uma auditoria ou a um incidente de vazamento.
+- **Origem:** G24, B25
+- **Impacto:** Médio — exigência comum em sistemas com dados de saúde.
+- **Esforço:** M — gravação em arquivo ou DuckDB e tela de consulta.
+- **Dependências técnicas:** N02.
+- **Arquivos afetados:** novo: `sinan/api/registro_acessos.py`; `sinan/api/app.py`, `sinan/api/rotas/registros.py`, `tests/test_api.py`
+- **Modo de uso:** Só publicado
+- **Muda regra epidemiológica?** Não
+- **Branch:** `feature/registro-acessos`, criada a partir da `develop`
+
+#### N08 — Textos para quem acessa pela internet
+- **Descrição:** no modo publicado, trocar "no computador", "abra o `.bat`" e "funciona offline" por textos sobre o servidor e a data da última atualização.
+- **Problema que resolve:** textos que confundem quem acessa pelo navegador.
+- **Origem:** G27
+- **Impacto:** Médio — evita chamados de suporte.
+- **Esforço:** P — poucos textos, escolhidos pelo modo informado em `/api/meta`.
+- **Dependências técnicas:** N01.
+- **Arquivos afetados:** `web/js/main.js`, `web/js/roteador.js`, `web/js/paginas/atualizar.js`, `sinan/api/rotas/meta.py`
+- **Modo de uso:** Os dois — cada modo com o seu texto.
+- **Muda regra epidemiológica?** Não
+- **Branch:** `feature/textos-publicado`, criada a partir da `develop`
+
+#### N28 — API pública documentada
+- **Descrição:** documentar as rotas de números agregados para outros sistemas consumirem (JSON e CSV), com limite de uso.
+- **Problema que resolve:** outros painéis e pesquisadores precisariam copiar números à mão.
+- **Origem:** B09
+- **Impacto:** Baixo — público pequeno.
+- **Esforço:** M — documentação, estabilidade dos campos e limites.
+- **Dependências técnicas:** N03, N04, N05.
+- **Arquivos afetados:** `sinan/api/app.py`, `sinan/api/rotas/painel.py`, `README.md`
+- **Modo de uso:** Só publicado
+- **Muda regra epidemiológica?** Não
+- **Branch:** `feature/api-publica`, criada a partir da `develop`
+
+### 4.7 Conforto
+
+#### N29 — Dicionário de dados
+- **Descrição:** descrição curta de cada campo da ficha na tela "Outras variáveis", tirada das notas técnicas oficiais.
+- **Problema que resolve:** nomes amigáveis nem sempre bastam para saber o que o campo mede.
+- **Origem:** B19
+- **Impacto:** Baixo — ajuda pontual.
+- **Esforço:** M — o trabalho é escrever e revisar os textos.
+- **Dependências técnicas:** nenhuma.
+- **Arquivos afetados:** `sinan/rotulos.py`, `web/js/paginas/variaveis.js`, `tests/test_rotulos.py`
+- **Modo de uso:** Os dois
+- **Muda regra epidemiológica?** Não
+- **Branch:** `feature/dicionario-dados`, criada a partir da `develop`
+
+#### N30 — Data de cada ano e "Limpar todos os filtros"
+- **Descrição:** mostrar a data do DATASUS de cada ano usado (no rodapé) e um botão que volta todos os filtros ao padrão.
+- **Problema que resolve:** saber se o ano está atualizado e desfazer recortes rapidamente.
+- **Origem:** B03, B15
+- **Impacto:** Baixo — conforto.
+- **Esforço:** P — o inventário já tem `data_ftp` (`sinan/api/rotas/dados.py:75`).
+- **Dependências técnicas:** nenhuma.
+- **Arquivos afetados:** `sinan/api/rotas/meta.py`, `web/js/componentes/cabecalho.js`, `web/js/componentes/filtros.js`
+- **Modo de uso:** Os dois
+- **Muda regra epidemiológica?** Não
+- **Branch:** `feature/data-ano-limpar`, criada a partir da `develop`
+
+### 4.8 Descartadas e fora do escopo
+
+| Proposta | Motivo |
+|---|---|
+| Trocar o painel pelo Metabase | a edição aberta do Metabase usa licença AGPL, proibida no projeto (`CLAUDE.md`, seção 6); login com perfis, restrição de linhas e registro de acessos são pagos (seção 3.3) |
+| Trocar o painel pelo Power BI | licença comercial e por usuário; o relatório público desliga a restrição por perfil; não funciona offline (quebra o modo local) |
+| Dados em tempo real | o DATASUS publica os arquivos do SINAN periodicamente por FTP; não há fonte em tempo real para consumir. A atualização agendada (N06) cobre a necessidade |
+
 ## 5. Priorização e roadmap
 
 ## 6. Suposições e pontos a validar
