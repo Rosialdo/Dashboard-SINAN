@@ -356,6 +356,77 @@ Outros pontos verificados no código:
 
 ## 3. Benchmark
 
+Cinco referências, consultadas em 16/11/2026 nas páginas oficiais. O painel do Ministério e a página
+municipal do InfoDengue só montam o conteúdo com JavaScript, então foram vistos por captura de tela.
+O painel do Ministério é um relatório Power BI público ("Sala Nacional de Arboviroses").
+
+| Referência | Por que entra |
+|---|---|
+| TabNet / TabWin (DATASUS) | é a ferramenta que o público já usa com os mesmos dados |
+| InfoDengue (Fiocruz/FGV) | alertas por cor, limiar epidêmico, correção do atraso de notificação |
+| Painel de Monitoramento das Arboviroses (Ministério da Saúde) | painel oficial de gestão, público |
+| Metabase | ferramenta aberta de painéis: filtros ligados, perguntas salvas, permissões |
+| Power BI | ferramenta corporativa: filtro cruzado, envio por e-mail, restrição por perfil |
+
+### 3.1 O que o painel já faz como as referências
+
+| Função das referências | Onde está no painel |
+|---|---|
+| Casos por semana epidemiológica, um ano ao lado do outro (Painel MS, TabNet) | F02 |
+| Incidência por 100 mil habitantes e letalidade (Painel MS, InfoDengue) | F01 |
+| Mapa por município (Painel MS, InfoDengue) | F05 |
+| Detalhar até o município, por residência ou notificação (TabNet, Painel MS) | F05, F06, F13 |
+| Pirâmide por faixa etária e sexo (Painel MS) | F08 |
+| Qualquer variável da ficha com os rótulos oficiais (TabNet) | F10 |
+| CSV com ";" e vírgula decimal (TabNet) | F12 |
+| Notas sobre dados preliminares e definições (TabNet, Painel MS) | F16, F19 |
+
+### 3.2 O que as referências têm e o painel não
+
+| ID | Referência | Função relevante | O painel tem? | Link da fonte | Modo de uso (local, publicado ou os dois) |
+|---|---|---|---|---|---|
+| B01 | TabNet | Tabulação cruzada: uma variável na linha, outra na coluna, com filtros | não | <http://tabnet.datasus.gov.br/cgi/deftohtm.exe?sinannet/cnv/denguebbr.def> | os dois |
+| B02 | TabNet | Agrupar por Região de Saúde (CIR) e por município de infecção | não (sem tabela de regionais em `referencia/`) | <http://tabnet.datasus.gov.br/cgi/deftohtm.exe?sinannet/cnv/denguebbr.def> | os dois |
+| B03 | TabNet | Data de atualização de cada ano na nota técnica | em parte: F24 mostra só a data do download | <http://tabnet.datasus.gov.br/cgi/deftohtm.exe?sinannet/cnv/denguebbr.def> | os dois |
+| B04 | InfoDengue | Nível de alerta em 4 cores por município, toda semana | não | <https://info.dengue.mat.br/informacoes/> | os dois |
+| B05 | InfoDengue | Limiar epidêmico histórico (casos esperados por semana, faixa de 10% a 90%) — equivale ao canal endêmico | não | <https://info.dengue.mat.br/informacoes/> | os dois |
+| B06 | InfoDengue | Correção do atraso de notificação (estimativa das últimas semanas) | não: só um aviso em texto (`web/js/paginas/visao.js:16`) | <https://info.dengue.mat.br/informacoes/> | os dois |
+| B07 | InfoDengue | Página do município: incidência da semana, histórico colorido pelo alerta, mapa da região de saúde | em parte: F06 mostra o período inteiro | <https://info.dengue.mat.br/alerta/3304557/dengue> | os dois |
+| B08 | InfoDengue | Relatórios por município e por regional, com indicadores e alertas | não | <https://info.dengue.mat.br/report/> | os dois |
+| B09 | InfoDengue | API pública documentada (JSON/CSV) por município e semana | em parte: F22 existe, mas não é pensada para uso externo | <https://info.dengue.mat.br/services/api/doc> | publicado |
+| B10 | InfoDengue, Metabase | Salvar o gráfico como imagem | não (`web/js/componentes/graficos.js:5`) | <https://www.metabase.com/docs/latest/questions/exporting-results> | os dois |
+| B11 | Painel MS | Filtro por intervalo de semanas epidemiológicas | não: o período é só em anos (F13) | <https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/a/aedes-aegypti/monitoramento-das-arboviroses/painel-1> | os dois |
+| B12 | Painel MS | Indicadores de óbitos em investigação e letalidade nos casos graves | em parte (F01) | <https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/a/aedes-aegypti/monitoramento-das-arboviroses/painel-1> | os dois |
+| B13 | Painel MS | Incidência por faixa etária e sexo | não: o painel não calcula com esses filtros (`web/js/componentes/kpis.js:24`; `referencia/populacao.csv` não tem sexo nem idade) | <https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/a/aedes-aegypti/monitoramento-das-arboviroses/painel-1> | os dois |
+| B14 | Painel MS, Power BI | Tabela Região → UF → Município × semana, que abre e fecha | não | <https://learn.microsoft.com/en-us/power-bi/visuals/power-bi-visualization-matrix-visual> | os dois |
+| B15 | Painel MS | Botão "Limpar filtros" para todos os filtros | em parte: limpa só os de "Mais filtros" (`web/js/componentes/filtros.js:55`) | <https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/a/aedes-aegypti/monitoramento-das-arboviroses/painel-1> | os dois |
+| B16 | Metabase, Power BI | Filtro cruzado: clicar num gráfico filtra os outros | não | <https://www.metabase.com/docs/latest/dashboards/interactive> | os dois |
+| B17 | Metabase | Exportar o painel inteiro em PDF | não | <https://www.metabase.com/docs/latest/questions/exporting-results> | os dois |
+| B18 | Metabase | Perguntas e visões salvas para reabrir depois | não | <https://www.metabase.com/docs/latest/questions/introduction> | publicado (por pessoa); local (no navegador) |
+| B19 | Metabase | Dicionário de dados com descrição de cada campo | em parte: nomes amigáveis (F10) e definições (F19), sem descrição por campo | <https://www.metabase.com/docs/latest/data-modeling/metadata-editing> | os dois |
+| B20 | Metabase, Power BI | Login com contas e grupos de permissão | não | <https://www.metabase.com/docs/latest/people-and-groups/managing> | publicado |
+| B21 | Metabase, Power BI | Restrição de dados por perfil (ex.: só a UF ou o município da pessoa) | não | <https://www.metabase.com/docs/latest/permissions/row-and-column-security> | publicado |
+| B22 | Metabase | Link público ou painel incorporado em outro site, com filtros | não | <https://www.metabase.com/docs/latest/embedding/public-links> | publicado |
+| B23 | Metabase, Power BI | Envio agendado por e-mail com anexo | não | <https://www.metabase.com/docs/latest/dashboards/subscriptions> | publicado |
+| B24 | Metabase, Power BI | Alerta quando uma série passa de uma meta ou limite | não | <https://www.metabase.com/docs/latest/questions/alerts> | publicado |
+| B25 | Metabase, Power BI | Registro de quem viu e baixou o quê | não | <https://www.metabase.com/docs/latest/usage-and-performance-tools/usage-analytics> | publicado |
+| B26 | Power BI | Linhas de referência (média, percentil) e detecção de anomalias em séries | não | <https://learn.microsoft.com/en-us/power-bi/transform-model/desktop-analytics-pane> | os dois |
+| B27 | Power BI | Limite de linhas na exportação (150 mil em Excel, 30 mil em CSV), que o administrador pode desligar | não: CSV sem limite (`sinan/api/rotas/registros.py:51`) | <https://learn.microsoft.com/en-us/power-bi/visuals/power-bi-visualization-export-data> | os dois |
+
+### 3.3 Lições das referências para a publicação
+
+- **Os três painéis públicos da área mostram só números agregados** e nenhum exige login. A ficha
+  individual fica no TabWin ou atrás de acesso restrito. É um bom modelo para o painel publicado:
+  agregados abertos, fichas só com login.
+- **O Power BI desliga a restrição por perfil e a exportação de dados quando o relatório é público**
+  (<https://learn.microsoft.com/en-us/power-bi/collaborate-share/service-publish-to-web>), e o Metabase
+  não aplica a restrição de linhas em links públicos. Quem publica separa a área aberta da área com login.
+- Login, restrição por perfil, registro de acessos e envio com anexo são **pagos** no Metabase
+  (Pro, a partir de US$ 575/mês, <https://www.metabase.com/pricing/>) e no Power BI (Pro/Premium).
+  Fazer o próprio painel com essas funções evita custo por usuário, mas é trabalho de desenvolvimento.
+- O que diferencia o InfoDengue é a leitura epidemiológica: limiar, alerta e correção do atraso.
+  Nenhuma ferramenta genérica (Metabase, Power BI) traz isso pronto.
+
 ## 4. Novas funcionalidades
 
 ## 5. Priorização e roadmap
