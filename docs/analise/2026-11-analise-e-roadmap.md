@@ -707,7 +707,7 @@ e **Correção** (defeito, não funcionalidade nova).
 - **Impacto:** Médio — antecipa a resposta, mas depende de alguém agir.
 - **Esforço:** G — envio de e-mail, agendamento e descadastro.
 - **Dependências técnicas:** N02, N06, N13; servidor de e-mail (SMTP) da instituição, com `smtplib` da biblioteca padrão. **A validar:** se a instituição fornece SMTP.
-- **Arquivos afetados:** novo: `sinan/avisos.py`; `sinan/api/rotas/conta.py`, `sinan/api/tarefa.py`, `tests/test_api.py`
+- **Arquivos afetados:** novo: `sinan/avisos.py`; `sinan/api/rotas/conta.py` (criado em N02), `sinan/api/tarefa.py`, `tests/test_api.py`
 - **Modo de uso:** Só publicado — desligado no local.
 - **Muda regra epidemiológica?** Não
 - **Branch:** `feature/alertas-email`, criada a partir da `develop`
