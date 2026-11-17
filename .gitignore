@@ -9,6 +9,7 @@ dados/
 # segredos e configurações locais (nunca versionar)
 .env
 .env.*
+!.env.exemplo
 
 # caches de ferramentas
 .pytest_cache/

@@ -1,0 +1,70 @@
+# Painel publicado na VPS. Gerenciar com scripts/painel.sh (veja "Publicar com Docker" no README).
+
+x-logs: &logs
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
+
+services:
+  painel:
+    build: .
+    image: sinan-painel:atual
+    environment:
+      SINAN_MODO: publico
+      SINAN_DADOS: /dados
+      SINAN_HOSTS: ${SINAN_HOSTS:?defina SINAN_HOSTS no .env com o domínio do painel}
+    volumes:
+      - dados:/dados
+    networks: [interna]  # sem saída para a internet: só o proxy fala com ele
+    restart: unless-stopped
+    mem_limit: 1g
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8501/api/meta', timeout=5)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    logging: *logs
+
+  # baixa os dados do DATASUS e termina; só roda pelo scripts/painel.sh atualizar-dados
+  atualizar:
+    image: sinan-painel:atual
+    pull_policy: never  # a imagem é feita aqui mesmo; não existe no Docker Hub
+    entrypoint: ["bash", "scripts/atualizar_servidor.sh"]
+    environment:
+      SINAN_DADOS: /dados
+    volumes:
+      - dados:/dados
+    networks: [default]  # precisa de internet (FTP do DATASUS)
+    profiles: [ferramentas]
+    mem_limit: 2g
+    logging: *logs
+
+  proxy:
+    build: deploy/caddy
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      SINAN_HOSTS: ${SINAN_HOSTS:?defina SINAN_HOSTS no .env com o domínio do painel}
+    volumes:
+      - ./deploy/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_dados:/data  # certificados: não apagar sem motivo
+      - caddy_config:/config
+    networks: [interna, default]
+    depends_on:
+      painel:
+        condition: service_healthy
+    restart: unless-stopped
+    mem_limit: 256m
+    logging: *logs
+
+networks:
+  interna:
+    internal: true
+
+volumes:
+  dados: {}
+  caddy_dados: {}
+  caddy_config: {}
