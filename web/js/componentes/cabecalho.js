@@ -12,13 +12,15 @@ export function htmlCabecalho(id, comExportar) {
   const p = PAGINAS[id];
   const sub = p.filtros && estado.meta.agravos.length
     ? `<div class="subtitulo">${esc(agravoAtual().nome)} · ${esc(areaNome())} · ${periodoTexto()}</div>` : "";
+  // no site publicado as fichas individuais não saem do servidor: só o resumo por município
+  const fichas = estado.meta?.publico ? "" : `
+        <button class="menu-opcao" data-exportar="xlsx">Planilha Excel (.xlsx)<small>Registros + resumos por município, semana e ano</small></button>
+        <button class="menu-opcao" data-exportar="csv">CSV – colunas principais<small>Uma linha por notificação</small></button>
+        <button class="menu-opcao" data-exportar="csv_completo">CSV – ficha completa<small>Todas as colunas originais do SINAN</small></button>`;
   const exp = comExportar ? `
     <div class="suspenso" id="exportar">
       <button class="btn" id="exportar-btn">${ico("baixar")}Exportar ${ico("seta", 'style="width:16px;height:16px"')}</button>
-      <div class="suspenso-menu">
-        <button class="menu-opcao" data-exportar="xlsx">Planilha Excel (.xlsx)<small>Registros + resumos por município, semana e ano</small></button>
-        <button class="menu-opcao" data-exportar="csv">CSV – colunas principais<small>Uma linha por notificação</small></button>
-        <button class="menu-opcao" data-exportar="csv_completo">CSV – ficha completa<small>Todas as colunas originais do SINAN</small></button>
+      <div class="suspenso-menu">${fichas}
         <button class="menu-opcao" data-exportar="municipios">CSV – resumo por município<small>Casos, incidência e óbitos</small></button>
       </div>
     </div>` : "";
@@ -43,6 +45,6 @@ export function ligarExportar(raiz) {
 
 export function htmlRodape(esquerda) {
   const m = estado.meta;
-  const quando = m.atualizado_em ? `Dados baixados em ${new Date(m.atualizado_em).toLocaleDateString("pt-BR")}` : "";
+  const quando = m.atualizado_em ? `${m.publico ? "Dados atualizados em" : "Dados baixados em"} ${new Date(m.atualizado_em).toLocaleDateString("pt-BR")}` : "";
   return `<footer class="rodape"><span>${esquerda || quando}</span><span><b>${esc(nomeMarca())}</b> · Monitoramento para decisões em saúde</span></footer>`;
 }
