@@ -1,0 +1,36 @@
+# Proxy do painel: HTTPS automático, compressão, cabeçalhos de segurança e limite de pedidos só na API.
+# Sem log de acesso, para não guardar o IP de quem consulta.
+{
+	order rate_limit before basic_auth
+}
+
+{$SINAN_HOSTS} {
+	encode zstd gzip
+
+	header {
+		X-Content-Type-Options nosniff
+		X-Frame-Options DENY
+		Referrer-Policy strict-origin-when-cross-origin
+		Strict-Transport-Security "max-age=31536000"
+		-Server
+	}
+
+	# a página carrega ~45 arquivos estáticos e só 2 ou 3 pedidos de API: o limite vale só para /api/
+	rate_limit {
+		zone api {
+			match {
+				path /api/*
+			}
+			key {remote_host}
+			events 100
+			window 10s
+		}
+	}
+
+	reverse_proxy painel:8501
+
+	handle_errors 429 {
+		header Content-Type "application/json; charset=utf-8"
+		respond `{"erro": "Muitos pedidos em pouco tempo. Espere alguns segundos e tente de novo."}` 429
+	}
+}

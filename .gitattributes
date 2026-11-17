@@ -2,3 +2,5 @@
 *.bat text eol=crlf
 # amostras binárias usadas nos testes
 *.dbc binary
+# scripts do servidor precisam de LF (rodam no Linux, mesmo editados no Windows)
+*.sh text eol=lf
