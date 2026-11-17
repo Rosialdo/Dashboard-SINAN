@@ -962,3 +962,63 @@ Respostas que mudam o roadmap. Os itens marcados com "A validar" precisam de res
     Depende disso: a urgência de N04.
 14. **Suposição:** o benchmark reflete as páginas das ferramentas em 16/11/2026; o painel do Ministério foi visto por
     captura de tela e pode mudar.
+
+## 7. Decisões tomadas (17/11/2026)
+
+Esta seção vale mais que as seções 5 e 6 onde as duas divergirem.
+
+### 7.1 Publicação em duas etapas, a primeira sem login
+
+A primeira versão publicada é um **modo público só de leitura, com números agregados**, como os três
+painéis públicos da área (seção 3.3). Nesse modo, o servidor publicado:
+
+- desliga `/api/dados/*`, `/api/registros`, `/api/docs` e a exportação de fichas (fica só o resumo por
+  município), e esconde a tela "Atualizar dados" e a tabela de fichas;
+- atualiza os dados com uma tarefa agendada no próprio servidor (cron) rodando o `baixar_dados.py`.
+  O cache se invalida pela data do inventário (`sinan/api/cache.py:16-21`), então o painel mostra os
+  dados novos sem reiniciar.
+
+Com isso, os riscos G21, G23 e G25 deixam de existir, em vez de serem protegidos, e o login (N02) sai do
+caminho crítico. O login só volta se a resposta ao ponto 4 mudar para "fichas com login".
+
+**Fase 0 revisada** (cerca de 1 a 1,5 semana):
+
+| Ordem | Item | Mudança em relação à seção 5 |
+|---|---|---|
+| 1 | N01 — Endereço público | variável de ambiente `SINAN_MODO=publico` com a lista de hosts; aceitar origem `https://`; Uvicorn com `--proxy-headers`; pasta de dados configurável |
+| 2 | N03' — Modo público só de leitura | substitui N02 + N03; esforço P/M em vez de G + M |
+| 3 | N04 reduzido | validar `ufs` no `/api/geo`; limite de pedidos por visitante no proxy (Caddy ou nginx). O controle de exportações simultâneas deixa de ser urgente |
+| 4 | N05 — Erros sem detalhes internos | igual |
+| 5 | N08 — Textos para quem acessa pela internet | sobe da Fase 1: o visitante vê esses textos no primeiro dia |
+| 6 | N09 — Contraste e cores do mapa | igual |
+| 7 | Guia de implantação | proxy, cron e cópias de segurança, no `README.md` |
+
+N10 (acessibilidade por teclado) sai da Fase 0 e abre a Fase 2.
+
+### 7.2 Respostas aos pontos da seção 6
+
+| # | Ponto | Decisão | Situação |
+|---|---|---|---|
+| 1 | Modo local continua? | Sim. Cada mudança fica atrás de `SINAN_MODO`. | decidido |
+| 2 | Hospedagem | VPS do grupo de pesquisa PRISM da UFRR. | decidido |
+| 3 | Quem acessa | Aberto, sem login, na primeira etapa. Se um dia houver login, contas próprias (o gov.br exige credenciamento do órgão). | decidido |
+| 4 | Fichas na internet (LGPD) | Não, na primeira etapa. Quem precisa das fichas usa o modo local ou o TabWin. | **aguarda o encarregado de dados (DPO) da instituição** |
+| 5 | Quem atualiza e quando | Cron semanal (segunda de madrugada). | decidido |
+| 6 | Usuários simultâneos | Um processo do Uvicorn. | decidido |
+| 7 | Régua de impacto e esforço | Aceita; N11 sobe para a Fase 1. | decidido |
+| 8 | Agravos e UFs principais | Dengue, chikungunya e zika de Roraima (padrão do `baixar_dados.py`). | aguarda a vigilância |
+| 9 | Impressão e PDF | Sim para N22; N27 continua adiada. | decidido |
+| 10 | Uso no celular | Real, mas basta "não quebrar": parte de celular de N16 e parte de filtros de N15. | decidido |
+| 11 | Diagrama de controle / N14 | Canal endêmico por quartis (mediana, 1º e 3º quartis de 5 a 7 anos, sem os anos epidêmicos). N14 descartada; em seu lugar, link para o InfoDengue do município. | **método aguarda a vigilância local** |
+| 12 | SMTP | Irrelevante por enquanto: N25 fora do horizonte. | decidido |
+| 13 | Medições com chikungunya do CE | Refazer com dengue de RR antes de publicar. | pendente (Fase 0) |
+| 14 | Benchmark | Nada a decidir. | decidido |
+
+### 7.3 Roadmap depois da Fase 0
+
+- **Fase 1:** N16, N17, N11, N22, N15.
+- **Fase 2:** N10, N18, N20, N21, N26, N30; N24 só no navegador, sem conta.
+- **Fase 3:** N12, N13, N19, depois que a vigilância responder o ponto 11.
+- **Só se o ponto 4 mudar para "fichas com login":** N02, N07 e o N04 completo, como um bloco.
+- **Descartadas:** N14 (no lugar, link para o InfoDengue) e N28 (o InfoDengue já oferece API).
+- **Fora do horizonte:** N06 (substituída pelo cron), N25, N27, N29.
