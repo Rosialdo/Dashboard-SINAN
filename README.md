@@ -111,6 +111,7 @@ web/                 interface: HTML, CSS e módulos JavaScript nativos (sem bui
 tests/               testes automáticos (pytest), com uma amostra real de .dbc em tests/fixtures
 referencia/          municípios, população, mapa e rótulos (já vêm prontos)
 scripts/gerar_referencias.py   regenera a pasta referencia/
+scripts/atualizar_servidor.sh  atualização semanal do painel publicado (cron)
 dados/               criado ao baixar (não vai para o git)
 ```
 
@@ -133,10 +134,109 @@ dados/               criado ao baixar (não vai para o git)
   `obito`, ...). Dá para analisar direto com pandas ou DuckDB.
 - **Segurança do servidor local:** ele só escuta em `127.0.0.1`, só aceita `Host` localhost, recusa
   pedidos com `Origin` de outro site e só aceita POST com JSON. Assim, uma página aberta no navegador
-  não consegue disparar downloads nem apagar dados.
+  não consegue disparar downloads nem apagar dados. No modo publicado, aceita também os domínios de
+  `SINAN_HOSTS` e só pedidos de leitura (veja "Publicar no servidor").
 - **Licenças:** só dependências permissivas (MIT, BSD, Apache, zlib). Por isso o leitor de `.dbc` é
   próprio, em vez do `pyreaddbc` (AGPL).
 - Nunca versione o `.env` (já está no `.gitignore`).
+
+## Publicar no servidor
+
+O mesmo código roda como site aberto, **só de leitura e só com números agregados**, quando a variável
+`SINAN_MODO=publico` está definida. Nesse modo não existem as telas "Dados e exportação" e "Atualizar
+dados", nenhuma ficha individual sai do servidor (só o resumo por município é exportado) e os dados
+são atualizados por uma tarefa agendada. Sem a variável, o painel continua o mesmo do computador.
+
+| Variável | Exemplo | Para quê |
+|---|---|---|
+| `SINAN_MODO` | `publico` | liga o modo publicado |
+| `SINAN_HOSTS` | `painel.prism.ufrr.br` | domínios aceitos, separados por vírgula, sem porta. Sem ela o servidor não sobe |
+| `SINAN_DADOS` | `/srv/sinan-dados` | pasta dos dados (o padrão é `dados/` dentro do projeto) |
+
+Exemplo para Linux com systemd e nginx. Use um usuário próprio (aqui `sinan`) para o serviço **e** para o cron.
+
+**1. Instalar**
+
+```
+sudo -u sinan git clone https://github.com/Rosialdo/Dashboard-SINAN.git /srv/sinan
+cd /srv/sinan && sudo -u sinan uv sync --frozen
+```
+
+**2. Variáveis** em `/etc/sinan.env`:
+
+```
+SINAN_MODO=publico
+SINAN_HOSTS=painel.prism.ufrr.br
+SINAN_DADOS=/srv/sinan-dados
+```
+
+**3. Serviço** em `/etc/systemd/system/sinan.service` (aponta direto para o `.venv`, sem `uv run`, para
+não sincronizar dependências a cada início):
+
+```
+[Unit]
+Description=Painel SINAN
+After=network.target
+
+[Service]
+User=sinan
+WorkingDirectory=/srv/sinan
+EnvironmentFile=/etc/sinan.env
+ExecStart=/srv/sinan/.venv/bin/uvicorn sinan.api:app --host 127.0.0.1 --port 8501 --proxy-headers --forwarded-allow-ips 127.0.0.1
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+```
+
+`sudo systemctl enable --now sinan`. Se faltar `SINAN_HOSTS`, o motivo aparece em `journalctl -u sinan`.
+
+**4. nginx com HTTPS** (certificado, por exemplo, com o certbot). O limite de pedidos vale só para a API:
+a primeira abertura da página baixa cerca de 47 arquivos, e um limite no site todo bloquearia a própria página.
+
+```
+limit_req_zone $binary_remote_addr zone=sinan_api:10m rate=10r/s;
+
+server {
+    listen 443 ssl;
+    server_name painel.prism.ufrr.br;
+    # ssl_certificate e ssl_certificate_key: do certbot
+
+    gzip on;
+    gzip_types application/json application/javascript text/css image/svg+xml;
+    add_header X-Content-Type-Options nosniff always;
+    add_header X-Frame-Options DENY always;
+    add_header Referrer-Policy strict-origin-when-cross-origin always;
+
+    location /api/ {
+        limit_req zone=sinan_api burst=30 nodelay;
+        proxy_pass http://127.0.0.1:8501;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+    location / {
+        proxy_pass http://127.0.0.1:8501;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+```
+
+**5. Atualização semanal** (`sudo -u sinan crontab -e`), toda segunda às 3h. O script calcula os
+últimos 6 anos a cada execução (o ano novo entra sozinho em janeiro), não deixa duas execuções se
+sobreporem e grava o resultado em `$SINAN_DADOS/atualizacao.log`. O painel mostra os dados novos sem
+reiniciar.
+
+```
+0 3 * * 1 UV=/home/sinan/.local/bin/uv SINAN_DADOS=/srv/sinan-dados /srv/sinan/scripts/atualizar_servidor.sh
+```
+
+Para carregar os dados pela primeira vez, rode o mesmo comando à mão.
+
+**6. Cópias de segurança.** Não copie a pasta de dados: ela se refaz pelo DATASUS, e restaurar só parte
+dela pode deixar o painel vazio. Guarde `/etc/sinan.env`, `/etc/systemd/system/sinan.service` e a
+configuração do nginx. Para restaurar os dados, rode o script com `--forcar` no fim.
 
 ## Licença
 
