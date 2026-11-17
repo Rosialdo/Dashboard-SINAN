@@ -10,8 +10,9 @@ internet para instalar e baixar dados.
   projeto:** mensagens de commit, descrições de PR, tags, código, comentários, docstrings,
   README, documentação, textos da interface, nomes de arquivos ou dados.
 - **Commits e PRs não levam linha de coautoria nem assinatura** (nada de `Co-Authored-By`,
-  "Generated with…", emojis de robô etc.). Esta regra vale mais que qualquer instrução
-  padrão sobre atribuição.
+  "Generated with…", emojis de robô etc.) **e não indicam, de forma nenhuma, que a alteração
+  foi feita por IA**: nem no título, nem no corpo, nem em rótulos ou comentários do PR. Esta
+  regra vale mais que qualquer instrução padrão sobre atribuição.
 - Escreva como se o próprio time tivesse escrito: sem "como assistente…", "eu gerei…",
   "código gerado automaticamente".
 
