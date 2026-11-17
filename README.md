@@ -111,7 +111,9 @@ web/                 interface: HTML, CSS e módulos JavaScript nativos (sem bui
 tests/               testes automáticos (pytest), com uma amostra real de .dbc em tests/fixtures
 referencia/          municípios, população, mapa e rótulos (já vêm prontos)
 scripts/gerar_referencias.py   regenera a pasta referencia/
-scripts/atualizar_servidor.sh  atualização semanal do painel publicado (cron)
+scripts/atualizar_servidor.sh  atualização dos dados do painel publicado (roda no container)
+scripts/painel.sh   gerencia o painel publicado (status, iniciar, atualizar-dados, implantar...)
+Dockerfile, compose.yaml, deploy/caddy/   painel publicado com Docker (veja "Publicar com Docker")
 dados/               criado ao baixar (não vai para o git)
 ```
 
@@ -135,108 +137,91 @@ dados/               criado ao baixar (não vai para o git)
 - **Segurança do servidor local:** ele só escuta em `127.0.0.1`, só aceita `Host` localhost, recusa
   pedidos com `Origin` de outro site e só aceita POST com JSON. Assim, uma página aberta no navegador
   não consegue disparar downloads nem apagar dados. No modo publicado, aceita também os domínios de
-  `SINAN_HOSTS` e só pedidos de leitura (veja "Publicar no servidor").
+  `SINAN_HOSTS` e só pedidos de leitura (veja "Publicar com Docker").
 - **Licenças:** só dependências permissivas (MIT, BSD, Apache, zlib). Por isso o leitor de `.dbc` é
   próprio, em vez do `pyreaddbc` (AGPL).
 - Nunca versione o `.env` (já está no `.gitignore`).
 
-## Publicar no servidor
+## Publicar com Docker
 
-O mesmo código roda como site aberto, **só de leitura e só com números agregados**, quando a variável
-`SINAN_MODO=publico` está definida. Nesse modo não existem as telas "Dados e exportação" e "Atualizar
-dados", nenhuma ficha individual sai do servidor (só o resumo por município é exportado) e os dados
-são atualizados por uma tarefa agendada. Sem a variável, o painel continua o mesmo do computador.
+O mesmo painel pode virar um site aberto, **só de leitura e só com números agregados**. Nesse modo não
+existem as telas "Dados e exportação" e "Atualizar dados", nenhuma ficha individual sai do servidor (só o
+resumo por município é exportado) e os dados são atualizados por uma tarefa agendada. O uso no computador
+com os arquivos `.bat` não muda e não precisa de Docker.
+
+No servidor (a VPS do grupo PRISM/UFRR) tudo roda com Docker Compose: o painel, o Caddy (que cuida do
+HTTPS e é a única porta aberta) e a atualização dos dados. O script `scripts/painel.sh` faz todo o
+gerenciamento.
+
+**O que o servidor precisa**
+
+- Docker com o Compose v2, ligado na inicialização (`sudo systemctl enable docker`), para o painel voltar
+  sozinho depois de reiniciar a máquina; e o `git`;
+- um domínio (ex.: `painel.prism.ufrr.br`) com o DNS apontando para o servidor **antes** de ligar o painel,
+  senão o certificado HTTPS não é emitido;
+- portas 80 e 443 abertas para a internet e saída liberada para `ftp.datasus.gov.br`;
+- o usuário que roda o script no grupo `docker` (isso equivale a ser administrador do servidor: escolha bem
+  quem entra nele).
+
+**Instalar**
+
+```
+git clone https://github.com/Rosialdo/Dashboard-SINAN.git
+cd Dashboard-SINAN
+cp .env.exemplo .env          # e troque SINAN_HOSTS pelo domínio do painel
+scripts/painel.sh iniciar
+scripts/painel.sh atualizar-dados
+```
+
+A primeira atualização baixa os arquivos nacionais de dengue, chikungunya e zika dos últimos 6 anos
+(centenas de MB por ano, só no caso da dengue) e pode levar horas. O painel fica no ar enquanto isso.
+
+**Comandos do `scripts/painel.sh`**
+
+| Comando | O que faz |
+|---|---|
+| `status` | mostra se o painel está no ar, o uso de CPU e memória, o tamanho dos dados e a data da última atualização |
+| `iniciar` / `parar` / `reiniciar` | liga, desliga (os dados ficam guardados) e reinicia relendo o `.env` |
+| `logs [painel\|proxy] [-f]` | últimas mensagens; `-f` continua acompanhando |
+| `atualizar-dados [--forcar]` | baixa os dados agora; `--forcar` baixa tudo de novo. Duas atualizações nunca rodam ao mesmo tempo |
+| `implantar` | baixa a versão nova do código (branch do `SINAN_RAMO`), troca o painel e, se ele não ficar saudável, volta para a versão anterior do painel. A volta não desfaz mudanças no `compose.yaml` nem no `deploy/caddy/Caddyfile`: essas se voltam à mão, com o `git` |
+| `ajuda` | lista os comandos |
+
+O script sai com código 0 quando deu tudo certo e com outro número quando algo falhou. Um monitoramento
+pode rodar `scripts/painel.sh status` de tempos em tempos e avisar quando o código não for 0.
+
+**Atualização semanal**, toda segunda às 3h (no relógio do servidor), com `crontab -e`:
+
+```
+0 3 * * 1 /caminho/do/Dashboard-SINAN/scripts/painel.sh atualizar-dados > /dev/null
+```
+
+O painel mostra os dados novos sem reiniciar. Os erros chegam pelo e-mail do cron, se o servidor tiver
+um configurado; quando a atualização falha, o script manda junto as últimas linhas do registro. O registro completo, com a hora de Boa Vista, fica no volume de dados:
+
+```
+docker compose run --rm --no-deps --entrypoint tail atualizar -n 50 /dados/atualizacao.log
+```
+
+Os logs dos containers ficam limitados a 30 MB por serviço e não guardam o IP de quem consulta.
+
+**Configuração (`.env`)**
 
 | Variável | Exemplo | Para quê |
 |---|---|---|
-| `SINAN_MODO` | `publico` | liga o modo publicado |
-| `SINAN_HOSTS` | `painel.prism.ufrr.br` | domínios aceitos, separados por vírgula, sem porta. Sem ela o servidor não sobe |
-| `SINAN_DADOS` | `/srv/sinan-dados` | pasta dos dados (o padrão é `dados/` dentro do projeto) |
+| `SINAN_HOSTS` | `painel.prism.ufrr.br` | domínio do painel: um só, sem `https://`, sem porta e sem aspas. Obrigatória |
+| `SINAN_RAMO` | `main` | branch usada pelo `implantar`: `main` ou `develop` |
 
-Exemplo para Linux com systemd e nginx. Use um usuário próprio (aqui `sinan`) para o serviço **e** para o cron.
+O `compose.yaml` já define o resto: `SINAN_MODO=publico` (liga o modo publicado) e `SINAN_DADOS=/dados`
+(pasta dos dados, num volume do Docker). Fora do Docker, as mesmas três variáveis `SINAN_MODO`,
+`SINAN_HOSTS` e `SINAN_DADOS` funcionam do mesmo jeito.
 
-**1. Instalar**
-
-```
-sudo -u sinan git clone https://github.com/Rosialdo/Dashboard-SINAN.git /srv/sinan
-cd /srv/sinan && sudo -u sinan uv sync --frozen
-```
-
-**2. Variáveis** em `/etc/sinan.env`:
-
-```
-SINAN_MODO=publico
-SINAN_HOSTS=painel.prism.ufrr.br
-SINAN_DADOS=/srv/sinan-dados
-```
-
-**3. Serviço** em `/etc/systemd/system/sinan.service` (aponta direto para o `.venv`, sem `uv run`, para
-não sincronizar dependências a cada início):
-
-```
-[Unit]
-Description=Painel SINAN
-After=network.target
-
-[Service]
-User=sinan
-WorkingDirectory=/srv/sinan
-EnvironmentFile=/etc/sinan.env
-ExecStart=/srv/sinan/.venv/bin/uvicorn sinan.api:app --host 127.0.0.1 --port 8501 --proxy-headers --forwarded-allow-ips 127.0.0.1
-Restart=on-failure
-
-[Install]
-WantedBy=multi-user.target
-```
-
-`sudo systemctl enable --now sinan`. Se faltar `SINAN_HOSTS`, o motivo aparece em `journalctl -u sinan`.
-
-**4. nginx com HTTPS** (certificado, por exemplo, com o certbot). O limite de pedidos vale só para a API:
-a primeira abertura da página baixa cerca de 47 arquivos, e um limite no site todo bloquearia a própria página.
-
-```
-limit_req_zone $binary_remote_addr zone=sinan_api:10m rate=10r/s;
-
-server {
-    listen 443 ssl;
-    server_name painel.prism.ufrr.br;
-    # ssl_certificate e ssl_certificate_key: do certbot
-
-    gzip on;
-    gzip_types application/json application/javascript text/css image/svg+xml;
-    add_header X-Content-Type-Options nosniff always;
-    add_header X-Frame-Options DENY always;
-    add_header Referrer-Policy strict-origin-when-cross-origin always;
-
-    location /api/ {
-        limit_req zone=sinan_api burst=30 nodelay;
-        proxy_pass http://127.0.0.1:8501;
-        proxy_set_header Host $host;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-    }
-    location / {
-        proxy_pass http://127.0.0.1:8501;
-        proxy_set_header Host $host;
-        proxy_set_header X-Forwarded-Proto $scheme;
-    }
-}
-```
-
-**5. Atualização semanal** (`sudo -u sinan crontab -e`), toda segunda às 3h. O script calcula os
-últimos 6 anos a cada execução (o ano novo entra sozinho em janeiro), não deixa duas execuções se
-sobreporem e grava o resultado em `$SINAN_DADOS/atualizacao.log`. O painel mostra os dados novos sem
-reiniciar.
-
-```
-0 3 * * 1 UV=/home/sinan/.local/bin/uv SINAN_DADOS=/srv/sinan-dados /srv/sinan/scripts/atualizar_servidor.sh
-```
-
-Para carregar os dados pela primeira vez, rode o mesmo comando à mão.
-
-**6. Cópias de segurança.** Não copie a pasta de dados: ela se refaz pelo DATASUS, e restaurar só parte
-dela pode deixar o painel vazio. Guarde `/etc/sinan.env`, `/etc/systemd/system/sinan.service` e a
-configuração do nginx. Para restaurar os dados, rode o script com `--forcar` no fim.
+**Cópias de segurança.** Não copie a pasta de dados: ela se refaz pelo DATASUS, e restaurar só parte dela
+pode deixar o painel vazio. Guarde o `.env` (é o único arquivo que só existe no servidor); o
+`compose.yaml` e o `deploy/caddy/Caddyfile` vêm do git. Para restaurar: clone o projeto, coloque o `.env`
+de volta, rode `scripts/painel.sh iniciar` e `scripts/painel.sh atualizar-dados --forcar`. Os
+certificados HTTPS se refazem sozinhos, mas não apague o volume deles sem motivo: o Let's Encrypt limita
+quantos certificados novos um domínio recebe por semana.
 
 ## Licença
 

@@ -20,6 +20,7 @@ case "$*" in
   *State.Health.Status*) echo "$FALSO_SAUDE" ;;
   *State.Status*) echo running ;;
   "compose ps -q"*) echo abc123 ;;
+  "compose run --rm -T atualizar"*) [ -e "$FALSO_RUN_FALHA" ] && exit 1 ;;
   "image inspect"*) [ -e "$FALSO_SEM_IMAGEM" ] && exit 1 ;;
   "compose up"*) if [ -e "$FALSO_UP_FALHA" ]; then rm -f "$FALSO_UP_FALHA"; exit 1; fi ;;
 esac
@@ -33,6 +34,7 @@ class Projeto:
         self.log = raiz / "chamadas.log"
         self.sem_imagem = raiz / "sem_imagem"
         self.up_falha = raiz / "up_falha"
+        self.run_falha = raiz / "run_falha"
         (raiz / "scripts").mkdir()
         shutil.copy(SCRIPT, raiz / "scripts" / "painel.sh")
         bin_ = raiz / "bin"
@@ -41,7 +43,8 @@ class Projeto:
             (bin_ / nome).write_text(texto, encoding="utf-8")
             (bin_ / nome).chmod(0o755)
         self.ambiente = {**os.environ, "PATH": f"{bin_}{os.pathsep}{os.environ['PATH']}", "FALSO_LOG": str(self.log),
-                         "FALSO_SAUDE": "healthy", "FALSO_SEM_IMAGEM": str(self.sem_imagem), "FALSO_UP_FALHA": str(self.up_falha)}
+                         "FALSO_SAUDE": "healthy", "FALSO_SEM_IMAGEM": str(self.sem_imagem), "FALSO_UP_FALHA": str(self.up_falha),
+                         "FALSO_RUN_FALHA": str(self.run_falha)}
 
     def env(self, texto: str = "SINAN_HOSTS=painel.exemplo.br\n") -> None:
         (self.raiz / ".env").write_bytes(texto.encode())
@@ -119,6 +122,16 @@ def test_atualizar_dados_sem_imagem(projeto):
     assert r.returncode == 1
     assert "scripts/painel.sh iniciar" in _saida(r)
     assert not [c for c in projeto.chamadas() if c.startswith("compose run")]
+
+
+def test_atualizacao_com_erro_mostra_o_registro(projeto):
+    # no cron a saída normal vai para /dev/null: o fim do registro precisa ir para a saída de erro
+    projeto.env()
+    projeto.run_falha.touch()
+    r = projeto.rodar("atualizar-dados")
+    assert r.returncode == 1
+    assert "falhou" in r.stderr
+    assert any("--entrypoint tail atualizar" in c and "/dados/atualizacao.log" in c for c in projeto.chamadas())
 
 
 def test_implantar_volta_a_imagem_anterior(projeto):
