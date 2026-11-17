@@ -48,7 +48,8 @@ async function iniciar() {
   try {
     await recarregarMeta();
   } catch (e) {
-    $("#pagina").innerHTML = erroHtml("Não foi possível falar com o servidor do dashboard. Feche e abra de novo o ABRIR_DASHBOARD.bat.");
+    $("#pagina").innerHTML = erroHtml("Não foi possível carregar o painel. Se ele roda no seu computador, feche e abra de novo o ABRIR_DASHBOARD.bat; "
+      + "se for o site, tente de novo em alguns minutos.");
     return;
   }
   render();

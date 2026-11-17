@@ -1011,7 +1011,7 @@ N10 (acessibilidade por teclado) sai da Fase 0 e abre a Fase 2.
 | 10 | Uso no celular | Real, mas basta "não quebrar": parte de celular de N16 e parte de filtros de N15. | decidido |
 | 11 | Diagrama de controle / N14 | Canal endêmico por quartis (mediana, 1º e 3º quartis de 5 a 7 anos, sem os anos epidêmicos). N14 descartada; em seu lugar, link para o InfoDengue do município. | **método aguarda a vigilância local** |
 | 12 | SMTP | Irrelevante por enquanto: N25 fora do horizonte. | decidido |
-| 13 | Medições com chikungunya do CE | Refazer com dengue de RR antes de publicar. | pendente (Fase 0) |
+| 13 | Medições com chikungunya do CE | Refeitas com dengue, chikungunya e zika de RR, 2024, no modo publicado (ver 7.4). | resolvido |
 | 14 | Benchmark | Nada a decidir. | decidido |
 
 ### 7.3 Roadmap depois da Fase 0
@@ -1022,3 +1022,25 @@ N10 (acessibilidade por teclado) sai da Fase 0 e abre a Fase 2.
 - **Só se o ponto 4 mudar para "fichas com login":** N02, N07 e o N04 completo, como um bloco.
 - **Descartadas:** N14 (no lugar, link para o InfoDengue) e N28 (o InfoDengue já oferece API).
 - **Fora do horizonte:** N06 (substituída pelo cron), N25, N27, N29.
+
+### 7.4 Medição com dengue de Roraima no modo publicado (17/11/2026)
+
+Dados baixados pelo `scripts/atualizar_servidor.sh` (dengue 2024: 706 notificações; chikungunya 2024:
+740; zika 2024: 524), servidor com `SINAN_MODO=publico`, no mesmo notebook da seção 2.4.
+
+| Pedido | Tempo |
+|---|---|
+| `/api/visao`, 10 pedidos simultâneos com um filtro ainda sem cache | 0,04 a 0,05 s |
+| `/api/mapa`, idem | 0,10 a 0,11 s |
+| `/api/perfil`, idem | 0,20 a 0,21 s |
+| `/api/exportar?formato=municipios` | 0,03 s |
+| `/api/registros` e exportação de fichas | recusados (403) |
+
+Todas abaixo da meta de 1 s. A exportação lenta da seção 2.4 não existe no modo publicado, porque as
+fichas não saem do servidor.
+
+Atualização com o painel em uso: reprocessar a zika com `--forcar` enquanto 940 pedidos chegavam a
+`/api/visao` e `/api/meta` não gerou nenhum erro e nenhuma resposta sem agravos.
+
+O FTP do DATASUS derrubou uma vez o download da dengue (288 MB) por tempo esgotado. O script registrou
+o erro no log, baixou os outros agravos, e a execução seguinte retomou o download de onde parou.

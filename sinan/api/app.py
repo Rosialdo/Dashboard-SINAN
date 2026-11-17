@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import traceback
 from pathlib import Path
+from uuid import uuid4
 
 import plotly
 from fastapi import FastAPI, Request
@@ -14,7 +15,7 @@ from fastapi.staticfiles import StaticFiles
 from .. import config
 from .. import consultas as cq
 from .respostas import ErroUsuario, erro
-from .rotas import ROUTERS
+from .rotas import ROUTERS, dados
 from .seguranca import ProtecaoLocal
 
 PASTA_WEB = config.RAIZ / "web"
@@ -53,12 +54,16 @@ def criar_app() -> FastAPI:
         title="Dashboard SINAN",
         description="API local do painel de doenças e agravos de notificação (SINAN/DATASUS).",
         # documentação interativa em /api/docs (precisa de internet para carregar o visual)
-        docs_url="/api/docs", redoc_url=None, openapi_url="/api/openapi.json",
+        # no modo publicado a lista de rotas não fica à mostra
+        docs_url=None if publico else "/api/docs", redoc_url=None,
+        openapi_url=None if publico else "/api/openapi.json",
     )
     app.state.publico = publico
     app.state.hosts = hosts
 
     for router in ROUTERS:
+        if publico and router is dados.router:
+            continue  # baixar e apagar dados: só no computador ou pelo cron do servidor
         app.include_router(router, prefix="/api")
 
     # ---------------------------------------------------------------- erros
@@ -73,6 +78,11 @@ def criar_app() -> FastAPI:
 
     @app.exception_handler(Exception)
     async def _erro_interno(_: Request, exc: Exception):
+        if publico:
+            codigo = uuid4().hex[:8]
+            print(f"Erro interno, código {codigo}:")
+            traceback.print_exception(exc)
+            return erro(f"Erro interno (código {codigo}). Avise a equipe responsável pelo painel.", 500)
         traceback.print_exception(exc)  # os detalhes ficam na janela preta, não na tela
         return erro(f"Erro interno ({type(exc).__name__}: {exc}). Veja os detalhes na janela do dashboard.", 500)
 

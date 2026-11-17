@@ -12,7 +12,7 @@ import { limparGraficos } from "./componentes/graficos.js";
 import { estado, PAGINAS } from "./nucleo/estado.js";
 import { ico } from "./nucleo/icones.js";
 import { nomeMarca } from "./nucleo/meta.js";
-import { paginaAtual } from "./nucleo/navegacao.js";
+import { oculta, paginaAtual } from "./nucleo/navegacao.js";
 import { $ } from "./nucleo/util.js";
 import * as atualizar from "./paginas/atualizar.js";
 import * as dados from "./paginas/dados.js";
@@ -39,6 +39,7 @@ export function montarMenu() {
   const atual = paginaAtual();
   let html = "", secao = "";
   for (const [id, p] of Object.entries(PAGINAS)) {
+    if (oculta(id)) continue;
     if (p.secao !== secao) {
       if (secao) html += '<div class="nav-sep"></div>';
       secao = p.secao;
@@ -60,9 +61,12 @@ export async function render() {
   const p = PAGINAS[id];
 
   if (p.filtros && !estado.meta.agravos.length) {
-    raiz.innerHTML = htmlCabecalho(id, false) + `<section class="card vazio">${ico("nuvem")}<h2>Ainda não há dados no computador</h2>
+    raiz.innerHTML = htmlCabecalho(id, false) + (estado.meta.publico
+      ? `<section class="card vazio">${ico("nuvem")}<h2>Os dados ainda não foram carregados</h2>
+      <p>O painel é atualizado toda semana. Volte mais tarde.</p></section>`
+      : `<section class="card vazio">${ico("nuvem")}<h2>Ainda não há dados no computador</h2>
       <p>Baixe os dados do SINAN uma vez (precisa de internet). Depois o painel funciona offline.</p>
-      <button class="btn btn-prim" onclick="location.hash='#/atualizar'">${ico("atualizar")}Ir para Atualizar dados</button></section>`;
+      <button class="btn btn-prim" onclick="location.hash='#/atualizar'">${ico("atualizar")}Ir para Atualizar dados</button></section>`);
     return;
   }
   raiz.innerHTML = htmlCabecalho(id, p.filtros) + (p.filtros ? htmlFiltros() + htmlAlertas() : "");

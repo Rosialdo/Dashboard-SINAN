@@ -6,18 +6,19 @@ import io
 from typing import Annotated, Literal
 
 import pandas as pd
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, Query, Request
 
 from ... import consultas as cq
 from .. import cache, servicos
 from ..filtros import Filtros
-from ..respostas import anexo, json_resp, registros
+from ..respostas import anexo, erro, json_resp, registros
 
 router = APIRouter(tags=["Dados e exportação"])
 
 POR_PAGINA = 50
 LIMITE_EXCEL = 1_000_000  # o Excel aceita no máximo 1.048.576 linhas por planilha
 CSV = "text/csv"
+SO_LOCAL = "Não disponível na versão publicada do painel."
 XLSX = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
 
 
@@ -27,7 +28,9 @@ def _csv(df: pd.DataFrame) -> bytes:
 
 
 @router.get("/registros", summary="Registros (fichas) filtrados, 50 por página")
-def api_registros(ctx: Filtros, pagina: Annotated[int, Query(ge=0)] = 0):
+def api_registros(request: Request, ctx: Filtros, pagina: Annotated[int, Query(ge=0)] = 0):
+    if request.app.state.publico:
+        return erro(SO_LOCAL, 403)
     f = ctx.filtro
     # paginação feita no próprio DuckDB: só 50 linhas saem do disco por vez
     total = cache.memo(("total_regs", f), lambda: cq.total_registros(f))
@@ -37,8 +40,10 @@ def api_registros(ctx: Filtros, pagina: Annotated[int, Query(ge=0)] = 0):
 
 
 @router.get("/exportar", summary="Baixa os dados filtrados (Excel ou CSV)")
-def api_exportar(ctx: Filtros,
+def api_exportar(request: Request, ctx: Filtros,
                  formato: Literal["xlsx", "csv", "csv_completo", "municipios"] = "xlsx"):
+    if request.app.state.publico and formato != "municipios":
+        return erro(SO_LOCAL, 403)  # fichas individuais não saem do servidor publicado
     f, area = ctx.filtro, ctx.area
     nome = f"sinan_{f.agravo}_{f.ano_ini}-{f.ano_fim}"
 

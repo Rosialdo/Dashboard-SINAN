@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Request
 
 from ... import agravos as cat
 from ... import config
@@ -17,7 +17,7 @@ router = APIRouter(tags=["Geral"])
 
 
 @router.get("/meta", summary="Agravos, anos, UFs e municípios disponíveis no computador")
-def api_meta():
+def api_meta(request: Request):
     cfg = config.carregar_config()
     inv = ler_inventario()
     agravos = []
@@ -43,6 +43,8 @@ def api_meta():
         "faixas": FAIXAS,
         "amazonia_legal": sorted(config.AMAZONIA_LEGAL),
         "atualizado_em": atualizado,
+        "publico": request.app.state.publico,
+        "telas_ocultas": ["dados", "atualizar"] if request.app.state.publico else [],
     })
 
 
