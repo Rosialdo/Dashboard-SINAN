@@ -94,7 +94,8 @@ function desenharMapa(d, geo) {
     const cod = ft.properties.cod6, m = porCod[cod] || {};
     const dd = aneis(ft.geometry).map((anel) => "M" + anel.map(([x, y]) => `${sx(x).toFixed(1)},${sy(y).toFixed(1)}`).join("L") + "Z").join("");
     const v = m[medida];
-    const cor = v === null || v === undefined ? css("--mapa-vazio") : rampa((v - vmin) / (vmax - vmin));
+    // sem dado (ex.: sem população) fica listrado, para não se confundir com zero casos
+    const cor = v === null || v === undefined ? "url(#sem-dado)" : rampa((v - vmin) / (vmax - vmin));
     return `<path class="mun ${estado.mapaSel === cod ? "sel" : ""}" d="${dd}" fill="${cor}" data-cod="${cod}"></path>`;
   }).join("");
   let rotulo = "";
@@ -103,16 +104,20 @@ function desenharMapa(d, geo) {
     const cx = anel.reduce((s, p) => s + sx(p[0]), 0) / anel.length, cy = anel.reduce((s, p) => s + sy(p[1]), 0) / anel.length;
     rotulo = `<text class="rot" x="${cx}" y="${cy}" text-anchor="middle" dominant-baseline="middle" style="font-size:${W / 28}px">${esc(porCod[feats[0].properties.cod6]?.municipio || "")}</text>`;
   }
+  const semDado = feats.some((ft) => (porCod[ft.properties.cod6] || {})[medida] == null);
+  const hachura = `<defs><pattern id="sem-dado" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <rect width="8" height="8" fill="${css("--mapa-vazio")}"></rect><rect width="3" height="8" fill="${css("--muted")}"></rect></pattern></defs>`;
   const pad = 70;
   const vb0 = { x: -pad, y: -pad, w: W + 2 * pad + 190, h: H + 2 * pad };
   const ticks = [0, .25, .5, .75, 1].map((t) => vmax - t * (vmax - vmin));
   const casas = medida === "incidencia" || vmax - vmin < 10 ? 1 : 0;
   area.innerHTML = `
-    <svg class="mapa" viewBox="${vb0.x} ${vb0.y} ${vb0.w} ${vb0.h}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Mapa de ${medida === "incidencia" ? "incidência" : "casos"} por município">${caminhos}${rotulo}</svg>
+    <svg class="mapa" viewBox="${vb0.x} ${vb0.y} ${vb0.w} ${vb0.h}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Mapa de ${medida === "incidencia" ? "incidência" : "casos"} por município">${hachura}${caminhos}${rotulo}</svg>
     <div class="zoom"><button data-z="1.4" aria-label="Aproximar">${ico("mais")}</button><button data-z="0.7" aria-label="Afastar">${ico("menos")}</button><button data-z="tela" aria-label="Tela cheia">${ico("tela")}</button></div>
     <div class="escala"><div class="escala-tit">${medida === "incidencia" ? "Incidência<br>(por 100 mil hab./ano)" : cap(termo())}</div>
       <div class="escala-corpo"><div class="escala-barra" style="background:linear-gradient(${rampa(1)}, ${rampa(.5)}, ${rampa(0)})"></div>
-      <div class="escala-ticks">${ticks.map((t) => `<span>${fmt(t, casas)}</span>`).join("")}</div></div></div>
+      <div class="escala-ticks">${ticks.map((t) => `<span>${fmt(t, casas)}</span>`).join("")}</div></div>
+      ${semDado ? `<div class="escala-sem"><svg viewBox="0 0 14 14" aria-hidden="true"><rect width="14" height="14" fill="url(#sem-dado)"></rect></svg>Sem dado</div>` : ""}</div>
     <div class="mapa-nota">${estado.f.mun ? "Recorte municipal selecionado" : `${feats.length} municípios · clique para ver detalhes`}</div>`;
   ligarInteracao(area, vb0, porCod, d);
 }
