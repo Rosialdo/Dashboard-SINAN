@@ -25,8 +25,10 @@ internet para instalar e baixar dados.
 - **Mensagens em português**: um título curto no imperativo ("Corrige…", "Adiciona…",
   "Troca…") e um corpo explicando **o que** mudou e **por quê**, com o problema que o
   usuário veria.
-- Trabalhe direto na branch `main` e faça `git push origin main` depois dos commits. Não crie
-  branches sem pedido do usuário.
+- **Uma branch por funcionalidade, criada a partir da `develop`**: `git switch -c feature/<nome-curto> develop`
+  (correções podem usar `correcao/<nome>`). Nunca faça commit direto na `develop` nem na `main`.
+- A integração é por PR para a `develop`. Faça `push` e abra o PR só quando o usuário pedir.
+  A `main` recebe a `develop` quando o usuário decidir.
 - Nunca use `--no-verify`, `--force` nem reescreva histórico já enviado sem pedido explícito.
 - Nunca versione `.env`, `dados/`, `.venv/` nem caches (já estão no `.gitignore`). Confira o
   `git status` antes de `git add`, e prefira adicionar arquivos pelo nome a usar `git add .`.
