@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import json
+import os
+from collections.abc import Mapping
 from datetime import date
 from pathlib import Path
 
@@ -14,7 +16,28 @@ ARQ_MUNICIPIOS = PASTA_REFERENCIA / "municipios.csv"
 ARQ_POPULACAO = PASTA_REFERENCIA / "populacao.csv"
 ARQ_MAPA = PASTA_REFERENCIA / "municipios.geojson"
 
-PASTA_DADOS = RAIZ / "dados"
+
+
+def _pasta_dados(ambiente: Mapping[str, str]) -> Path:
+    """Pasta dos dados: ``SINAN_DADOS`` ou ``dados/`` dentro do projeto."""
+    return Path(ambiente["SINAN_DADOS"]) if ambiente.get("SINAN_DADOS") else RAIZ / "dados"
+
+
+def publico() -> bool:
+    """Modo publicado (site aberto, só leitura). Lido só ao criar o servidor."""
+    return os.environ.get("SINAN_MODO", "").strip().lower() == "publico"
+
+
+def hosts_publicos() -> set[str]:
+    """Domínios aceitos no modo publicado (``SINAN_HOSTS``, separados por vírgula, sem porta)."""
+    hosts = {h.strip().lower() for h in os.environ.get("SINAN_HOSTS", "").split(",") if h.strip()}
+    com_porta = [h for h in hosts if ":" in h]
+    if com_porta:
+        raise ValueError(f"SINAN_HOSTS não aceita porta: {', '.join(sorted(com_porta))}")
+    return hosts
+
+
+PASTA_DADOS = _pasta_dados(os.environ)
 PASTA_BRUTOS = PASTA_DADOS / "brutos"        # .dbc baixados (apagados depois, por padrão)
 PASTA_PARQUET = PASTA_DADOS / "parquet"      # dados prontos para o dashboard
 ARQ_INVENTARIO = PASTA_DADOS / "inventario.json"

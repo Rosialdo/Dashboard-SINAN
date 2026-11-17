@@ -45,12 +45,18 @@ def _mensagem_validacao(exc: RequestValidationError) -> str:
 
 
 def criar_app() -> FastAPI:
+    publico = config.publico()  # decidido uma vez: o modo não muda com o servidor rodando
+    hosts = config.hosts_publicos() if publico else set()
+    if publico and not hosts:
+        raise RuntimeError("SINAN_MODO=publico exige SINAN_HOSTS com o domínio do painel, ex.: painel.prism.ufrr.br")
     app = FastAPI(
         title="Dashboard SINAN",
         description="API local do painel de doenças e agravos de notificação (SINAN/DATASUS).",
         # documentação interativa em /api/docs (precisa de internet para carregar o visual)
         docs_url="/api/docs", redoc_url=None, openapi_url="/api/openapi.json",
     )
+    app.state.publico = publico
+    app.state.hosts = hosts
 
     for router in ROUTERS:
         app.include_router(router, prefix="/api")
@@ -82,7 +88,7 @@ def criar_app() -> FastAPI:
     app.mount("/static", ArquivosInterface(directory=PASTA_WEB), name="static")
 
     # ---------------------------------------------------------------- segurança
-    app.add_middleware(ProtecaoLocal)
+    app.add_middleware(ProtecaoLocal, hosts_extras=frozenset(hosts))
     return app
 
 
