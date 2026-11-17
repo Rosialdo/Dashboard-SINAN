@@ -7,6 +7,7 @@ colunas derivadas (nomes em minúsculas) usadas pelo dashboard.
 from __future__ import annotations
 
 import json
+import time
 from collections.abc import Callable
 from datetime import date, datetime
 from pathlib import Path
@@ -212,7 +213,17 @@ def ler_inventario() -> dict:
 
 def _salvar_inventario(inv: dict) -> None:
     PASTA_DADOS.mkdir(parents=True, exist_ok=True)
-    ARQ_INVENTARIO.write_text(json.dumps(inv, ensure_ascii=False, indent=1, sort_keys=True), encoding="utf-8")
+    # grava ao lado e troca de uma vez, como os Parquet: quem ler no meio nunca vê o arquivo pela metade
+    temporario = ARQ_INVENTARIO.with_suffix(".tmp")
+    temporario.write_text(json.dumps(inv, ensure_ascii=False, indent=1, sort_keys=True), encoding="utf-8")
+    for tentativa in range(5):
+        try:
+            temporario.replace(ARQ_INVENTARIO)
+            return
+        except PermissionError:  # Windows: alguém está lendo o inventário neste instante
+            if tentativa == 4:
+                raise
+            time.sleep(0.1)
 
 
 def caminho_parquet(agravo: str, ano: int) -> Path:
