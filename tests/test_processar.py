@@ -82,3 +82,28 @@ def test_processar_dbc_filtra_ufs(dados_teste):
     assert {"ID_AGRAVO", "DT_NOTIFIC", "data_notificacao", "sem_epi", "situacao"} <= set(tabela.columns)
     # nada sobra na pasta de brutos além do .dbc (o .dbf temporário é apagado)
     assert not list((dados_teste["raiz"] / "brutos").glob("*.dbf"))
+
+
+def test_inventario_gravado_por_troca(dados_teste, monkeypatch):
+    """O inventário é gravado num arquivo temporário e trocado de uma vez: quem ler
+    no meio da gravação vê o arquivo antigo inteiro, nunca um pedaço."""
+    import json
+    from pathlib import Path
+
+    from sinan import processar
+    antes = processar.ler_inventario()
+    trocas = []
+    original = Path.replace
+
+    def registrar(self, destino):
+        trocas.append(Path(destino))
+        return original(self, destino)
+
+    monkeypatch.setattr(Path, "replace", registrar)
+    try:
+        processar._salvar_inventario({"x": 1})
+        assert trocas == [processar.ARQ_INVENTARIO]
+        assert json.loads(processar.ARQ_INVENTARIO.read_text(encoding="utf-8")) == {"x": 1}
+    finally:
+        monkeypatch.undo()
+        processar._salvar_inventario(antes)

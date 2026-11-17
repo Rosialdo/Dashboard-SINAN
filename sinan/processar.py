@@ -212,7 +212,10 @@ def ler_inventario() -> dict:
 
 def _salvar_inventario(inv: dict) -> None:
     PASTA_DADOS.mkdir(parents=True, exist_ok=True)
-    ARQ_INVENTARIO.write_text(json.dumps(inv, ensure_ascii=False, indent=1, sort_keys=True), encoding="utf-8")
+    # grava ao lado e troca de uma vez, como os Parquet: quem ler no meio nunca vê o arquivo pela metade
+    temporario = ARQ_INVENTARIO.with_suffix(".tmp")
+    temporario.write_text(json.dumps(inv, ensure_ascii=False, indent=1, sort_keys=True), encoding="utf-8")
+    temporario.replace(ARQ_INVENTARIO)
 
 
 def caminho_parquet(agravo: str, ano: int) -> Path:
