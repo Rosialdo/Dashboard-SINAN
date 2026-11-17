@@ -17,6 +17,8 @@
 .escala-corpo { display: flex; gap: 10px; flex: 1; padding-left: 10px; }
 .escala-barra { width: 9px; border-radius: 5px; }
 .escala-ticks { display: flex; flex-direction: column; justify-content: space-between; }
+.escala-sem { display: flex; align-items: center; gap: 6px; margin-top: 10px; }
+.escala-sem svg { width: 14px; height: 14px; border: 1px solid var(--border-forte); border-radius: 2px; }
 .lateral { padding: 22px 22px; display: flex; flex-direction: column; }
 .lateral h2 { font-size: 28px; }
 .lateral .uf { color: var(--muted); font-size: 16px; margin-top: 2px; padding-bottom: 18px; border-bottom: 1px solid var(--border); }
