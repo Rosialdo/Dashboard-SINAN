@@ -101,7 +101,11 @@ cmd_atualizar_dados() {
   [[ $# -le 1 ]] || uso "atualizar-dados aceita só --forcar."
   docker image inspect "$IMAGEM" > /dev/null 2>&1 \
     || falha "A imagem do painel ainda não existe. Rode primeiro: scripts/painel.sh iniciar"
-  docker compose run --rm -T atualizar "${extra[@]}" || falha "A atualização dos dados falhou. Veja as mensagens acima."
+  if ! docker compose run --rm -T atualizar "${extra[@]}"; then
+    # no cron a saída normal vai para /dev/null: o fim do registro vai para a saída de erro (e-mail do cron)
+    docker compose run --rm --no-deps -T --entrypoint tail atualizar -n 30 /dados/atualizacao.log >&2 || true
+    falha "A atualização dos dados falhou. As últimas linhas do registro estão acima."
+  fi
 }
 
 cmd_implantar() {

@@ -184,7 +184,7 @@ A primeira atualização baixa os arquivos nacionais de dengue, chikungunya e zi
 | `iniciar` / `parar` / `reiniciar` | liga, desliga (os dados ficam guardados) e reinicia relendo o `.env` |
 | `logs [painel\|proxy] [-f]` | últimas mensagens; `-f` continua acompanhando |
 | `atualizar-dados [--forcar]` | baixa os dados agora; `--forcar` baixa tudo de novo. Duas atualizações nunca rodam ao mesmo tempo |
-| `implantar` | baixa a versão nova do código (branch do `SINAN_RAMO`), troca o painel e, se ele não ficar saudável, volta para a versão anterior |
+| `implantar` | baixa a versão nova do código (branch do `SINAN_RAMO`), troca o painel e, se ele não ficar saudável, volta para a versão anterior do painel. A volta não desfaz mudanças no `compose.yaml` nem no `deploy/caddy/Caddyfile`: essas se voltam à mão, com o `git` |
 | `ajuda` | lista os comandos |
 
 O script sai com código 0 quando deu tudo certo e com outro número quando algo falhou. Um monitoramento
@@ -197,7 +197,7 @@ pode rodar `scripts/painel.sh status` de tempos em tempos e avisar quando o cód
 ```
 
 O painel mostra os dados novos sem reiniciar. Os erros chegam pelo e-mail do cron, se o servidor tiver
-um configurado. O registro completo, com a hora de Boa Vista, fica no volume de dados:
+um configurado; quando a atualização falha, o script manda junto as últimas linhas do registro. O registro completo, com a hora de Boa Vista, fica no volume de dados:
 
 ```
 docker compose run --rm --no-deps --entrypoint tail atualizar -n 50 /dados/atualizacao.log
