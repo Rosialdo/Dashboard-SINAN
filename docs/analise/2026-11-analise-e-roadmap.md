@@ -136,7 +136,7 @@ muda (`sinan/api/cache.py:16-21`).
 ### 1.7 Perfis de usuário
 
 O código **não distingue perfis**: não há login nem conceito de usuário. Qualquer pessoa que abre o
-painel pode consultar, exportar fichas, baixar e apagar dados. O público, pelo `CLAUDE.md` (seção 3),
+painel pode consultar, exportar fichas, baixar e apagar dados. O público, pelas regras do projeto,
 são profissionais de saúde e gestores, não programadores.
 
 ### 1.8 O que hoje pressupõe uso local
@@ -144,7 +144,7 @@ são profissionais de saúde e gestores, não programadores.
 | Pressuposto | Evidência | Consequência ao publicar |
 |---|---|---|
 | Servidor escuta só na própria máquina | `iniciar.py:44` (`127.0.0.1`) | precisa de outra forma de subir o servidor |
-| Só aceita pedidos com `Host` igual a `localhost` | `sinan/api/seguranca.py:20`, `sinan/api/seguranca.py:31-33` | atrás de um domínio público, **todo pedido recebe 403** |
+| Só aceita pedidos com `Host` igual a `localhost` | `sinan/api/seguranca.py:20`, `sinan/api/seguranca.py:31-36` | atrás de um proxy com o domínio público, **todo pedido recebe 403**; com HTTPS, todo POST recebe 403 pela checagem de origem `http://` |
 | Sem login | nenhuma rota usa autenticação (`sinan/api/rotas/`) | qualquer visitante faz tudo |
 | Uma pasta de dados fixa | `sinan/config.py:17` | não dá para separar dados por instalação sem mudar código |
 | Uma atualização por vez, estado global | `sinan/api/tarefa.py:15`, `sinan/api/tarefa.py:46-48` | a escolha de um usuário muda a configuração de todos (`sinan/api/tarefa.py:49`) |
@@ -285,9 +285,12 @@ ao recarregar a página (`web/js/nucleo/estado.js:28`).
 Para uso local, a proteção é correta e testada: `ProtecaoLocal` recusa outros `Host`, outras origens
 e POST que não seja JSON (`sinan/api/seguranca.py:31-41`, `tests/test_api.py:71-91`); a entrada é
 validada (`sinan/api/rotas/dados.py:31-62`) e o SQL usa parâmetros (`sinan/consultas.py:109-127`). Para a
-internet, não há login nem perfis. Pior: atrás de um domínio público **todo pedido recebe 403**
-(medido: `Host: painel.exemplo.gov.br` → 403), porque a lista de hosts aceitos só tem `localhost`
-(`sinan/api/seguranca.py:20`). Para publicar, alguém terá que mexer nessa proteção, e afrouxá-la sem
+internet, não há login nem perfis. Pior: o painel não funciona publicado. O servidor só escuta em
+`127.0.0.1` (`iniciar.py:44`), então precisa de um proxy na frente. Se o proxy repassar o domínio
+público, **todo pedido recebe 403** (medido: `Host: painel.exemplo.gov.br` → 403), porque a lista de
+hosts aceitos só tem `localhost` (`sinan/api/seguranca.py:20`). Se o proxy repassar o host local, as
+consultas passam, mas **todo POST via HTTPS recebe 403**: a origem exigida é sempre `http://`
+(`sinan/api/seguranca.py:36`), e o navegador manda `https://`. Para publicar, alguém terá que mexer nessa proteção, e afrouxá-la sem
 colocar login no lugar abriria as rotas abaixo.
 
 **Riscos de publicação, rota a rota** (supondo a proteção ajustada para aceitar o domínio, sem login):
@@ -345,7 +348,7 @@ Outros pontos verificados no código:
 | G17 | 7 | Não atende | `web/js/componentes/graficos.js:5` | Não dá para salvar um gráfico como imagem nem imprimir a tela para uma reunião. |
 | G18 | 7 | Não atende | `web/js/componentes/alertas.js:8` | Ninguém é avisado quando os casos passam de um limite ou quando chegam dados novos. |
 | G19 | 8 | Atende em parte | `web/js/nucleo/estado.js:19-22` | Filtros favoritos e preferências não acompanham a pessoa entre computadores. |
-| G20 | 9 | Não atende | `sinan/api/seguranca.py:20` | O painel não abre atrás de um domínio público (403 em tudo). |
+| G20 | 9 | Não atende | `sinan/api/seguranca.py:20`, `sinan/api/seguranca.py:36` | O painel não funciona publicado: 403 em tudo com o domínio público, ou 403 em todo POST com HTTPS. |
 | G21 | 9 | Não atende | `sinan/api/rotas/dados.py:109-129` | Qualquer visitante poderia apagar dados ou disparar downloads. |
 | G22 | 9 | Não atende | – | Não há login nem perfis (consulta e administração). |
 | G23 | 9 | Não atende | `sinan/api/rotas/registros.py:29-64` | Fichas individuais ficariam abertas a qualquer pessoa na internet. |
@@ -435,6 +438,7 @@ Esforço: **P** até 1 dia, **M** de 2 a 5 dias, **G** mais de 1 semana, para um
 **Suposição:** as estimativas de esforço incluem os testes e a atualização do `README.md`, e não incluem
 infraestrutura do servidor (domínio, certificado, máquina).
 
+A numeração vai de N01 a N30 sem N23 (o item foi incorporado à N22), num total de 29 fichas.
 Marcadores no título: **Pré-requisito de publicação** (o painel não pode ir para a internet sem isso)
 e **Correção** (defeito, não funcionalidade nova).
 
@@ -442,7 +446,7 @@ e **Correção** (defeito, não funcionalidade nova).
 
 #### N01 — Endereço público configurável · Pré-requisito de publicação
 - **Descrição:** o servidor passa a aceitar o domínio onde for publicado e a rodar atrás de um proxy com HTTPS, definidos numa configuração; sem ela, continua só local.
-- **Problema que resolve:** hoje o painel não abre fora do computador (403 em todo pedido).
+- **Problema que resolve:** hoje o painel não funciona fora do computador (403 em todo pedido com o domínio público, ou em todo POST com HTTPS).
 - **Origem:** G20
 - **Impacto:** Alto — sem isso não há publicação.
 - **Esforço:** M — mexe na proteção de segurança, que tem testes, e precisa de um guia de implantação.
@@ -804,7 +808,7 @@ e **Correção** (defeito, não funcionalidade nova).
 
 | Proposta | Motivo |
 |---|---|
-| Trocar o painel pelo Metabase | a edição aberta do Metabase usa licença AGPL, proibida no projeto (`CLAUDE.md`, seção 6); login com perfis, restrição de linhas e registro de acessos são pagos (seção 3.3) |
+| Trocar o painel pelo Metabase | a edição aberta do Metabase usa licença AGPL, proibida pelas regras do projeto; login com perfis, restrição de linhas e registro de acessos são pagos (seção 3.3) |
 | Trocar o painel pelo Power BI | licença comercial e por usuário; o relatório público desliga a restrição por perfil; não funciona offline (quebra o modo local) |
 | Dados em tempo real | o DATASUS publica os arquivos do SINAN periodicamente por FTP; não há fonte em tempo real para consumir. A atualização agendada (N06) cobre a necessidade |
 
@@ -844,7 +848,7 @@ Dentro de cada fase, a ordem respeita as dependências das fichas.
 
 Critérios de aceite da Fase 0:
 
-1. Com o domínio configurado, `/api/meta` responde 200 para esse domínio e 403 para qualquer outro (teste em `tests/test_api.py`).
+1. Com o domínio configurado, `/api/meta` responde 200 para esse domínio e 403 para qualquer outro, e um POST com `Origin: https://<domínio>` é aceito (testes em `tests/test_api.py`).
 2. Um visitante sem login recebe recusa em `/api/dados/remover`, `/api/dados/atualizar`, `/api/dados/listar`, `/api/registros` e na exportação de fichas, e consegue usar `/api/visao`, `/api/mapa` e `/api/perfil` (um teste para cada rota).
 3. Um perfil restrito a uma UF não vê números de outra UF em nenhuma rota (teste).
 4. Uma exportação acima do limite recebe mensagem clara em português; com 10 exportações simultâneas, `/api/visao` de outra pessoa responde em menos de 1 s (medição como na seção 2.4).
@@ -926,7 +930,7 @@ licenças permitidas.
 Respostas que mudam o roadmap. Os itens marcados com "A validar" precisam de resposta antes da Fase 0.
 
 1. **Suposição:** o modo local (dois cliques, sem internet) continua existindo ao lado do modo publicado.
-   Depende disso: todas as fichas dizem "Modo de uso"; se o local acabar, N08 perde sentido e o `CLAUDE.md` muda.
+   Depende disso: todas as fichas dizem "Modo de uso"; se o local acabar, N08 perde sentido e as regras do projeto mudam.
 2. **A validar:** onde o sistema será hospedado e quem o administra (máquina, domínio, certificado, cópias de segurança).
    Depende disso: N01, N06 e o esforço real da Fase 0.
 3. **A validar:** quem pode acessar (aberto ao público ou só com login) e quais perfis existem além de "consulta" e
