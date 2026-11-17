@@ -1,8 +1,14 @@
 # Instruções para o assistente neste projeto
 
-Painel offline dos dados do SINAN/DATASUS (doenças e agravos de notificação). Ele roda no
-computador do usuário (Windows), abre com dois cliques em `ABRIR_DASHBOARD.bat` e só usa a
-internet para instalar e baixar dados.
+Painel dos dados do SINAN/DATASUS (doenças e agravos de notificação), com dois modos:
+
+- **local** (padrão): roda no computador do usuário (Windows), abre com dois cliques em
+  `ABRIR_DASHBOARD.bat` e só usa a internet para instalar e baixar dados;
+- **publicado** (`SINAN_MODO=publico`): roda numa VPS do grupo PRISM/UFRR atrás de um proxy com
+  HTTPS, aberto a qualquer pessoa, **só leitura e só números agregados**. Os dados são
+  atualizados por uma tarefa agendada com o `baixar_dados.py`.
+
+Decisões e roadmap: `docs/analise/2026-11-analise-e-roadmap.md`, seção 7.
 
 ## 1. Regra mais importante: nunca se citar
 
@@ -44,8 +50,12 @@ internet para instalar e baixar dados.
     texto principal.
 - Converse com o usuário **em português**, de forma direta. Explique termos técnicos quando
   precisar usá-los.
-- Instalação e uso precisam continuar funcionando **com dois cliques nos `.bat`** e **sem
-  internet** depois que os dados forem baixados.
+- No modo local, instalação e uso precisam continuar funcionando **com dois cliques nos `.bat`**
+  e **sem internet** depois que os dados forem baixados. Toda mudança para o modo publicado fica
+  atrás de `SINAN_MODO` e não pode quebrar o modo local.
+- No modo publicado, **nenhuma ficha individual sai do servidor**: nada de `/api/registros`,
+  exportação de fichas, rotas de `/api/dados/*` nem `/api/docs`. Isso só muda com decisão do
+  encarregado de dados (LGPD) da instituição.
 
 ## 4. Como rodar
 
@@ -103,7 +113,7 @@ que todo import existe.
   dados".
 - **Segurança da API local:** valores do usuário vão para o SQL sempre como parâmetro `?`. O
   código do agravo passa por `consultas.validar_agravo()`. POST só com JSON. Não afrouxe o
-  `ProtecaoLocal`.
+  `ProtecaoLocal`: o único jeito de aceitar outro domínio é a lista de hosts do modo publicado.
 - **Rotas pesadas são funções síncronas** (`def`), que o FastAPI roda em threads. Não as
   transforme em `async def` com trabalho bloqueante dentro.
 - **Não guarde tabelas grandes no cache** (`api/cache.memo`): só resultados agregados. Paginação é
