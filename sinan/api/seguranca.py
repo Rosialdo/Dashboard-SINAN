@@ -15,12 +15,16 @@ class ProtecaoLocal:
     - POST só com ``Content-Type: application/json``: o navegador é obrigado a
       pedir permissão (CORS) antes de enviar isso de outro site, e o servidor
       nunca dá essa permissão.
+
+    No modo publicado (``hosts_extras`` não vazio) aceita também esses domínios,
+    com origem ``https://``, e só pedidos de leitura (GET, HEAD, OPTIONS).
     """
 
     HOSTS = {"localhost", "127.0.0.1", "[::1]"}
 
-    def __init__(self, app: ASGIApp) -> None:
+    def __init__(self, app: ASGIApp, hosts_extras: frozenset[str] = frozenset()) -> None:
         self.app = app
+        self.hosts_extras = hosts_extras
 
     @staticmethod
     def _nome_host(host: str) -> str:
@@ -30,11 +34,14 @@ class ProtecaoLocal:
 
     def motivo_bloqueio(self, metodo: str, cab: dict[str, str]) -> str | None:
         host = cab.get("host", "")
-        if self._nome_host(host) not in self.HOSTS:
+        if self._nome_host(host).lower() not in self.HOSTS | self.hosts_extras:
             return "Host não permitido."
         origem = cab.get("origin")
-        if origem is not None and origem != f"http://{host}":
+        # atrás do proxy com HTTPS o navegador manda https://, e o Host pode ser o local
+        if origem is not None and origem != f"http://{host}" and origem not in {f"https://{h}" for h in self.hosts_extras}:
             return "Origem não permitida."
+        if self.hosts_extras and metodo not in ("GET", "HEAD", "OPTIONS"):
+            return "Ação não permitida."
         if metodo not in ("GET", "HEAD", "OPTIONS"):
             tipo = cab.get("content-type", "").split(";", 1)[0].strip().lower()
             if tipo != "application/json":
