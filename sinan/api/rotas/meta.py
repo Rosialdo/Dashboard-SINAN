@@ -11,7 +11,7 @@ from ... import config
 from ... import consultas as cq
 from ...processar import FAIXAS, ler_inventario
 from ..filtros import ARBOVIROSES, UF_NOME, anos, area_base, lista, ufs_presentes
-from ..respostas import json_resp, registros
+from ..respostas import ErroUsuario, json_resp, registros
 
 router = APIRouter(tags=["Geral"])
 
@@ -46,16 +46,17 @@ def api_meta():
     })
 
 
-_geo: dict = {}
+_geo: dict = {}  # só o arquivo completo: guardar cada combinação de UFs encheria a memória
 
 
 @router.get("/geo", summary="Contorno dos municípios das UFs (GeoJSON)")
 def api_geo(ufs: str = ""):
-    chave = tuple(sorted(lista(ufs)))
-    if chave not in _geo:
-        if "geo" not in _geo:
-            _geo["geo"] = json.loads(config.ARQ_MAPA.read_text(encoding="utf-8"))
-        codigos = {cod for cod, sigla in config.UFS.items() if sigla in chave}
-        feats = [f for f in _geo["geo"]["features"] if f["properties"]["cod6"][:2] in codigos]
-        _geo[chave] = {"type": "FeatureCollection", "features": feats}
-    return json_resp(_geo[chave])
+    pedidas = set(lista(ufs))
+    desconhecidas = pedidas - set(config.UFS.values())
+    if desconhecidas:
+        raise ErroUsuario(f"UF desconhecida: {', '.join(sorted(desconhecidas))}")
+    if "geo" not in _geo:
+        _geo["geo"] = json.loads(config.ARQ_MAPA.read_text(encoding="utf-8"))
+    codigos = {cod for cod, sigla in config.UFS.items() if sigla in pedidas}
+    feats = [f for f in _geo["geo"]["features"] if f["properties"]["cod6"][:2] in codigos]
+    return json_resp({"type": "FeatureCollection", "features": feats})
