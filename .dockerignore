@@ -1,0 +1,11 @@
+# Só entra na imagem o que está listado com "!" (dados, .env e .git ficam de fora)
+*
+!pyproject.toml
+!uv.lock
+!.python-version
+!sinan/
+!web/
+!referencia/
+!baixar_dados.py
+!scripts/atualizar_servidor.sh
+**/__pycache__
