@@ -154,3 +154,25 @@ def test_mesma_resposta_sempre(cliente):
         respostas.add(cliente.get("/api/registros?agravo=ACBI&contagem=todas&pagina=3").content)
         respostas.add(cliente.get("/api/perfil?agravo=ACBI").content)
     assert len(respostas) == 2  # uma resposta de registros e uma de perfil, sempre iguais
+
+
+# ---------------------------------------------------------------- contorno do mapa
+def test_geo_recusa_uf_desconhecida(cliente):
+    r = cliente.get("/api/geo?ufs=ZZ")
+    assert r.status_code == 400 and "UF" in r.json()["erro"]
+
+
+def test_geo_memoria_limitada(cliente):
+    from itertools import combinations
+
+    from sinan import config
+    from sinan.api.rotas import meta
+    pares = list(combinations(sorted(config.UFS.values()), 2))[:50]
+    for a, b in pares:
+        assert cliente.get(f"/api/geo?ufs={a},{b}").status_code == 200
+    assert len(meta._geo) <= 28
+
+
+def test_geo_filtra_as_ufs_pedidas(cliente):
+    feats = cliente.get("/api/geo?ufs=PR").json()["features"]
+    assert feats and all(f["properties"]["cod6"].startswith("41") for f in feats)
