@@ -53,9 +53,13 @@ Decisões e roadmap: `docs/analise/2026-11-analise-e-roadmap.md`, seção 7.
 - No modo local, instalação e uso precisam continuar funcionando **com dois cliques nos `.bat`**
   e **sem internet** depois que os dados forem baixados. Toda mudança para o modo publicado fica
   atrás de `SINAN_MODO` e não pode quebrar o modo local.
-- No modo publicado, **nenhuma ficha individual sai do servidor**: nada de `/api/registros`,
-  exportação de fichas, rotas de `/api/dados/*` nem `/api/docs`. Isso só muda com decisão do
-  encarregado de dados (LGPD) da instituição.
+- No modo publicado, **nenhuma ficha individual sai do servidor, nem com login**: nada de
+  `/api/registros`, exportação de fichas, rotas de `/api/dados/*` nem `/api/docs`. Quem precisa
+  analisar ficha por ficha usa o modo local.
+- No modo publicado, **com um município escolhido, as variáveis sensíveis não aparecem**: gestação,
+  evolução do caso (óbito), hospitalização e doença relacionada ao trabalho (`servicos.CAMPOS_SENSIVEIS`,
+  `Contexto.restrito`). A tabela e a exportação por município não têm óbitos. Toda tela ou rota nova
+  que mostre essas informações precisa respeitar a mesma regra.
 
 ## 4. Como rodar
 

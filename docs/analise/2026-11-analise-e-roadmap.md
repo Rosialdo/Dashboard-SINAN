@@ -1002,7 +1002,7 @@ N10 (acessibilidade por teclado) sai da Fase 0 e abre a Fase 2.
 | 1 | Modo local continua? | Sim. Cada mudança fica atrás de `SINAN_MODO`. | decidido |
 | 2 | Hospedagem | VPS do grupo de pesquisa PRISM da UFRR. | decidido |
 | 3 | Quem acessa | Aberto, sem login, na primeira etapa. Se um dia houver login, contas próprias (o gov.br exige credenciamento do órgão). | decidido |
-| 4 | Fichas na internet (LGPD) | Não, na primeira etapa. Quem precisa das fichas usa o modo local ou o TabWin. | **aguarda o encarregado de dados (DPO) da instituição** |
+| 4 | Fichas na internet (LGPD) | Não, nem com login (ver 7.5). Quem precisa das fichas usa o modo local ou o TabWin. | decidido em 19/11 |
 | 5 | Quem atualiza e quando | Cron semanal (segunda de madrugada). | decidido |
 | 6 | Usuários simultâneos | Um processo do Uvicorn. | decidido |
 | 7 | Régua de impacto e esforço | Aceita; N11 sobe para a Fase 1. | decidido |
@@ -1019,7 +1019,7 @@ N10 (acessibilidade por teclado) sai da Fase 0 e abre a Fase 2.
 - **Fase 1:** N16, N17, N11, N22, N15.
 - **Fase 2:** N10, N18, N20, N21, N26, N30; N24 só no navegador, sem conta.
 - **Fase 3:** N12, N13, N19, depois que a vigilância responder o ponto 11.
-- **Só se o ponto 4 mudar para "fichas com login":** N02, N07 e o N04 completo, como um bloco.
+- **Fora do escopo (decisão de 19/11, seção 7.5):** N02, N07 e o N04 completo (login, perfis e registro de acessos).
 - **Descartadas:** N14 (no lugar, link para o InfoDengue) e N28 (o InfoDengue já oferece API).
 - **Fora do horizonte:** N06 (substituída pelo cron), N25, N27, N29.
 
@@ -1044,3 +1044,40 @@ Atualização com o painel em uso: reprocessar a zika com `--forcar` enquanto 94
 
 O FTP do DATASUS derrubou uma vez o download da dengue (288 MB) por tempo esgotado. O script registrou
 o erro no log, baixou os outros agravos, e a execução seguinte retomou o download de onde parou.
+
+### 7.5 Privacidade e LGPD (19/11/2026)
+
+**Fichas individuais.** O site nunca mostra fichas, nem com login. Quando os autores precisarem analisar ficha por
+ficha, fazem isso no próprio computador, no modo local. Para um estudo de visualização, as fichas não trazem nada
+que os números agregados não deem, e trazem quase todo o risco. Login, perfis e registro de acessos (N02, N04
+completo e N07) saem do escopo. Os dados processados ficam num volume do Docker, fora do que o proxy entrega, e os
+`.dbc` baixados são apagados depois do processamento; o acesso ao servidor fica restrito aos autores. Gerar só as
+tabelas agregadas e publicar só elas seria o cenário mais seguro, e fica como possibilidade futura.
+
+**Comitê de Ética.** A Resolução CNS 510/2016 dispensa de registro no CEP pesquisas com bancos de dados agregados,
+sem possibilidade de identificação individual. **A validar:** ela trata de Ciências Humanas e Sociais; confirmar o
+enquadramento com o CEP da UFRR antes de contar com a dispensa.
+
+**Variáveis sensíveis no recorte por município.** No site publicado, com um município escolhido, não aparecem:
+gestação, evolução do caso (óbito por dengue ou por outra causa), hospitalização e doença relacionada ao trabalho.
+Somem os quadros de óbitos e letalidade, os de evolução e hospitalização do perfil e essas variáveis na tela
+"Outras variáveis". A tabela e a exportação por município não têm a coluna de óbitos, porque óbito por município
+é o mesmo detalhe, mesmo sem filtro. Continuam visíveis por município: totais, sexo, faixa etária, raça/cor,
+escolaridade, classificação final e exames. Não há corte numérico ("menos de 5"), então todos os números que
+aparecem são exatos e comparáveis com o TabNet.
+
+- Igual ao TabNet (opção 1) foi descartado: a facilidade que o painel acrescenta é o que cria o risco novo.
+- "Menos de 5" (opção 2) foi descartado: exige esconder outros valores em todas as telas para o número escondido
+  não ser descoberto pela diferença, e os números deixariam de bater com o TabNet.
+
+**Risco que sobra.** No recorte estadual, uma combinação como "óbito, sexo feminino, 20 a 29 anos" ainda pode dar
+1 caso. Em geral esse caso já foi divulgado pelo boletim da SESAU ou pela imprensa; é um risco aceito para o
+estudo. Se houver incômodo, aplicar o corte "menos de 5" só às variáveis sensíveis no recorte estadual.
+
+**Quem visita o site.** Sem cookies e sem ferramenta de estatística de visitas. A decisão previa guardar os logs
+com IP por 30 dias, mas a implantação com Docker já é mais restrita: o proxy e o painel rodam sem log de acesso
+e não guardam o IP de ninguém (`deploy/caddy/Caddyfile`, `Dockerfile`). O aviso de privacidade, na tela "Sobre os
+dados" do site publicado, diz isso. Sobre o Marco Civil: a guarda obrigatória de 6 meses vale para provedor de
+aplicações constituído como pessoa jurídica, com fins econômicos; um estudo acadêmico mantido pelos autores não
+parece se encaixar. **A validar:** se o servidor estiver em nome de uma empresa de algum autor, confirmar com
+quem entende de direito.
