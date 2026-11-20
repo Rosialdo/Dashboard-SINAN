@@ -195,7 +195,7 @@ function desenharLateral(d) {
     <div class="mini-kpis">
       <div><div class="r">Incidência</div><div class="v">${fmt(inc, 1)}</div><div class="s">por 100 mil hab./ano</div></div>
       <div><div class="r">${cap(termo())}</div><div class="v">${fmt(casos)}</div></div>
-      <div><div class="r">Óbitos</div><div class="v">${fmt(obitos)}</div></div>
+      ${obitos === null || obitos === undefined ? "" : `<div><div class="r">Óbitos</div><div class="v">${fmt(obitos)}</div></div>`}
     </div>
     ${!f.mun && estado.mapaSel ? `<p class="card-sub" style="margin-top:14px">Clique de novo no município para voltar ao total da área.</p>` : ""}
     <div class="acao"><button class="btn btn-prim btn-grande" id="ver-perfil"><span class="rot">${ico("vars")}${botao}</span>${ico("direita")}</button></div>`;
@@ -210,7 +210,8 @@ function tabelaMunicipios(d) {
   const el = $("#tab-mun");
   let ordem = { col: "casos", desc: true }, busca = "";
   const cols = [["municipio", "Município"], ["uf", "UF"], ["casos", cap(termo()), "num"],
-                ["incidencia", "Incidência (por 100 mil hab./ano)", "num"], ["obitos", "Óbitos", "num"], ["populacao", "População média", "num"]];
+                ["incidencia", "Incidência (por 100 mil hab./ano)", "num"], ["obitos", "Óbitos", "num"], ["populacao", "População média", "num"]]
+    .filter(([c]) => c !== "obitos" || !estado.meta.publico); // site publicado: sem óbitos por município
   const desenhar = () => {
     let linhas = d.municipios.filter((r) => !busca || norm(r.municipio).includes(norm(busca)));
     linhas = [...linhas].sort((a, b) => {
@@ -220,9 +221,9 @@ function tabelaMunicipios(d) {
     });
     el.innerHTML = `<div class="tabela-wrap"><table><thead><tr>${cols.map(([c, r, cl]) =>
       `<th class="ord ${cl || ""}" data-col="${c}" aria-sort="${ordem.col === c ? (ordem.desc ? "descending" : "ascending") : "none"}">${r}${ordem.col === c ? (ordem.desc ? " ↓" : " ↑") : ""}</th>`).join("")}</tr></thead>
-      <tbody>${linhas.map((r) => `<tr><td>${esc(r.municipio)}</td><td>${esc(r.uf)}</td><td class="num">${fmt(r.casos)}</td>
-        <td class="num">${fmt(r.incidencia, 1)}</td><td class="num">${fmt(r.obitos)}</td><td class="num">${fmt(r.populacao)}</td></tr>`).join("")
-        || `<tr><td colspan="6">Nenhum município encontrado.</td></tr>`}</tbody></table></div>`;
+      <tbody>${linhas.map((r) => `<tr>${cols.map(([c, , cl]) => `<td class="${cl || ""}">${
+          c === "municipio" || c === "uf" ? esc(r[c]) : fmt(r[c], c === "incidencia" ? 1 : 0)}</td>`).join("")}</tr>`).join("")
+        || `<tr><td colspan="${cols.length}">Nenhum município encontrado.</td></tr>`}</tbody></table></div>`;
     $$("th.ord", el).forEach((th) => th.onclick = () => {
       const col = th.dataset.col;
       ordem = { col, desc: ordem.col === col ? !ordem.desc : col !== "municipio" && col !== "uf" };

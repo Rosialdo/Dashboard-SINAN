@@ -55,6 +55,7 @@ export async function montar(raiz, pedido) {
       $("#var-titulo").textContent = d.rotulo;
       $("#var-sub").textContent = `${fmt(total)} ${termo()}`;
       $("#var-sub").title = `No TabNet: ${d.rotulo_tabnet} (campo ${d.campo})`;
+      if (d.aviso) { $("#var-sub").textContent = ""; $("#var-corpo").innerHTML = vazioHtml(d.aviso); return; }
       $("#var-corpo").innerHTML = barrasHtml(d.valores, total);
     } catch (e) { $("#var-corpo").innerHTML = erroHtml(e); }
   };

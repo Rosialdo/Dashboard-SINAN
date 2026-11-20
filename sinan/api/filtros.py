@@ -10,7 +10,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Annotated, Literal
 
-from fastapi import Depends
+from fastapi import Depends, Request
 
 from .. import agravos as cat
 from .. import config
@@ -33,6 +33,12 @@ class Contexto:
     """Filtro da consulta + área usada no cálculo da população (UFs)."""
     filtro: cq.Filtro
     area: tuple[str, ...]
+    publico: bool = False
+
+    @property
+    def restrito(self) -> bool:
+        """Site publicado com município escolhido: variáveis sensíveis não aparecem (privacidade)."""
+        return self.publico and bool(self.filtro.municipios)
 
 
 def lista(valor: str | None) -> tuple[str, ...]:
@@ -54,6 +60,7 @@ def ufs_presentes(agravo: str) -> list[str]:
 
 
 def contexto(
+    request: Request,
     agravo: str = "DENG",
     ini: int | None = None,
     fim: int | None = None,
@@ -78,7 +85,7 @@ def contexto(
     f = cq.Filtro(agravo, min(ini, fim), max(ini, fim), local != "not",
                   lista(ufs), lista(mun), contagem, lista(sexo), lista(faixa))
     area = list(f.ufs) or area_base() or ufs_presentes(agravo)[:1]
-    return Contexto(f, tuple(area))
+    return Contexto(f, tuple(area), request.app.state.publico)
 
 
 # atalho para as rotas: ``def api_visao(ctx: Filtros)``

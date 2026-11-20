@@ -4,6 +4,8 @@ import { agravoAtual, termo } from "../nucleo/filtros.js";
 import { ico } from "../nucleo/icones.js";
 import { cap, dataBR, esc, fmt } from "../nucleo/util.js";
 
+export const PRIVADO = "Não mostrado no recorte por município, para proteger a privacidade das pessoas.";
+
 /** Um quadro. ``ajuda`` aparece no ícone "i". */
 export function kpi(rotulo, valor, ajuda, sub = "", pilula = "") {
   return `<div class="card kpi"><div class="kpi-rotulo">${rotulo}
@@ -15,6 +17,7 @@ export function kpi(rotulo, valor, ajuda, sub = "", pilula = "") {
 export function htmlKpis(ind) {
   const ag = agravoAtual();
   const t = termo();
+  const privado = ind.obitos === null; // site publicado com município escolhido
   const pct = ind.notificacoes ? 100 * ind.confirmados / ind.notificacoes : null;
   const conf = ag.todos_casos
     ? kpi("Casos", fmt(ind.confirmados), "Para este agravo toda notificação é um caso.")
@@ -32,8 +35,10 @@ export function htmlKpis(ind) {
   return `<section class="kpis" aria-label="Indicadores">
     ${kpi("Notificações", fmt(ind.notificacoes), "Total de fichas notificadas no período e área, qualquer que seja a classificação.")}
     ${conf}${inc}
-    ${kpi("Óbitos", fmt(ind.obitos), "Óbitos pelo agravo notificado entre os casos confirmados (não inclui óbito por outras causas).")}
-    ${kpi("Letalidade", ind.letalidade === null ? "–" : `${fmt(ind.letalidade, 2)}%`, "Óbitos pelo agravo ÷ casos confirmados × 100.")}
+    ${kpi("Óbitos", fmt(ind.obitos), privado ? PRIVADO : "Óbitos pelo agravo notificado entre os casos confirmados (não inclui óbito por outras causas).",
+          privado ? "não mostrado por município" : "")}
+    ${kpi("Letalidade", ind.letalidade === null ? "–" : `${fmt(ind.letalidade, 2)}%`, privado ? PRIVADO : "Óbitos pelo agravo ÷ casos confirmados × 100.",
+          privado ? "não mostrado por município" : "")}
     ${hosp}
   </section>`;
 }

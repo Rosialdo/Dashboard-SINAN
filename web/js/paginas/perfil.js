@@ -3,7 +3,7 @@
 import { barrasHtml } from "../componentes/barras.js";
 import { erroHtml, esqueleto } from "../componentes/blocos.js";
 import { definirRedesenho, layoutBase, plot } from "../componentes/graficos.js";
-import { mostrarKpis } from "../componentes/kpis.js";
+import { mostrarKpis, PRIVADO } from "../componentes/kpis.js";
 import { api } from "../nucleo/api.js";
 import { estado } from "../nucleo/estado.js";
 import { agravoAtual, query, termo } from "../nucleo/filtros.js";
@@ -37,7 +37,9 @@ export async function montar(raiz, pedido) {
   mostrarKpis(d.indicadores);
   for (const k of QUADROS) {
     const el = $(`#b-${k}`);
-    if (el) el.innerHTML = d[k].length ? barrasHtml(d[k]) : `<p class="card-sub">Sem informação.</p>`;
+    if (!el) continue;
+    if (d[k] === null) el.innerHTML = `<p class="card-sub">${PRIVADO}</p>`; // site publicado, recorte por município
+    else el.innerHTML = d[k].length ? barrasHtml(d[k]) : `<p class="card-sub">Sem informação.</p>`;
   }
   const desenhar = () => piramide(d.piramide);
   desenhar();
