@@ -29,6 +29,10 @@ def api_variavel(ctx: Filtros, id: Annotated[int, Query(ge=0)] = 0):
     if not vs:
         return json_resp({"rotulo": "", "valores": []})
     v = vs[min(id, len(vs) - 1)]
+    nome = rotulos.nome_amigavel(v.rotulo, v.campo, v.cnv)
+    if ctx.restrito and v.campo in servicos.CAMPOS_SENSIVEIS:
+        return json_resp({"rotulo": nome, "rotulo_tabnet": v.rotulo, "campo": v.campo, "valores": [],
+                          "aviso": servicos.AVISO_PRIVACIDADE})
 
     def calcular():
         conv = ler_cnv(v.cnv)
@@ -40,6 +44,6 @@ def api_variavel(ctx: Filtros, id: Annotated[int, Query(ge=0)] = 0):
         # "Não informado" vai para o fim da lista, depois das respostas de verdade
         d = servicos.simplificar(d, ordenar=False)
         d.loc[d["valor"] == rotulos.NAO_INFORMADO, "ordem"] = 1000
-        return {"rotulo": rotulos.nome_amigavel(v.rotulo, v.campo, v.cnv), "rotulo_tabnet": v.rotulo,
+        return {"rotulo": nome, "rotulo_tabnet": v.rotulo,
                 "campo": v.campo, "valores": registros(d.sort_values("ordem"))}
     return json_resp(cache.memo(("var", ctx, id), calcular))

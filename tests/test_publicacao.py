@@ -121,3 +121,59 @@ def test_meta_informa_modo_publico(cliente_publico):
 def test_meta_informa_modo_local(cliente):
     d = cliente.get("/api/meta").json()
     assert d["publico"] is False and d["telas_ocultas"] == []
+
+
+# ---------------------------------------------------------------- variáveis sensíveis por município
+@pytest.fixture
+def municipio(cliente_publico):
+    """Um município da amostra com casos."""
+    return cliente_publico.get("/api/mapa?agravo=ACBI&contagem=todas").json()["municipios"][0]["cod6"]
+
+
+def test_amostra_tem_variaveis_sensiveis(cliente_publico):
+    from sinan.api import servicos
+    campos = {v["campo"] for v in cliente_publico.get("/api/variaveis?agravo=ACBI").json()}
+    assert campos & servicos.CAMPOS_SENSIVEIS, campos  # sem isso os testes abaixo não provariam nada
+
+
+def test_publico_municipio_sem_obitos_nem_hospitalizacao(cliente_publico, municipio):
+    d = cliente_publico.get(f"/api/visao?agravo=ACBI&contagem=todas&mun={municipio}").json()
+    ind = d["indicadores"]
+    assert ind["obitos"] is None and ind["letalidade"] is None and ind["hospitalizados"] is None
+    assert ind["notificacoes"] > 0
+    assert all("obitos" not in r for r in d["ano"])
+
+
+def test_publico_estado_mostra_obitos(cliente_publico):
+    ind = cliente_publico.get("/api/visao?agravo=ACBI&contagem=todas").json()["indicadores"]
+    assert ind["obitos"] is not None
+
+
+def test_publico_municipio_perfil_sem_evolucao(cliente_publico, municipio):
+    d = cliente_publico.get(f"/api/perfil?agravo=ACBI&contagem=todas&mun={municipio}").json()
+    assert d["evolucao"] is None and d["hospitalizado"] is None
+    assert d["raca"] is not None
+
+
+def test_publico_municipio_variavel_sensivel_escondida(cliente_publico, municipio):
+    from sinan.api import servicos
+    lista = cliente_publico.get("/api/variaveis?agravo=ACBI").json()
+    sens = next(v for v in lista if v["campo"] in servicos.CAMPOS_SENSIVEIS)
+    comum = next(v for v in lista if v["campo"] not in servicos.CAMPOS_SENSIVEIS)
+    d = cliente_publico.get(f"/api/variavel?agravo=ACBI&contagem=todas&mun={municipio}&id={sens['id']}").json()
+    assert d["valores"] == [] and "privacidade" in d["aviso"]
+    assert cliente_publico.get(f"/api/variavel?agravo=ACBI&contagem=todas&mun={municipio}&id={comum['id']}").json()["valores"]
+    assert cliente_publico.get(f"/api/variavel?agravo=ACBI&contagem=todas&id={sens['id']}").json()["valores"]
+
+
+def test_publico_tabela_de_municipios_sem_obitos(cliente_publico):
+    linhas = cliente_publico.get("/api/mapa?agravo=ACBI&contagem=todas").json()["municipios"]
+    assert linhas and all("obitos" not in r for r in linhas)
+    csv = cliente_publico.get("/api/exportar?agravo=ACBI&formato=municipios").content.decode("utf-8-sig")
+    assert "Óbitos" not in csv.splitlines()[0]
+
+
+def test_local_municipio_continua_com_tudo(cliente, municipio):
+    d = cliente.get(f"/api/perfil?agravo=ACBI&contagem=todas&mun={municipio}").json()
+    assert d["evolucao"] is not None and d["indicadores"]["obitos"] is not None
+    assert "obitos" in cliente.get("/api/mapa?agravo=ACBI&contagem=todas").json()["municipios"][0]
