@@ -13,7 +13,7 @@ from pathlib import Path
 
 import pytest
 
-from sinan import config, consultas, download, processar
+from sinan import config, consultas, download, processar, srag
 from sinan.api import app, cache
 
 AMOSTRA = Path(__file__).parent / "fixtures" / "ACBIBR06.dbc"
@@ -29,7 +29,7 @@ def _redirecionar(mp: pytest.MonkeyPatch, raiz: Path) -> None:
         "ARQ_LISTAGEM_FTP": raiz / "listagem_ftp.json",
         "ARQ_CONFIG": raiz / "configuracao.json",
     }
-    for modulo in (config, processar, consultas, download):
+    for modulo in (config, processar, consultas, download, srag):
         for nome, valor in caminhos.items():
             if hasattr(modulo, nome):
                 mp.setattr(modulo, nome, valor)
@@ -60,3 +60,62 @@ def cliente(dados_teste):
 
     with TestClient(app, base_url="http://localhost:8501") as c:
         yield c
+
+
+def escrever_amostra_srag(caminho: Path, antiga: bool = False) -> Path:
+    """Parquet no formato do SIVEP-Gripe, sem dado real: 3 fichas de RR e 3 de SP.
+
+    ``antiga=False`` usa os tipos do arquivo de 2026 (datas em timestamp, códigos em decimal);
+    ``antiga=True`` imita anos antigos (data em texto dd/mm/aaaa ou date32, idade em texto).
+    """
+    import datetime as dt
+    from decimal import Decimal
+
+    import pyarrow as pa
+    import pyarrow.parquet as pq
+
+    datas = [dt.date(2026, 5, 9), dt.date(2026, 1, 1), dt.date(2026, 1, 4)] * 2
+    sem_pri = ["18", "53", "1"] * 2  # semana oficial de cada data
+    ufs = ["RR"] * 3 + ["SP"] * 3
+    mun = ["140010"] * 3 + ["355030"] * 3
+    classi = ["5", "1", None, "4", "2", "5"]
+    idade = ["30", "3", "70", "1", "45", "8"]
+    tp_idade = ["3", "2", "3", "1", "3", "3"]
+    colunas = {
+        "SG_UF_NOT": pa.array(ufs), "SG_UF": pa.array(ufs),
+        "ID_MUNICIP": pa.array(["BOA VISTA"] * 3 + ["SAO PAULO"] * 3),
+        "CO_MUN_NOT": pa.array(mun), "CO_MUN_RES": pa.array(mun),
+        "SEM_PRI": pa.array(sem_pri), "TP_IDADE": pa.array(tp_idade),
+        "CS_SEXO": pa.array(["F", "M", "F", "M", "F", "I"]), "CS_RACA": pa.array(["5", "4", "9", "1", "4", "2"]),
+        "CRITERIO": pa.array([Decimal(1), Decimal(3), None, Decimal(1), Decimal(1), Decimal(2)], pa.decimal128(3, 0)),
+        "EVOLUCAO": pa.array(["2", "1", None, "1", "3", "1"]),
+        "HOSPITAL": pa.array(["1", "1", "9", "1", "2", "1"]),
+    }
+    if antiga:
+        colunas["DT_NOTIFIC"] = pa.array(datas, pa.date32())
+        colunas["DT_SIN_PRI"] = pa.array([d.strftime("%d/%m/%Y") for d in datas])
+        colunas["NU_IDADE_N"] = pa.array(idade)
+        colunas["CLASSI_FIN"] = pa.array(classi)
+    else:
+        ts = [dt.datetime.combine(d, dt.time()) for d in datas]
+        colunas["DT_NOTIFIC"] = pa.array(ts, pa.timestamp("ns"))
+        colunas["DT_SIN_PRI"] = pa.array(ts, pa.timestamp("ns"))
+        colunas["NU_IDADE_N"] = pa.array([Decimal(i) for i in idade], pa.decimal128(3, 0))
+        colunas["CLASSI_FIN"] = pa.array([Decimal(c) if c else None for c in classi], pa.decimal128(38, 10))
+    pq.write_table(pa.table(colunas), caminho)
+    return caminho
+
+
+@pytest.fixture
+def amostra_srag(tmp_path):
+    return escrever_amostra_srag(tmp_path / "INFLUD26.parquet")
+
+
+@pytest.fixture
+def dados_srag(tmp_path, monkeypatch):
+    """Pasta de dados própria e vazia (nunca a ``dados_teste`` da sessão)."""
+    raiz = tmp_path / "dados"
+    _redirecionar(monkeypatch, raiz)
+    cache.limpar()
+    yield raiz
+    cache.limpar()

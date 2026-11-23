@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import json
 import time
-from collections.abc import Callable
+from collections.abc import Callable, Iterable
 from datetime import date, datetime
 from pathlib import Path
 
@@ -263,6 +263,62 @@ def remover(agravo: str, ano: int) -> None:
     _salvar_inventario(inv)
 
 
+# ------------------------------------------------------------- gravação
+def gravar_parquet(
+    lotes: Iterable[tuple[pd.DataFrame, pd.DataFrame]],
+    agravo: cat.Agravo,
+    ano: int,
+    colunas: list[str],
+) -> int:
+    """Grava os lotes ``(bruto, para_derivar)`` no Parquet do agravo/ano. Devolve o total de registros.
+
+    Escreve ao lado e troca de uma vez; sem registros, grava um arquivo vazio com o esquema completo.
+    """
+    destino = caminho_parquet(agravo.codigo, ano)
+    destino.parent.mkdir(parents=True, exist_ok=True)
+    temporario = destino.with_suffix(".tmp")
+    escritor = None
+    total = 0
+    try:
+        for bruto, para_derivar in lotes:
+            tabela = _tabela_arrow(bruto, derivar(para_derivar, agravo, ano), colunas)
+            if escritor is None:
+                escritor = pq.ParquetWriter(temporario, tabela.schema, compression="zstd")
+            escritor.write_table(tabela)
+            total += len(bruto)
+        if escritor is None:  # nenhum registro para as UFs escolhidas
+            vazio = pd.DataFrame(columns=colunas, dtype="object")
+            tabela = _tabela_arrow(vazio, derivar(vazio, agravo, ano), colunas)
+            escritor = pq.ParquetWriter(temporario, tabela.schema, compression="zstd")
+            escritor.write_table(tabela)
+    except BaseException:
+        if escritor is not None:
+            escritor.close()
+            escritor = None
+        temporario.unlink(missing_ok=True)
+        raise
+    finally:
+        if escritor is not None:
+            escritor.close()
+    temporario.replace(destino)
+    return total
+
+
+def registrar_inventario(agravo: str, ano: int, total: int, ufs: list[str], info: dict, arquivo: str) -> None:
+    inv = ler_inventario()
+    inv[f"{agravo}_{ano}"] = {
+        "agravo": agravo,
+        "ano": ano,
+        "registros": total,
+        "ufs": sorted(ufs),
+        "situacao": info.get("situacao", "?"),
+        "arquivo": info.get("arquivo", arquivo),
+        "data_ftp": info.get("data_ftp", ""),
+        "processado_em": datetime.now().isoformat(timespec="seconds"),
+    }
+    _salvar_inventario(inv)
+
+
 # ------------------------------------------------------------- principal
 def processar_dbc(
     caminho_dbc: Path,
@@ -298,11 +354,6 @@ def processar_dbc(
             raise ValueError("o arquivo não tem campo de UF nem de município, então não dá para "
                              "filtrar por UF. Escolha \"BR\" (Brasil inteiro) para este agravo.")
 
-        destino = caminho_parquet(agravo.codigo, ano)
-        destino.parent.mkdir(parents=True, exist_ok=True)
-        temporario = destino.with_suffix(".tmp")
-        escritor = None
-        total = 0
         lotes = iterar_dbf(
             caminho_dbf,
             filtro=None if todo_brasil else filtro,
@@ -310,44 +361,13 @@ def processar_dbc(
             progresso=lambda f: avisar(f, "lendo registros"),
         )
         try:
-            for lote in lotes:
-                lote = lote.reset_index(drop=True)
-                tabela = _tabela_arrow(lote, derivar(lote, agravo, ano), colunas)
-                if escritor is None:
-                    escritor = pq.ParquetWriter(temporario, tabela.schema, compression="zstd")
-                escritor.write_table(tabela)
-                total += len(lote)
-            if escritor is None:  # nenhum registro para as UFs escolhidas
-                vazio = pd.DataFrame(columns=colunas, dtype="object")
-                tabela = _tabela_arrow(vazio, derivar(vazio, agravo, ano), colunas)
-                escritor = pq.ParquetWriter(temporario, tabela.schema, compression="zstd")
-                escritor.write_table(tabela)
-        except BaseException:
-            if escritor is not None:
-                escritor.close()
-                escritor = None
-            temporario.unlink(missing_ok=True)
-            raise
+            total = gravar_parquet(((lote, lote) for lote in (l.reset_index(drop=True) for l in lotes)),
+                                   agravo, ano, colunas)
         finally:
             lotes.close()  # libera o arquivo mapeado (no Windows, senão não dá para apagar)
-            if escritor is not None:
-                escritor.close()
-        temporario.replace(destino)
     finally:
         caminho_dbf.unlink(missing_ok=True)
 
-    inv = ler_inventario()
-    info = info_ftp or {}
-    inv[f"{agravo.codigo}_{ano}"] = {
-        "agravo": agravo.codigo,
-        "ano": ano,
-        "registros": total,
-        "ufs": sorted(ufs),
-        "situacao": info.get("situacao", "?"),
-        "arquivo": info.get("arquivo", caminho_dbc.name),
-        "data_ftp": info.get("data_ftp", ""),
-        "processado_em": datetime.now().isoformat(timespec="seconds"),
-    }
-    _salvar_inventario(inv)
+    registrar_inventario(agravo.codigo, ano, total, ufs, info_ftp or {}, caminho_dbc.name)
     avisar(1.0, "concluído")
     return total
