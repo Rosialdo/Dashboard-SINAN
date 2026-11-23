@@ -50,6 +50,8 @@ def api_exportar(request: Request, ctx: Filtros,
     if formato == "municipios":
         t = servicos.tabela_municipios(f, area)[["municipio", "uf", "casos", "incidencia", "obitos", "populacao"]]
         t.columns = ["Município", "UF", "Casos", "Incidência por 100 mil hab./ano", "Óbitos", "População média"]
+        if ctx.publico:  # privacidade: óbitos por município não saem do site publicado
+            t = t.drop(columns="Óbitos")
         return anexo(_csv(t), f"{nome}_municipios.csv", CSV)
 
     completo = formato == "csv_completo"

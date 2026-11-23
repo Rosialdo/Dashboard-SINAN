@@ -17,10 +17,13 @@ def api_visao(ctx: Filtros):
     f = ctx.filtro
 
     def calcular():
+        ind, ano = servicos.indicadores(f, ctx.area), cq.por_ano(f)
+        if ctx.restrito:
+            ind, ano = servicos.sem_sensiveis(ind), ano.drop(columns="obitos")
         return {
-            "indicadores": servicos.indicadores(f, ctx.area),
+            "indicadores": ind,
             "semana": registros(cq.por_semana(f)),
-            "ano": registros(cq.por_ano(f)),
+            "ano": registros(ano),
             "mes": registros(cq.por_mes(f)),
         }
     return json_resp(cache.memo(("visao", ctx), calcular))
@@ -29,9 +32,12 @@ def api_visao(ctx: Filtros):
 @router.get("/mapa", summary="Casos e incidência por município")
 def api_mapa(ctx: Filtros):
     def calcular():
-        return {"indicadores": servicos.indicadores(ctx.filtro, ctx.area),
-                "municipios": registros(servicos.tabela_municipios(ctx.filtro, ctx.area)),
-                "area": list(ctx.area)}
+        ind, tabela = servicos.indicadores(ctx.filtro, ctx.area), servicos.tabela_municipios(ctx.filtro, ctx.area)
+        if ctx.restrito:
+            ind = servicos.sem_sensiveis(ind)
+        if ctx.publico:  # óbitos por município, mesmo sem filtro, também é detalhe municipal
+            tabela = tabela.drop(columns="obitos")
+        return {"indicadores": ind, "municipios": registros(tabela), "area": list(ctx.area)}
     return json_resp(cache.memo(("mapa", ctx), calcular))
 
 
@@ -40,14 +46,16 @@ def api_perfil(ctx: Filtros):
     f = ctx.filtro
 
     def calcular():
+        r = ctx.restrito
+        ind = servicos.indicadores(f, ctx.area)
         return {
-            "indicadores": servicos.indicadores(f, ctx.area),
+            "indicadores": servicos.sem_sensiveis(ind) if r else ind,
             "piramide": registros(cq.piramide(f)),
             "raca": servicos.contagem(f, "raca"),
             "situacao": servicos.contagem(f, "situacao", True),
             "classificacao": servicos.contagem(f, "classificacao", True),
-            "evolucao": servicos.contagem(f, "evolucao_caso"),
+            "evolucao": None if r else servicos.contagem(f, "evolucao_caso"),
             "criterio": servicos.contagem(f, "criterio_confirmacao"),
-            "hospitalizado": servicos.contagem(f, "hospitalizado"),
+            "hospitalizado": None if r else servicos.contagem(f, "hospitalizado"),
         }
     return json_resp(cache.memo(("perfil", ctx), calcular))

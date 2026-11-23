@@ -7,9 +7,21 @@ import pandas as pd
 from .. import agravos as cat
 from .. import consultas as cq
 from .. import rotulos
+from ..processar import CAMPOS_HOSP
 from ..tabnet import VariavelDef, ler_def
 from . import cache
 from .respostas import registros
+
+# ------------------------------------------------------------- privacidade
+# no site publicado, com um município escolhido, estas informações não aparecem:
+# num município pequeno elas poderiam identificar a pessoa (decisão de 19/11/2026)
+CAMPOS_SENSIVEIS = {"CS_GESTANT", "DOENCA_TRA", "EVOLUCAO", "TPALTA_N", "SITUA_ENCE", *CAMPOS_HOSP}
+AVISO_PRIVACIDADE = "Não mostrado no recorte por município, para proteger a privacidade das pessoas."
+
+
+def sem_sensiveis(ind: dict) -> dict:
+    """Indicadores sem óbitos, letalidade e hospitalização."""
+    return {**ind, "obitos": None, "letalidade": None, "hospitalizados": None, "hosp_informado": 0}
 
 
 # ------------------------------------------------------------- indicadores
