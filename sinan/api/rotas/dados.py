@@ -11,6 +11,7 @@ from ... import agravos as cat
 from ... import config
 from ... import consultas as cq
 from ...download import listagem_salva, listar_ftp
+from ...pipeline import arquivo_mudou
 from ...processar import ler_inventario, remover
 from .. import cache, tarefa
 from ..filtros import UF_NOME
@@ -72,7 +73,7 @@ def _situacao_dados() -> dict:
         info = arquivos.get(v["agravo"], {}).get(str(v["ano"]))
         if not info:
             status = "desconhecido"
-        elif info.get("data_ftp") != v.get("data_ftp") or info.get("situacao") != v.get("situacao"):
+        elif arquivo_mudou(v["agravo"], v, info):
             status = "nova"
         else:
             status = "em_dia"
@@ -81,6 +82,7 @@ def _situacao_dados() -> dict:
     return {
         "config": cfg,
         "listagem_em": (listagem or {}).get("atualizado_em"),
+        "listagem_falhas": (listagem or {}).get("falhas", []),
         "catalogo": [{"codigo": c, "nome": cat.nome(c),
                       "anos": sorted((int(a) for a in arquivos.get(c, {})), reverse=True),
                       "tamanhos": {a: i.get("tamanho", 0) for a, i in arquivos.get(c, {}).items()}}

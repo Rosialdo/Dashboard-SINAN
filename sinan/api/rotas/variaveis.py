@@ -4,21 +4,22 @@ from __future__ import annotations
 
 from typing import Annotated
 
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, Query, Request
 
 from ... import consultas as cq
 from ... import rotulos
 from ...tabnet import ler_cnv
 from .. import cache, servicos
-from ..filtros import Filtros
+from ..filtros import Filtros, so_local
 from ..respostas import json_resp, registros
 
 router = APIRouter(tags=["Variáveis da ficha"])
 
 
 @router.get("/variaveis", summary="Lista de variáveis da ficha, com nome amigável e grupo")
-def api_variaveis(agravo: str = "DENG"):
+def api_variaveis(request: Request, agravo: str = "DENG"):
     agravo = cq.validar_agravo(agravo)
+    so_local(request, agravo)
     return json_resp(cache.memo(("vars", agravo), lambda: servicos.lista_variaveis(agravo)))
 
 

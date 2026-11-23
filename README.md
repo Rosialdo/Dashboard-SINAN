@@ -65,6 +65,7 @@ incidência, semana epidemiológica) e os cuidados de interpretação.
 | Dado | Fonte |
 |---|---|
 | Notificações (microdados anonimizados) | FTP do DATASUS, `ftp.datasus.gov.br/dissemin/publicos/SINAN/DADOS` (pastas FINAIS e PRELIM) |
+| Síndrome respiratória aguda grave (SRAG), só no modo local | SIVEP-Gripe no OpenDataSUS, `dadosabertos.saude.gov.br/dataset/srag-2019-a-2026` (um Parquet nacional por ano) |
 | Rótulos das variáveis | Arquivos `.def`/`.cnv` do tabulador TabNet do SINAN (pasta `referencia/tabnet`) |
 | Municípios, população e mapa | IBGE: localidades, estimativas anuais (tabela 6579), Censo 2022 e malha municipal (pasta `referencia`) |
 
@@ -76,6 +77,9 @@ só as UFs escolhidas (por residência **ou** notificação) e apaga o original.
 - Os arquivos de **dengue** do DATASUS não incluem os casos descartados. Para dengue, "todas as
   notificações" equivale a casos prováveis.
 - Na **Amazônia Legal**, a malária é notificada no SIVEP-Malária, não no SINAN.
+- A **SRAG** vem do SIVEP-Gripe, não do SINAN: só casos internados ou óbitos, e os anos recentes mudam
+  toda semana. Não aparece no modo publicado. Baixe com `--agravos SRAG`. Se o FTP do DATASUS ou o
+  OpenDataSUS estiver fora do ar, a outra fonte continua atualizando.
 - Para validar números, compare com o TabNet: <http://tabnet.datasus.gov.br>.
 
 ---

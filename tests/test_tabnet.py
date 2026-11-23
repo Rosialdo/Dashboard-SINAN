@@ -33,3 +33,8 @@ def test_arquivo_inexistente():
     assert ler_cnv("nao_existe.cnv") is None
     assert ler_def("nao_existe.def") == []
     assert conversor_do_campo(None, "CLASSI_FIN") is None
+
+
+def test_nome_vazio_nao_le_a_pasta():
+    # agravos fora do SINAN (ex.: SRAG) não têm .def
+    assert ler_def("") == [] and ler_cnv("") is None

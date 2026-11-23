@@ -91,10 +91,12 @@ function htmlTela(d, sel) {
   const tamanho = d.catalogo.filter((c) => sel.agravos.has(c.codigo))
     .reduce((s, c) => s + [...sel.anos].reduce((t, a) => t + (c.tamanhos[a] || 0), 0), 0);
   const pronto = sel.ufs.size && sel.agravos.size && sel.anos.size;
+  // fontes sem tamanho conhecido (ex.: SRAG, do OpenDataSUS) ficam fora da estimativa
+  const semEstimativa = d.catalogo.filter((c) => sel.agravos.has(c.codigo) && [...sel.anos].some((a) => c.tamanhos[a] === 0)).map((c) => c.nome);
   return `
     <section class="card card-corpo" style="margin-bottom:14px">
       <div class="passos">
-        <div class="passo"><span class="n">1</span><div><b>Precisa de internet</b><br><span class="card-sub">Os arquivos vêm do FTP público do DATASUS.</span></div></div>
+        <div class="passo"><span class="n">1</span><div><b>Precisa de internet</b><br><span class="card-sub">Os arquivos vêm do FTP público do DATASUS (e a SRAG, do OpenDataSUS).</span></div></div>
         <div class="passo"><span class="n">2</span><div><b>Filtra e guarda</b><br><span class="card-sub">Só as UFs escolhidas ficam no computador (pasta dados/).</span></div></div>
         <div class="passo"><span class="n">3</span><div><b>Depois, offline</b><br><span class="card-sub">O painel funciona sem internet.</span></div></div>
       </div>
@@ -104,6 +106,7 @@ function htmlTela(d, sel) {
         <div class="card-titulo"><h2>O que baixar</h2>
           <button class="btn" id="consultar">${ico("atualizar")}Consultar DATASUS</button></div>
         <p class="card-sub">${d.listagem_em ? `Lista do DATASUS consultada em ${new Date(d.listagem_em).toLocaleString("pt-BR")}` : "Clique em “Consultar DATASUS” para ver os anos disponíveis."}</p>
+        ${d.listagem_falhas?.length ? `<div class="alerta">${ico("alerta")}<span>Não foi possível consultar agora: ${esc(d.listagem_falhas.join(", "))}. Mostrando a última lista salva dessa fonte.</span></div>` : ""}
         <div class="grupo" style="margin-top:14px"><span class="rotulo">UFs</span>
           <div class="opcoes-grade">${["BR", ...d.ufs].map((u) => `<button class="chip" data-s-uf="${u}" aria-pressed="${sel.ufs.has(u)}" title="${u === "BR" ? "Brasil inteiro (muito pesado)" : esc(d.ufs_nome[u])}">${u}</button>`).join("")}</div></div>
         <div class="grupo" style="margin-top:16px"><span class="rotulo">Anos</span>
@@ -119,7 +122,7 @@ function htmlTela(d, sel) {
       ${sel.ufs.has("BR") ? `<div class="alerta">${ico("alerta")}<span>Brasil inteiro gera arquivos grandes (a dengue de um único ano passa de 6 milhões de linhas). Prefira escolher UFs.</span></div>` : ""}
       <div class="card-titulo" style="align-items:center">
         <div><h2>${sel.agravos.size} agravo(s) · ${sel.anos.size} ano(s) · ${[...sel.ufs].join(", ") || "nenhuma UF"}</h2>
-          <p class="card-sub">${tamanho ? `Download estimado: ${fmt(tamanho / 1e6)} MB (arquivos nacionais; depois de filtrados ficam bem menores e os originais são apagados).` : "Só baixa o que mudou desde a última vez."}</p></div>
+          <p class="card-sub">${tamanho ? `Download estimado: ${fmt(tamanho / 1e6)} MB (arquivos nacionais; depois de filtrados ficam bem menores e os originais são apagados).` : "Só baixa o que mudou desde a última vez."}${semEstimativa.length ? ` (sem estimativa para: ${esc(semEstimativa.join(", "))})` : ""}</p></div>
         <div class="acoes-tabela"><label class="card-sub" style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="forcar">Baixar de novo mesmo se atualizado</label>
           <button class="btn btn-prim" id="iniciar" ${pronto && !d.job.rodando ? "" : "disabled"}>${ico("nuvem")}Baixar e processar</button></div>
       </div>

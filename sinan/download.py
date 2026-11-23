@@ -10,6 +10,7 @@ from datetime import datetime
 from ftplib import FTP, all_errors
 from pathlib import Path
 
+from . import srag
 from .config import ARQ_LISTAGEM_FTP, FTP_HOST, FTP_PASTAS, PASTA_BRUTOS, PASTA_DADOS
 
 PADRAO = re.compile(r"^([A-Z]+?)BR(\d{2})\.DBC$", re.I)
@@ -27,12 +28,13 @@ def _conectar() -> FTP:
     return ftp
 
 
-def listar_ftp() -> dict:
-    """Lista os arquivos disponíveis no FTP e salva a listagem para uso offline.
+# nomes das fontes mostrados na tela quando uma delas não responde
+FALHA_SINAN = "DATASUS"
+FALHA_SRAG = "OpenDataSUS (síndrome respiratória)"
 
-    Retorna {"atualizado_em": ..., "arquivos": {"DENG": {"2024": {...}}}}.
-    Se um ano existir em FINAIS e em PRELIM, vale o FINAIS.
-    """
+
+def _listar_sinan() -> dict[str, dict[str, dict]]:
+    """Arquivos do SINAN no FTP. Se um ano existir em FINAIS e em PRELIM, vale o FINAIS."""
     ftp = _conectar()
     arquivos: dict[str, dict[str, dict]] = {}
     try:
@@ -60,7 +62,36 @@ def listar_ftp() -> dict:
             ftp.quit()
         except all_errors:
             pass
-    listagem = {"atualizado_em": datetime.now().isoformat(timespec="seconds"), "arquivos": arquivos}
+    return arquivos
+
+
+def listar_ftp() -> dict:
+    """Lista os arquivos do SINAN (FTP) e do SRAG (OpenDataSUS) e salva a listagem para uso offline.
+
+    Retorna {"atualizado_em": ..., "arquivos": {"DENG": {"2024": {...}}, "SRAG": {...}}, "falhas": [...]}.
+    As duas fontes são consultadas separadamente: a que falhar fica com a última lista salva
+    e entra em "falhas". Só levanta erro quando as duas falham.
+    """
+    salva = (listagem_salva() or {}).get("arquivos", {})
+    falhas: list[str] = []
+    erros: list[str] = []
+    try:
+        arquivos = _listar_sinan()
+    except Exception as e:  # FTP do DATASUS fora do ar ou sem internet
+        arquivos = {k: v for k, v in salva.items() if k != "SRAG"}
+        falhas.append(FALHA_SINAN)
+        erros.append(str(e))
+    try:
+        arquivos["SRAG"] = srag.listar()
+    except Exception as e:
+        if "SRAG" in salva:
+            arquivos["SRAG"] = salva["SRAG"]
+        falhas.append(FALHA_SRAG)
+        erros.append(str(e))
+    if len(falhas) == 2:
+        raise ConnectionError("; ".join(erros))
+    listagem = {"atualizado_em": datetime.now().isoformat(timespec="seconds"), "arquivos": arquivos,
+                "falhas": falhas}
     PASTA_DADOS.mkdir(parents=True, exist_ok=True)
     ARQ_LISTAGEM_FTP.write_text(json.dumps(listagem, indent=1), encoding="utf-8")
     return listagem

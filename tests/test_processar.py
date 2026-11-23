@@ -133,3 +133,25 @@ def test_inventario_tenta_de_novo_se_o_arquivo_estiver_aberto(dados_teste, monke
     finally:
         monkeypatch.undo()
         processar._salvar_inventario(antes)
+
+
+def test_derivar_srag_usa_rotulos_proprios():
+    df = _ficha_dengue(CLASSI_FIN=["5", "1", None], CRITERIO=["1", "3", None],
+                       EVOLUCAO=["2", "3", "1"], HOSPITAL=["1", "2", "9"])
+    out = derivar(df, cat.obter("SRAG"), 2026)
+    assert out["classificacao"].tolist() == ["SRAG por covid-19", "SRAG por influenza", "Em investigação"]
+    assert out["criterio_confirmacao"].tolist()[:2] == ["Laboratorial", "Clínico"]
+    assert out["obito"].tolist() == [True, False, False]  # óbito por outras causas não conta
+    assert set(out["situacao"]) == {"Notificado"} and out["confirmado"].all()
+    assert out["hospitalizado"].tolist() == ["Sim", "Não", "Ign/Branco"]
+
+
+def test_classificacao_vazia_continua_ign_branco_no_sinan():
+    out = derivar(_ficha_dengue(CLASSI_FIN=[None]), cat.obter("DENG"), 2024)
+    assert out["classificacao"].iloc[0] == "Ign/Branco"
+
+
+def test_classificacao_vazia_segue_o_rotulo_oficial_do_tabnet():
+    # no classchik.cnv do TabNet, a classificação vazia é "Descartado": não pode virar "Ign/Branco"
+    out = derivar(_ficha_dengue(CLASSI_FIN=[None]), cat.obter("CHIK"), 2024)
+    assert out["classificacao"].iloc[0] == "Descartado"

@@ -59,6 +59,12 @@ def ufs_presentes(agravo: str) -> list[str]:
     return cache.memo(("ufs", agravo), lambda: cq.ufs_presentes(agravo))
 
 
+def so_local(request: Request, agravo: str) -> None:
+    """No site publicado, bases que não são do SINAN (ex.: SRAG) não respondem."""
+    if request.app.state.publico and agravo in cat.SO_LOCAL:
+        raise ErroUsuario(f"{cat.nome(agravo)} só está disponível no painel instalado no computador.")
+
+
 def contexto(
     request: Request,
     agravo: str = "DENG",
@@ -73,6 +79,7 @@ def contexto(
 ) -> Contexto:
     """Dependência do FastAPI com os filtros comuns a todas as telas do painel."""
     agravo = cq.validar_agravo(agravo)
+    so_local(request, agravo)
     disponiveis = anos(agravo)
     if not disponiveis:
         raise ErroUsuario(f"Não há dados de {cat.nome(agravo)} no computador.")

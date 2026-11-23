@@ -43,6 +43,8 @@ export function montar(raiz) {
       <li>Municípios pequenos têm incidências instáveis: poucos casos mudam muito a taxa.</li>
       <li>Os arquivos de dengue do DATASUS não trazem os casos descartados.</li>
       <li>Na Amazônia Legal, a malária é notificada no SIVEP-Malária, não no SINAN.</li>
+      <li>A síndrome respiratória aguda grave (SRAG) vem do SIVEP-Gripe (OpenDataSUS), não do SINAN. Inclui só casos internados ou óbitos, e os anos mais recentes mudam toda semana. Casos sem classificação aparecem como "Em investigação". Disponível apenas no painel instalado no computador.</li>
+      <li>Na SRAG de 2026, os boletins do SIVEP-Gripe numeram as semanas epidemiológicas uma à frente do SINAN. O painel usa a mesma regra do SINAN para todas as doenças.</li>
       <li>Para conferir números, compare com o TabNet: <a href="http://tabnet.datasus.gov.br" target="_blank" rel="noopener">tabnet.datasus.gov.br</a>.</li>
     </ul>
   </section>`);

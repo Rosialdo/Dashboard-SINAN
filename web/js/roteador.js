@@ -10,6 +10,7 @@ import { htmlCabecalho, htmlRodape, ligarExportar } from "./componentes/cabecalh
 import { htmlFiltros, ligarFiltros } from "./componentes/filtros.js";
 import { limparGraficos } from "./componentes/graficos.js";
 import { estado, PAGINAS } from "./nucleo/estado.js";
+import { agravoAtual } from "./nucleo/filtros.js";
 import { ico } from "./nucleo/icones.js";
 import { nomeMarca } from "./nucleo/meta.js";
 import { oculta, paginaAtual } from "./nucleo/navegacao.js";
@@ -57,6 +58,7 @@ export async function render() {
   montarMenu();
   $("#sidebar").classList.remove("aberta");
   document.title = `${PAGINAS[id].menu} · ${nomeMarca()}`;
+  $(".fonte").textContent = `Fonte: ${agravoAtual()?.fonte || "SINAN / DATASUS"}`;
   const raiz = $("#pagina");
   const p = PAGINAS[id];
 
