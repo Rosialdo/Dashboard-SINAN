@@ -88,7 +88,7 @@ def test_publico_sem_documentacao(cliente_publico):
     assert cliente_publico.get("/api/openapi.json").status_code == 404
 
 
-@pytest.mark.parametrize("rota", ["visao", "mapa", "perfil", "variavel"])
+@pytest.mark.parametrize("rota", ["visao", "mapa", "perfil", "variavel", "qualidade"])
 def test_publico_consultas_agregadas_funcionam(cliente_publico, rota):
     assert cliente_publico.get(f"/api/{rota}?agravo=ACBI").status_code == 200
 
@@ -206,3 +206,11 @@ def test_local_mostra_srag(cliente_local_com_srag):
     c = cliente_local_com_srag
     assert "SRAG" in [a["codigo"] for a in c.get("/api/meta").json()["agravos"]]
     assert c.get("/api/visao?agravo=SRAG").status_code == 200
+
+
+def test_publico_qualidade_com_municipio(cliente_publico, municipio):
+    geral = cliente_publico.get("/api/qualidade?agravo=ACBI").json()
+    d = cliente_publico.get(f"/api/qualidade?agravo=ACBI&mun={municipio}").json()
+    visao = cliente_publico.get(f"/api/visao?agravo=ACBI&contagem=todas&mun={municipio}").json()
+    assert d["notificacoes"] == visao["indicadores"]["notificacoes"] < geral["notificacoes"]
+    assert d["referencia"] == geral["referencia"] and len(d["prazos"]) == 4

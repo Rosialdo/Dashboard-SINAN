@@ -19,6 +19,7 @@ import * as atualizar from "./paginas/atualizar.js";
 import * as dados from "./paginas/dados.js";
 import * as mapa from "./paginas/mapa.js";
 import * as perfil from "./paginas/perfil.js";
+import * as qualidade from "./paginas/qualidade.js";
 import * as sobre from "./paginas/sobre.js";
 import * as variaveis from "./paginas/variaveis.js";
 import * as visao from "./paginas/visao.js";
@@ -27,6 +28,7 @@ const MONTADORES = {
   "visao-geral": visao.montar,
   "mapa": mapa.montar,
   "perfil": perfil.montar,
+  "qualidade": qualidade.montar,
   "variaveis": variaveis.montar,
   "dados": dados.montar,
   "atualizar": atualizar.montar,

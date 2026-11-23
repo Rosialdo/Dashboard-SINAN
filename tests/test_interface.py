@@ -108,3 +108,27 @@ def test_variaveis_continua_com_montador():
 def test_perfil_aponta_para_outras_variaveis():
     perfil = (WEB / "js" / "paginas" / "perfil.js").read_text(encoding="utf-8")
     assert 'href="#/variaveis"' in perfil
+
+
+def test_qualidade_no_menu_depois_do_perfil():
+    ids = [i for i, _ in _paginas()]
+    assert ("qualidade", "ANÁLISE") in _paginas()
+    assert ids.index("qualidade") == ids.index("perfil") + 1
+
+
+def test_qualidade_tem_montador():
+    roteador = (WEB / "js" / "roteador.js").read_text(encoding="utf-8")
+    assert '"qualidade": qualidade.montar' in roteador
+
+
+def test_qualidade_explica_base_e_referencia():
+    tela = (WEB / "js" / "paginas" / "qualidade.js").read_text(encoding="utf-8")
+    for texto in ("fichas avaliáveis", "sem data de encerramento registrada",
+                  "referência provisória", "dados disponíveis até"):
+        assert texto in tela
+
+
+def test_sobre_explica_os_prazos():
+    sobre = (WEB / "js" / "paginas" / "sobre.js").read_text(encoding="utf-8")
+    for texto in ("60 dias", "Digitação", "sem data de encerramento registrada", "referência provisória"):
+        assert texto in sobre

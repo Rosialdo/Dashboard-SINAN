@@ -215,6 +215,22 @@ def ler_inventario() -> dict:
         return {}
 
 
+def data_dos_arquivos(agravo: str) -> date | None:
+    """Maior data de geração dos arquivos do DATASUS (``data_ftp``) do agravo, ou None."""
+    datas = []
+    for item in ler_inventario().values():
+        if item.get("agravo") != agravo:
+            continue
+        partes = str(item.get("data_ftp") or "").split()
+        for formato in ("%m-%d-%y", "%d-%m-%Y"):  # listagem do FTP e SRAG
+            try:
+                datas.append(datetime.strptime(partes[0], formato).date())
+                break
+            except (ValueError, IndexError):
+                continue
+    return max(datas, default=None)
+
+
 def _salvar_inventario(inv: dict) -> None:
     PASTA_DADOS.mkdir(parents=True, exist_ok=True)
     # grava ao lado e troca de uma vez, como os Parquet: quem ler no meio nunca vê o arquivo pela metade

@@ -5,11 +5,18 @@ from __future__ import annotations
 from fastapi import APIRouter
 
 from ... import consultas as cq
+from ... import processar
 from .. import cache, servicos
 from ..filtros import Filtros
 from ..respostas import json_resp, registros
 
 router = APIRouter(tags=["Painel"])
+
+
+@router.get("/qualidade", summary="Prazos de notificação, digitação, investigação e encerramento")
+def api_qualidade(ctx: Filtros):
+    return json_resp(cache.memo(("qualidade", ctx), lambda: cq.qualidade(
+        ctx.filtro, processar.data_dos_arquivos(ctx.filtro.agravo))))
 
 
 @router.get("/visao", summary="Indicadores e curvas por semana, mês e ano")

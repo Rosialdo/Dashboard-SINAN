@@ -48,6 +48,8 @@ Também dá para atualizar sem abrir o painel, com dois cliques em `ATUALIZAR_DA
 - **🗺️ Mapa e municípios:** mapa de incidência ou de número de casos e ranking dos municípios.
 - **👥 Perfil dos casos:** pirâmide etária, raça/cor, classificação final, evolução e critério de
   confirmação.
+- **✅ Qualidade dos dados:** percentual de casos notificados, digitados, investigados e
+  encerrados dentro do prazo, com o número de fichas avaliáveis.
 - **📄 Dados e exportação:** tabela dos registros e exportação para Excel ou CSV.
 - **🔎 Outras variáveis** (seção "Avançado", no fim do menu): qualquer campo da ficha de
   notificação (sinais, sintomas, exames, escolaridade...), com os rótulos oficiais do TabNet.
