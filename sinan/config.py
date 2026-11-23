@@ -49,6 +49,8 @@ FTP_PASTAS = {
     "final": "/dissemin/publicos/SINAN/DADOS/FINAIS",
     "preliminar": "/dissemin/publicos/SINAN/DADOS/PRELIM",
 }
+# SRAG (SIVEP-Gripe): a página muda de nome todo ano; srag.paginas tenta o ano seguinte antes desta
+SRAG_PAGINA = "https://dadosabertos.saude.gov.br/dataset/srag-2019-a-2026"
 
 UFS = {
     "11": "RO", "12": "AC", "13": "AM", "14": "RR", "15": "PA", "16": "AP", "17": "TO",

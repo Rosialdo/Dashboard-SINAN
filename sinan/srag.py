@@ -7,7 +7,11 @@ Este módulo não importa ``download`` (é o ``download`` que importa este).
 
 from __future__ import annotations
 
+import re
+import time
+import urllib.request
 from collections.abc import Callable, Iterator
+from datetime import date, datetime
 from pathlib import Path
 
 import pandas as pd
@@ -16,9 +20,79 @@ import pyarrow.compute as pc
 import pyarrow.parquet as pq
 
 from . import agravos as cat
-from .config import UF_COD
+from .config import PASTA_BRUTOS, SRAG_PAGINA, UF_COD
 from .processar import gravar_parquet, registrar_inventario
 
+_PARQUET = re.compile(r'"url":"(https://[^"]+/SRAG/(\d{4})/INFLUD\d{2}-(\d{2}-\d{2}-\d{4})\.parquet)"')
+
+
+# ----------------------------------------------------------- listagem e download
+def paginas(hoje: date) -> list[str]:
+    """Endereços da página do conjunto, do mais provável ao de reserva (o nome muda todo ano)."""
+    base = SRAG_PAGINA.rsplit("-", 1)[0]
+    return list(dict.fromkeys([f"{base}-{hoje.year + 1}", f"{base}-{hoje.year}", SRAG_PAGINA]))
+
+
+def ler_listagem(html: str) -> dict[str, dict]:
+    """Arquivos Parquet por ano, lidos do JSON embutido na página do OpenDataSUS."""
+    achados: dict[str, tuple[datetime, str, str]] = {}
+    for url, ano, data in _PARQUET.findall(html):
+        quando = datetime.strptime(data, "%d-%m-%Y")
+        if ano not in achados or quando > achados[ano][0]:
+            achados[ano] = (quando, url, data)
+    recentes = sorted(achados, reverse=True)[:2]
+    # a situação é só para exibir: a decisão de baixar compara a data (pipeline.arquivo_mudou)
+    return {ano: {"arquivo": url, "situacao": "preliminar" if ano in recentes else "final",
+                  "tamanho": 0, "data_ftp": data}
+            for ano, (_, url, data) in sorted(achados.items())}
+
+
+def listar(hoje: date | None = None) -> dict[str, dict]:
+    """Consulta o OpenDataSUS. A primeira página com arquivos vale; nenhuma -> ConnectionError."""
+    erros = []
+    for url in paginas(hoje or date.today()):
+        try:
+            with urllib.request.urlopen(url, timeout=60) as r:
+                lista = ler_listagem(r.read().decode("utf-8", "replace"))
+        except OSError as e:
+            erros.append(f"{url}: {e}")
+            continue
+        if lista:  # página que não existe redireciona para a lista geral, sem arquivos
+            return lista
+    raise ConnectionError(f"Não foi possível consultar o OpenDataSUS ({'; '.join(erros) or 'sem arquivos'}).")
+
+
+def baixar(info: dict, progresso: Callable[[int, int], None] | None = None, tentativas: int = 4) -> Path:
+    """Baixa o Parquet do SRAG; só fica com o nome final quando chega inteiro."""
+    url = info["arquivo"]
+    PASTA_BRUTOS.mkdir(parents=True, exist_ok=True)
+    destino = PASTA_BRUTOS / url.rsplit("/", 1)[-1]
+    parcial = destino.with_suffix(".parcial")
+    ultimo_erro: Exception | None = None
+    # shortcut: sem retomada (Range); se os anos grandes (2020–2021) falharem muito, retomar como em download.baixar_arquivo
+    for tentativa in range(tentativas):
+        try:
+            with urllib.request.urlopen(url, timeout=120) as r, open(parcial, "wb") as fh:
+                total = int(r.headers.get("Content-Length") or 0)
+                recebido = 0
+                while bloco := r.read(256 * 1024):
+                    fh.write(bloco)
+                    recebido += len(bloco)
+                    if progresso:
+                        progresso(recebido, total)
+            if total and recebido != total:
+                raise OSError("download incompleto")
+            parcial.replace(destino)
+            return destino
+        except OSError as e:
+            ultimo_erro = e
+            parcial.unlink(missing_ok=True)
+            if tentativa + 1 < tentativas:
+                time.sleep(3 * (tentativa + 1))
+    raise ConnectionError(f"Não foi possível baixar {destino.name}: {ultimo_erro}")
+
+
+# ----------------------------------------------------------- conversão
 # lotes pequenos: são ~190 colunas, e no Brasil inteiro um lote grande passaria de 1 GB em textos
 LOTE = 20_000
 

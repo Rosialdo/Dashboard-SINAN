@@ -6,6 +6,7 @@ from collections.abc import Callable
 from dataclasses import dataclass, field
 
 from . import agravos as cat
+from . import srag
 from .download import baixar_arquivo, listagem_salva, listar_ftp
 from .processar import ler_inventario, processar_dbc
 
@@ -21,13 +22,22 @@ class Resultado:
 Aviso = Callable[[str, float, str], None]  # (tarefa, fração 0-1, mensagem)
 
 
+def arquivo_mudou(agravo: str, salvo: dict, novo: dict) -> bool:
+    """O arquivo publicado mudou desde o que foi baixado?
+
+    No SRAG vale só a data do arquivo: a situação (preliminar/final) é deduzida da página e
+    mudaria sozinha quando todos os anos são republicados juntos, sem nada novo.
+    """
+    if agravo == "SRAG":
+        return salvo.get("data_ftp") != novo.get("data_ftp")
+    return salvo.get("data_ftp") != novo.get("data_ftp") or salvo.get("situacao") != novo.get("situacao")
+
+
 def precisa_atualizar(agravo: str, ano: int, info: dict, ufs: list[str]) -> bool:
     atual = ler_inventario().get(f"{agravo}_{ano}")
     if not atual:
         return True
-    return (atual.get("data_ftp") != info.get("data_ftp")
-            or atual.get("situacao") != info.get("situacao")
-            or sorted(atual.get("ufs", [])) != sorted(ufs))
+    return arquivo_mudou(agravo, atual, info) or sorted(atual.get("ufs", [])) != sorted(ufs)
 
 
 def atualizar(
@@ -64,9 +74,15 @@ def atualizar(
                 frac = recebido / total if total else 0
                 avisar(titulo, frac * 0.7, f"baixando {recebido / 1e6:,.1f} de {total / 1e6:,.1f} MB")
 
-            caminho = baixar_arquivo(info["arquivo"], info["situacao"], prog_download)
-            n = processar_dbc(caminho, agravo, ano, ufs, info,
-                              lambda f, m: avisar(titulo, 0.7 + 0.3 * f, m))
+            def prog_processar(f: float, m: str) -> None:
+                avisar(titulo, 0.7 + 0.3 * f, m)
+
+            if agravo == "SRAG":  # SIVEP-Gripe, do OpenDataSUS
+                caminho = srag.baixar(info, prog_download)
+                n = srag.processar(caminho, ano, ufs, info, prog_processar)
+            else:
+                caminho = baixar_arquivo(info["arquivo"], info["situacao"], prog_download)
+                n = processar_dbc(caminho, agravo, ano, ufs, info, prog_processar)
             if not manter_brutos:
                 caminho.unlink(missing_ok=True)
             res.sucesso.append(f"{rotulo}: {n:,} registros".replace(",", "."))
