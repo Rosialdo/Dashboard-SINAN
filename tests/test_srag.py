@@ -185,3 +185,16 @@ def test_atualizar_srag_usa_o_caminho_proprio(dados_srag, amostra_srag, monkeypa
     assert res.sucesso == ["Síndrome respiratória aguda grave (SRAG) 2026: 3 registros"]
     assert not list(srag.PASTA_BRUTOS.glob("*.parquet"))  # o bruto é apagado
     assert pipeline.atualizar(["SRAG"], [2026], ["RR"]).pulados  # mesma data: não baixa de novo
+
+
+def test_tela_atualizar_mostra_a_fonte_que_falhou(cliente_local_com_srag):
+    c = cliente_local_com_srag
+    assert c.get("/api/dados").json()["listagem_falhas"] == []  # sem listagem salva
+    _salvar_listagem({"SRAG": {"2026": INFO_2026}})
+    assert c.get("/api/dados").json()["listagem_falhas"] == []  # listagem antiga, sem "falhas"
+    lista = json.loads(download.ARQ_LISTAGEM_FTP.read_text(encoding="utf-8"))
+    download.ARQ_LISTAGEM_FTP.write_text(json.dumps({**lista, "falhas": ["DATASUS (FTP)"]}), encoding="utf-8")
+    d = c.get("/api/dados").json()
+    assert d["listagem_falhas"] == ["DATASUS (FTP)"]
+    srag_item = next(i for i in d["inventario"] if i["agravo"] == "SRAG")
+    assert srag_item["status"] == "em_dia"  # mesma data do arquivo

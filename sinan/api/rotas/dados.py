@@ -82,6 +82,7 @@ def _situacao_dados() -> dict:
     return {
         "config": cfg,
         "listagem_em": (listagem or {}).get("atualizado_em"),
+        "listagem_falhas": (listagem or {}).get("falhas", []),
         "catalogo": [{"codigo": c, "nome": cat.nome(c),
                       "anos": sorted((int(a) for a in arquivos.get(c, {})), reverse=True),
                       "tamanhos": {a: i.get("tamanho", 0) for a, i in arquivos.get(c, {}).items()}}
