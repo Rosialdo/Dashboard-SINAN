@@ -28,6 +28,79 @@ def test_paineis(cliente, dados_teste, rota):
     assert ind["incidencia"] is not None
 
 
+def test_mapa_traz_incidencia_suavizada(cliente, dados_teste):
+    muns = cliente.get("/api/mapa?agravo=ACBI").json()["municipios"]
+    com_pop = [m for m in muns if m["populacao"]]
+    assert com_pop and all(m["incidencia_suavizada"] is not None for m in com_pop)
+    assert all(m["incidencia_suavizada"] >= 0 for m in com_pop)
+
+
+@pytest.mark.parametrize("extra", ["sexo=Masculino", "faixa=20-29", "local=not", "mun={cod}"])
+def test_mapa_sem_suavizada_quando_filtro_nao_combina(cliente, dados_teste, extra):
+    cod = cliente.get("/api/mapa?agravo=ACBI").json()["municipios"][0]["cod6"]
+    muns = cliente.get(f"/api/mapa?agravo=ACBI&{extra.format(cod=cod)}").json()["municipios"]
+    assert muns and all(m["incidencia_suavizada"] is None for m in muns)
+    assert any(m["casos"] > 0 for m in muns)
+
+
+@pytest.mark.parametrize("extra", ["sexo=Masculino", "faixa=20-29", "local=not"])
+def test_mapa_sem_incidencia_quando_filtro_nao_combina(cliente, dados_teste, extra):
+    muns = cliente.get(f"/api/mapa?agravo=ACBI&{extra}").json()["municipios"]
+    assert muns and all(m["incidencia"] is None for m in muns)
+    assert any(m["casos"] > 0 for m in muns)
+
+
+@pytest.mark.parametrize("rota", ["mapa", "visao"])
+def test_topo_sem_incidencia_na_contagem_por_notificacao(cliente, dados_teste, rota):
+    ind = cliente.get(f"/api/{rota}?agravo=ACBI&local=not").json()["indicadores"]
+    assert ind["notificacoes"] > 0 and ind["incidencia"] is None
+
+
+def test_mapa_com_municipio_mantem_incidencia_bruta(cliente, dados_teste):
+    cod = next(m["cod6"] for m in cliente.get("/api/mapa?agravo=ACBI").json()["municipios"] if m["populacao"])
+    d = cliente.get(f"/api/mapa?agravo=ACBI&mun={cod}").json()
+    muns = d["municipios"]
+    assert muns and all(m["incidencia"] is not None and m["incidencia_suavizada"] is None for m in muns)
+    assert d["indicadores"]["incidencia"] is not None  # o topo também continua com município escolhido
+
+
+@pytest.fixture
+def cache_limpo():
+    from sinan.api import cache
+    cache.limpar()
+    yield
+    cache.limpar()  # não deixa a tabela com população zero para os testes seguintes
+
+
+def test_incidencia_bruta_sem_populacao_vira_vazio(cliente, dados_teste, cache_limpo, monkeypatch):
+    from sinan import consultas as cq
+    original = cq._q
+
+    def pop_zero(sql, params=None):  # toda população 0: nenhuma taxa pode ser calculada
+        df = original(sql, params)
+        if "FROM pop" in sql and "pa" in df.columns:
+            df[["populacao", "pa"]] = 0
+        return df
+
+    monkeypatch.setattr(cq, "_q", pop_zero)
+    r = cliente.get("/api/mapa?agravo=ACBI")
+    assert r.status_code == 200 and "Infinity" not in r.text
+    muns = r.json()["municipios"]
+    assert all(m["incidencia"] is None and m["incidencia_suavizada"] is None for m in muns)
+
+
+def test_exportar_municipios_igual_ao_mapa(cliente, dados_teste):
+    import io
+
+    import pandas as pd
+    api = pd.DataFrame(cliente.get("/api/mapa?agravo=ACBI").json()["municipios"])
+    r = cliente.get("/api/exportar?agravo=ACBI&formato=municipios")
+    csv = pd.read_csv(io.BytesIO(r.content), sep=";", decimal=",", encoding="utf-8-sig")
+    assert "Incidência suavizada por 100 mil hab./ano" in csv.columns
+    assert list(csv["Incidência suavizada por 100 mil hab./ano"].round(6)) == \
+        pytest.approx(list(api["incidencia_suavizada"].astype(float).round(6)), nan_ok=True)
+
+
 def test_registros_paginados(cliente, dados_teste):
     p0 = cliente.get("/api/registros?agravo=ACBI&pagina=0").json()
     p1 = cliente.get("/api/registros?agravo=ACBI&pagina=1").json()

@@ -132,3 +132,21 @@ def test_sobre_explica_os_prazos():
     sobre = (WEB / "js" / "paginas" / "sobre.js").read_text(encoding="utf-8")
     for texto in ("60 dias", "Digitação", "sem data de encerramento registrada", "referência provisória"):
         assert texto in sobre
+
+
+def test_mapa_tem_incidencia_suavizada():
+    mapa = (WEB / "js/paginas/mapa.js").read_text(encoding="utf-8")
+    assert 'data-medida="incidencia_suavizada"' in mapa
+    assert '"incidencia_suavizada"' in mapa.split("function tabelaMunicipios")[1]  # coluna da tabela
+    assert "Number.isFinite" in mapa.split("function desenharMapa")[1]  # escala só com números
+    sobre = (WEB / "js/paginas/sobre.js").read_text(encoding="utf-8")
+    assert "Incidência suavizada" in sobre
+    assert ("A incidência não aparece com filtro de sexo ou faixa etária, "
+            "nem na contagem pelo município de notificação, porque a população não corresponde aos casos.") in sobre
+
+
+def test_painel_lateral_mostra_incidencia_suavizada():
+    mapa = (WEB / "js/paginas/mapa.js").read_text(encoding="utf-8")
+    lateral = mapa.split("function desenharLateral")[1].split("function tabelaMunicipios")[0]
+    assert "incidencia_suavizada" in lateral and "Incidência suavizada" in lateral
+    assert "inc != null" in lateral  # sem município, o bloco da área some quando o topo não tem incidência

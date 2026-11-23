@@ -48,8 +48,10 @@ def api_exportar(request: Request, ctx: Filtros,
     nome = f"sinan_{f.agravo}_{f.ano_ini}-{f.ano_fim}"
 
     if formato == "municipios":
-        t = servicos.tabela_municipios(f, area)[["municipio", "uf", "casos", "incidencia", "obitos", "populacao"]]
-        t.columns = ["Município", "UF", "Casos", "Incidência por 100 mil hab./ano", "Óbitos", "População média"]
+        colunas = ["municipio", "uf", "casos", "incidencia", "incidencia_suavizada", "obitos", "populacao"]
+        t = servicos.tabela_municipios(f, area)[colunas]
+        t.columns = ["Município", "UF", "Casos", "Incidência por 100 mil hab./ano",
+                     "Incidência suavizada por 100 mil hab./ano", "Óbitos", "População média"]
         if ctx.publico:  # privacidade: óbitos por município não saem do site publicado
             t = t.drop(columns="Óbitos")
         return anexo(_csv(t), f"{nome}_municipios.csv", CSV)
