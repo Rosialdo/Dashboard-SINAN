@@ -1097,7 +1097,8 @@ inteiras; depois as fases de §7.3; por último as ideias da comparação com a 
 
 | # | Pendência | Origem | Quem resolve |
 |---|---|---|---|
-| 1 | Conferir a VPS: arquitetura (`uname -m`), Docker ≥ 24 e Compose ≥ 2.20, `systemctl enable docker`, DNS de `painel.prism.ufrr.br`, portas 80/443 e saída para o FTP (21), memória (painel 1 GB, atualização 2 GB, proxy 256 MB), fuso do cron | plano de containerização, "Pontos a validar na VPS" | equipe com acesso à VPS |
+| 1 | Conferir a VPS: arquitetura (`uname -m`), Docker ≥ 24 e Compose ≥ 2.20, `systemctl enable docker`, DNS de `painel.prism.ufrr.br`, portas 80/443 e saída para o FTP (21), memória (painel 1 GB, atualização 2 GB, proxy 256 MB), disco para os `.dbc` e os Parquet, fuso do cron, quem entra no grupo `docker` (equivale a root) | plano de containerização, "Pontos a validar na VPS" | equipe com acesso à VPS |
+| 1a | Saber se há proxy da UFRR na frente da VPS: se houver, o limite de pedidos vê um IP só para todos (bloqueia todo mundo junto) e o HTTPS pode terminar nele; a chave do limite passa a ser o IP repassado | plano de containerização, "Pontos a validar na VPS" | equipe com a TI da UFRR |
 | 2 | Aceite do grupo para programas GPL do sistema base das imagens (`bash`, `glibc`, `busybox`) e para o `shellcheck` | idem | grupo |
 | 3 | Implantar (`cp .env.exemplo .env`, `scripts/painel.sh iniciar`) e conferir os critérios de aceite finais na VPS | plano de containerização, Tarefa 4 | equipe |
 | 4 | Levar a `develop` para a `main` | `CLAUDE.md` §2 | usuário |
@@ -1150,8 +1151,13 @@ inteiras; depois as fases de §7.3; por último as ideias da comparação com a 
 | 26 | Qualidade e casos em aberto há mais de 60 dias por unidade notificadora | o recorte por unidade aumenta o risco de identificação |
 | 27 | Recortes indígena, migrante e de fronteira | a taxa entre indígenas depende de população do IBGE/SESAI |
 | 28 | Nome das unidades pelo CNES | nova fonte de dados |
-| 29 | Supressão de contagens menores que 5 | **conflita** com §7.5, que descartou o corte "menos de 5" |
+| 29 | Supressão de contagens menores que 5 | **conflita** com §7.5, que descartou o corte "menos de 5" em geral, mas deixou aberta a opção de aplicá-lo só às variáveis sensíveis no recorte estadual. A comparação trata o corte como pré-requisito de todo recorte por unidade: sem ele, os itens 26 e 28 ficam travados |
 | 30 | Medir o atraso do DATASUS em relação à base estadual e conversar com a SES | "Pontos em aberto" da comparação |
 | 31 | Analisar os subpainéis da SES e conferir se oropouche está no FTP | idem |
+| 32 | Tela "Exige atenção esta semana" com alertas | depende de N13 |
+| 33 | Taxa suavizada (municípios pequenos) | esforço baixo |
+| 34 | Indicadores de qualidade por prazo (notificação, digitação, investigação, encerramento) | independe do recorte por unidade |
+| 35 | Tirar "Outras variáveis" do caminho principal | mudança de navegação |
+| 36 | Território adscrito (e-SUS APS) e outras bases (malária, SIVEP), só no modo local | novas fontes de dados |
 
 Ficam de fora: N02, N04 completo e N07 (§7.5); N14 e N28 (descartadas); N06, N25, N27 e N29 (fora do horizonte).

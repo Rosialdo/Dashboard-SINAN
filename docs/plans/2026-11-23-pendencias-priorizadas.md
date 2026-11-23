@@ -1,8 +1,5 @@
 # Pendências dos planos do projeto: levantamento e lista por prioridade
 
-> **Para quem for executar:** use superpowers:executing-plans (ou subagent-driven-development) tarefa por
-> tarefa. Os passos usam caixas (`- [ ]`) para acompanhar.
-
 **Objetivo:** juntar num só lugar tudo o que os planos e relatórios deixaram em aberto, conferir no código o
 que de fato falta e registrar uma lista única, ordenada por prioridade, na seção 7 do relatório de roadmap.
 
@@ -49,10 +46,11 @@ depois a ordem de fases já decidida em §7.3; por último as ideias da compara�
 
 | # | Pendência | Origem | Quem resolve |
 |---|---|---|---|
-| 1 | Conferir a VPS: arquitetura (`uname -m`), Docker ≥ 24 e Compose ≥ 2.20, `systemctl enable docker`, DNS de `painel.prism.ufrr.br`, portas 80/443 e saída para o FTP 21, memória (painel 1 GB, atualização 2 GB, proxy 256 MB), fuso do cron | containerização, "Pontos a validar na VPS" | equipe com acesso à VPS |
+| 1 | Conferir a VPS: arquitetura (`uname -m`), Docker ≥ 24 e Compose ≥ 2.20, `systemctl enable docker`, DNS de `painel.prism.ufrr.br`, portas 80/443 e saída para o FTP 21, memória (painel 1 GB, atualização 2 GB, proxy 256 MB), disco para os `.dbc` e os Parquet, fuso do cron, quem entra no grupo `docker` (equivale a root) | containerização, "Pontos a validar na VPS" | equipe com acesso à VPS |
+| 1a | Saber se há proxy da UFRR na frente da VPS: se houver, o limite de pedidos vê um IP só para todos (bloqueia todo mundo junto) e o HTTPS pode terminar nele; a chave do limite passa a ser o IP repassado | plano de containerização, "Pontos a validar na VPS" | equipe com a TI da UFRR |
 | 2 | Aceite do grupo para programas GPL do sistema base das imagens (`bash`, `glibc`, `busybox`) e para o `shellcheck` | containerização, idem | grupo |
 | 3 | Implantar: `cp .env.exemplo .env`, `scripts/painel.sh iniciar`, conferir os 4 critérios de aceite finais na VPS (HTTPS, `status`, atualização sem 500) | containerização, Tarefa 4 e "Critérios de aceite finais" | equipe |
-| 4 | Levar a `develop` para a `main` (54 commits à frente) | `CLAUDE.md` §2 | usuário |
+| 4 | Levar a `develop` para a `main` | `CLAUDE.md` §2 | usuário |
 
 ### P1 — Decisões externas que travam fases
 
@@ -60,7 +58,7 @@ depois a ordem de fases já decidida em §7.3; por último as ideias da compara�
 |---|---|---|---|
 | 5 | Confirmar com o CEP da UFRR o enquadramento na Resolução CNS 510/2016 | divulgação do estudo | roadmap §7.5 |
 | 6 | Vigilância local: método do canal endêmico (quartis de 5 a 7 anos?) | N12, N13 (Fase 3) | roadmap §7.2, ponto 11 |
-| 7 | Vigilância local: agravos e UFs principais | `.env` da atualização, N12/N13 | roadmap §7.2, ponto 8 |
+| 7 | Vigilância local: agravos e UFs principais | atualização agendada, N12/N13 | roadmap §7.2, ponto 8 |
 | 8 | Se o servidor estiver em nome de empresa de algum autor, consultar sobre o Marco Civil | guarda de logs | roadmap §7.5 |
 
 ### P2 — Fase 1 (ordem de §7.3)
@@ -104,9 +102,14 @@ Precisam de decisão do grupo antes de entrar numa fase.
 | 26 | Qualidade e casos em aberto há mais de 60 dias por unidade notificadora | recorte por unidade aumenta o risco de identificação |
 | 27 | Recortes indígena, migrante e de fronteira | taxa indígena depende de denominador do IBGE/SESAI |
 | 28 | Nome das unidades via CNES | nova fonte de dados |
-| 29 | Supressão de contagens < 5 | **conflita** com §7.5, que descartou o corte "menos de 5" |
+| 29 | Supressão de contagens < 5 | **conflita** com §7.5, que descartou o corte "menos de 5" em geral, mas deixou aberta a opção de aplicá-lo só às variáveis sensíveis no recorte estadual. A comparação trata o corte como pré-requisito de todo recorte por unidade: sem ele, os itens 26 e 28 ficam travados |
 | 30 | Medir a defasagem do DATASUS frente à base estadual e conversar com a SES | "Pontos em aberto" |
 | 31 | Analisar subpainéis da SES (dengue, oropouche, tuberculose, IST/AIDS) e conferir se oropouche está no FTP | "Pontos em aberto" |
+| 32 | Tela "Exige atenção esta semana" com alertas | depende de N13 |
+| 33 | Taxa suavizada (municípios pequenos) | esforço baixo |
+| 34 | Indicadores de qualidade por prazo (notificação, digitação, investigação, encerramento) | independe do recorte por unidade |
+| 35 | Tirar "Outras variáveis" do caminho principal | mudança de navegação |
+| 36 | Território adscrito (e-SUS APS) e outras bases (malária, SIVEP), só no modo local | novas fontes de dados |
 
 Fora do escopo ou descartado (não entram na lista): N02, N04 completo, N07 (§7.5); N14, N28 (descartadas);
 N06, N25, N27, N29 (fora do horizonte).
@@ -158,4 +161,4 @@ git commit -m "Registra as pendências dos planos por prioridade" \
 
 ### Tarefa 3: Revisão
 
-- [ ] **Passo 1:** chamar o `reviewer` com este plano e a seção 7.6, pedindo atenção ao "Foco de revisão".
+- [x] **Passo 1:** chamar o `reviewer` com este plano e a seção 7.6, pedindo atenção ao "Foco de revisão".
