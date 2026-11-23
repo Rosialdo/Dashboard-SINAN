@@ -29,8 +29,8 @@ def sem_sensiveis(ind: dict) -> dict:
 def indicadores(f: cq.Filtro, area: tuple[str, ...]) -> dict:
     """Números do topo das telas: notificações, casos, incidência, letalidade..."""
     ind = cq.indicadores(f)
-    # com filtro de sexo/idade não há população certa para dividir
-    pop = 0.0 if (f.sexo or f.faixas) else cq.populacao(f, list(area))
+    # sem população que corresponda aos casos (sexo, faixa, notificação) não há incidência
+    pop = cq.populacao(f, list(area)) if incidencia_disponivel(f) else 0.0
     casos = ind["notificacoes"] if f.contagem == "todas" else ind[f.contagem]
     ind["casos"] = casos
     ind["incidencia"] = casos * 1e5 / pop if pop else None

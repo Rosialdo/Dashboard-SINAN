@@ -35,23 +35,33 @@ def test_mapa_traz_incidencia_suavizada(cliente, dados_teste):
     assert all(m["incidencia_suavizada"] >= 0 for m in com_pop)
 
 
-@pytest.mark.parametrize("extra", ["sexo=M", "faixa=20-39", "local=not", "mun={cod}"])
+@pytest.mark.parametrize("extra", ["sexo=Masculino", "faixa=20-29", "local=not", "mun={cod}"])
 def test_mapa_sem_suavizada_quando_filtro_nao_combina(cliente, dados_teste, extra):
     cod = cliente.get("/api/mapa?agravo=ACBI").json()["municipios"][0]["cod6"]
     muns = cliente.get(f"/api/mapa?agravo=ACBI&{extra.format(cod=cod)}").json()["municipios"]
     assert muns and all(m["incidencia_suavizada"] is None for m in muns)
+    assert any(m["casos"] > 0 for m in muns)
 
 
-@pytest.mark.parametrize("extra", ["sexo=M", "faixa=20-39", "local=not"])
+@pytest.mark.parametrize("extra", ["sexo=Masculino", "faixa=20-29", "local=not"])
 def test_mapa_sem_incidencia_quando_filtro_nao_combina(cliente, dados_teste, extra):
     muns = cliente.get(f"/api/mapa?agravo=ACBI&{extra}").json()["municipios"]
     assert muns and all(m["incidencia"] is None for m in muns)
+    assert any(m["casos"] > 0 for m in muns)
+
+
+@pytest.mark.parametrize("rota", ["mapa", "visao"])
+def test_topo_sem_incidencia_na_contagem_por_notificacao(cliente, dados_teste, rota):
+    ind = cliente.get(f"/api/{rota}?agravo=ACBI&local=not").json()["indicadores"]
+    assert ind["notificacoes"] > 0 and ind["incidencia"] is None
 
 
 def test_mapa_com_municipio_mantem_incidencia_bruta(cliente, dados_teste):
     cod = next(m["cod6"] for m in cliente.get("/api/mapa?agravo=ACBI").json()["municipios"] if m["populacao"])
-    muns = cliente.get(f"/api/mapa?agravo=ACBI&mun={cod}").json()["municipios"]
+    d = cliente.get(f"/api/mapa?agravo=ACBI&mun={cod}").json()
+    muns = d["municipios"]
     assert muns and all(m["incidencia"] is not None and m["incidencia_suavizada"] is None for m in muns)
+    assert d["indicadores"]["incidencia"] is not None  # o topo também continua com município escolhido
 
 
 @pytest.fixture

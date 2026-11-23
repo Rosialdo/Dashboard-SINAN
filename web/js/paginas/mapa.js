@@ -194,10 +194,10 @@ function desenharLateral(d) {
   if (!el) return;
   const m = estado.meta, f = estado.f;
   const cod = f.mun || estado.mapaSel;
-  let nome, uf, inc, casos, obitos, botao;
+  let nome, uf, inc, suav, casos, obitos, botao;
   if (cod) {
     const r = d.municipios.find((x) => x.cod6 === cod) || {};
-    nome = r.municipio; uf = m.ufs_nome[r.uf] || r.uf; inc = r.incidencia; casos = r.casos; obitos = r.obitos;
+    nome = r.municipio; uf = m.ufs_nome[r.uf] || r.uf; inc = r.incidencia; suav = r.incidencia_suavizada; casos = r.casos; obitos = r.obitos;
     botao = f.mun ? "Ver perfil dos casos" : "Filtrar este município";
   } else {
     nome = areaNome(); uf = d.area.length === 1 ? "Todos os municípios" : d.area.join(", ");
@@ -208,7 +208,8 @@ function desenharLateral(d) {
     <h2>${esc(nome)}</h2><div class="uf">${esc(uf)}</div>
     <h3>Indicadores do período selecionado</h3>
     <div class="mini-kpis">
-      ${d.incidencia || !cod ? `<div><div class="r">Incidência</div><div class="v">${fmt(inc, 1)}</div><div class="s">por 100 mil hab./ano</div></div>` : ""}
+      ${(cod ? d.incidencia : inc != null) ? `<div><div class="r">Incidência</div><div class="v">${fmt(inc, 1)}</div><div class="s">por 100 mil hab./ano</div></div>` : ""}
+      ${cod && !f.mun && d.suavizada && suav != null ? `<div><div class="r">Incidência suavizada</div><div class="v">${fmt(suav, 1)}</div><div class="s">por 100 mil hab./ano</div></div>` : ""}
       <div><div class="r">${cap(termo())}</div><div class="v">${fmt(casos)}</div></div>
       ${obitos === null || obitos === undefined ? "" : `<div><div class="r">Óbitos</div><div class="v">${fmt(obitos)}</div></div>`}
     </div>

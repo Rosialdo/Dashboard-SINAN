@@ -24,7 +24,7 @@ export function htmlKpis(ind) {
     : kpi("Confirmados", fmt(ind.confirmados), "Notificações com classificação final confirmada.", "",
           pct !== null ? `${fmt(pct, 1)}% das notificações` : "");
   const inc = ind.incidencia === null
-    ? kpi("Incidência", "–", "Não é calculada quando há filtro de sexo ou faixa etária (não há população por esses grupos).")
+    ? kpi("Incidência", "–", "Não é calculada com filtro de sexo ou faixa etária, nem na contagem pelo município de notificação, porque a população não corresponde aos casos.")
     : kpi("Incidência", fmt(ind.incidencia, 1), `${cap(t)} por 100 mil habitantes${ind.n_anos > 1 ? " por ano (média do período)" : ""}. População: IBGE.`,
           ind.n_anos > 1 ? "por 100 mil hab./ano" : "por 100 mil hab.");
   const hosp = ind.hosp_informado
