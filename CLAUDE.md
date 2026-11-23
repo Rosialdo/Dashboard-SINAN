@@ -143,3 +143,14 @@ que todo import existe.
 - **Não apague nem sobrescreva** dados do usuário (`dados/`), branches ou arquivos sem pedido
   explícito. Para testar downloads e processamento, use uma pasta temporária.
 - Mantenha o `README.md` atualizado quando mudar a forma de instalar, rodar ou a arquitetura.
+
+## 8. Subagentes
+
+- **Toda busca vai para o `scout`** (onde está algo, quem chama o quê, quais arquivos tratam de um
+  assunto, como as partes se ligam). Ele consulta o grafo do `graphify` quando existe.
+  **Exceção:** um `grep` direto por um nome ou texto exato pode ser feito sem o scout.
+- **Chame o `reviewer`**:
+  - antes de dar um plano por fechado;
+  - depois de uma falha repetida (o mesmo teste ou a mesma abordagem falhando duas vezes);
+  - antes de dar a tarefa por terminada.
+- O `builder` implementa mudanças já decididas.
