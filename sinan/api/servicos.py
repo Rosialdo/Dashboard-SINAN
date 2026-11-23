@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import numpy as np
 import pandas as pd
 
 from .. import agravos as cat
@@ -39,6 +40,29 @@ def indicadores(f: cq.Filtro, area: tuple[str, ...]) -> dict:
 
 
 # ------------------------------------------------------------- municípios
+def taxa_suavizada(casos: pd.Series, pa: pd.Series) -> pd.Series:
+    """Incidência por 100 mil hab./ano suavizada pelo método bayesiano empírico (Marshall, 1991)."""
+    c = pd.to_numeric(casos, errors="coerce").astype(float)
+    p = pd.to_numeric(pa, errors="coerce").astype(float)
+    ok = np.isfinite(p) & (p > 0) & np.isfinite(c)
+    if not ok.any():
+        return pd.Series(float("nan"), index=casos.index)
+    c, p = c[ok], p[ok]
+    m = c.sum() / p.sum()  # taxa média da área
+    r = c / p
+    s2 = (p * (r - m) ** 2).sum() / p.sum()
+    a = max(s2 - m / (p.sum() / len(p)), 0.0)
+    peso = a / (a + m / p) if m > 0 else 0.0 * p  # m == 0: evita 0/0
+    out = pd.Series(float("nan"), index=casos.index)
+    out[ok] = (m + peso * (r - m)) * 1e5
+    return out
+
+
+def suavizada_disponivel(f: cq.Filtro) -> bool:
+    """A suavização precisa da população total da área: não vale com sexo, faixa ou município."""
+    return f.por_residencia and not (f.sexo or f.faixas or f.municipios)
+
+
 def tabela_municipios(f: cq.Filtro, area: tuple[str, ...]) -> pd.DataFrame:
     """Todos os municípios da área (inclusive os sem casos), com casos e incidência."""
     dados = cq.por_municipio(f)
@@ -50,7 +74,8 @@ def tabela_municipios(f: cq.Filtro, area: tuple[str, ...]) -> pd.DataFrame:
     pop = cq._q("SELECT cod6, avg(populacao) populacao, sum(populacao) pa FROM pop "
                 "WHERE ano BETWEEN ? AND ? GROUP BY 1", [f.ano_ini, f.ano_fim])
     t = t.merge(pop, on="cod6", how="left")
-    t["incidencia"] = t["casos"] * 1e5 / t["pa"]
+    t["incidencia"] = t["casos"] * 1e5 / t["pa"].where(t["pa"] > 0)  # sem população: vazio, não infinito
+    t["incidencia_suavizada"] = taxa_suavizada(t["casos"], t["pa"]) if suavizada_disponivel(f) else None
     return t.drop(columns="pa").sort_values(["casos", "incidencia", "cod6"], ascending=[False, False, True])
 
 

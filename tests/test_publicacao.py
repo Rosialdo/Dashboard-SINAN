@@ -83,6 +83,16 @@ def test_publico_exporta_resumo_por_municipio(cliente_publico):
     assert "attachment" in r.headers["content-disposition"]
 
 
+def test_publico_mapa_e_exportacao_com_suavizada(cliente_publico, municipio):
+    muns = cliente_publico.get("/api/mapa?agravo=ACBI").json()["municipios"]
+    assert any(m["incidencia_suavizada"] is not None for m in muns)
+    assert all("obitos" not in m for m in muns)
+    cab = cliente_publico.get("/api/exportar?agravo=ACBI&formato=municipios").content.decode("utf-8-sig").splitlines()[0]
+    assert "Incidência suavizada por 100 mil hab./ano" in cab and "Óbitos" not in cab
+    um = cliente_publico.get(f"/api/mapa?agravo=ACBI&mun={municipio}").json()["municipios"]
+    assert [m["incidencia_suavizada"] for m in um] == [None]
+
+
 def test_publico_sem_documentacao(cliente_publico):
     assert cliente_publico.get("/api/docs").status_code == 404
     assert cliente_publico.get("/api/openapi.json").status_code == 404
