@@ -9,6 +9,7 @@ export const PAGINAS = {
   "visao-geral": { titulo: "Evolução epidemiológica", menu: "Visão geral", icone: "visao", secao: "ANÁLISE", filtros: true },
   "mapa": { titulo: "Distribuição territorial", menu: "Mapa e municípios", icone: "mapa", secao: "ANÁLISE", filtros: true },
   "perfil": { titulo: "Perfil dos casos", menu: "Perfil dos casos", icone: "perfil", secao: "ANÁLISE", filtros: true },
+  "qualidade": { titulo: "Qualidade dos dados", menu: "Qualidade dos dados", icone: "qualidade", secao: "ANÁLISE", filtros: true },
   "dados": { titulo: "Dados e exportação", menu: "Dados e exportação", icone: "baixar", secao: "ANÁLISE", filtros: true },
   "atualizar": { titulo: "Atualizar dados", menu: "Atualizar dados", icone: "atualizar", secao: "GESTÃO" },
   "sobre": { titulo: "Sobre os dados", menu: "Sobre os dados", icone: "sobre", secao: "GESTÃO" },

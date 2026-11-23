@@ -1,6 +1,7 @@
 /* Ícones SVG (traço simples, herdam a cor do texto). */
 
 const ICONES = {
+  qualidade: '<circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/>',
   visao: '<path d="M4 20V10M9.3 20V4M14.6 20v-8M20 20v-5"/>',
   mapa: '<path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>',
   perfil: '<circle cx="12" cy="8" r="4"/><path d="M4 21c.8-4 4-6 8-6s7.2 2 8 6"/>',
