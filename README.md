@@ -45,7 +45,7 @@ Também dá para atualizar sem abrir o painel, com dois cliques em `ATUALIZAR_DA
   letalidade e hospitalizações.
 - **📈 Evolução no tempo:** curva epidêmica por semana epidemiológica comparando os anos, mais os
   totais por ano e por mês.
-- **🗺️ Mapa e municípios:** mapa de incidência ou de número de casos e ranking dos municípios.
+- **🗺️ Mapa e municípios:** mapa de incidência, de incidência suavizada (que aproxima da média os municípios pequenos) ou de número de casos e ranking dos municípios.
 - **👥 Perfil dos casos:** pirâmide etária, raça/cor, classificação final, evolução e critério de
   confirmação.
 - **✅ Qualidade dos dados:** percentual de casos notificados, digitados, investigados e
@@ -58,7 +58,7 @@ Também dá para atualizar sem abrir o painel, com dois cliques em `ATUALIZAR_DA
 prováveis ou todas as notificações, sexo e faixa etária.
 
 Na tela **ℹ️ Sobre os dados** estão as definições de cada número (confirmado, óbito, letalidade,
-incidência, semana epidemiológica) e os cuidados de interpretação.
+incidência, incidência suavizada, semana epidemiológica) e os cuidados de interpretação.
 
 ---
 
