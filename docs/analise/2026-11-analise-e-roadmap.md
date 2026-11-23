@@ -1081,3 +1081,77 @@ dados" do site publicado, diz isso. Sobre o Marco Civil: a guarda obrigatória d
 aplicações constituído como pessoa jurídica, com fins econômicos; um estudo acadêmico mantido pelos autores não
 parece se encaixar. **A validar:** se o servidor estiver em nome de uma empresa de algum autor, confirmar com
 quem entende de direito.
+
+### 7.6 Pendências por prioridade (23/11/2026)
+
+Lista única do que os planos e relatórios deixaram em aberto, conferida no código em 23/11/2026
+(plano: `docs/plans/2026-11-23-pendencias-priorizadas.md`). Os planos de análise, da Fase 0 e da
+containerização já foram executados; da containerização falta só a implantação na VPS. Nenhum item das
+Fases 1 a 3 existe no código. A N17 também falta: os filtros ficam guardados só no navegador
+(`nucleo/estado.js`) e o endereço guarda apenas a tela (`nucleo/navegacao.js`).
+
+Ordem: primeiro o que impede o site de ir ao ar; depois decisões de fora da equipe que travam fases
+inteiras; depois as fases de §7.3; por último as ideias da comparação com a SES-RR ainda sem decisão.
+
+**P0 — Impede a publicação**
+
+| # | Pendência | Origem | Quem resolve |
+|---|---|---|---|
+| 1 | Conferir a VPS: arquitetura (`uname -m`), Docker ≥ 24 e Compose ≥ 2.20, `systemctl enable docker`, DNS de `painel.prism.ufrr.br`, portas 80/443 e saída para o FTP (21), memória (painel 1 GB, atualização 2 GB, proxy 256 MB), fuso do cron | plano de containerização, "Pontos a validar na VPS" | equipe com acesso à VPS |
+| 2 | Aceite do grupo para programas GPL do sistema base das imagens (`bash`, `glibc`, `busybox`) e para o `shellcheck` | idem | grupo |
+| 3 | Implantar (`cp .env.exemplo .env`, `scripts/painel.sh iniciar`) e conferir os critérios de aceite finais na VPS | plano de containerização, Tarefa 4 | equipe |
+| 4 | Levar a `develop` para a `main` | `CLAUDE.md` §2 | usuário |
+
+**P1 — Decisões de fora da equipe que travam fases**
+
+| # | Pendência | Trava | Origem |
+|---|---|---|---|
+| 5 | Confirmar com o CEP da UFRR o enquadramento na Resolução CNS 510/2016 | divulgação do estudo | §7.5 |
+| 6 | Vigilância local: método do canal endêmico | N12, N13 | §7.2, ponto 11 |
+| 7 | Vigilância local: agravos e UFs principais | atualização agendada, N12, N13 | §7.2, ponto 8 |
+| 8 | Se o servidor estiver em nome de empresa de algum autor, consultar sobre o Marco Civil | guarda de logs | §7.5 |
+
+**P2 — Fase 1**
+
+| # | Item | Branch sugerida | Depende de |
+|---|---|---|---|
+| 9 | N16 — Mapa com faixas de cor e melhor no celular | `feature/mapa-faixas` | – |
+| 10 | N17 — Link com os filtros | `feature/link-filtros` | – |
+| 11 | N11 — Variação em relação ao ano anterior | `feature/variacao-ano-anterior` | – |
+| 12 | N22 — Imagem dos gráficos, impressão e aviso "Preparando o arquivo..." | `feature/imagem-impressao` | – |
+| 13 | N15 — Primeira tela mais compacta | `feature/primeira-tela` | – |
+| 14 | Link para o InfoDengue do município (no lugar da N14) | `feature/link-infodengue` | – |
+
+**P3 — Fase 2**
+
+| # | Item | Depende de |
+|---|---|---|
+| 15 | N10 — Teclado e leitor de tela | – |
+| 16 | N18 — Vários municípios e regionais de saúde | – |
+| 17 | N20 — Filtro por semanas epidemiológicas | – |
+| 18 | N21 — Clicar no gráfico para filtrar | N20 |
+| 19 | N26 — Óbitos em investigação, incidência por sexo e idade (sem variáveis sensíveis no recorte por município) | – |
+| 20 | N30 — Data de cada ano e "Limpar todos os filtros" | – |
+| 21 | N24 — Filtros favoritos, só no navegador | N17 |
+
+**P4 — Fase 3 (depois do item 6)**
+
+| # | Item | Depende de |
+|---|---|---|
+| 22 | N12 — Diagrama de controle na curva semanal | item 6 |
+| 23 | N13 — Nível de alerta por município | N12 |
+| 24 | N19 — Tabulação cruzada | – |
+
+**P5 — Ideias da comparação com a SES-RR, ainda sem decisão**
+
+| # | Ideia | Observação |
+|---|---|---|
+| 25 | Faixa de semanas incompletas na curva | esforço baixo; hoje só há o texto abaixo do gráfico na Visão geral |
+| 26 | Qualidade e casos em aberto há mais de 60 dias por unidade notificadora | o recorte por unidade aumenta o risco de identificação |
+| 27 | Recortes indígena, migrante e de fronteira | a taxa entre indígenas depende de população do IBGE/SESAI |
+| 28 | Nome das unidades pelo CNES | nova fonte de dados |
+| 29 | Supressão de contagens menores que 5 | **conflita** com §7.5, que descartou o corte "menos de 5" |
+| 30 | Medir o atraso do DATASUS em relação à base estadual e conversar com a SES | "Pontos em aberto" da comparação |
+| 31 | Analisar os subpainéis da SES e conferir se oropouche está no FTP | idem |
+
+Ficam de fora: N02, N04 completo e N07 (§7.5); N14 e N28 (descartadas); N06, N25, N27 e N29 (fora do horizonte).

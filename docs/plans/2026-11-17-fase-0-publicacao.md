@@ -1,5 +1,7 @@
 # Fase 0 — Publicação só de leitura: plano de implementação
 
+**Situação:** concluído (PRs #5 a #13).
+
 > **Como executar:** uma tarefa por vez, marcando as caixas (`- [ ]`). Cada tarefa tem a sua branch e
 > termina com testes passando, um commit e o PR para a `develop`.
 
