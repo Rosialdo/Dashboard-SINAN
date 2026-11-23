@@ -138,8 +138,8 @@ def test_listar_ftp_mantem_srag_salvo_quando_o_opendatasus_falha(dados_srag, mon
     monkeypatch.setattr(download.srag, "listar", _falha)
     lista = download.listar_ftp()
     assert lista["arquivos"]["SRAG"]["2026"]["data_ftp"] == "16-11-2026" and "DENG" in lista["arquivos"]
-    assert lista["falhas"] == ["OpenDataSUS (SRAG)"]
-    assert download.listagem_salva()["falhas"] == ["OpenDataSUS (SRAG)"]
+    assert lista["falhas"] == [download.FALHA_SRAG]
+    assert download.listagem_salva()["falhas"] == [download.FALHA_SRAG]
 
 
 def test_listar_ftp_atualiza_srag_quando_o_ftp_falha(dados_srag, monkeypatch):
@@ -148,7 +148,7 @@ def test_listar_ftp_atualiza_srag_quando_o_ftp_falha(dados_srag, monkeypatch):
     monkeypatch.setattr(download.srag, "listar", lambda: {"2026": INFO_2026})
     lista = download.listar_ftp()
     assert lista["arquivos"]["SRAG"]["2026"]["data_ftp"] == "23-11-2026" and "DENG" in lista["arquivos"]
-    assert lista["falhas"] == ["DATASUS (FTP)"]
+    assert lista["falhas"] == [download.FALHA_SINAN]
 
 
 def test_listar_ftp_falha_so_com_as_duas_fontes_fora(dados_srag, monkeypatch):
@@ -193,8 +193,17 @@ def test_tela_atualizar_mostra_a_fonte_que_falhou(cliente_local_com_srag):
     _salvar_listagem({"SRAG": {"2026": INFO_2026}})
     assert c.get("/api/dados").json()["listagem_falhas"] == []  # listagem antiga, sem "falhas"
     lista = json.loads(download.ARQ_LISTAGEM_FTP.read_text(encoding="utf-8"))
-    download.ARQ_LISTAGEM_FTP.write_text(json.dumps({**lista, "falhas": ["DATASUS (FTP)"]}), encoding="utf-8")
+    download.ARQ_LISTAGEM_FTP.write_text(json.dumps({**lista, "falhas": [download.FALHA_SINAN]}), encoding="utf-8")
     d = c.get("/api/dados").json()
-    assert d["listagem_falhas"] == ["DATASUS (FTP)"]
+    assert d["listagem_falhas"] == [download.FALHA_SINAN]
     srag_item = next(i for i in d["inventario"] if i["agravo"] == "SRAG")
     assert srag_item["status"] == "em_dia"  # mesma data do arquivo
+
+
+def test_atualizar_sem_acesso_ao_datasus_nao_diz_que_o_dado_nao_existe(dados_srag, monkeypatch):
+    monkeypatch.setattr(pipeline, "listar_ftp",
+                        lambda: {"arquivos": {"SRAG": {"2026": INFO_2026}}, "falhas": [download.FALHA_SINAN]})
+    res = pipeline.atualizar(["DENG"], [2024], ["RR"])
+    assert res.indisponiveis == []
+    assert res.erros == ["Dengue 2024: sem acesso ao DATASUS agora. Tente de novo mais tarde."]
+    assert res.falhas == [download.FALHA_SINAN]

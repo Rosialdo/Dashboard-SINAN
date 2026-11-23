@@ -69,6 +69,8 @@ def main() -> int:
         print(f"\nERRO: {e}")
         return 1
     print("\n")
+    for f in res.falhas:
+        print(f"  AVISO       Não foi possível consultar agora: {f}. Usada a última lista salva dessa fonte.")
     for s in res.sucesso:
         print(f"  OK          {s}")
     for s in res.pulados:

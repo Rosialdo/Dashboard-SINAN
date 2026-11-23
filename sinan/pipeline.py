@@ -7,7 +7,7 @@ from dataclasses import dataclass, field
 
 from . import agravos as cat
 from . import srag
-from .download import baixar_arquivo, listagem_salva, listar_ftp
+from .download import FALHA_SINAN, FALHA_SRAG, baixar_arquivo, listagem_salva, listar_ftp
 from .processar import ler_inventario, processar_dbc
 
 
@@ -17,6 +17,7 @@ class Resultado:
     indisponiveis: list[str] = field(default_factory=list)
     erros: list[str] = field(default_factory=list)
     pulados: list[str] = field(default_factory=list)
+    falhas: list[str] = field(default_factory=list)  # fontes que não responderam (ficou a lista salva)
 
 
 Aviso = Callable[[str, float, str], None]  # (tarefa, fração 0-1, mensagem)
@@ -58,13 +59,18 @@ def atualizar(
         if not listagem:
             raise ConnectionError(f"Sem acesso ao FTP do DATASUS ({e}). Verifique a internet.") from e
 
+    res.falhas = listagem.get("falhas", [])
     tarefas = [(a, ano) for a in agravos for ano in sorted(anos)]
     for i, (agravo, ano) in enumerate(tarefas, 1):
         rotulo = f"{cat.nome(agravo)} {ano}"
         titulo = f"[{i}/{len(tarefas)}] {rotulo}"
         info = listagem["arquivos"].get(agravo, {}).get(str(ano))
         if not info:
-            res.indisponiveis.append(rotulo)
+            fonte = FALHA_SRAG if agravo == "SRAG" else FALHA_SINAN
+            if fonte in res.falhas:  # a fonte está fora do ar: não dá para dizer que o dado não existe
+                res.erros.append(f"{rotulo}: sem acesso ao {fonte.split(' (')[0]} agora. Tente de novo mais tarde.")
+            else:
+                res.indisponiveis.append(rotulo)
             continue
         if not forcar and not precisa_atualizar(agravo, ano, info, ufs):
             res.pulados.append(rotulo)

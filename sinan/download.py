@@ -28,6 +28,11 @@ def _conectar() -> FTP:
     return ftp
 
 
+# nomes das fontes mostrados na tela quando uma delas não responde
+FALHA_SINAN = "DATASUS"
+FALHA_SRAG = "OpenDataSUS (síndrome respiratória)"
+
+
 def _listar_sinan() -> dict[str, dict[str, dict]]:
     """Arquivos do SINAN no FTP. Se um ano existir em FINAIS e em PRELIM, vale o FINAIS."""
     ftp = _conectar()
@@ -74,14 +79,14 @@ def listar_ftp() -> dict:
         arquivos = _listar_sinan()
     except Exception as e:  # FTP do DATASUS fora do ar ou sem internet
         arquivos = {k: v for k, v in salva.items() if k != "SRAG"}
-        falhas.append("DATASUS (FTP)")
+        falhas.append(FALHA_SINAN)
         erros.append(str(e))
     try:
         arquivos["SRAG"] = srag.listar()
     except Exception as e:
         if "SRAG" in salva:
             arquivos["SRAG"] = salva["SRAG"]
-        falhas.append("OpenDataSUS (SRAG)")
+        falhas.append(FALHA_SRAG)
         erros.append(str(e))
     if len(falhas) == 2:
         raise ConnectionError("; ".join(erros))
