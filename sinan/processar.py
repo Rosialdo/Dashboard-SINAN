@@ -136,8 +136,10 @@ def derivar(df: pd.DataFrame, agravo: cat.Agravo, ano: int) -> pd.DataFrame:
     classi = g("CLASSI_FIN")
     sem_classificacao = classi is None or classi.isna().all()
     conv_cl = _conversor(agravo, "CLASSI_FIN")
+    rotulos = agravo.rotulos or {}
     if classi is not None:
-        out["classificacao"] = _mapear(conv_cl, classi, {}, n)
+        out["classificacao"] = _mapear(conv_cl, classi, rotulos.get("CLASSI_FIN", {}), n) \
+            .mask(classi.isna(), agravo.sem_classificacao)
     else:
         out["classificacao"] = "Sem classificação"
 
@@ -164,11 +166,12 @@ def derivar(df: pd.DataFrame, agravo: cat.Agravo, ano: int) -> pd.DataFrame:
         out["situacao"] = situacao
         out["confirmado"] = confirmado.values
 
-    out["criterio_confirmacao"] = _mapear(_conversor(agravo, "CRITERIO"), g("CRITERIO"), {}, n) if "CRITERIO" in df else "Ign/Branco"
+    out["criterio_confirmacao"] = (_mapear(_conversor(agravo, "CRITERIO"), g("CRITERIO"), rotulos.get("CRITERIO", {}), n)
+                                   if "CRITERIO" in df else "Ign/Branco")
 
     campo_evo = agravo.campo_evolucao if agravo.campo_evolucao in df else "EVOLUCAO"
     if campo_evo in df:
-        evo = _mapear(_conversor(agravo, campo_evo), df[campo_evo], {}, n)
+        evo = _mapear(_conversor(agravo, campo_evo), df[campo_evo], rotulos.get(campo_evo, {}), n)
         rot = evo.str.lower()
         out["evolucao_caso"] = evo
         out["obito"] = (rot.str.startswith("óbito") | rot.str.startswith("obito")) & \

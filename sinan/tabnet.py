@@ -64,7 +64,7 @@ def _bate(cod: str, ini: str, fim: str | None) -> bool:
 
 def _arquivo(nome: str) -> Path | None:
     p = PASTA_TABNET / nome.strip().lower()
-    return p if p.exists() else None
+    return p if p.is_file() else None
 
 
 @cache
