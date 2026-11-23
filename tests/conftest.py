@@ -119,3 +119,19 @@ def dados_srag(tmp_path, monkeypatch):
     cache.limpar()
     yield raiz
     cache.limpar()
+
+
+@pytest.fixture
+def dados_com_srag(dados_srag, amostra_srag):
+    """Pasta própria só com o SRAG 2026 de RR, gerado da amostra."""
+    srag.processar(amostra_srag, 2026, ["RR"], {"data_ftp": "23-11-2026", "situacao": "preliminar"})
+    cache.limpar()
+    return dados_srag
+
+
+@pytest.fixture
+def cliente_local_com_srag(dados_com_srag):
+    from starlette.testclient import TestClient
+
+    with TestClient(app, base_url="http://localhost:8501") as c:
+        yield c

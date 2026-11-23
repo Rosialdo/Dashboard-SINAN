@@ -177,3 +177,32 @@ def test_local_municipio_continua_com_tudo(cliente, municipio):
     d = cliente.get(f"/api/perfil?agravo=ACBI&contagem=todas&mun={municipio}").json()
     assert d["evolucao"] is not None and d["indicadores"]["obitos"] is not None
     assert "obitos" in cliente.get("/api/mapa?agravo=ACBI&contagem=todas").json()["municipios"][0]
+
+
+@pytest.fixture
+def cliente_publico_com_srag(dados_com_srag, monkeypatch):
+    monkeypatch.setenv("SINAN_MODO", "publico")
+    monkeypatch.setenv("SINAN_HOSTS", DOMINIO)
+    with TestClient(criar_app(), base_url=f"https://{DOMINIO}") as c:
+        yield c
+
+
+SO_NO_COMPUTADOR = "Síndrome respiratória aguda grave (SRAG) só está disponível no painel instalado no computador."
+
+
+def test_publico_esconde_srag(cliente_publico_com_srag):
+    c = cliente_publico_com_srag
+    meta = c.get("/api/meta").json()
+    assert "SRAG" not in [a["codigo"] for a in meta["agravos"]]
+    assert meta["atualizado_em"] == ""  # nem a data de processamento do SRAG aparece
+    for rota in ("visao", "mapa", "perfil", "variaveis", "variavel?id=0"):
+        sep = "&" if "?" in rota else "?"
+        r = c.get(f"/api/{rota}{sep}agravo=SRAG")
+        assert r.status_code == 400, rota
+        assert r.json()["erro"] == SO_NO_COMPUTADOR, rota
+
+
+def test_local_mostra_srag(cliente_local_com_srag):
+    c = cliente_local_com_srag
+    assert "SRAG" in [a["codigo"] for a in c.get("/api/meta").json()["agravos"]]
+    assert c.get("/api/visao?agravo=SRAG").status_code == 200
