@@ -9,6 +9,7 @@ from __future__ import annotations
 import re
 import threading
 from dataclasses import dataclass
+from datetime import date
 
 import duckdb
 import pandas as pd
@@ -177,6 +178,71 @@ def indicadores(f: Filtro) -> dict:
                        max(data_notificacao) ultima_notificacao
                 FROM {_fonte(f.agravo)} WHERE {w2}""", p2)
     return df.iloc[0].to_dict()
+
+
+# (id, campos originais obrigatórios, coluna inicial, coluna final, limite em dias)
+PRAZOS = (("notificacao", ("DT_SIN_PRI", "DT_NOTIFIC"), "data_sintomas", "data_notificacao", 7),
+          ("digitacao", ("DT_NOTIFIC", "DT_DIGITA"), "data_notificacao", "DT_DIGITA", 7),
+          ("investigacao", ("DT_NOTIFIC", "DT_INVEST"), "data_notificacao", "DT_INVEST", 2),
+          ("encerramento", ("DT_NOTIFIC", "DT_ENCERRA"), "data_notificacao", "DT_ENCERRA", 60))
+
+
+def _data_sql(coluna: str) -> str:
+    """Expressão SQL que vira DATE ou NULL (coluna de texto ``DT_*``; só nomes de constantes)."""
+    d = (f"coalesce(try_cast({coluna} AS DATE), "
+         f"try_strptime(trim(CAST({coluna} AS VARCHAR)), ['%Y%m%d', '%d/%m/%Y'])::DATE)")
+    # mesma faixa das datas derivadas (processar._datas): fora dela vale como ilegível
+    return f"(CASE WHEN {d} BETWEEN DATE '1900-01-01' AND current_date + 1 THEN {d} END)"
+
+
+def anos_sem_coluna(agravo: str, coluna: str) -> list[int]:
+    """Anos cujo arquivo Parquet não tem a coluna (lê só o esquema)."""
+    import pyarrow.parquet as pq
+    agravo = validar_agravo(agravo)
+    pasta = PASTA_PARQUET / agravo
+    return sorted(int(a.stem.rsplit("_", 1)[1]) for a in pasta.glob(f"{agravo}_*.parquet")
+                  if coluna not in pq.read_schema(a).names)
+
+
+def qualidade(f: Filtro, data_arquivos: date | None = None) -> dict:
+    """Notificações dentro do prazo, entre as fichas com as duas datas válidas (ver docs: Sobre os dados)."""
+    f_todos = Filtro(**{**f.__dict__, "contagem": "todas"})
+    w, p = f_todos.where()
+    fonte = _fonte(f.agravo)
+    existentes = set(colunas(f.agravo))
+    referencia = data_arquivos or conexao().execute(f"SELECT max(data_notificacao) FROM {fonte}").fetchone()[0]
+    cols, params, disponiveis = ["count(*)"], [], []
+    for id_, campos, ini, fim, limite in PRAZOS:
+        if not set(campos) <= existentes:
+            continue
+        dias = f"date_diff('day', {_data_sql(ini) if ini.startswith('DT_') else ini}, " \
+               f"{_data_sql(fim) if fim.startswith('DT_') else fim})"
+        cols += [f"count(*) FILTER (WHERE {dias} >= 0)", f"count(*) FILTER (WHERE {dias} BETWEEN 0 AND {limite})"]
+        disponiveis.append(id_)
+        if id_ == "encerramento":
+            sem = ("NULLIF(trim(CAST(DT_ENCERRA AS VARCHAR)), '') IS NULL "
+                   "AND date_diff('day', data_notificacao, ?) > 60")
+            params.append(referencia)
+            sem_anos = anos_sem_coluna(f.agravo, "DT_ENCERRA")
+            if sem_anos:
+                sem += f" AND ano NOT IN ({','.join('?' * len(sem_anos))})"
+                params += sem_anos
+            cols.append(f"count(*) FILTER (WHERE {sem})")
+    linha = conexao().execute(f"SELECT {', '.join(cols)} FROM {fonte} WHERE {w}", params + p).fetchone()
+    prazos, k = [], 1
+    for id_, _, _, _, limite in PRAZOS:
+        if id_ not in disponiveis:
+            prazos.append({"id": id_, "limite": limite, "disponivel": False})
+            continue
+        base, no_prazo = linha[k], linha[k + 1]
+        k += 2
+        sem_enc = 0
+        if id_ == "encerramento":
+            sem_enc, k = linha[k], k + 1
+            base += sem_enc  # sem data de encerramento há mais de 60 dias: fora do prazo
+        prazos.append({"id": id_, "limite": limite, "disponivel": True, "base": base, "no_prazo": no_prazo,
+                       "pct": round(100 * no_prazo / base, 1) if base else None, "sem_encerramento": sem_enc})
+    return {"notificacoes": linha[0], "referencia": referencia, "prazos": prazos}
 
 
 def por_semana(f: Filtro) -> pd.DataFrame:
