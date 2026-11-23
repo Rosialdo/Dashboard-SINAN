@@ -1,5 +1,7 @@
 # Containerização do painel publicado: plano de implementação
 
+**Situação:** código concluído (PRs #14 a #17); implantação na VPS pendente (ver `docs/analise/2026-11-analise-e-roadmap.md`, §7.6, P0).
+
 > **Como executar:** uma tarefa por vez, marcando as caixas (`- [ ]`). Cada tarefa tem a sua branch,
 > criada da `develop`, e termina com os testes passando, um commit e o PR para a `develop`.
 

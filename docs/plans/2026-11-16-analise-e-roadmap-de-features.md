@@ -1,5 +1,7 @@
 # Análise do painel e roadmap de novas funcionalidades — Plano de trabalho
 
+**Situação:** concluído (PR #3).
+
 > **Como executar:** uma tarefa por vez, na ordem, marcando as caixas (`- [ ]`). Cada tarefa
 > termina com uma seção pronta no relatório e um commit. Nenhuma tarefa altera código do painel.
 
