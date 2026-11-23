@@ -29,6 +29,8 @@ class Agravo:
     rotulos: Mapping[str, Mapping[str, str]] | None = field(default=None, compare=False, hash=False)
     # rótulo da classificação quando CLASSI_FIN está vazio
     sem_classificacao: str = "Ign/Branco"
+    # de onde vêm os dados (rodapé do menu)
+    fonte: str = "SINAN / DATASUS"
 
 
 _AVISO_MALARIA = (
@@ -91,7 +93,7 @@ AGRAVOS: dict[str, Agravo] = {a.codigo: a for a in [
     Agravo("SDTA", "Surtos de doenças transmitidas por alimentos", "dtanet.def", todos_casos=True),
     # SIVEP-Gripe (OpenDataSUS), não é do SINAN: toda ficha já é um caso (internação ou óbito)
     Agravo("SRAG", "Síndrome respiratória aguda grave (SRAG)", None, todos_casos=True,
-           rotulos=_ROTULOS_SRAG, sem_classificacao="Em investigação",
+           rotulos=_ROTULOS_SRAG, sem_classificacao="Em investigação", fonte="SIVEP-Gripe / OpenDataSUS",
            aviso="Estes dados vêm do SIVEP-Gripe (OpenDataSUS), não do SINAN. Incluem só casos "
                  "internados ou óbitos, e os dois anos mais recentes mudam toda semana."),
     Agravo("TETA", "Tétano acidental", "tetacidnet.def"),

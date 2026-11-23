@@ -10,6 +10,7 @@ import pyarrow.parquet as pq
 import pytest
 from conftest import escrever_amostra_srag
 
+from sinan import agravos as cat
 from sinan import download, pipeline, processar, srag
 
 
@@ -207,3 +208,9 @@ def test_atualizar_sem_acesso_ao_datasus_nao_diz_que_o_dado_nao_existe(dados_sra
     assert res.indisponiveis == []
     assert res.erros == ["Dengue 2024: sem acesso ao DATASUS agora. Tente de novo mais tarde."]
     assert res.falhas == [download.FALHA_SINAN]
+
+
+def test_meta_informa_a_fonte_de_cada_agravo(cliente_local_com_srag):
+    agravos = {a["codigo"]: a for a in cliente_local_com_srag.get("/api/meta").json()["agravos"]}
+    assert agravos["SRAG"]["fonte"] == "SIVEP-Gripe / OpenDataSUS"
+    assert cat.obter("DENG").fonte == "SINAN / DATASUS"
