@@ -32,6 +32,7 @@ export function montar(raiz) {
       <dt>Óbito</dt><dd>Evolução “óbito pelo agravo” (não conta óbito por outras causas nem em investigação).</dd>
       <dt>Letalidade</dt><dd>Óbitos pelo agravo ÷ casos confirmados × 100.</dd>
       <dt>Incidência</dt><dd>Casos ÷ população × 100 mil. Com vários anos, é a média anual (casos ÷ soma da população de cada ano).</dd>
+      <dt>Incidência suavizada</dt><dd>Incidência de cada município aproximada da média da área, tanto mais quanto menor a população (método bayesiano empírico global de Marshall). Serve para comparar municípios pequenos, em que poucos casos mudam muito a taxa. Como usa a média do estado, um município realmente diferente dos outros também é puxado para ela: para boletins, alertas e para dizer se há surto, use a incidência. Não aparece com um município escolhido, com filtro de sexo ou faixa etária, nem na contagem pelo município de notificação, porque nesses casos a população não corresponde aos casos.</dd>
       <dt>Não informado</dt><dd>A pergunta ficou em branco na ficha de notificação ou foi marcada como “ignorado” (no TabNet aparece como “Ign/Branco”). Muitos casos assim indicam ficha incompleta, não ausência da característica.</dd>
       <dt>Em aberto</dt><dd>Caso que ainda não recebeu classificação final (confirmado ou descartado), em geral porque a investigação não terminou.</dd>
       <dt>Prazos (tela Qualidade dos dados)</dt><dd>Notificação: até 7 dias entre os primeiros sintomas e a notificação. Digitação: até 7 dias entre a notificação e o lançamento no sistema. Investigação: até 2 dias entre a notificação e a investigação; fora das doenças de notificação imediata, esse valor é uma referência provisória, ainda não validada pela vigilância. Encerramento: até 60 dias entre a notificação e o encerramento. O percentual usa só as fichas avaliáveis, isto é, com as duas datas preenchidas e válidas; datas ausentes, ilegíveis ou trocadas ficam fora. No encerramento, as fichas sem data de encerramento registrada há mais de 60 dias contam como fora do prazo (isso não é o mesmo que “Em aberto”, que é a classificação final vazia). “Há mais de 60 dias” é contado até a data do arquivo do DATASUS, mostrada na tela. Anos cujos arquivos não trazem a data de encerramento ficam fora dessa conta.</dd>
@@ -41,7 +42,7 @@ export function montar(raiz) {
     <ul>
       <li>Os anos mais recentes são <b>preliminares</b> e mudam a cada atualização do DATASUS.</li>
       <li>As últimas semanas sempre parecem menores por causa do atraso entre o início dos sintomas e o registro.</li>
-      <li>Municípios pequenos têm incidências instáveis: poucos casos mudam muito a taxa.</li>
+      <li>Municípios pequenos têm incidências instáveis: poucos casos mudam muito a taxa. Para compará-los, use a incidência suavizada no mapa.</li>
       <li>Os arquivos de dengue do DATASUS não trazem os casos descartados.</li>
       <li>Na Amazônia Legal, a malária é notificada no SIVEP-Malária, não no SINAN.</li>
       <li>A síndrome respiratória aguda grave (SRAG) vem do SIVEP-Gripe (OpenDataSUS), não do SINAN. Inclui só casos internados ou óbitos, e os anos mais recentes mudam toda semana. Casos sem classificação aparecem como "Em investigação". Disponível apenas no painel instalado no computador.</li>

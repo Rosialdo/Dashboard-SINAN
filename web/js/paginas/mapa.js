@@ -20,6 +20,7 @@ export async function montar(raiz, pedido) {
         <h2>${f.mun ? "Mapa do município" : "Mapa dos municípios"}</h2>
         <div class="segmentado peq" style="margin-top:12px" role="group" aria-label="Colorir por">
           <button data-medida="incidencia" aria-pressed="${estado.medida === "incidencia"}">Incidência</button>
+          <button data-medida="incidencia_suavizada" aria-pressed="${estado.medida === "incidencia_suavizada"}" hidden data-tip="Aproxima da média da área a taxa dos municípios com pouca população, para que poucos casos não pareçam um surto. Use para comparar municípios, não para declarar surto.">Incidência suavizada</button>
           <button data-medida="casos" aria-pressed="${estado.medida === "casos"}">${cap(termo())}</button>
         </div>
         <div class="mapa-area" id="mapa-area">${esqueleto(470)}</div>
@@ -41,9 +42,14 @@ export async function montar(raiz, pedido) {
   } catch (e) { $("#kpis").innerHTML = erroHtml(e); return; }
   if (pedido !== estado.pedido) return;
   mostrarKpis(d.indicadores);
+  // a regra de disponibilidade é do servidor: a suavizada existe se algum município trouxe o valor
+  d.suavizada = d.municipios.some((m) => m.incidencia_suavizada != null);
+  $('[data-medida="incidencia_suavizada"]').hidden = !d.suavizada;
+  if (!d.suavizada && estado.medida === "incidencia_suavizada") estado.medida = "incidencia";
+  marcarMedida();
   $$("[data-medida]").forEach((b) => b.onclick = () => {
     estado.medida = b.dataset.medida;
-    $$("[data-medida]").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+    marcarMedida();
     desenharMapa(d, geo);
   });
   $("#exp-mun").onclick = () => baixar(`/api/exportar?${query({ formato: "municipios" })}`);
@@ -51,6 +57,10 @@ export async function montar(raiz, pedido) {
   desenharLateral(d);
   tabelaMunicipios(d);
   definirRedesenho(() => desenharMapa(d, geo));
+}
+
+function marcarMedida() {
+  $$("[data-medida]").forEach((x) => x.setAttribute("aria-pressed", String(x.dataset.medida === estado.medida)));
 }
 
 // ---------------------------------------------------------------- cores
@@ -85,10 +95,11 @@ function desenharMapa(d, geo) {
   const W = 1000, H = 1000 * (maxY - minY) / ((maxX - minX) * k || 1);
   const sx = (x) => ((x - minX) * k) / ((maxX - minX) * k) * W;
   const sy = (y) => (maxY - y) / (maxY - minY) * H;
-  const valores = feats.map((ft) => porCod[ft.properties.cod6]?.[medida] ?? 0).filter((v) => v !== null);
-  let vmin = Math.min(...valores), vmax = Math.max(...valores);
-  if (vmax - vmin < 1e-9) { const pad = Math.max(Math.abs(vmax) * 0.02, 0.5); vmin -= pad; vmax += pad; }
-  if (!estado.f.mun) vmin = Math.min(0, vmin);
+  const valores = feats.map((ft) => porCod[ft.properties.cod6]?.[medida]).filter(Number.isFinite);
+  let vmin = 0, vmax = 1; // sem nenhum valor: escala fixa, todos os municípios saem como "Sem dado"
+  if (valores.length) { vmin = Math.min(...valores); vmax = Math.max(...valores); }
+  if (valores.length && vmax - vmin < 1e-9) { const pad = Math.max(Math.abs(vmax) * 0.02, 0.5); vmin -= pad; vmax += pad; }
+  if (valores.length && !estado.f.mun) vmin = Math.min(0, vmin);
 
   const caminhos = feats.map((ft) => {
     const cod = ft.properties.cod6, m = porCod[cod] || {};
@@ -110,11 +121,12 @@ function desenharMapa(d, geo) {
   const pad = 70;
   const vb0 = { x: -pad, y: -pad, w: W + 2 * pad + 190, h: H + 2 * pad };
   const ticks = [0, .25, .5, .75, 1].map((t) => vmax - t * (vmax - vmin));
-  const casas = medida === "incidencia" || vmax - vmin < 10 ? 1 : 0;
+  const inc = medida.startsWith("incidencia");
+  const casas = inc || vmax - vmin < 10 ? 1 : 0;
   area.innerHTML = `
-    <svg class="mapa" viewBox="${vb0.x} ${vb0.y} ${vb0.w} ${vb0.h}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Mapa de ${medida === "incidencia" ? "incidência" : "casos"} por município">${hachura}${caminhos}${rotulo}</svg>
+    <svg class="mapa" viewBox="${vb0.x} ${vb0.y} ${vb0.w} ${vb0.h}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Mapa de ${inc ? (medida === "incidencia" ? "incidência" : "incidência suavizada") : "casos"} por município">${hachura}${caminhos}${rotulo}</svg>
     <div class="zoom"><button data-z="1.4" aria-label="Aproximar">${ico("mais")}</button><button data-z="0.7" aria-label="Afastar">${ico("menos")}</button><button data-z="tela" aria-label="Tela cheia">${ico("tela")}</button></div>
-    <div class="escala"><div class="escala-tit">${medida === "incidencia" ? "Incidência<br>(por 100 mil hab./ano)" : cap(termo())}</div>
+    <div class="escala"><div class="escala-tit">${inc ? `${medida === "incidencia" ? "Incidência" : "Incidência suavizada"}<br>(por 100 mil hab./ano)` : cap(termo())}</div>
       <div class="escala-corpo"><div class="escala-barra" style="background:linear-gradient(${rampa(1)}, ${rampa(.5)}, ${rampa(0)})"></div>
       <div class="escala-ticks">${ticks.map((t) => `<span>${fmt(t, casas)}</span>`).join("")}</div></div>
       ${semDado ? `<div class="escala-sem"><svg viewBox="0 0 14 14" aria-hidden="true"><rect width="14" height="14" fill="url(#sem-dado)"></rect></svg>Sem dado</div>` : ""}</div>
@@ -160,7 +172,7 @@ function ligarInteracao(area, vb0, porCod, d) {
     const alvo = e.target.closest("path.mun");
     if (!alvo) { esconderDica(); return; }
     const m = porCod[alvo.dataset.cod] || {};
-    mostrarDica(`<b>${esc(m.municipio || alvo.dataset.cod)}</b><br>${cap(termo())}: ${fmt(m.casos)}<br>Incidência: ${fmt(m.incidencia, 1)} /100 mil hab./ano`,
+    mostrarDica(`<b>${esc(m.municipio || alvo.dataset.cod)}</b><br>${cap(termo())}: ${fmt(m.casos)}<br>Incidência: ${fmt(m.incidencia, 1)} /100 mil hab./ano${d.suavizada ? `<br>Suavizada: ${fmt(m.incidencia_suavizada, 1)} /100 mil hab./ano` : ""}`,
                 e.clientX + 14, e.clientY + 14);
   });
   svg.addEventListener("pointerleave", esconderDica);
@@ -210,8 +222,9 @@ function tabelaMunicipios(d) {
   const el = $("#tab-mun");
   let ordem = { col: "casos", desc: true }, busca = "";
   const cols = [["municipio", "Município"], ["uf", "UF"], ["casos", cap(termo()), "num"],
-                ["incidencia", "Incidência (por 100 mil hab./ano)", "num"], ["obitos", "Óbitos", "num"], ["populacao", "População média", "num"]]
-    .filter(([c]) => c !== "obitos" || !estado.meta.publico); // site publicado: sem óbitos por município
+                ["incidencia", "Incidência (por 100 mil hab./ano)", "num"],
+                ["incidencia_suavizada", "Suavizada (por 100 mil hab./ano)", "num"], ["obitos", "Óbitos", "num"], ["populacao", "População média", "num"]]
+    .filter(([c]) => (c !== "obitos" || !estado.meta.publico) && (c !== "incidencia_suavizada" || d.suavizada)); // publicado: sem óbitos por município; suavizada só quando a API a calcula
   const desenhar = () => {
     let linhas = d.municipios.filter((r) => !busca || norm(r.municipio).includes(norm(busca)));
     linhas = [...linhas].sort((a, b) => {
@@ -222,7 +235,7 @@ function tabelaMunicipios(d) {
     el.innerHTML = `<div class="tabela-wrap"><table><thead><tr>${cols.map(([c, r, cl]) =>
       `<th class="ord ${cl || ""}" data-col="${c}" aria-sort="${ordem.col === c ? (ordem.desc ? "descending" : "ascending") : "none"}">${r}${ordem.col === c ? (ordem.desc ? " ↓" : " ↑") : ""}</th>`).join("")}</tr></thead>
       <tbody>${linhas.map((r) => `<tr>${cols.map(([c, , cl]) => `<td class="${cl || ""}">${
-          c === "municipio" || c === "uf" ? esc(r[c]) : fmt(r[c], c === "incidencia" ? 1 : 0)}</td>`).join("")}</tr>`).join("")
+          c === "municipio" || c === "uf" ? esc(r[c]) : fmt(r[c], c.startsWith("incidencia") ? 1 : 0)}</td>`).join("")}</tr>`).join("")
         || `<tr><td colspan="${cols.length}">Nenhum município encontrado.</td></tr>`}</tbody></table></div>`;
     $$("th.ord", el).forEach((th) => th.onclick = () => {
       const col = th.dataset.col;

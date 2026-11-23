@@ -132,3 +132,12 @@ def test_sobre_explica_os_prazos():
     sobre = (WEB / "js" / "paginas" / "sobre.js").read_text(encoding="utf-8")
     for texto in ("60 dias", "Digitação", "sem data de encerramento registrada", "referência provisória"):
         assert texto in sobre
+
+
+def test_mapa_tem_incidencia_suavizada():
+    mapa = (WEB / "js/paginas/mapa.js").read_text(encoding="utf-8")
+    assert 'data-medida="incidencia_suavizada"' in mapa
+    assert '"incidencia_suavizada"' in mapa.split("function tabelaMunicipios")[1]  # coluna da tabela
+    assert "Number.isFinite" in mapa.split("function desenharMapa")[1]  # escala só com números
+    sobre = (WEB / "js/paginas/sobre.js").read_text(encoding="utf-8")
+    assert "Incidência suavizada" in sobre
