@@ -103,3 +103,8 @@ def test_menu_poe_variaveis_no_fim_como_avancado():
 def test_variaveis_continua_com_montador():
     roteador = (WEB / "js" / "roteador.js").read_text(encoding="utf-8")
     assert '"variaveis": variaveis.montar' in roteador
+
+
+def test_perfil_aponta_para_outras_variaveis():
+    perfil = (WEB / "js" / "paginas" / "perfil.js").read_text(encoding="utf-8")
+    assert 'href="#/variaveis"' in perfil
