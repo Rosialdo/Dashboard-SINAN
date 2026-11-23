@@ -1,6 +1,22 @@
 /* Tela "Sobre os dados": fonte, definições e cuidados de interpretação. */
 
+import { estado } from "../nucleo/estado.js";
+
+/** Só no site publicado (decisão de 19/11/2026). */
+const PRIVACIDADE = `
+  <section class="card card-corpo texto" style="margin-bottom:14px;max-width:none">
+    <h2>Sobre este painel e privacidade</h2>
+    <p>Este é um projeto de estudo do grupo PRISM. Ele mostra apenas números agregados, calculados a partir dos dados
+      públicos do SINAN disponibilizados pelo Ministério da Saúde (DATASUS). Os dados do ano corrente são preliminares, e
+      este painel não substitui as fontes oficiais.</p>
+    <p>Nenhuma ficha individual é publicada. Para evitar a identificação de pessoas, gestação, evolução do caso (óbito),
+      hospitalização e doença relacionada ao trabalho não aparecem quando um município está selecionado.</p>
+    <p>O site não usa cookies e não coleta dados de quem o visita: o servidor não guarda registro de acesso nem o
+      endereço IP. O tema e os filtros escolhidos ficam guardados só no seu navegador.</p>
+  </section>`;
+
 export function montar(raiz) {
+  if (estado.meta?.publico) raiz.insertAdjacentHTML("beforeend", PRIVACIDADE);
   raiz.insertAdjacentHTML("beforeend", `
   <section class="card card-corpo texto" style="margin-bottom:14px;max-width:none">
     <h2>Fonte</h2>
