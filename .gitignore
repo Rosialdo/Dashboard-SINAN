@@ -22,3 +22,8 @@ dados/
 # Ferramentas locais de cada desenvolvedor
 .claude/.headroom_wrap_*
 .serena/
+
+# graphify: caminhos e cache locais (o grafo em si é versionado)
+graphify-out/.graphify_python
+graphify-out/.graphify_root
+graphify-out/cache/
