@@ -149,3 +149,9 @@ def test_derivar_srag_usa_rotulos_proprios():
 def test_classificacao_vazia_continua_ign_branco_no_sinan():
     out = derivar(_ficha_dengue(CLASSI_FIN=[None]), cat.obter("DENG"), 2024)
     assert out["classificacao"].iloc[0] == "Ign/Branco"
+
+
+def test_classificacao_vazia_segue_o_rotulo_oficial_do_tabnet():
+    # no classchik.cnv do TabNet, a classificação vazia é "Descartado": não pode virar "Ign/Branco"
+    out = derivar(_ficha_dengue(CLASSI_FIN=[None]), cat.obter("CHIK"), 2024)
+    assert out["classificacao"].iloc[0] == "Descartado"

@@ -138,8 +138,9 @@ def derivar(df: pd.DataFrame, agravo: cat.Agravo, ano: int) -> pd.DataFrame:
     conv_cl = _conversor(agravo, "CLASSI_FIN")
     rotulos = agravo.rotulos or {}
     if classi is not None:
-        out["classificacao"] = _mapear(conv_cl, classi, rotulos.get("CLASSI_FIN", {}), n) \
-            .mask(classi.isna(), agravo.sem_classificacao)
+        out["classificacao"] = _mapear(conv_cl, classi, rotulos.get("CLASSI_FIN", {}), n)
+        if conv_cl is None and "CLASSI_FIN" in rotulos:  # o .cnv do TabNet já tem rótulo para o vazio
+            out["classificacao"] = out["classificacao"].mask(classi.isna(), agravo.sem_classificacao)
     else:
         out["classificacao"] = "Sem classificação"
 
