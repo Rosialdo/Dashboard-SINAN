@@ -55,7 +55,7 @@ Rótulos oficiais (dicionário de dados SRAG 2019–2025):
 
 ## Restrições gerais (de `CLAUDE.md`)
 
-- Nada no projeto pode citar assistente, IA ou ferramenta de geração: nem commits, nem código, nem textos. Commits **sem** `Co-Authored-By`.
+- Regras de autoria e de commits: seguir a seção 1 do `CLAUDE.md`.
 - Branch `feature/srag` criada a partir da `develop`. Um commit por assunto, com mensagem em português (título no imperativo e corpo com o quê e o porquê).
 - Antes de cada commit: `uv run pytest` e `uv run ruff check .` passando.
 - Só licenças permissivas. Este plano não adiciona dependências.
