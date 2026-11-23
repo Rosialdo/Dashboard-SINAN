@@ -77,7 +77,7 @@ versão antiga do painel. Para testar no navegador, suba o servidor numa porta s
 tempo limite, para ele se encerrar sozinho:
 
 ```
-timeout 75 .venv/Scripts/python.exe -c "import sys; sys.path.insert(0,'.'); import uvicorn; from sinan.web import app; uvicorn.run(app, host='127.0.0.1', port=8599, log_level='warning')"
+timeout 75 .venv/Scripts/python.exe -c "import sys; sys.path.insert(0,'.'); import uvicorn; from sinan.api import app; uvicorn.run(app, host='127.0.0.1', port=8599, log_level='warning')"
 ```
 
 Se o usuário relatar que "não mudou nada", confira antes de tudo qual processo está na porta
