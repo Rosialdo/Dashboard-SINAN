@@ -30,7 +30,8 @@ export async function montar(raiz, pedido) {
       ${quadro("evolucao", "Evolução", t)}
       ${quadro("criterio", "Critério de confirmação", t)}
       ${quadro("hospitalizado", "Hospitalização", t, 160)}
-    </div>`);
+    </div>
+    <p class="card-sub">Procura outro campo da ficha de notificação? Veja em <a href="#/variaveis">Outras variáveis</a>.</p>`);
   let d;
   try { d = await api(`/api/perfil?${query()}`); } catch (e) { $("#kpis").innerHTML = erroHtml(e); return; }
   if (pedido !== estado.pedido) return;

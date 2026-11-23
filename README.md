@@ -48,9 +48,9 @@ Também dá para atualizar sem abrir o painel, com dois cliques em `ATUALIZAR_DA
 - **🗺️ Mapa e municípios:** mapa de incidência ou de número de casos e ranking dos municípios.
 - **👥 Perfil dos casos:** pirâmide etária, raça/cor, classificação final, evolução e critério de
   confirmação.
-- **🔎 Outras variáveis:** qualquer campo da ficha de notificação (sinais, sintomas, exames,
-  escolaridade...), com os rótulos oficiais do TabNet.
-- **📄 Dados e download:** tabela dos registros e exportação para Excel ou CSV.
+- **📄 Dados e exportação:** tabela dos registros e exportação para Excel ou CSV.
+- **🔎 Outras variáveis** (seção "Avançado", no fim do menu): qualquer campo da ficha de
+  notificação (sinais, sintomas, exames, escolaridade...), com os rótulos oficiais do TabNet.
 
 **Filtros:** doença, anos, UF, municípios, residência ou local de notificação, confirmados,
 prováveis ou todas as notificações, sexo e faixa etária.
