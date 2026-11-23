@@ -82,3 +82,24 @@ def test_servidor_entrega_os_estilos(cliente):
     for arquivo in ESTILOS:
         r = cliente.get("/static/" + arquivo.relative_to(WEB).as_posix())
         assert r.status_code == 200 and "text/css" in r.headers["content-type"], arquivo.name
+
+
+_PAGINA = re.compile(r'^\s*"([\w-]+)":\s*\{[^}]*secao:\s*"([^"]+)"', re.M)
+
+
+def _paginas() -> list[tuple[str, str]]:
+    """(id, seção) na ordem do menu, lidos de PAGINAS em nucleo/estado.js."""
+    return _PAGINA.findall((WEB / "js" / "nucleo" / "estado.js").read_text(encoding="utf-8"))
+
+
+def test_menu_poe_variaveis_no_fim_como_avancado():
+    paginas = _paginas()
+    assert paginas[-1] == ("variaveis", "AVANÇADO")
+    analise = [i for i, s in paginas if s == "ANÁLISE"]
+    assert "variaveis" not in analise
+    assert analise[:3] == ["visao-geral", "mapa", "perfil"]
+
+
+def test_variaveis_continua_com_montador():
+    roteador = (WEB / "js" / "roteador.js").read_text(encoding="utf-8")
+    assert '"variaveis": variaveis.montar' in roteador
