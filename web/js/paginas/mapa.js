@@ -19,7 +19,7 @@ export async function montar(raiz, pedido) {
       <section class="card card-corpo">
         <h2>${f.mun ? "Mapa do município" : "Mapa dos municípios"}</h2>
         <div class="segmentado peq" style="margin-top:12px" role="group" aria-label="Colorir por">
-          <button data-medida="incidencia" aria-pressed="${estado.medida === "incidencia"}">Incidência</button>
+          <button data-medida="incidencia" aria-pressed="${estado.medida === "incidencia"}" hidden>Incidência</button>
           <button data-medida="incidencia_suavizada" aria-pressed="${estado.medida === "incidencia_suavizada"}" hidden data-tip="Aproxima da média da área a taxa dos municípios com pouca população, para que poucos casos não pareçam um surto. Use para comparar municípios, não para declarar surto.">Incidência suavizada</button>
           <button data-medida="casos" aria-pressed="${estado.medida === "casos"}">${cap(termo())}</button>
         </div>
@@ -43,9 +43,12 @@ export async function montar(raiz, pedido) {
   if (pedido !== estado.pedido) return;
   mostrarKpis(d.indicadores);
   // a regra de disponibilidade é do servidor: a suavizada existe se algum município trouxe o valor
+  d.incidencia = d.municipios.some((m) => m.incidencia != null);
+  $('[data-medida="incidencia"]').hidden = !d.incidencia;
   d.suavizada = d.municipios.some((m) => m.incidencia_suavizada != null);
   $('[data-medida="incidencia_suavizada"]').hidden = !d.suavizada;
   if (!d.suavizada && estado.medida === "incidencia_suavizada") estado.medida = "incidencia";
+  if (!d.incidencia && estado.medida.startsWith("incidencia")) estado.medida = "casos";
   marcarMedida();
   $$("[data-medida]").forEach((b) => b.onclick = () => {
     estado.medida = b.dataset.medida;
@@ -172,7 +175,7 @@ function ligarInteracao(area, vb0, porCod, d) {
     const alvo = e.target.closest("path.mun");
     if (!alvo) { esconderDica(); return; }
     const m = porCod[alvo.dataset.cod] || {};
-    mostrarDica(`<b>${esc(m.municipio || alvo.dataset.cod)}</b><br>${cap(termo())}: ${fmt(m.casos)}<br>Incidência: ${fmt(m.incidencia, 1)} /100 mil hab./ano${d.suavizada ? `<br>Suavizada: ${fmt(m.incidencia_suavizada, 1)} /100 mil hab./ano` : ""}`,
+    mostrarDica(`<b>${esc(m.municipio || alvo.dataset.cod)}</b><br>${cap(termo())}: ${fmt(m.casos)}${d.incidencia ? `<br>Incidência: ${fmt(m.incidencia, 1)} /100 mil hab./ano` : ""}${d.suavizada ? `<br>Suavizada: ${fmt(m.incidencia_suavizada, 1)} /100 mil hab./ano` : ""}`,
                 e.clientX + 14, e.clientY + 14);
   });
   svg.addEventListener("pointerleave", esconderDica);
@@ -205,7 +208,7 @@ function desenharLateral(d) {
     <h2>${esc(nome)}</h2><div class="uf">${esc(uf)}</div>
     <h3>Indicadores do período selecionado</h3>
     <div class="mini-kpis">
-      <div><div class="r">Incidência</div><div class="v">${fmt(inc, 1)}</div><div class="s">por 100 mil hab./ano</div></div>
+      ${d.incidencia || !cod ? `<div><div class="r">Incidência</div><div class="v">${fmt(inc, 1)}</div><div class="s">por 100 mil hab./ano</div></div>` : ""}
       <div><div class="r">${cap(termo())}</div><div class="v">${fmt(casos)}</div></div>
       ${obitos === null || obitos === undefined ? "" : `<div><div class="r">Óbitos</div><div class="v">${fmt(obitos)}</div></div>`}
     </div>
@@ -224,7 +227,7 @@ function tabelaMunicipios(d) {
   const cols = [["municipio", "Município"], ["uf", "UF"], ["casos", cap(termo()), "num"],
                 ["incidencia", "Incidência (por 100 mil hab./ano)", "num"],
                 ["incidencia_suavizada", "Suavizada (por 100 mil hab./ano)", "num"], ["obitos", "Óbitos", "num"], ["populacao", "População média", "num"]]
-    .filter(([c]) => (c !== "obitos" || !estado.meta.publico) && (c !== "incidencia_suavizada" || d.suavizada)); // publicado: sem óbitos por município; suavizada só quando a API a calcula
+    .filter(([c]) => (c !== "obitos" || !estado.meta.publico) && (c !== "incidencia" || d.incidencia) && (c !== "incidencia_suavizada" || d.suavizada)); // publicado: sem óbitos por município; suavizada só quando a API a calcula
   const desenhar = () => {
     let linhas = d.municipios.filter((r) => !busca || norm(r.municipio).includes(norm(busca)));
     linhas = [...linhas].sort((a, b) => {

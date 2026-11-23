@@ -58,9 +58,14 @@ def taxa_suavizada(casos: pd.Series, pa: pd.Series) -> pd.Series:
     return out
 
 
+def incidencia_disponivel(f: cq.Filtro) -> bool:
+    """A população do denominador é a total do município, por residência: não vale com sexo, faixa ou notificação."""
+    return f.por_residencia and not (f.sexo or f.faixas)
+
+
 def suavizada_disponivel(f: cq.Filtro) -> bool:
-    """A suavização precisa da população total da área: não vale com sexo, faixa ou município."""
-    return f.por_residencia and not (f.sexo or f.faixas or f.municipios)
+    """A suavização também precisa da população de toda a área: não vale com município escolhido."""
+    return incidencia_disponivel(f) and not f.municipios
 
 
 def tabela_municipios(f: cq.Filtro, area: tuple[str, ...]) -> pd.DataFrame:
@@ -74,7 +79,8 @@ def tabela_municipios(f: cq.Filtro, area: tuple[str, ...]) -> pd.DataFrame:
     pop = cq._q("SELECT cod6, avg(populacao) populacao, sum(populacao) pa FROM pop "
                 "WHERE ano BETWEEN ? AND ? GROUP BY 1", [f.ano_ini, f.ano_fim])
     t = t.merge(pop, on="cod6", how="left")
-    t["incidencia"] = t["casos"] * 1e5 / t["pa"].where(t["pa"] > 0)  # sem população: vazio, não infinito
+    # sem população: vazio, não infinito
+    t["incidencia"] = t["casos"] * 1e5 / t["pa"].where(t["pa"] > 0) if incidencia_disponivel(f) else None
     t["incidencia_suavizada"] = taxa_suavizada(t["casos"], t["pa"]) if suavizada_disponivel(f) else None
     return t.drop(columns="pa").sort_values(["casos", "incidencia", "cod6"], ascending=[False, False, True])
 

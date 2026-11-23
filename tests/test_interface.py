@@ -141,3 +141,5 @@ def test_mapa_tem_incidencia_suavizada():
     assert "Number.isFinite" in mapa.split("function desenharMapa")[1]  # escala só com números
     sobre = (WEB / "js/paginas/sobre.js").read_text(encoding="utf-8")
     assert "Incidência suavizada" in sobre
+    assert ("No mapa, a incidência de cada município não aparece com filtro de sexo ou faixa etária, "
+            "nem na contagem pelo município de notificação, porque a população não corresponde aos casos.") in sobre
