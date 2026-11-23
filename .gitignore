@@ -18,3 +18,7 @@ dados/
 # editores
 .vscode/
 .idea/
+
+# Ferramentas locais de cada desenvolvedor
+.claude/.headroom_wrap_*
+.serena/
