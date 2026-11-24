@@ -9,7 +9,25 @@ import { estado } from "../nucleo/estado.js";
 import { areaNome, mudarFiltro, query, termo } from "../nucleo/filtros.js";
 import { ico } from "../nucleo/icones.js";
 import { irPara } from "../nucleo/navegacao.js";
-import { $, $$, cap, css, esc, fmt, norm } from "../nucleo/util.js";
+import { $, $$, cap, css, dataBR, esc, fmt, norm } from "../nucleo/util.js";
+
+const NIVEIS = { abaixo: "Abaixo da faixa histórica", dentro: "Dentro da faixa histórica", acima: "Acima da faixa histórica" };
+const COR = { abaixo: "var(--alerta-abaixo)", dentro: "var(--alerta-dentro)", acima: "var(--alerta-acima)" };
+const PESO = { acima: 3, dentro: 2, abaixo: 1 }; // sem histórico (null) pesa 0
+const MOTIVOS = { sem_historico: "Sem histórico suficiente", semana_nao_baixada: "Semana ainda não baixada para esta UF" };
+const MOTIVOS_GERAIS = {
+  sem_data: "não há data de atualização dos dados deste agravo.",
+  fora_do_periodo: "a última semana considerada está fora do período escolhido. Inclua o ano mais recente.",
+  sem_historico: "nenhum município tem anos anteriores suficientes para comparar.",
+};
+
+/** Nível do alerta em texto (nunca só cor); "faixa histórica zero" quando poucos casos. */
+function textoNivel(m) {
+  const n = NIVEIS[m.alerta] || MOTIVOS[m.alerta_motivo] || MOTIVOS.sem_historico;
+  return m.alerta === "acima" && m.faixa_zero ? `${n} (faixa histórica zero: poucos casos, confira)` : n;
+}
+
+const dataCurta = (v) => dataBR(v).slice(0, 5);
 
 export async function montar(raiz, pedido) {
   const f = estado.f;
@@ -22,8 +40,11 @@ export async function montar(raiz, pedido) {
           <button data-medida="incidencia" aria-pressed="${estado.medida === "incidencia"}" hidden>Incidência</button>
           <button data-medida="incidencia_suavizada" aria-pressed="${estado.medida === "incidencia_suavizada"}" hidden data-tip="Aproxima da média da área a taxa dos municípios com pouca população, para que poucos casos não pareçam um surto. Use para comparar municípios, não para declarar surto.">Incidência suavizada</button>
           <button data-medida="casos" aria-pressed="${estado.medida === "casos"}">${cap(termo())}</button>
+          <button data-medida="alerta" aria-pressed="${estado.medida === "alerta"}" hidden data-tip="Compara os casos da última semana considerada com o que costuma acontecer nessa semana em cada município. É um sinal para investigar, não a declaração de uma epidemia.">Alerta da semana</button>
         </div>
+        <p class="card-sub" id="alerta-indisponivel" hidden></p>
         <div class="mapa-area" id="mapa-area">${esqueleto(470)}</div>
+        <p class="card-sub" id="nota-alerta" hidden></p>
       </section>
       <section class="card lateral" id="lateral">${esqueleto(300)}</section>
     </div>
@@ -49,6 +70,11 @@ export async function montar(raiz, pedido) {
   $('[data-medida="incidencia_suavizada"]').hidden = !d.suavizada;
   if (!d.suavizada && estado.medida === "incidencia_suavizada") estado.medida = "incidencia";
   if (!d.incidencia && estado.medida.startsWith("incidencia")) estado.medida = "casos";
+  $('[data-medida="alerta"]').hidden = !d.semana_alerta;
+  const indisp = $("#alerta-indisponivel");
+  indisp.hidden = !!d.semana_alerta;
+  if (!d.semana_alerta) indisp.textContent = `Alerta da semana indisponível: ${MOTIVOS_GERAIS[d.alerta_motivo_geral] || MOTIVOS_GERAIS.sem_historico}`;
+  if (!d.semana_alerta && estado.medida === "alerta") estado.medida = d.incidencia ? "incidencia" : "casos";
   marcarMedida();
   $$("[data-medida]").forEach((b) => b.onclick = () => {
     estado.medida = b.dataset.medida;
@@ -83,7 +109,7 @@ function rampa(t) {
 function desenharMapa(d, geo) {
   const area = $("#mapa-area");
   if (!area) return;
-  const medida = estado.medida;
+  const medida = estado.medida, alerta = medida === "alerta";
   const porCod = Object.fromEntries(d.municipios.map((m) => [m.cod6, m]));
   const feats = estado.f.mun ? geo.features.filter((g) => g.properties.cod6 === estado.f.mun) : geo.features;
   if (!feats.length) { area.innerHTML = `<div class="vazio">Mapa indisponível para esta área.</div>`; return; }
@@ -109,7 +135,8 @@ function desenharMapa(d, geo) {
     const dd = aneis(ft.geometry).map((anel) => "M" + anel.map(([x, y]) => `${sx(x).toFixed(1)},${sy(y).toFixed(1)}`).join("L") + "Z").join("");
     const v = m[medida];
     // sem dado (ex.: sem população) fica listrado, para não se confundir com zero casos
-    const cor = v === null || v === undefined ? "url(#sem-dado)" : rampa((v - vmin) / (vmax - vmin));
+    const cor = alerta ? (m.alerta ? COR[m.alerta] : "url(#sem-dado)")
+      : v === null || v === undefined ? "url(#sem-dado)" : rampa((v - vmin) / (vmax - vmin));
     return `<path class="mun ${estado.mapaSel === cod ? "sel" : ""}" d="${dd}" fill="${cor}" data-cod="${cod}"></path>`;
   }).join("");
   let rotulo = "";
@@ -119,20 +146,28 @@ function desenharMapa(d, geo) {
     rotulo = `<text class="rot" x="${cx}" y="${cy}" text-anchor="middle" dominant-baseline="middle" style="font-size:${W / 28}px">${esc(porCod[feats[0].properties.cod6]?.municipio || "")}</text>`;
   }
   const semDado = feats.some((ft) => (porCod[ft.properties.cod6] || {})[medida] == null);
+  const sem = d.semana_alerta;
+  const legendaAlerta = alerta ? `<div class="escala escala-alerta"><div class="escala-tit">Alerta da semana</div>
+      ${["acima", "dentro", "abaixo"].map((n) => `<div class="escala-sem"><i class="amostra" style="background:${COR[n]}"></i>${NIVEIS[n]}</div>`).join("")}
+      <div class="escala-sem"><svg viewBox="0 0 14 14" aria-hidden="true"><rect width="14" height="14" fill="url(#sem-dado)"></rect></svg>Sem nível nesta semana</div>
+      </div>` : "";
   const hachura = `<defs><pattern id="sem-dado" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
     <rect width="8" height="8" fill="${css("--mapa-vazio")}"></rect><rect width="3" height="8" fill="${css("--muted")}"></rect></pattern></defs>`;
+  const nota = $("#nota-alerta");
+  nota.hidden = !alerta;
+  if (alerta) nota.textContent = `Última semana epidemiológica considerada: ${sem.semana} (${dataCurta(sem.inicio)} a ${dataBR(sem.fim)}). Conta as notificações não descartadas. É um sinal para investigar, não a declaração de uma epidemia.`;
   const pad = 70;
   const vb0 = { x: -pad, y: -pad, w: W + 2 * pad + 190, h: H + 2 * pad };
   const ticks = [0, .25, .5, .75, 1].map((t) => vmax - t * (vmax - vmin));
   const inc = medida.startsWith("incidencia");
   const casas = inc || vmax - vmin < 10 ? 1 : 0;
   area.innerHTML = `
-    <svg class="mapa" viewBox="${vb0.x} ${vb0.y} ${vb0.w} ${vb0.h}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Mapa de ${inc ? (medida === "incidencia" ? "incidência" : "incidência suavizada") : "casos"} por município">${hachura}${caminhos}${rotulo}</svg>
+    <svg class="mapa" viewBox="${vb0.x} ${vb0.y} ${vb0.w} ${vb0.h}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Mapa de ${alerta ? "alerta da semana" : inc ? (medida === "incidencia" ? "incidência" : "incidência suavizada") : "casos"} por município">${hachura}${caminhos}${rotulo}</svg>
     <div class="zoom"><button data-z="1.4" aria-label="Aproximar">${ico("mais")}</button><button data-z="0.7" aria-label="Afastar">${ico("menos")}</button><button data-z="tela" aria-label="Tela cheia">${ico("tela")}</button></div>
-    <div class="escala"><div class="escala-tit">${inc ? `${medida === "incidencia" ? "Incidência" : "Incidência suavizada"}<br>(por 100 mil hab./ano)` : cap(termo())}</div>
+    ${legendaAlerta || `<div class="escala"><div class="escala-tit">${inc ? `${medida === "incidencia" ? "Incidência" : "Incidência suavizada"}<br>(por 100 mil hab./ano)` : cap(termo())}</div>
       <div class="escala-corpo"><div class="escala-barra" style="background:linear-gradient(${rampa(1)}, ${rampa(.5)}, ${rampa(0)})"></div>
       <div class="escala-ticks">${ticks.map((t) => `<span>${fmt(t, casas)}</span>`).join("")}</div></div>
-      ${semDado ? `<div class="escala-sem"><svg viewBox="0 0 14 14" aria-hidden="true"><rect width="14" height="14" fill="url(#sem-dado)"></rect></svg>Sem dado</div>` : ""}</div>
+      ${semDado ? `<div class="escala-sem"><svg viewBox="0 0 14 14" aria-hidden="true"><rect width="14" height="14" fill="url(#sem-dado)"></rect></svg>Sem dado</div>` : ""}</div>`}
     <div class="mapa-nota">${estado.f.mun ? "Recorte municipal selecionado" : `${feats.length} municípios · clique para ver detalhes`}</div>`;
   ligarInteracao(area, vb0, porCod, d);
 }
@@ -175,7 +210,7 @@ function ligarInteracao(area, vb0, porCod, d) {
     const alvo = e.target.closest("path.mun");
     if (!alvo) { esconderDica(); return; }
     const m = porCod[alvo.dataset.cod] || {};
-    mostrarDica(`<b>${esc(m.municipio || alvo.dataset.cod)}</b><br>${cap(termo())}: ${fmt(m.casos)}${d.incidencia ? `<br>Incidência: ${fmt(m.incidencia, 1)} /100 mil hab./ano` : ""}${d.suavizada ? `<br>Suavizada: ${fmt(m.incidencia_suavizada, 1)} /100 mil hab./ano` : ""}`,
+    mostrarDica(`<b>${esc(m.municipio || alvo.dataset.cod)}</b><br>${cap(termo())}: ${fmt(m.casos)}${d.incidencia ? `<br>Incidência: ${fmt(m.incidencia, 1)} /100 mil hab./ano` : ""}${d.suavizada ? `<br>Suavizada: ${fmt(m.incidencia_suavizada, 1)} /100 mil hab./ano` : ""}${d.semana_alerta ? `<br>Alerta da semana: ${textoNivel(m)}` : ""}`,
                 e.clientX + 14, e.clientY + 14);
   });
   svg.addEventListener("pointerleave", esconderDica);
@@ -194,11 +229,15 @@ function desenharLateral(d) {
   if (!el) return;
   const m = estado.meta, f = estado.f;
   const cod = f.mun || estado.mapaSel;
-  let nome, uf, inc, suav, casos, obitos, botao;
+  let nome, uf, inc, suav, casos, obitos, botao, nivel = "";
   if (cod) {
     const r = d.municipios.find((x) => x.cod6 === cod) || {};
     nome = r.municipio; uf = m.ufs_nome[r.uf] || r.uf; inc = r.incidencia; suav = r.incidencia_suavizada; casos = r.casos; obitos = r.obitos;
     botao = f.mun ? "Ver perfil dos casos" : "Filtrar este município";
+    if (d.semana_alerta) {
+      const n = d.contagens_ocultas || r.casos_semana == null ? "" : `${fmt(r.casos_semana)} ${r.casos_semana === 1 ? "notificação" : "notificações"} na semana ${d.semana_alerta.semana}` + (r.esperado_ate == null ? "" : `; esperado até ${fmt(r.esperado_ate, 1)}`);
+      nivel = `<h3>Alerta da semana ${d.semana_alerta.semana}</h3><p class="card-sub">${esc(textoNivel(r))}${n ? `<br>${n}` : ""}</p>`;
+    }
   } else {
     nome = areaNome(); uf = d.area.length === 1 ? "Todos os municípios" : d.area.join(", ");
     inc = d.indicadores.incidencia; casos = d.indicadores.casos; obitos = d.indicadores.obitos;
@@ -213,6 +252,7 @@ function desenharLateral(d) {
       <div><div class="r">${cap(termo())}</div><div class="v">${fmt(casos)}</div></div>
       ${obitos === null || obitos === undefined ? "" : `<div><div class="r">Óbitos</div><div class="v">${fmt(obitos)}</div></div>`}
     </div>
+    ${nivel}
     ${!f.mun && estado.mapaSel ? `<p class="card-sub" style="margin-top:14px">Clique de novo no município para voltar ao total da área.</p>` : ""}
     <div class="acao"><button class="btn btn-prim btn-grande" id="ver-perfil"><span class="rot">${ico("vars")}${botao}</span>${ico("direita")}</button></div>`;
   $("#ver-perfil").onclick = () => {
@@ -225,21 +265,23 @@ function desenharLateral(d) {
 function tabelaMunicipios(d) {
   const el = $("#tab-mun");
   let ordem = { col: "casos", desc: true }, busca = "";
-  const cols = [["municipio", "Município"], ["uf", "UF"], ["casos", cap(termo()), "num"],
+  const sem = d.semana_alerta;
+  const cols = [["municipio", "Município"], ["uf", "UF"], ["alerta", `Na semana ${sem?.semana}`], ["casos", cap(termo()), "num"],
                 ["incidencia", "Incidência (por 100 mil hab./ano)", "num"],
                 ["incidencia_suavizada", "Suavizada (por 100 mil hab./ano)", "num"], ["obitos", "Óbitos", "num"], ["populacao", "População média", "num"]]
-    .filter(([c]) => (c !== "obitos" || !estado.meta.publico) && (c !== "incidencia" || d.incidencia) && (c !== "incidencia_suavizada" || d.suavizada)); // publicado: sem óbitos por município; suavizada só quando a API a calcula
+    .filter(([c]) => (c !== "alerta" || sem) && (c !== "obitos" || !estado.meta.publico) && (c !== "incidencia" || d.incidencia) && (c !== "incidencia_suavizada" || d.suavizada)); // publicado: sem óbitos por município; suavizada só quando a API a calcula
   const desenhar = () => {
     let linhas = d.municipios.filter((r) => !busca || norm(r.municipio).includes(norm(busca)));
     linhas = [...linhas].sort((a, b) => {
-      const x = a[ordem.col] ?? -1, y = b[ordem.col] ?? -1;
+      const v = (r) => ordem.col === "alerta" ? PESO[r.alerta] ?? 0 : r[ordem.col] ?? -1;
+      const x = v(a), y = v(b);
       const c = typeof x === "string" ? x.localeCompare(y, "pt-BR") : x - y;
-      return ordem.desc ? -c : c;
+      return (ordem.desc ? -c : c) || a.municipio.localeCompare(b.municipio, "pt-BR") || a.cod6.localeCompare(b.cod6); // desempate: nome e código (há nomes repetidos entre UFs)
     });
     el.innerHTML = `<div class="tabela-wrap"><table><thead><tr>${cols.map(([c, r, cl]) =>
       `<th class="ord ${cl || ""}" data-col="${c}" aria-sort="${ordem.col === c ? (ordem.desc ? "descending" : "ascending") : "none"}">${r}${ordem.col === c ? (ordem.desc ? " ↓" : " ↑") : ""}</th>`).join("")}</tr></thead>
       <tbody>${linhas.map((r) => `<tr>${cols.map(([c, , cl]) => `<td class="${cl || ""}">${
-          c === "municipio" || c === "uf" ? esc(r[c]) : fmt(r[c], c.startsWith("incidencia") ? 1 : 0)}</td>`).join("")}</tr>`).join("")
+          c === "municipio" || c === "uf" ? esc(r[c]) : c === "alerta" ? celulaAlerta(r, d) : fmt(r[c], c.startsWith("incidencia") ? 1 : 0)}</td>`).join("")}</tr>`).join("")
         || `<tr><td colspan="${cols.length}">Nenhum município encontrado.</td></tr>`}</tbody></table></div>`;
     $$("th.ord", el).forEach((th) => th.onclick = () => {
       const col = th.dataset.col;
@@ -247,6 +289,13 @@ function tabelaMunicipios(d) {
       desenhar();
     });
   };
+  if (d.contagens_ocultas && sem) el.insertAdjacentHTML("afterend", `<p class="card-sub">No site publicado, o número de casos da semana por município não é mostrado, para proteger a privacidade.</p>`);
   $("#busca-mun").oninput = (e) => { busca = e.target.value; desenhar(); };
   desenhar();
+}
+
+/** "12 casos · Acima da faixa histórica"; no site publicado, só o nível. */
+function celulaAlerta(r, d) {
+  const n = textoNivel(r);
+  return esc(d.contagens_ocultas || r.casos_semana == null ? n : `${fmt(r.casos_semana)} ${r.casos_semana === 1 ? "notificação" : "notificações"} · ${n}`);
 }

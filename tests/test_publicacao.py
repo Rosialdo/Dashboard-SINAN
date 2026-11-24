@@ -7,6 +7,7 @@ from starlette.testclient import TestClient
 
 from sinan import config
 from sinan.api import criar_app
+from tests.test_api import _alerta_falso
 
 DOMINIO = "painel.exemplo.br"
 
@@ -238,3 +239,16 @@ def test_visao_publico_com_municipio_oculta_a_curva_semanal(cliente_publico, mun
 def test_visao_publico_sem_municipio_mostra_a_curva(cliente_publico):
     d = cliente_publico.get("/api/visao", params={"agravo": "ACBI"}).json()
     assert d["semana"] and d["contagens_ocultas"] is False
+
+
+def test_mapa_publico_nao_mostra_contagem_semanal(cliente_publico, monkeypatch):
+    from sinan.api import cache, servicos
+    cod = cliente_publico.get("/api/mapa?agravo=ACBI").json()["municipios"][0]["cod6"]
+    cache.limpar()
+    monkeypatch.setattr(servicos, "alerta_municipios", _alerta_falso(cod))
+    d = cliente_publico.get("/api/mapa", params={"agravo": "ACBI"}).json()
+    cache.limpar()
+    assert d["contagens_ocultas"] is True
+    assert all(m["casos_semana"] is None and m["esperado_ate"] is None and m.get("q1") is None
+               for m in d["municipios"])
+    assert any(m["alerta"] == "acima" for m in d["municipios"])

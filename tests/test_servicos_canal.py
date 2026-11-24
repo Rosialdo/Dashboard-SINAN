@@ -1,9 +1,22 @@
+from datetime import date
+
+import duckdb
 import pandas as pd
+import pytest
 
 from sinan import consultas as cq
 from sinan import processar
 from sinan.api import servicos
-from sinan.api.servicos import anos_do_canal, anos_epi_cobertos, faixa_esperada
+from sinan.api.servicos import (
+    alerta_municipios,
+    anos_do_canal,
+    anos_epi_cobertos,
+    data_referencia,
+    faixa_esperada,
+    nivel_alerta,
+    semana_coberta,
+    semana_referencia,
+)
 
 
 def test_ano_epi_precisa_do_ano_seguinte():
@@ -181,3 +194,187 @@ def test_canal_sem_uf_conhecida_nao_tem_canal(monkeypatch):
     monkeypatch.setattr(processar, "ler_inventario", lambda: inv)  # sem "BR"
     f = cq.Filtro("DENG", 2020, 2020, municipios=("990010",))
     assert servicos.canal_endemico(f, ("RR",)) == (None, "sem_cobertura")
+
+
+# ------------------------------------------------------------- alerta por município
+@pytest.mark.parametrize("data, esperado", [
+    (date(2026, 11, 12), (2026, 44, date(2026, 11, 1), date(2026, 11, 7))),
+    (date(2026, 11, 8), (2026, 44, date(2026, 11, 1), date(2026, 11, 7))),
+    (date(2026, 11, 7), (2026, 43, date(2026, 10, 25), date(2026, 10, 31))),
+    (date(2021, 1, 6), (2020, 53, date(2020, 12, 27), date(2021, 1, 2))),
+    (date(2026, 1, 10), (2025, 53, date(2025, 12, 28), date(2026, 1, 3))),
+])
+def test_semana_referencia(data, esperado):
+    s = semana_referencia(data)
+    assert (s["ano"], s["semana"], s["inicio"], s["fim"]) == esperado
+
+
+def test_nivel_alerta():
+    n = nivel_alerta(pd.Series([1, 5, 9, 1, 0]), pd.Series([2, 2, 2, 0, 0]), pd.Series([8, 8, 8, 0, 0]))
+    assert n.tolist() == ["abaixo", "dentro", "acima", "acima", "dentro"]
+
+
+def test_data_referencia_usa_a_ultima_notificacao(monkeypatch):
+    monkeypatch.setattr(cq, "tem_dados", lambda a: True)
+    monkeypatch.setattr(servicos, "data_dos_arquivos", lambda a: date(2026, 11, 20))
+    monkeypatch.setattr(cq, "ultima_notificacao", lambda a: date(2026, 9, 15))
+    assert data_referencia("DENG") == date(2026, 9, 15)
+    monkeypatch.setattr(cq, "ultima_notificacao", lambda a: None)
+    assert data_referencia("DENG") == date(2026, 11, 20)
+
+
+def test_contagem_do_alerta_exclui_so_descartados():
+    df = pd.DataFrame({"ano": 2026, "situacao": ["Confirmado", "Descartado", "Em aberto/Ign.", "Inconclusivo",
+                                                 "Outra classificação", "Notificado"]})
+    con = duckdb.connect()
+    con.register("df", df)
+    w, p = cq.Filtro("DENG", 2026, 2026, contagem="provaveis").where()
+    assert con.execute(f"SELECT count(*) FROM df WHERE {w}", p).fetchone()[0] == 5
+
+
+def test_semana_coberta():
+    s = semana_referencia(date(2021, 1, 6))
+    assert not semana_coberta(s, date(2021, 1, 6), [2020]) and semana_coberta(s, date(2021, 1, 6), [2020, 2021])
+    s = semana_referencia(date(2026, 11, 12))
+    assert semana_coberta(s, date(2026, 11, 12), [2026])
+
+
+class _Mundo:
+    """Dados sintéticos no lugar das consultas: {cod6: uf}, casos por (cod6, ano_epi, sem) e anos baixados por UF."""
+
+    def __init__(self, mp, data, muns, casos, baixados):
+        self.chamadas = []
+        mp.setattr(servicos, "data_referencia", lambda a: data)
+        mp.setattr(cq, "municipios_da_uf", lambda ufs: pd.DataFrame(
+            [(c, f"M{c}", u) for c, u in muns.items() if not ufs or u in ufs], columns=["cod6", "municipio", "uf"]))
+        mp.setattr(cq, "anos_notificacao_cobertos", lambda ag, ufs: baixados[ufs[0]])
+        # chave (cod6, ano_epi, sem) ou (cod6, ano_epi, sem, ano de notificação); sem o último, é o ano_epi
+        linhas = pd.DataFrame([(k[0], k[1], k[2], k[3] if len(k) > 3 else k[1], n) for k, n in casos.items()],
+                              columns=["cod6", "ano_epi", "sem_epi", "ano", "casos"]).astype(
+            {"ano_epi": int, "sem_epi": int, "ano": int, "casos": int})
+
+        def no_filtro(f):  # como o SQL: o filtro é pelo ano de notificação
+            return linhas[linhas.ano.between(f.ano_ini, f.ano_fim)]
+
+        def por_semana(f, semanas):
+            self.chamadas.append(f)
+            d = no_filtro(f)
+            return d[d.sem_epi.isin(semanas)].groupby(["cod6", "ano_epi", "sem_epi"], as_index=False)["casos"].sum()
+
+        def totais(f):
+            self.chamadas.append(f)
+            return no_filtro(f).groupby(["cod6", "ano_epi"], as_index=False)["casos"].sum()
+        mp.setattr(cq, "semana_por_municipio", por_semana)
+        mp.setattr(cq, "totais_por_municipio", totais)
+
+
+def _alerta(r, cod):
+    return r.set_index("cod6").loc[cod]
+
+
+def _hist(cod, anos, sem, valores):
+    return {(cod, a, sem): v for a, v in zip(anos, valores, strict=True) if v}
+
+
+def test_alerta_so_com_o_ano_da_semana_no_filtro(monkeypatch):
+    _Mundo(monkeypatch, date(2026, 11, 12), {"140010": "RR"}, {}, {"RR": list(range(2018, 2027))})
+    assert alerta_municipios(cq.Filtro("DENG", 2020, 2024), ("RR",))[0] is None
+
+
+def test_alerta_semana_53_pega_o_ano_seguinte(monkeypatch):
+    casos = _hist("140010", range(2013, 2020), 52, [0, 0, 1, 1, 1, 1, 1])
+    casos[("140010", 2020, 53)] = 2
+    casos[("140010", 2020, 53, 2021)] = 1   # notificado em 2021: a consulta tem que ir até 2021
+    m = _Mundo(monkeypatch, date(2021, 1, 6), {"140010": "RR"}, casos, {"RR": list(range(2013, 2022))})
+    s, r = alerta_municipios(cq.Filtro("DENG", 2016, 2021), ("RR",))
+    assert s["semana"] == 53
+    x = _alerta(r, "140010")
+    assert (x.casos_semana, x.esperado_ate, x.alerta) == (3, 1, "acima") and x.q1 == 0.5
+    assert m.chamadas[-1].ano_fim == 2021 and m.chamadas[-1].contagem == "provaveis"
+
+
+def test_surto_localizado_muda_o_alerta_do_municipio(monkeypatch):
+    anos = range(2019, 2026)
+    casos = _hist("A", anos, 44, [2, 2, 20, 2, 2, 2, 2]) | _hist("B", anos, 44, [50] * 7)
+    casos[("A", 2026, 44)] = casos[("B", 2026, 44)] = 20
+    _Mundo(monkeypatch, date(2026, 11, 12), {"A": "RR", "B": "RR"}, casos, {"RR": list(range(2018, 2028))})
+    _, r = alerta_municipios(cq.Filtro("DENG", 2026, 2026), ("RR",))
+    assert (_alerta(r, "A").esperado_ate, _alerta(r, "A").alerta) == (2, "acima")   # sem 2021
+    assert (_alerta(r, "B").esperado_ate, _alerta(r, "B").alerta) == (50, "abaixo")
+
+
+def test_municipio_com_faixa_zero(monkeypatch):
+    _Mundo(monkeypatch, date(2026, 11, 12), {"A": "RR"}, {("A", 2026, 44): 1}, {"RR": list(range(2018, 2028))})
+    _, r = alerta_municipios(cq.Filtro("DENG", 2026, 2026), ("RR",))
+    assert (_alerta(r, "A").alerta, _alerta(r, "A").faixa_zero) == ("acima", True)
+
+
+def test_municipio_sem_casos_na_semana_com_historico(monkeypatch):
+    casos = _hist("A", range(2019, 2026), 44, [1, 2, 3, 1, 2, 3, 2])
+    _Mundo(monkeypatch, date(2026, 11, 12), {"A": "RR"}, casos, {"RR": list(range(2018, 2028))})
+    _, r = alerta_municipios(cq.Filtro("DENG", 2026, 2026), ("RR",))
+    assert (_alerta(r, "A").alerta, _alerta(r, "A").casos_semana, _alerta(r, "A").faixa_zero) == ("abaixo", 0, False)
+
+
+def test_municipio_sem_historico_suficiente(monkeypatch):
+    _Mundo(monkeypatch, date(2026, 11, 12), {"A": "RR"}, {("A", 2026, 44): 1}, {"RR": [2022, 2023, 2024, 2025, 2026]})
+    s, r = alerta_municipios(cq.Filtro("DENG", 2026, 2026), ("RR",))
+    assert s is None and r.empty
+    # um município com histórico e outro sem: o sem histórico sai com alerta None
+    _Mundo(monkeypatch, date(2026, 11, 12), {"A": "RR", "B": "AM"}, {},
+           {"RR": list(range(2018, 2028)), "AM": [2024, 2025, 2026]})
+    _, r = alerta_municipios(cq.Filtro("DENG", 2026, 2026), ("RR", "AM"))
+    assert _alerta(r, "A").alerta == "dentro"
+    assert r.set_index("cod6")["alerta"]["B"] is None
+
+
+def test_municipio_sem_populacao_tem_alerta(monkeypatch):
+    # nenhuma consulta de população é trocada: o alerta não a usa
+    _Mundo(monkeypatch, date(2026, 11, 12), {"A": "RR"}, {}, {"RR": list(range(2018, 2028))})
+    _, r = alerta_municipios(cq.Filtro("DENG", 2026, 2026), ("RR",))
+    assert _alerta(r, "A").alerta == "dentro"
+
+
+def test_municipio_fora_da_area_nao_aparece(monkeypatch):
+    casos = {("130010", 2026, 44): 4}
+    _Mundo(monkeypatch, date(2026, 11, 12), {"140010": "RR", "130010": "AM"}, casos, {"RR": list(range(2018, 2028))})
+    _, r = alerta_municipios(cq.Filtro("DENG", 2026, 2026), ("RR",))
+    assert r.cod6.tolist() == ["140010"]
+
+
+def test_cobertura_pela_uf_do_municipio(monkeypatch):
+    _Mundo(monkeypatch, date(2026, 11, 12), {"A": "RR", "B": "AM"}, {},
+           {"RR": list(range(2018, 2027)), "AM": [2024, 2025, 2026]})
+    _, r = alerta_municipios(cq.Filtro("DENG", 2026, 2026), ("AM", "RR"))
+    assert r.set_index("cod6")["alerta"].to_dict() == {"A": "dentro", "B": None}
+
+
+def test_semana_nao_baixada_na_uf_nao_vira_sem_alerta(monkeypatch):
+    # histórico completo, mas o arquivo de 2026 não foi baixado: a semana atual não é conhecida
+    _Mundo(monkeypatch, date(2026, 11, 12), {"A": "RR"}, {}, {"RR": list(range(2017, 2026))})
+    _, r = alerta_municipios(cq.Filtro("DENG", 2026, 2026), ("RR",))
+    x = r.set_index("cod6").loc["A"]
+    assert x["alerta"] is None and x["casos_semana"] is None and x["alerta_motivo"] == "semana_nao_baixada"
+
+
+def test_motivos_de_municipio_sem_nivel(monkeypatch):
+    _Mundo(monkeypatch, date(2026, 11, 12), {"A": "RR", "B": "AM"}, {},
+           {"RR": list(range(2018, 2028)), "AM": [2024, 2025, 2026]})
+    _, r = alerta_municipios(cq.Filtro("DENG", 2026, 2026), ("RR", "AM"))
+    x = r.set_index("cod6")
+    assert x["alerta_motivo"]["B"] == "sem_historico" and x["alerta_motivo"]["A"] is None
+
+
+def test_cada_uf_usa_os_seus_anos_candidatos(monkeypatch):
+    # RR completa: candidatos 2019-2025; AM com lacuna (sem 2023 e 2024): cobertos 2014-2021 e 2025, então
+    # os 7 candidatos de AM são 2016-2021 e 2025, mais antigos que os de RR; a consulta tem que ir até 2016
+    anos_rr = list(range(2018, 2027))
+    anos_am = [2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2025, 2026]  # sem 2023 e 2024
+    casos = _hist("R", range(2019, 2026), 44, [1] * 7)
+    casos |= _hist("M", [2016, 2017, 2018, 2019, 2020], 44, [3] * 5)   # só nos anos antigos
+    casos[("M", 2026, 44)] = 4
+    m = _Mundo(monkeypatch, date(2026, 11, 12), {"R": "RR", "M": "AM"}, casos, {"RR": anos_rr, "AM": anos_am})
+    _, r = alerta_municipios(cq.Filtro("DENG", 2026, 2026), ("AM", "RR"))
+    assert m.chamadas[0].ano_ini == 2016 and m.chamadas[0].ano_fim == 2026
+    assert _alerta(r, "M").esperado_ate == 3 and _alerta(r, "M").alerta == "acima"
+    assert _alerta(r, "R").alerta == "abaixo"  # 0 casos contra faixa 1 a 1

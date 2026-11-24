@@ -264,6 +264,25 @@ def por_semana(f: Filtro) -> pd.DataFrame:
               p + [f.ano_ini, f.ano_fim])
 
 
+def semana_por_municipio(f: Filtro, semanas: tuple[int, ...]) -> pd.DataFrame:
+    """Casos por município, ano e semana epidemiológica; quem chama escolhe a linha (sem filtro de ``ano_epi``)."""
+    w, p = f.where()
+    return _q(f"""SELECT {f.col_mun} cod6, ano_epi, sem_epi, count(*) casos FROM {_fonte(f.agravo)}
+                  WHERE {w} AND {f.col_mun} IS NOT NULL AND sem_epi IN ({','.join('?' * len(semanas))})
+                  GROUP BY 1, 2, 3 ORDER BY 1, 2, 3""", p + list(semanas))
+
+
+def totais_por_municipio(f: Filtro) -> pd.DataFrame:
+    """Casos por município e ano epidemiológico (totais anuais)."""
+    w, p = f.where()
+    return _q(f"""SELECT {f.col_mun} cod6, ano_epi, count(*) casos FROM {_fonte(f.agravo)}
+                  WHERE {w} AND {f.col_mun} IS NOT NULL GROUP BY 1, 2 ORDER BY 1, 2""", p)
+
+
+def ultima_notificacao(agravo: str) -> date | None:
+    return conexao().execute(f"SELECT max(data_notificacao) FROM {_fonte(agravo)}").fetchone()[0]
+
+
 def por_mes(f: Filtro) -> pd.DataFrame:
     w, p = f.where()
     return _q(f"""SELECT date_trunc('month', data_referencia) mes, count(*) casos FROM {_fonte(f.agravo)}

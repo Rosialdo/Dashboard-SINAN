@@ -34,4 +34,14 @@
 /* telas menores */
 @media (max-width: 900px) {
   .mapa-area { height: 360px; }
+  .mapa-area:has(.escala-alerta) { height: auto; }
+  .mapa-area:has(.escala-alerta) svg.mapa { height: 340px; }
+  .mapa-area .escala-alerta { position: static; max-width: none; padding: 4px 14px 10px; }
+  .mapa-area:has(.escala-alerta) .mapa-nota { position: static; display: inline-block; margin: 0 12px 12px; }
 }
+
+.escala-alerta { max-width: 175px; }
+.escala-sem .amostra { width: 14px; height: 14px; border: 1px solid var(--border-forte); border-radius: 2px; flex: none; }
+#nota-alerta { margin-top: 8px; }
+.g-mapa > section { min-width: 0; }
+.g-mapa .segmentado { max-width: 100%; flex-wrap: wrap; }

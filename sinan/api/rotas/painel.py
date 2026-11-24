@@ -49,7 +49,23 @@ def api_mapa(ctx: Filtros):
             ind = servicos.sem_sensiveis(ind)
         if ctx.publico:  # óbitos por município, mesmo sem filtro, também é detalhe municipal
             tabela = tabela.drop(columns="obitos")
-        return {"indicadores": ind, "municipios": registros(tabela), "area": list(ctx.area)}
+        semana, alerta = servicos.alerta_municipios(ctx.filtro, ctx.area)
+        alerta = alerta.drop(columns="q1").astype({"casos_semana": "Int64"})
+        motivo_geral = None
+        if semana is None:
+            data = servicos.data_referencia(ctx.filtro.agravo)
+            if data is None:
+                motivo_geral = "sem_data"
+            elif not ctx.filtro.ano_ini <= servicos.semana_referencia(data)["ano"] <= ctx.filtro.ano_fim:
+                motivo_geral = "fora_do_periodo"
+            else:
+                motivo_geral = "sem_historico"
+        if ctx.publico:  # D7: o nível e a faixa zero continuam; o número por município não
+            alerta[["casos_semana", "esperado_ate"]] = None
+        tabela = tabela.merge(alerta, on="cod6", how="left")
+        return {"indicadores": ind, "municipios": registros(tabela), "area": list(ctx.area),
+                "semana_alerta": semana, "contagem_alerta": "nao_descartadas", "contagens_ocultas": ctx.publico,
+                "alerta_motivo_geral": motivo_geral}
     return json_resp(cache.memo(("mapa", ctx), calcular))
 
 
