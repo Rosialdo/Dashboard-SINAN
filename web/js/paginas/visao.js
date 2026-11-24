@@ -41,10 +41,14 @@ export async function montar(raiz, pedido) {
       marker: { color: css("--serie-1"), cornerradius: 4 }, text: d.ano.map((r) => fmt(r.casos)), textposition: "outside",
       textfont: { color: css("--text") }, cliponaxis: false, hovertemplate: "%{x}: %{y:,.0f}<extra></extra>",
     }], layoutBase({ bargap: 0.28, xaxis: { ...layoutBase().xaxis, type: "category", showgrid: false }, margin: { l: 44, r: 8, t: 22, b: 30 } }));
-    plot($("#g-mes"), [{
+    if (d.mes) plot($("#g-mes"), [{
       x: d.mes.map((r) => r.mes), y: d.mes.map((r) => r.casos), type: "bar",
       marker: { color: css("--serie-1"), cornerradius: 2 }, hovertemplate: "%{x|%m/%Y}: %{y:,.0f}<extra></extra>",
     }], layoutBase({ bargap: 0.18, xaxis: { ...layoutBase().xaxis, tickformat: "%m/%Y", showgrid: false, dtick: "M12" }, margin: { l: 44, r: 8, t: 10, b: 30 } }));
+    else {
+      $("#g-mes").style.height = "auto";
+      $("#g-mes").innerHTML = `<p class="card-sub">No site publicado, os casos por mês de um município não são mostrados, para proteger a privacidade. Use o painel instalado no computador para vê-los.</p>`;
+    }
   };
   desenhar();
   definirRedesenho(desenhar);

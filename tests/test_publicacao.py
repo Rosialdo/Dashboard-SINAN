@@ -152,6 +152,9 @@ def test_publico_municipio_sem_obitos_nem_hospitalizacao(cliente_publico, munici
     assert ind["obitos"] is None and ind["letalidade"] is None and ind["hospitalizados"] is None
     assert ind["notificacoes"] > 0
     assert all("obitos" not in r for r in d["ano"])
+    assert d["mes"] is None and d["ano"]  # contagem mensal do município fica oculta; a anual continua
+    sem_mun = cliente_publico.get("/api/visao?agravo=ACBI&contagem=todas").json()
+    assert isinstance(sem_mun["mes"], list) and sem_mun["mes"]
 
 
 def test_publico_estado_mostra_obitos(cliente_publico):

@@ -34,7 +34,7 @@ def api_visao(ctx: Filtros):
             "canal": None if ctx.restrito else servicos.canal_endemico(f, ctx.area),
             "contagens_ocultas": ctx.restrito,
             "ano": registros(ano),
-            "mes": registros(cq.por_mes(f)),
+            "mes": None if ctx.restrito else registros(cq.por_mes(f)),  # idem: contagem mensal pequena demais
         }
     return json_resp(cache.memo(("visao", ctx), calcular))
 

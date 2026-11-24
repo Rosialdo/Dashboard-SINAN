@@ -157,6 +157,11 @@ def test_visao_explica_curva_oculta():
     assert "contagens_ocultas" in t and "proteger a privacidade" in t
 
 
+def test_visao_explica_mes_oculto():
+    t = (WEB / "js/paginas/visao.js").read_text(encoding="utf-8")
+    assert "casos por mês de um município" in t and "d.mes" in t
+
+
 def test_sobre_explica_canal_endemico():
     t = (WEB / "js/paginas/sobre.js").read_text(encoding="utf-8")
     assert "Faixa histórica" in t and "1,5 vez a mediana" in t and "5 anos" in t and "provisório" in t and "1 em cada 4 anos" in t
