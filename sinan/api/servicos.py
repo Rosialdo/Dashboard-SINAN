@@ -94,6 +94,50 @@ def anos_epi_cobertos(anos_notificacao: list[int]) -> list[int]:
     return sorted(y for y in ok if y + 1 in ok)
 
 
+CANAL_ANOS = 7          # anos anteriores usados como histórico
+CANAL_MINIMO = 5        # menos anos válidos que isso: sem canal
+CANAL_EPIDEMICO = 1.5   # ano com total acima disso x mediana é epidêmico
+
+
+def anos_do_canal(totais: pd.DataFrame, ano_ref: int, cobertos: list[int] | pd.DataFrame) -> pd.DataFrame:
+    """Anos do histórico de cada série, marcando os epidêmicos; só séries com anos suficientes."""
+    cob = pd.DataFrame({"ano_epi": cobertos}) if isinstance(cobertos, list) else cobertos
+    grupos = [c for c in cob.columns if c != "ano_epi"]
+    ch = grupos or ["_g"]
+    cob = cob.assign(_g=0) if not grupos else cob
+    cand = cob[cob["ano_epi"] < ano_ref].sort_values([*ch, "ano_epi"]).groupby(ch).tail(CANAL_ANOS)
+    tot = totais.assign(_g=0) if not grupos else totais
+    cand = cand.merge(tot[[*ch, "ano_epi", "casos"]], on=[*ch, "ano_epi"], how="left")
+    cand["casos"] = cand["casos"].fillna(0)
+    med = cand.groupby(ch)["casos"].transform("median")  # uma vez, sobre os candidatos iniciais
+    cand["excluido"] = (med > 0) & (cand["casos"] > CANAL_EPIDEMICO * med)
+    validos = (~cand["excluido"]).groupby([cand[c] for c in ch]).transform("sum")
+    cand = cand[validos >= CANAL_MINIMO]
+    return cand[[*grupos, "ano_epi", "excluido"]].sort_values([*grupos, "ano_epi"]).reset_index(drop=True)
+
+
+def faixa_esperada(semana: pd.DataFrame, anos: pd.DataFrame,
+                   semanas: tuple[int, ...] = tuple(range(1, 54))) -> pd.DataFrame:
+    """Quartis (lineares) dos casos por semana nos anos usados de cada série; semana sem registro vale 0."""
+    grupos = [c for c in anos.columns if c not in ("ano_epi", "excluido")]
+    ch = grupos or ["_g"]
+    usados = anos.loc[~anos["excluido"], [*grupos, "ano_epi"]]
+    if usados.empty:  # sem histórico suficiente
+        return pd.DataFrame(columns=[*grupos, "sem_epi", "q1", "mediana", "q3"])
+    sem = semana.assign(_g=0) if not grupos else semana
+    usados = usados.assign(_g=0) if not grupos else usados
+    calc = sorted({min(w, 52) for w in semanas})  # a 53 usa a faixa da 52
+    base = usados.merge(pd.DataFrame({"sem_epi": calc}), how="cross")
+    base = base.merge(sem[[*ch, "ano_epi", "sem_epi", "casos"]], on=[*ch, "ano_epi", "sem_epi"], how="left")
+    base["casos"] = base["casos"].fillna(0)
+    q = base.groupby([*ch, "sem_epi"])["casos"].quantile([0.25, 0.5, 0.75], interpolation="linear").unstack()
+    q.columns = ["q1", "mediana", "q3"]
+    q = q.reset_index().rename(columns={"sem_epi": "_s"})
+    pedidas = pd.DataFrame({"sem_epi": list(semanas), "_s": [min(w, 52) for w in semanas]})
+    q = q.merge(pedidas, on="_s").drop(columns="_s")
+    return q[[*grupos, "sem_epi", "q1", "mediana", "q3"]].sort_values([*grupos, "sem_epi"]).reset_index(drop=True)
+
+
 def nomes_municipios() -> dict[str, str]:
     """Código IBGE (6 dígitos) -> "Município (UF)"."""
     def calcular():
