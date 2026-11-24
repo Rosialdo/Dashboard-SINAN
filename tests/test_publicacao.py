@@ -152,6 +152,9 @@ def test_publico_municipio_sem_obitos_nem_hospitalizacao(cliente_publico, munici
     assert ind["obitos"] is None and ind["letalidade"] is None and ind["hospitalizados"] is None
     assert ind["notificacoes"] > 0
     assert all("obitos" not in r for r in d["ano"])
+    assert d["mes"] is None and d["ano"]  # contagem mensal do município fica oculta; a anual continua
+    sem_mun = cliente_publico.get("/api/visao?agravo=ACBI&contagem=todas").json()
+    assert isinstance(sem_mun["mes"], list) and sem_mun["mes"]
 
 
 def test_publico_estado_mostra_obitos(cliente_publico):
@@ -224,3 +227,14 @@ def test_publico_qualidade_com_municipio(cliente_publico, municipio):
     visao = cliente_publico.get(f"/api/visao?agravo=ACBI&contagem=todas&mun={municipio}").json()
     assert d["notificacoes"] == visao["indicadores"]["notificacoes"] < geral["notificacoes"]
     assert d["referencia"] == geral["referencia"] and len(d["prazos"]) == 4
+
+
+def test_visao_publico_com_municipio_oculta_a_curva_semanal(cliente_publico, municipio):
+    d = cliente_publico.get("/api/visao", params={"agravo": "ACBI", "mun": municipio}).json()
+    assert d["semana"] is None and d["canal"] is None and d["contagens_ocultas"] is True
+    assert d["ano"]  # os outros gráficos continuam
+
+
+def test_visao_publico_sem_municipio_mostra_a_curva(cliente_publico):
+    d = cliente_publico.get("/api/visao", params={"agravo": "ACBI"}).json()
+    assert d["semana"] and d["contagens_ocultas"] is False

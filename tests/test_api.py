@@ -1,8 +1,11 @@
 """API do dashboard e proteção do servidor local (sinan/api/)."""
 
+import pandas as pd
 import pytest
+from conftest import UFS_TESTE
 from starlette.testclient import TestClient
 
+from sinan import consultas as cq
 from sinan.api import app
 from sinan.api.respostas import _converter
 
@@ -92,7 +95,6 @@ def test_incidencia_bruta_sem_populacao_vira_vazio(cliente, dados_teste, cache_l
 def test_exportar_municipios_igual_ao_mapa(cliente, dados_teste):
     import io
 
-    import pandas as pd
     api = pd.DataFrame(cliente.get("/api/mapa?agravo=ACBI").json()["municipios"])
     r = cliente.get("/api/exportar?agravo=ACBI&formato=municipios")
     csv = pd.read_csv(io.BytesIO(r.content), sep=";", decimal=",", encoding="utf-8-sig")
@@ -135,7 +137,6 @@ def test_erros_amigaveis(cliente):
 
 
 def test_conversao_json_de_nat():
-    import pandas as pd
     assert _converter(pd.NaT) is None
     assert _converter(pd.Timestamp("2024-01-02")) == "2024-01-02"
 
@@ -209,7 +210,6 @@ def test_corpo_invalido_no_post(cliente):
 def test_paginas_sem_repeticao_nem_falta(dados_teste):
     """Muitos registros têm a mesma data; sem desempate na ordenação, linhas se
     repetiam entre as páginas e outras nunca apareciam."""
-    import pandas as pd
 
     from sinan import consultas as cq
     f = cq.Filtro("ACBI", 2006, 2006, contagem="todas")
@@ -249,3 +249,69 @@ def test_geo_memoria_limitada(cliente):
 def test_geo_filtra_as_ufs_pedidas(cliente):
     feats = cliente.get("/api/geo?ufs=PR").json()["features"]
     assert feats and all(f["properties"]["cod6"].startswith("41") for f in feats)
+
+
+def test_visao_sem_historico_nao_tem_canal(cliente, dados_teste):
+    d = cliente.get("/api/visao", params={"agravo": "ACBI", "ini": 2006, "fim": 2006}).json()
+    assert d["canal"] is None  # a amostra só tem 2006
+
+
+def test_visao_traz_canal(cliente, dados_teste, cache_limpo, monkeypatch):
+    # totais 8..12 (mediana 10, limite 15): nenhum ano anterior é epidêmico
+    hist = pd.DataFrame({"ano_epi": list(range(1999, 2007)), "sem_epi": 10,
+                         "casos": [8, 9, 10, 11, 12, 10, 9, 30]})
+    monkeypatch.setattr(cq, "por_semana", lambda f: hist[hist.ano_epi.between(f.ano_ini, f.ano_fim)])
+    recebido = []
+    monkeypatch.setattr(cq, "anos_notificacao_cobertos",
+                        lambda agravo, ufs: recebido.append(ufs) or list(range(1999, 2007)))
+    d = cliente.get("/api/visao", params={"agravo": "ACBI", "ini": 2006, "fim": 2006}).json()
+    assert recebido and recebido[0] and set(recebido[0]) == set(UFS_TESTE)  # as UFs da área
+    assert d["canal"]["ano"] == 2006 and d["canal"]["anos"] == list(range(1999, 2006))
+    assert d["canal"]["excluidos"] == []
+    assert next(s for s in d["canal"]["semanas"] if s["sem_epi"] == 10)["mediana"] == 10
+
+
+def test_canal_usa_os_7_anos_cobertos_mais_recentes(cliente, dados_teste, cache_limpo, monkeypatch):
+    # cobertura 1995-1997 e 2001-2007: anos epidemiológicos 1995, 1996, 2001..2006
+    hist = pd.DataFrame({"ano_epi": [1995, 1996, *range(2001, 2007)], "sem_epi": 10, "casos": 10})
+    pedidos = []
+
+    def por_semana(f):
+        pedidos.append(f)
+        return hist[hist.ano_epi.between(f.ano_ini, f.ano_fim)]
+    monkeypatch.setattr(cq, "por_semana", por_semana)
+    monkeypatch.setattr(cq, "anos_notificacao_cobertos",
+                        lambda agravo, ufs: [1995, 1996, 1997, *range(2001, 2008)])
+    d = cliente.get("/api/visao", params={"agravo": "ACBI", "ini": 2006, "fim": 2006}).json()
+    assert d["canal"]["anos"] == [1995, 1996, 2001, 2002, 2003, 2004, 2005]
+    s10 = next(s for s in d["canal"]["semanas"] if s["sem_epi"] == 10)
+    assert s10["q1"] == s10["mediana"] == s10["q3"] == 10
+    assert any(f.ano_ini == 1995 for f in pedidos)
+
+
+def _visao_canal(cliente, monkeypatch, cobertos, casos):
+    hist = pd.DataFrame({"ano_epi": list(casos), "sem_epi": 10, "casos": list(casos.values())})
+    monkeypatch.setattr(cq, "por_semana", lambda f: hist[hist.ano_epi.between(f.ano_ini, f.ano_fim)])
+    monkeypatch.setattr(cq, "anos_notificacao_cobertos", lambda agravo, ufs: cobertos)
+    return cliente.get("/api/visao", params={"agravo": "ACBI", "ini": 2006, "fim": 2006}).json()
+
+
+def test_canal_motivo_sem_cobertura(cliente, dados_teste, cache_limpo, monkeypatch):
+    d = _visao_canal(cliente, monkeypatch, [2003, 2004, 2005, 2006], {2003: 10, 2004: 10, 2005: 10})
+    assert d["canal"] is None and d["canal_motivo"] == "sem_cobertura"
+
+
+def test_canal_motivo_poucos_anos_validos(cliente, dados_teste, cache_limpo, monkeypatch):
+    # 6 candidatos (2000–2005; 2000 coberto e sem casos): mediana 30, limite 45; 2003–2005 saem e sobram 3
+    d = _visao_canal(cliente, monkeypatch, list(range(2000, 2007)), {2001: 10, 2002: 10, 2003: 50, 2004: 50, 2005: 50})
+    assert d["canal"] is None and d["canal_motivo"] == "poucos_anos_validos"
+
+
+def test_canal_com_faixa_nao_tem_motivo_e_marca_ano_coberto(cliente, dados_teste, cache_limpo, monkeypatch):
+    d = _visao_canal(cliente, monkeypatch, list(range(1999, 2007)), {a: 10 for a in range(1999, 2007)})
+    assert d["canal_motivo"] is None and d["canal"]["ano_coberto"] is True
+    # 2006 sem arquivo de notificação: o ano da referência não está coberto
+    from sinan.api import cache
+    cache.limpar()
+    d = _visao_canal(cliente, monkeypatch, list(range(1999, 2006)), {a: 10 for a in range(1999, 2006)})
+    assert d["canal"]["ano_coberto"] is False

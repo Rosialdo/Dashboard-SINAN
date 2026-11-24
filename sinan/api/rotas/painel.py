@@ -25,13 +25,18 @@ def api_visao(ctx: Filtros):
 
     def calcular():
         ind, ano = servicos.indicadores(f, ctx.area), cq.por_ano(f)
+        canal, motivo = (None, None) if ctx.restrito else servicos.canal_endemico(f, ctx.area)
         if ctx.restrito:
             ind, ano = servicos.sem_sensiveis(ind), ano.drop(columns="obitos")
         return {
             "indicadores": ind,
-            "semana": registros(cq.por_semana(f)),
+            # com município escolhido, a contagem semanal é pequena demais para o site publicado
+            "semana": None if ctx.restrito else registros(cq.por_semana(servicos.filtro_da_serie(f, ctx.area))),
+            "canal": canal,
+            "canal_motivo": motivo,
+            "contagens_ocultas": ctx.restrito,
             "ano": registros(ano),
-            "mes": registros(cq.por_mes(f)),
+            "mes": None if ctx.restrito else registros(cq.por_mes(f)),  # idem: contagem mensal pequena demais
         }
     return json_resp(cache.memo(("visao", ctx), calcular))
 

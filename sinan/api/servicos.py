@@ -2,12 +2,14 @@
 
 from __future__ import annotations
 
+from dataclasses import replace
+
 import numpy as np
 import pandas as pd
 
 from .. import agravos as cat
+from .. import config, rotulos
 from .. import consultas as cq
-from .. import rotulos
 from ..processar import CAMPOS_HOSP
 from ..tabnet import VariavelDef, ler_def
 from . import cache
@@ -83,6 +85,93 @@ def tabela_municipios(f: cq.Filtro, area: tuple[str, ...]) -> pd.DataFrame:
     t["incidencia"] = t["casos"] * 1e5 / t["pa"].where(t["pa"] > 0) if incidencia_disponivel(f) else None
     t["incidencia_suavizada"] = taxa_suavizada(t["casos"], t["pa"]) if suavizada_disponivel(f) else None
     return t.drop(columns="pa").sort_values(["casos", "incidencia", "cod6"], ascending=[False, False, True])
+
+
+# ------------------------------------------------------------- canal endêmico
+
+
+def anos_epi_cobertos(anos_notificacao: list[int]) -> list[int]:
+    """Anos epidemiológicos Y com Y e Y+1 baixados (parte dos casos de Y chega em janeiro de Y+1)."""
+    ok = set(anos_notificacao)
+    return sorted(y for y in ok if y + 1 in ok)
+
+
+CANAL_ANOS = 7          # anos anteriores usados como histórico
+CANAL_MINIMO = 5        # menos anos válidos que isso: sem canal
+CANAL_EPIDEMICO = 1.5   # ano com total acima disso x mediana é epidêmico
+
+
+def anos_do_canal(totais: pd.DataFrame, ano_ref: int, cobertos: list[int] | pd.DataFrame) -> pd.DataFrame:
+    """Anos do histórico de cada série, marcando os epidêmicos; só séries com anos suficientes."""
+    cob = pd.DataFrame({"ano_epi": cobertos}) if isinstance(cobertos, list) else cobertos
+    grupos = [c for c in cob.columns if c != "ano_epi"]
+    ch = grupos or ["_g"]
+    cob = cob.assign(_g=0) if not grupos else cob
+    cand = cob[cob["ano_epi"] < ano_ref].sort_values([*ch, "ano_epi"]).groupby(ch).tail(CANAL_ANOS)
+    tot = totais.assign(_g=0) if not grupos else totais
+    cand = cand.merge(tot[[*ch, "ano_epi", "casos"]], on=[*ch, "ano_epi"], how="left")
+    cand["casos"] = cand["casos"].fillna(0)
+    med = cand.groupby(ch)["casos"].transform("median")  # uma vez, sobre os candidatos iniciais
+    cand["excluido"] = (med > 0) & (cand["casos"] > CANAL_EPIDEMICO * med)
+    validos = (~cand["excluido"]).groupby([cand[c] for c in ch]).transform("sum")
+    cand = cand[validos >= CANAL_MINIMO]
+    return cand[[*grupos, "ano_epi", "excluido"]].sort_values([*grupos, "ano_epi"]).reset_index(drop=True)
+
+
+def faixa_esperada(semana: pd.DataFrame, anos: pd.DataFrame,
+                   semanas: tuple[int, ...] = tuple(range(1, 54))) -> pd.DataFrame:
+    """Quartis (lineares) dos casos por semana nos anos usados de cada série; semana sem registro vale 0."""
+    grupos = [c for c in anos.columns if c not in ("ano_epi", "excluido")]
+    ch = grupos or ["_g"]
+    usados = anos.loc[~anos["excluido"], [*grupos, "ano_epi"]]
+    if usados.empty:  # sem histórico suficiente
+        return pd.DataFrame(columns=[*grupos, "sem_epi", "q1", "mediana", "q3"])
+    sem = semana.assign(_g=0) if not grupos else semana
+    usados = usados.assign(_g=0) if not grupos else usados
+    calc = sorted({min(w, 52) for w in semanas})  # a 53 usa a faixa da 52
+    base = usados.merge(pd.DataFrame({"sem_epi": calc}), how="cross")
+    base = base.merge(sem[[*ch, "ano_epi", "sem_epi", "casos"]], on=[*ch, "ano_epi", "sem_epi"], how="left")
+    base["casos"] = base["casos"].fillna(0)
+    q = base.groupby([*ch, "sem_epi"])["casos"].quantile([0.25, 0.5, 0.75], interpolation="linear").unstack()
+    q.columns = ["q1", "mediana", "q3"]
+    q = q.reset_index().rename(columns={"sem_epi": "_s"})
+    pedidas = pd.DataFrame({"sem_epi": list(semanas), "_s": [min(w, 52) for w in semanas]})
+    q = q.merge(pedidas, on="_s").drop(columns="_s")
+    return q[[*grupos, "sem_epi", "q1", "mediana", "q3"]].sort_values([*grupos, "sem_epi"]).reset_index(drop=True)
+
+
+def ufs_da_serie(f: cq.Filtro, area: tuple[str, ...]) -> tuple[str, ...]:
+    """UFs que a contagem da série cobre: as escolhidas, as dos municípios escolhidos ou a área."""
+    if f.ufs:
+        return f.ufs
+    if f.municipios:
+        return tuple(sorted({config.UFS[m[:2]] for m in f.municipios if m[:2] in config.UFS}))
+    return area
+
+
+def filtro_da_serie(f: cq.Filtro, area: tuple[str, ...]) -> cq.Filtro:
+    """Sem UF nem município, restringe à área cuja cobertura é conferida."""
+    return f if f.ufs or f.municipios else replace(f, ufs=area)
+
+
+def canal_endemico(f: cq.Filtro, area: tuple[str, ...]) -> tuple[dict | None, str | None]:
+    """(canal, motivo): faixa esperada por semana; sem ela, "sem_cobertura" (menos de 5 anos
+    anteriores baixados) ou "poucos_anos_validos" (menos de 5 depois de tirar os epidêmicos)."""
+    ano = f.ano_fim
+    baixados = cq.anos_notificacao_cobertos(f.agravo, ufs_da_serie(f, area))
+    candidatos = sorted(a for a in anos_epi_cobertos(baixados) if a < ano)[-CANAL_ANOS:]  # ano sem dado não vira zero
+    if len(candidatos) < CANAL_MINIMO:
+        return None, "sem_cobertura"
+    sem = cq.por_semana(replace(filtro_da_serie(f, area), ano_ini=min(candidatos), ano_fim=ano))
+    tot = sem.groupby("ano_epi", as_index=False)["casos"].sum()
+    anos = anos_do_canal(tot, ano, candidatos)
+    faixa = faixa_esperada(sem, anos)
+    if faixa.empty:
+        return None, "poucos_anos_validos"
+    return {"ano": ano, "ano_coberto": ano in baixados,
+            "anos": [int(a) for a in anos.loc[~anos["excluido"], "ano_epi"]],
+            "excluidos": [int(a) for a in anos.loc[anos["excluido"], "ano_epi"]],
+            "semanas": registros(faixa)}, None
 
 
 def nomes_municipios() -> dict[str, str]:

@@ -14,6 +14,7 @@ from datetime import date
 import duckdb
 import pandas as pd
 
+from . import processar
 from .config import ARQ_MUNICIPIOS, ARQ_POPULACAO, PASTA_PARQUET
 
 _local = threading.local()
@@ -135,6 +136,17 @@ def _q(sql: str, params: list | None = None) -> pd.DataFrame:
 def anos(agravo: str) -> list[int]:
     df = _q(f"SELECT DISTINCT ano FROM {_fonte(agravo)} ORDER BY ano")
     return [int(a) for a in df["ano"]]
+
+
+def anos_notificacao_cobertos(agravo: str, ufs: tuple[str, ...]) -> list[int]:
+    """Anos de notificação do inventário que têm todas as ``ufs`` (ou ``BR``), em ordem crescente."""
+    cobertos = set()
+    for item in processar.ler_inventario().values():
+        presentes = set(item.get("ufs", []))
+        # sem ufs pedidas, só o Brasil inteiro conta (subconjunto vazio cobriria tudo)
+        if item.get("agravo") == agravo and ("BR" in presentes or (ufs and set(ufs) <= presentes)):
+            cobertos.add(int(item["ano"]))
+    return sorted(cobertos)
 
 
 def ufs_presentes(agravo: str) -> list[str]:

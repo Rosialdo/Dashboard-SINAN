@@ -31,6 +31,7 @@ export const estado = {
   varId: null,            // variável aberta na tela "Outras variáveis"
   varAgravo: null,
   mapaSel: null,          // município clicado no mapa
+  anosAnteriores: false,  // curva semanal: mostrar também os anos anteriores do período
   medida: "incidencia",   // cor do mapa: incidência ou casos
 };
 

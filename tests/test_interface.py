@@ -150,3 +150,32 @@ def test_painel_lateral_mostra_incidencia_suavizada():
     lateral = mapa.split("function desenharLateral")[1].split("function tabelaMunicipios")[0]
     assert "incidencia_suavizada" in lateral and "Incidência suavizada" in lateral
     assert "inc != null" in lateral  # sem município, o bloco da área some quando o topo não tem incidência
+
+
+def test_visao_explica_curva_oculta():
+    t = (WEB / "js/paginas/visao.js").read_text(encoding="utf-8")
+    assert "contagens_ocultas" in t and "proteger a privacidade" in t
+
+
+def test_visao_explica_mes_oculto():
+    t = (WEB / "js/paginas/visao.js").read_text(encoding="utf-8")
+    assert "casos por mês de um município" in t and "d.mes" in t
+
+
+def test_visao_explica_falta_de_faixa_e_de_dados():
+    v = (WEB / "js/paginas/visao.js").read_text(encoding="utf-8")
+    for texto in ("são precisos pelo menos 5 anos anteriores completos baixados",
+                  "sobraram menos de 5 anos", "Nenhum caso registrado em", "não baixados para esta área"):
+        assert texto in v
+
+
+def test_sobre_explica_canal_endemico():
+    t = (WEB / "js/paginas/sobre.js").read_text(encoding="utf-8")
+    assert "Faixa histórica" in t and "1,5 vez a mediana" in t and "5 anos" in t and "provisório" in t and "1 em cada 4 anos" in t
+
+
+def test_curva_semanal_tem_caixa_de_anos_anteriores():
+    v = (WEB / "js/paginas/visao.js").read_text(encoding="utf-8")
+    s = (WEB / "js/paginas/sobre.js").read_text(encoding="utf-8")
+    assert "Mostrar anos anteriores" in v and 'type="checkbox"' in v
+    assert "Mostrar anos anteriores" in s
