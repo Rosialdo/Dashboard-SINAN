@@ -550,7 +550,7 @@ e **Correção** (defeito, não funcionalidade nova).
 - **Origem:** G05, B05, B26
 - **Impacto:** Alto — é a ferramenta clássica para declarar epidemia.
 - **Esforço:** G — escolher e validar o método (quartis ou média ± 2 desvios, excluindo anos epidêmicos), com testes contra um caso publicado.
-- **Dependências técnicas:** pelo menos 5 anos de dados do agravo (download maior). **A validar:** qual método a vigilância local usa.
+- **Dependências técnicas:** pelo menos 5 anos de dados do agravo (download maior). Método provisório registrado na #30 (D1–D6, https://github.com/Rosialdo/Dashboard-SINAN/issues/30#issuecomment-7119437797); validação da vigilância pendente.
 - **Arquivos afetados:** `sinan/consultas.py`, `sinan/api/rotas/painel.py`, `web/js/paginas/visao.js`, `web/js/paginas/sobre.js`, `tests/test_consultas.py`
 - **Modo de uso:** Os dois
 - **Muda regra epidemiológica?** Sim (exige teste e ajuste na tela "Sobre os dados")
@@ -562,7 +562,7 @@ e **Correção** (defeito, não funcionalidade nova).
 - **Origem:** B04, G18
 - **Impacto:** Alto — orienta para onde mandar equipe e insumos.
 - **Esforço:** G — usa o diagrama de controle por município, com regra para municípios pequenos.
-- **Dependências técnicas:** N12.
+- **Dependências técnicas:** N12. Método provisório registrado na #30 (D1–D6, https://github.com/Rosialdo/Dashboard-SINAN/issues/30#issuecomment-7119437797); validação da vigilância pendente.
 - **Arquivos afetados:** `sinan/api/servicos.py`, `web/js/paginas/mapa.js`, `web/js/paginas/sobre.js`, `tests/test_consultas.py`
 - **Modo de uso:** Os dois
 - **Muda regra epidemiológica?** Sim (exige teste e ajuste na tela "Sobre os dados")
@@ -1108,7 +1108,7 @@ inteiras; depois as fases de §7.3; por último as ideias da comparação com a 
 | # | Pendência | Trava | Origem |
 |---|---|---|---|
 | 5 | Confirmar com o CEP da UFRR o enquadramento na Resolução CNS 510/2016 | divulgação do estudo | §7.5 |
-| 6 | Vigilância local: método do canal endêmico | N12, N13 | §7.2, ponto 11 |
+| 6 | Vigilância local: método do canal endêmico (método provisório e decisões D1–D6 na [#30](https://github.com/Rosialdo/Dashboard-SINAN/issues/30#issuecomment-7119437797)) | N12, N13 | §7.2, ponto 11 |
 | 7 | Vigilância local: agravos e UFs principais | atualização agendada, N12, N13 | §7.2, ponto 8 |
 | 8 | Se o servidor estiver em nome de empresa de algum autor, consultar sobre o Marco Civil | guarda de logs | §7.5 |
 
@@ -1151,7 +1151,7 @@ inteiras; depois as fases de §7.3; por último as ideias da comparação com a 
 | 26 | Qualidade e casos em aberto há mais de 60 dias por unidade notificadora | o recorte por unidade aumenta o risco de identificação |
 | 27 | Recortes indígena, migrante e de fronteira | a taxa entre indígenas depende de população do IBGE/SESAI |
 | 28 | Nome das unidades pelo CNES | nova fonte de dados |
-| 29 | Supressão de contagens menores que 5 | **conflita** com §7.5, que descartou o corte "menos de 5" em geral, mas deixou aberta a opção de aplicá-lo só às variáveis sensíveis no recorte estadual. A comparação trata o corte como pré-requisito de todo recorte por unidade: sem ele, os itens 26 e 28 ficam travados |
+| 29 | Supressão de contagens menores que 5 | **conflita** com §7.5, que descartou o corte "menos de 5" em geral, mas deixou aberta a opção de aplicá-lo só às variáveis sensíveis no recorte estadual. A comparação trata o corte como pré-requisito de todo recorte por unidade: sem ele, os itens 26 e 28 ficam travados; trava a publicação de contagens semanais por município (D7 do plano do canal endêmico) |
 | 30 | Medir o atraso do DATASUS em relação à base estadual e conversar com a SES | "Pontos em aberto" da comparação |
 | 31 | Analisar os subpainéis da SES e conferir se oropouche está no FTP | idem |
 | 32 | Tela "Exige atenção esta semana" com alertas | depende de N13 |
