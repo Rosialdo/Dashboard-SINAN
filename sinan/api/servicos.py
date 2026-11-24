@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import replace
+from datetime import date, timedelta
 
 import numpy as np
 import pandas as pd
@@ -10,7 +11,7 @@ import pandas as pd
 from .. import agravos as cat
 from .. import config, rotulos
 from .. import consultas as cq
-from ..processar import CAMPOS_HOSP
+from ..processar import CAMPOS_HOSP, data_dos_arquivos, semana_epidemiologica
 from ..tabnet import VariavelDef, ler_def
 from . import cache
 from .respostas import registros
@@ -172,6 +173,72 @@ def canal_endemico(f: cq.Filtro, area: tuple[str, ...]) -> tuple[dict | None, st
             "anos": [int(a) for a in anos.loc[~anos["excluido"], "ano_epi"]],
             "excluidos": [int(a) for a in anos.loc[anos["excluido"], "ano_epi"]],
             "semanas": registros(faixa)}, None
+
+
+# ------------------------------------------------------------- alerta por município
+def data_referencia(agravo: str) -> date | None:
+    """A mais antiga entre a data dos arquivos e a última notificação (a que existir)."""
+    if not cq.tem_dados(agravo):  # sem arquivo baixado não há semana de referência
+        return None
+    return min((d for d in (data_dos_arquivos(agravo), cq.ultima_notificacao(agravo)) if d), default=None)
+
+
+def semana_referencia(data: date) -> dict:
+    """Semana epidemiológica (domingo a sábado) que contém ``data`` menos 7 dias: já terminou no calendário."""
+    d = pd.Timestamp(data - timedelta(days=7))
+    ano, semana = semana_epidemiologica(pd.Series([d]))
+    inicio = (d - pd.Timedelta(days=(d.day_of_week + 1) % 7)).date()
+    return {"ano": int(ano.iloc[0]), "semana": int(semana.iloc[0]), "inicio": inicio, "fim": inicio + timedelta(days=6)}
+
+
+def semana_coberta(s: dict, data_ref: date, anos_notificacao: list[int]) -> bool:
+    """Todos os anos de notificação em que caem fichas da semana estão baixados."""
+    return set(range(s["inicio"].year, data_ref.year + 1)) <= set(anos_notificacao)
+
+
+def nivel_alerta(casos: pd.Series, q1: pd.Series, q3: pd.Series) -> pd.Series:
+    """"acima" (casos > q3), "abaixo" (casos < q1) ou "dentro" da faixa histórica."""
+    return pd.Series(np.select([casos > q3, casos < q1], ["acima", "abaixo"], "dentro"), index=casos.index)
+
+
+def alerta_municipios(f: cq.Filtro, area: tuple[str, ...]) -> tuple[dict | None, pd.DataFrame]:
+    """(semana de referência, nível de cada município da área); ``alerta`` None quando falta histórico."""
+    vazio = (None, pd.DataFrame(columns=["cod6", "casos_semana", "q1", "esperado_ate", "alerta", "faixa_zero"]))
+    data = data_referencia(f.agravo)
+    if data is None:
+        return vazio
+    s = semana_referencia(data)
+    ano, sem = s["ano"], s["semana"]
+    if not f.ano_ini <= ano <= f.ano_fim:
+        return vazio
+    base = cq.municipios_da_uf(list(area))
+    if f.municipios:
+        base = base[base["cod6"].isin(f.municipios)]
+    baixados = {uf: cq.anos_notificacao_cobertos(f.agravo, (uf,)) for uf in base["uf"].unique()}
+    por_uf = pd.DataFrame([(uf, a) for uf, b in baixados.items() for a in anos_epi_cobertos(b)],
+                          columns=["uf", "ano_epi"])
+    cobertos = base[["cod6", "uf"]].merge(por_uf, on="uf")[["cod6", "ano_epi"]]
+    cand = cobertos[cobertos["ano_epi"] < ano]
+    if cand.empty:
+        return vazio
+    # a consulta começa no menor candidato de todas as UFs: ano não consultado não pode virar zero
+    menor = int(cand.sort_values(["cod6", "ano_epi"]).groupby("cod6").tail(CANAL_ANOS)["ano_epi"].min())
+    fh = replace(f, ano_ini=menor, ano_fim=ano, contagem="provaveis")
+    semanas = (52, 53) if sem == 53 else (sem,)
+    hist = cq.semana_por_municipio(fh, semanas)
+    anos = anos_do_canal(cq.totais_por_municipio(fh), ano, cobertos)
+    faixa = faixa_esperada(hist, anos, semanas=(sem,))
+    if faixa.empty:
+        return vazio
+    atual = cq.semana_por_municipio(replace(f, ano_ini=s["inicio"].year, ano_fim=ano + 1, contagem="provaveis"), (sem,))
+    atual = atual[(atual["ano_epi"] == ano) & (atual["sem_epi"] == sem)][["cod6", "casos"]]
+    r = base[["cod6", "uf"]].merge(faixa[["cod6", "q1", "q3"]], on="cod6", how="left").merge(atual, on="cod6", how="left")
+    r["casos"] = r["casos"].fillna(0).astype(int)
+    ok = r["q3"].notna() & r["uf"].map({uf: semana_coberta(s, data, b) for uf, b in baixados.items()})
+    r["alerta"] = pd.Series(np.where(ok, nivel_alerta(r["casos"], r["q1"], r["q3"]), None), index=r.index, dtype=object)
+    r["faixa_zero"] = ok & (r["q3"] == 0)
+    r = r.rename(columns={"casos": "casos_semana", "q3": "esperado_ate"})
+    return s, r[["cod6", "casos_semana", "q1", "esperado_ate", "alerta", "faixa_zero"]].sort_values("cod6").reset_index(drop=True)
 
 
 def nomes_municipios() -> dict[str, str]:
