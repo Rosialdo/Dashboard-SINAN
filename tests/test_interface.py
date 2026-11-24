@@ -179,3 +179,15 @@ def test_curva_semanal_tem_caixa_de_anos_anteriores():
     s = (WEB / "js/paginas/sobre.js").read_text(encoding="utf-8")
     assert "Mostrar anos anteriores" in v and 'type="checkbox"' in v
     assert "Mostrar anos anteriores" in s
+
+
+def test_mapa_pode_colorir_por_alerta():
+    t = (WEB / "js/paginas/mapa.js").read_text(encoding="utf-8")
+    assert 'data-medida="alerta"' in t and "--alerta-acima" in t and "Última semana epidemiológica considerada" in t
+    tema = (WEB / "css/base/tema.css").read_text(encoding="utf-8")
+    assert tema.count("--alerta-acima:") == 2
+
+
+def test_aviso_de_faixa_zero_so_vale_para_acima():
+    t = (WEB / "js/paginas/mapa.js").read_text(encoding="utf-8")
+    assert 'm.alerta === "acima" && m.faixa_zero' in t and "PESO[r.alerta]" in t

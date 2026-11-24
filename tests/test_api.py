@@ -315,3 +315,30 @@ def test_canal_com_faixa_nao_tem_motivo_e_marca_ano_coberto(cliente, dados_teste
     cache.limpar()
     d = _visao_canal(cliente, monkeypatch, list(range(1999, 2006)), {a: 10 for a in range(1999, 2006)})
     assert d["canal"]["ano_coberto"] is False
+
+
+def _alerta_falso(cod, casos=1, esperado=9):
+    import pandas as pd
+    s = {"ano": 2006, "semana": 44, "inicio": "2006-10-29", "fim": "2006-11-04"}
+    r = pd.DataFrame([(cod, casos, 3.0, esperado, "acima", False)],
+                     columns=["cod6", "casos_semana", "q1", "esperado_ate", "alerta", "faixa_zero"])
+    return lambda f, area: (s, r)
+
+
+def test_mapa_sem_historico_nao_tem_alerta(cliente, dados_teste, cache_limpo):
+    d = cliente.get("/api/mapa", params={"agravo": "ACBI", "ini": 2006, "fim": 2006}).json()
+    assert d["semana_alerta"] is None and all(m["alerta"] is None for m in d["municipios"])
+
+
+def test_mapa_traz_alerta(cliente, dados_teste, cache_limpo, monkeypatch):
+    from sinan.api import servicos
+    cod = cliente.get("/api/mapa?agravo=ACBI").json()["municipios"][0]["cod6"]
+    from sinan.api import cache
+    cache.limpar()
+    monkeypatch.setattr(servicos, "alerta_municipios", _alerta_falso(cod, 4, 9))
+    d = cliente.get("/api/mapa?agravo=ACBI").json()
+    m = next(x for x in d["municipios"] if x["cod6"] == cod)
+    assert (m["alerta"], m["casos_semana"], m["esperado_ate"]) == ("acima", 4, 9) and "q1" not in m
+    assert d["semana_alerta"]["semana"] == 44 and d["contagem_alerta"] == "nao_descartadas"
+    assert d["contagens_ocultas"] is False
+    assert all(x["alerta"] is None for x in d["municipios"] if x["cod6"] != cod)
