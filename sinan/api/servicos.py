@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from dataclasses import replace
+
 import numpy as np
 import pandas as pd
 
@@ -136,6 +138,22 @@ def faixa_esperada(semana: pd.DataFrame, anos: pd.DataFrame,
     pedidas = pd.DataFrame({"sem_epi": list(semanas), "_s": [min(w, 52) for w in semanas]})
     q = q.merge(pedidas, on="_s").drop(columns="_s")
     return q[[*grupos, "sem_epi", "q1", "mediana", "q3"]].sort_values([*grupos, "sem_epi"]).reset_index(drop=True)
+
+
+def canal_endemico(f: cq.Filtro, area: tuple[str, ...]) -> dict | None:
+    """Faixa esperada por semana (quartis dos anos anteriores) ou None sem histórico suficiente."""
+    ano = f.ano_fim
+    cobertos = anos_epi_cobertos(cq.anos_notificacao_cobertos(f.agravo, area))
+    cobertos = [a for a in cobertos if a >= ano - CANAL_ANOS]  # janela fixa: ano sem dado não vira zero
+    sem = cq.por_semana(replace(f, ano_ini=ano - CANAL_ANOS, ano_fim=ano))
+    tot = sem.groupby("ano_epi", as_index=False)["casos"].sum()
+    anos = anos_do_canal(tot, ano, cobertos)
+    faixa = faixa_esperada(sem, anos)
+    if faixa.empty:
+        return None
+    return {"ano": ano, "anos": [int(a) for a in anos.loc[~anos["excluido"], "ano_epi"]],
+            "excluidos": [int(a) for a in anos.loc[anos["excluido"], "ano_epi"]],
+            "semanas": registros(faixa)}
 
 
 def nomes_municipios() -> dict[str, str]:

@@ -29,7 +29,10 @@ def api_visao(ctx: Filtros):
             ind, ano = servicos.sem_sensiveis(ind), ano.drop(columns="obitos")
         return {
             "indicadores": ind,
-            "semana": registros(cq.por_semana(f)),
+            # com município escolhido, a contagem semanal é pequena demais para o site publicado
+            "semana": None if ctx.restrito else registros(cq.por_semana(f)),
+            "canal": None if ctx.restrito else servicos.canal_endemico(f, ctx.area),
+            "contagens_ocultas": ctx.restrito,
             "ano": registros(ano),
             "mes": registros(cq.por_mes(f)),
         }
