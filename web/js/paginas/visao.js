@@ -53,7 +53,8 @@ export async function montar(raiz, pedido) {
 /** Uma linha por ano; o último e o penúltimo em destaque, os demais em cinza. */
 function curvaSemanal(semana, titulo, canal) {
   const anos = [...new Set(semana.map((r) => r.ano_epi))].sort();
-  const ult = anos.at(-1), pen = anos.at(-2);
+  // com faixa, o destaque é o último ano do período, mesmo sem casos nele
+  const ult = canal ? canal.ano : anos.at(-1), pen = anos.filter((a) => a !== ult).at(-1);
   const corDe = (a) => a === ult ? "--serie-1" : a === pen ? "--serie-2" : "--serie-ctx";
   const faixa = canal ? [
     { x: canal.semanas.map((r) => r.sem_epi), y: canal.semanas.map((r) => r.q1), type: "scatter", mode: "lines",
@@ -64,14 +65,20 @@ function curvaSemanal(semana, titulo, canal) {
     { x: canal.semanas.map((r) => r.sem_epi), y: canal.semanas.map((r) => r.mediana), type: "scatter", mode: "lines",
       line: { color: css("--faixa-linha"), width: 1.4, dash: "dash" }, hoverinfo: "skip", showlegend: false },
   ] : [];
-  const traces = anos.map((a) => {
+  const todos = !canal || estado.anosAnteriores;
+  const visiveis = anos.filter((a) => todos || a === canal.ano);
+  const traces = visiveis.map((a) => {
     const pts = semana.filter((r) => r.ano_epi === a);
     return { x: pts.map((r) => r.sem_epi), y: pts.map((r) => r.casos), name: String(a), type: "scatter", mode: "lines",
              line: { color: css(corDe(a)), width: a === ult ? 2.6 : a === pen ? 2 : 1.3 },
              hovertemplate: `${a}: %{y:,.0f}<extra></extra>` };
   });
   const fx = canal ? `<span><span class="q faixa"></span>Faixa histórica (anos usados: ${canal.anos.join(", ")}${canal.excluidos.length ? `; fora por terem muito mais casos: ${canal.excluidos.join(", ")}` : ""})</span><span><i style="border-color:var(--faixa-linha);border-top-style:dashed"></i>Mediana</span>` : "";
-  $("#leg-semana").innerHTML = fx + anos.map((a) => `<span><i style="border-color:var(${corDe(a)})"></i>${a}</span>`).join("");
+  const caixa = canal && anos.some((a) => a !== canal.ano)
+    ? `<label><input type="checkbox" id="anos-ant"${estado.anosAnteriores ? " checked" : ""}> Mostrar anos anteriores</label>` : "";
+  const semCasos = canal && !anos.includes(canal.ano) ? `<span>Nenhum caso em ${canal.ano} neste recorte</span>` : "";
+  $("#leg-semana").innerHTML = fx + visiveis.map((a) => `<span><i style="border-color:var(${corDe(a)})"></i>${a}</span>`).join("") + semCasos + caixa;
+  $("#anos-ant")?.addEventListener("change", (e) => { estado.anosAnteriores = e.target.checked; curvaSemanal(semana, titulo, canal); });
   const sub = $("#t-semana").parentElement.querySelector(".card-sub");
   sub.querySelector(".aviso-faixa")?.remove();
   if (!canal) sub.insertAdjacentHTML("beforeend", ` <span class="aviso-faixa">Faixa histórica indisponível: são precisos 5 anos anteriores completos baixados.</span>`);

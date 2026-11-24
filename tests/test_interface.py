@@ -160,3 +160,10 @@ def test_visao_explica_curva_oculta():
 def test_sobre_explica_canal_endemico():
     t = (WEB / "js/paginas/sobre.js").read_text(encoding="utf-8")
     assert "Faixa histórica" in t and "1,5 vez a mediana" in t and "5 anos" in t and "provisório" in t and "1 em cada 4 anos" in t
+
+
+def test_curva_semanal_tem_caixa_de_anos_anteriores():
+    v = (WEB / "js/paginas/visao.js").read_text(encoding="utf-8")
+    s = (WEB / "js/paginas/sobre.js").read_text(encoding="utf-8")
+    assert "Mostrar anos anteriores" in v and 'type="checkbox"' in v
+    assert "Mostrar anos anteriores" in s
