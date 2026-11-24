@@ -35,7 +35,7 @@ export async function montar(raiz, pedido) {
       $("#leg-semana").innerHTML = "";
       $("#g-semana").style.height = "auto";
       $("#g-semana").innerHTML = `<p class="card-sub">No site publicado, a curva por semana de um município não é mostrada, para proteger a privacidade. Veja a curva da UF ou use o painel instalado no computador.</p>`;
-    } else curvaSemanal(d.semana, t, d.canal);
+    } else curvaSemanal(d.semana, t, d.canal, d.canal_motivo);
     plot($("#g-ano"), [{
       x: d.ano.map((r) => String(r.ano)), y: d.ano.map((r) => r.casos), type: "bar",
       marker: { color: css("--serie-1"), cornerradius: 4 }, text: d.ano.map((r) => fmt(r.casos)), textposition: "outside",
@@ -55,7 +55,7 @@ export async function montar(raiz, pedido) {
 }
 
 /** Uma linha por ano; o último e o penúltimo em destaque, os demais em cinza. */
-function curvaSemanal(semana, titulo, canal) {
+function curvaSemanal(semana, titulo, canal, motivo) {
   const anos = [...new Set(semana.map((r) => r.ano_epi))].sort();
   // com faixa, o destaque é o último ano do período, mesmo sem casos nele
   const ult = canal ? canal.ano : anos.at(-1), pen = anos.filter((a) => a !== ult).at(-1);
@@ -80,12 +80,18 @@ function curvaSemanal(semana, titulo, canal) {
   const fx = canal ? `<span><span class="q faixa"></span>Faixa histórica (anos usados: ${canal.anos.join(", ")}${canal.excluidos.length ? `; fora por terem muito mais casos: ${canal.excluidos.join(", ")}` : ""})</span><span><i style="border-color:var(--faixa-linha);border-top-style:dashed"></i>Mediana</span>` : "";
   const caixa = canal && anos.some((a) => a !== canal.ano)
     ? `<label><input type="checkbox" id="anos-ant"${estado.anosAnteriores ? " checked" : ""}> Mostrar anos anteriores</label>` : "";
-  const semCasos = canal && !anos.includes(canal.ano) ? `<span>Nenhum caso em ${canal.ano} neste recorte</span>` : "";
+  // ano não baixado avisa mesmo com linhas: o arquivo anterior pode trazer algumas fichas dele
+  const semCasos = !canal ? ""
+    : !canal.ano_coberto ? `<span>Dados de ${canal.ano} não baixados para esta área</span>`
+    : !anos.includes(canal.ano) ? `<span>Nenhum caso registrado em ${canal.ano} neste recorte</span>` : "";
   $("#leg-semana").innerHTML = fx + visiveis.map((a) => `<span><i style="border-color:var(${corDe(a)})"></i>${a}</span>`).join("") + semCasos + caixa;
-  $("#anos-ant")?.addEventListener("change", (e) => { estado.anosAnteriores = e.target.checked; curvaSemanal(semana, titulo, canal); });
+  $("#anos-ant")?.addEventListener("change", (e) => { estado.anosAnteriores = e.target.checked; curvaSemanal(semana, titulo, canal, motivo); });
   const sub = $("#t-semana").parentElement.querySelector(".card-sub");
   sub.querySelector(".aviso-faixa")?.remove();
-  if (!canal) sub.insertAdjacentHTML("beforeend", ` <span class="aviso-faixa">Faixa histórica indisponível: são precisos 5 anos anteriores completos baixados.</span>`);
+  const faltaFaixa = motivo === "poucos_anos_validos"
+    ? "Faixa histórica indisponível: depois de tirar os anos com muito mais casos que o normal, sobraram menos de 5 anos."
+    : "Faixa histórica indisponível: são precisos pelo menos 5 anos anteriores completos baixados.";
+  if (!canal) sub.insertAdjacentHTML("beforeend", ` <span class="aviso-faixa">${faltaFaixa}</span>`);
   plot($("#g-semana"), [...faixa, ...traces], layoutBase({
     hovermode: "x unified",
     xaxis: { ...layoutBase().xaxis, title: { text: "Semana epidemiológica", font: { size: 13 } }, range: [0.5, 53.5], dtick: 4, tick0: 4, showgrid: false },

@@ -287,3 +287,31 @@ def test_canal_usa_os_7_anos_cobertos_mais_recentes(cliente, dados_teste, cache_
     s10 = next(s for s in d["canal"]["semanas"] if s["sem_epi"] == 10)
     assert s10["q1"] == s10["mediana"] == s10["q3"] == 10
     assert any(f.ano_ini == 1995 for f in pedidos)
+
+
+def _visao_canal(cliente, monkeypatch, cobertos, casos):
+    hist = pd.DataFrame({"ano_epi": list(casos), "sem_epi": 10, "casos": list(casos.values())})
+    monkeypatch.setattr(cq, "por_semana", lambda f: hist[hist.ano_epi.between(f.ano_ini, f.ano_fim)])
+    monkeypatch.setattr(cq, "anos_notificacao_cobertos", lambda agravo, ufs: cobertos)
+    return cliente.get("/api/visao", params={"agravo": "ACBI", "ini": 2006, "fim": 2006}).json()
+
+
+def test_canal_motivo_sem_cobertura(cliente, dados_teste, cache_limpo, monkeypatch):
+    d = _visao_canal(cliente, monkeypatch, [2003, 2004, 2005, 2006], {2003: 10, 2004: 10, 2005: 10})
+    assert d["canal"] is None and d["canal_motivo"] == "sem_cobertura"
+
+
+def test_canal_motivo_poucos_anos_validos(cliente, dados_teste, cache_limpo, monkeypatch):
+    # 6 candidatos (2000–2005; 2000 coberto e sem casos): mediana 30, limite 45; 2003–2005 saem e sobram 3
+    d = _visao_canal(cliente, monkeypatch, list(range(2000, 2007)), {2001: 10, 2002: 10, 2003: 50, 2004: 50, 2005: 50})
+    assert d["canal"] is None and d["canal_motivo"] == "poucos_anos_validos"
+
+
+def test_canal_com_faixa_nao_tem_motivo_e_marca_ano_coberto(cliente, dados_teste, cache_limpo, monkeypatch):
+    d = _visao_canal(cliente, monkeypatch, list(range(1999, 2007)), {a: 10 for a in range(1999, 2007)})
+    assert d["canal_motivo"] is None and d["canal"]["ano_coberto"] is True
+    # 2006 sem arquivo de notificação: o ano da referência não está coberto
+    from sinan.api import cache
+    cache.limpar()
+    d = _visao_canal(cliente, monkeypatch, list(range(1999, 2006)), {a: 10 for a in range(1999, 2006)})
+    assert d["canal"]["ano_coberto"] is False

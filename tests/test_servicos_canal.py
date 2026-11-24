@@ -180,4 +180,4 @@ def test_canal_sem_uf_conhecida_nao_tem_canal(monkeypatch):
     inv = {f"DENG_{a}": {"agravo": "DENG", "ano": a, "ufs": ["RR"]} for a in range(2010, 2021)}
     monkeypatch.setattr(processar, "ler_inventario", lambda: inv)  # sem "BR"
     f = cq.Filtro("DENG", 2020, 2020, municipios=("990010",))
-    assert servicos.canal_endemico(f, ("RR",)) is None
+    assert servicos.canal_endemico(f, ("RR",)) == (None, "sem_cobertura")

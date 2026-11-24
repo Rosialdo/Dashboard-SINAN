@@ -154,22 +154,24 @@ def filtro_da_serie(f: cq.Filtro, area: tuple[str, ...]) -> cq.Filtro:
     return f if f.ufs or f.municipios else replace(f, ufs=area)
 
 
-def canal_endemico(f: cq.Filtro, area: tuple[str, ...]) -> dict | None:
-    """Faixa esperada por semana (quartis dos anos anteriores) ou None sem histórico suficiente."""
+def canal_endemico(f: cq.Filtro, area: tuple[str, ...]) -> tuple[dict | None, str | None]:
+    """(canal, motivo): faixa esperada por semana; sem ela, "sem_cobertura" (menos de 5 anos
+    anteriores baixados) ou "poucos_anos_validos" (menos de 5 depois de tirar os epidêmicos)."""
     ano = f.ano_fim
-    cobertos = anos_epi_cobertos(cq.anos_notificacao_cobertos(f.agravo, ufs_da_serie(f, area)))
-    candidatos = sorted(a for a in cobertos if a < ano)[-CANAL_ANOS:]  # ano sem dado não vira zero
-    if not candidatos:
-        return None
+    baixados = cq.anos_notificacao_cobertos(f.agravo, ufs_da_serie(f, area))
+    candidatos = sorted(a for a in anos_epi_cobertos(baixados) if a < ano)[-CANAL_ANOS:]  # ano sem dado não vira zero
+    if len(candidatos) < CANAL_MINIMO:
+        return None, "sem_cobertura"
     sem = cq.por_semana(replace(filtro_da_serie(f, area), ano_ini=min(candidatos), ano_fim=ano))
     tot = sem.groupby("ano_epi", as_index=False)["casos"].sum()
     anos = anos_do_canal(tot, ano, candidatos)
     faixa = faixa_esperada(sem, anos)
     if faixa.empty:
-        return None
-    return {"ano": ano, "anos": [int(a) for a in anos.loc[~anos["excluido"], "ano_epi"]],
+        return None, "poucos_anos_validos"
+    return {"ano": ano, "ano_coberto": ano in baixados,
+            "anos": [int(a) for a in anos.loc[~anos["excluido"], "ano_epi"]],
             "excluidos": [int(a) for a in anos.loc[anos["excluido"], "ano_epi"]],
-            "semanas": registros(faixa)}
+            "semanas": registros(faixa)}, None
 
 
 def nomes_municipios() -> dict[str, str]:

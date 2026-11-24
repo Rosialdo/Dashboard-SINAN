@@ -28,7 +28,8 @@ def test_canal_com_parquet_de_varios_anos(tmp_path, monkeypatch):
     (tmp_path / "inventario.json").write_text(json.dumps(
         {f"DENG_{a}": {"agravo": "DENG", "ano": a, "ufs": ["RR"]} for a in anos}), encoding="utf-8")
     try:
-        canal = servicos.canal_endemico(cq.Filtro("DENG", 2026, 2026), ("RR",))
+        canal, motivo = servicos.canal_endemico(cq.Filtro("DENG", 2026, 2026), ("RR",))
+        assert motivo is None and canal["ano_coberto"] is True  # o arquivo de notificação de 2026 está baixado
         sem = {s["sem_epi"]: s for s in canal["semanas"]}
         # 2018 (sem o arquivo de 2019) e 2015/2016 (fora dos 7 mais recentes) não entram
         assert canal["anos"] == [2017, 2020, 2021, 2022, 2023, 2024, 2025]
