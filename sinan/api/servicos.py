@@ -85,6 +85,15 @@ def tabela_municipios(f: cq.Filtro, area: tuple[str, ...]) -> pd.DataFrame:
     return t.drop(columns="pa").sort_values(["casos", "incidencia", "cod6"], ascending=[False, False, True])
 
 
+# ------------------------------------------------------------- canal endêmico
+
+
+def anos_epi_cobertos(anos_notificacao: list[int]) -> list[int]:
+    """Anos epidemiológicos Y com Y e Y+1 baixados (parte dos casos de Y chega em janeiro de Y+1)."""
+    ok = set(anos_notificacao)
+    return sorted(y for y in ok if y + 1 in ok)
+
+
 def nomes_municipios() -> dict[str, str]:
     """Código IBGE (6 dígitos) -> "Município (UF)"."""
     def calcular():
