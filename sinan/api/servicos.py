@@ -203,7 +203,8 @@ def nivel_alerta(casos: pd.Series, q1: pd.Series, q3: pd.Series) -> pd.Series:
 
 def alerta_municipios(f: cq.Filtro, area: tuple[str, ...]) -> tuple[dict | None, pd.DataFrame]:
     """(semana de referência, nível de cada município da área); ``alerta`` None quando falta histórico."""
-    vazio = (None, pd.DataFrame(columns=["cod6", "casos_semana", "q1", "esperado_ate", "alerta", "faixa_zero"]))
+    colunas = ["cod6", "casos_semana", "q1", "esperado_ate", "alerta", "alerta_motivo", "faixa_zero"]
+    vazio = (None, pd.DataFrame(columns=colunas))
     data = data_referencia(f.agravo)
     if data is None:
         return vazio
@@ -233,12 +234,16 @@ def alerta_municipios(f: cq.Filtro, area: tuple[str, ...]) -> tuple[dict | None,
     atual = cq.semana_por_municipio(replace(f, ano_ini=s["inicio"].year, ano_fim=ano + 1, contagem="provaveis"), (sem,))
     atual = atual[(atual["ano_epi"] == ano) & (atual["sem_epi"] == sem)][["cod6", "casos"]]
     r = base[["cod6", "uf"]].merge(faixa[["cod6", "q1", "q3"]], on="cod6", how="left").merge(atual, on="cod6", how="left")
-    r["casos"] = r["casos"].fillna(0).astype(int)
-    ok = r["q3"].notna() & r["uf"].map({uf: semana_coberta(s, data, b) for uf, b in baixados.items()})
-    r["alerta"] = pd.Series(np.where(ok, nivel_alerta(r["casos"], r["q1"], r["q3"]), None), index=r.index, dtype=object)
+    semana_ok = r["uf"].map({uf: semana_coberta(s, data, b) for uf, b in baixados.items()}).astype(bool)
+    # 0 só vale com a semana baixada; sem o arquivo, falta de dado não pode virar zero
+    r["casos"] = r["casos"].fillna(0).astype(int).astype(object).where(semana_ok, None)
+    ok = r["q3"].notna() & semana_ok
+    r["alerta_motivo"] = pd.Series(np.select([r["q3"].isna(), ~semana_ok], ["sem_historico", "semana_nao_baixada"], ""),
+                                   index=r.index).astype(object).where(lambda m: m != "", None)
+    r["alerta"] = pd.Series(np.where(ok, nivel_alerta(r["casos"].fillna(0), r["q1"], r["q3"]), None), index=r.index, dtype=object)
     r["faixa_zero"] = ok & (r["q3"] == 0)
     r = r.rename(columns={"casos": "casos_semana", "q3": "esperado_ate"})
-    return s, r[["cod6", "casos_semana", "q1", "esperado_ate", "alerta", "faixa_zero"]].sort_values("cod6").reset_index(drop=True)
+    return s, r[colunas].sort_values("cod6").reset_index(drop=True)
 
 
 def nomes_municipios() -> dict[str, str]:

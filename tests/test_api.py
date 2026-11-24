@@ -342,3 +342,17 @@ def test_mapa_traz_alerta(cliente, dados_teste, cache_limpo, monkeypatch):
     assert d["semana_alerta"]["semana"] == 44 and d["contagem_alerta"] == "nao_descartadas"
     assert d["contagens_ocultas"] is False
     assert all(x["alerta"] is None for x in d["municipios"] if x["cod6"] != cod)
+
+
+def test_mapa_motivo_geral_do_alerta_indisponivel(cliente, dados_teste, cache_limpo, monkeypatch):
+    import datetime
+
+    from sinan.api import cache, servicos
+    monkeypatch.setattr(servicos, "alerta_municipios", lambda f, area: (None, servicos.pd.DataFrame(
+        columns=["cod6", "casos_semana", "q1", "esperado_ate", "alerta", "alerta_motivo", "faixa_zero"])))
+    for data, motivo in [(None, "sem_data"), (datetime.date(2006, 11, 12), "sem_historico"),
+                         (datetime.date(2010, 11, 12), "fora_do_periodo")]:
+        cache.limpar()
+        monkeypatch.setattr(servicos, "data_referencia", lambda ag, d=data: d)
+        d = cliente.get("/api/mapa", params={"agravo": "ACBI", "ini": 2006, "fim": 2006}).json()
+        assert d["semana_alerta"] is None and d["alerta_motivo_geral"] == motivo

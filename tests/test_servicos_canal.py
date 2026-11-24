@@ -353,7 +353,16 @@ def test_semana_nao_baixada_na_uf_nao_vira_sem_alerta(monkeypatch):
     # histórico completo, mas o arquivo de 2026 não foi baixado: a semana atual não é conhecida
     _Mundo(monkeypatch, date(2026, 11, 12), {"A": "RR"}, {}, {"RR": list(range(2017, 2026))})
     _, r = alerta_municipios(cq.Filtro("DENG", 2026, 2026), ("RR",))
-    assert r.set_index("cod6")["alerta"]["A"] is None
+    x = r.set_index("cod6").loc["A"]
+    assert x["alerta"] is None and x["casos_semana"] is None and x["alerta_motivo"] == "semana_nao_baixada"
+
+
+def test_motivos_de_municipio_sem_nivel(monkeypatch):
+    _Mundo(monkeypatch, date(2026, 11, 12), {"A": "RR", "B": "AM"}, {},
+           {"RR": list(range(2018, 2028)), "AM": [2024, 2025, 2026]})
+    _, r = alerta_municipios(cq.Filtro("DENG", 2026, 2026), ("RR", "AM"))
+    x = r.set_index("cod6")
+    assert x["alerta_motivo"]["B"] == "sem_historico" and x["alerta_motivo"]["A"] is None
 
 
 def test_cada_uf_usa_os_seus_anos_candidatos(monkeypatch):

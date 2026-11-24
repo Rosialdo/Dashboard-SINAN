@@ -14,11 +14,16 @@ import { $, $$, cap, css, dataBR, esc, fmt, norm } from "../nucleo/util.js";
 const NIVEIS = { abaixo: "Abaixo da faixa histórica", dentro: "Dentro da faixa histórica", acima: "Acima da faixa histórica" };
 const COR = { abaixo: "var(--alerta-abaixo)", dentro: "var(--alerta-dentro)", acima: "var(--alerta-acima)" };
 const PESO = { acima: 3, dentro: 2, abaixo: 1 }; // sem histórico (null) pesa 0
-const SEM_HISTORICO = "Sem histórico suficiente";
+const MOTIVOS = { sem_historico: "Sem histórico suficiente", semana_nao_baixada: "Semana ainda não baixada para esta UF" };
+const MOTIVOS_GERAIS = {
+  sem_data: "não há data de atualização dos dados deste agravo.",
+  fora_do_periodo: "a última semana considerada está fora do período escolhido. Inclua o ano mais recente.",
+  sem_historico: "nenhum município tem anos anteriores suficientes para comparar.",
+};
 
 /** Nível do alerta em texto (nunca só cor); "faixa histórica zero" quando poucos casos. */
 function textoNivel(m) {
-  const n = NIVEIS[m.alerta] || SEM_HISTORICO;
+  const n = NIVEIS[m.alerta] || MOTIVOS[m.alerta_motivo] || MOTIVOS.sem_historico;
   return m.alerta === "acima" && m.faixa_zero ? `${n} (faixa histórica zero: poucos casos, confira)` : n;
 }
 
@@ -37,6 +42,7 @@ export async function montar(raiz, pedido) {
           <button data-medida="casos" aria-pressed="${estado.medida === "casos"}">${cap(termo())}</button>
           <button data-medida="alerta" aria-pressed="${estado.medida === "alerta"}" hidden data-tip="Compara os casos da última semana considerada com o que costuma acontecer nessa semana em cada município. É um sinal para investigar, não a declaração de uma epidemia.">Alerta da semana</button>
         </div>
+        <p class="card-sub" id="alerta-indisponivel" hidden></p>
         <div class="mapa-area" id="mapa-area">${esqueleto(470)}</div>
         <p class="card-sub" id="nota-alerta" hidden></p>
       </section>
@@ -65,6 +71,9 @@ export async function montar(raiz, pedido) {
   if (!d.suavizada && estado.medida === "incidencia_suavizada") estado.medida = "incidencia";
   if (!d.incidencia && estado.medida.startsWith("incidencia")) estado.medida = "casos";
   $('[data-medida="alerta"]').hidden = !d.semana_alerta;
+  const indisp = $("#alerta-indisponivel");
+  indisp.hidden = !!d.semana_alerta;
+  if (!d.semana_alerta) indisp.textContent = `Alerta da semana indisponível: ${MOTIVOS_GERAIS[d.alerta_motivo_geral] || MOTIVOS_GERAIS.sem_historico}`;
   if (!d.semana_alerta && estado.medida === "alerta") estado.medida = d.incidencia ? "incidencia" : "casos";
   marcarMedida();
   $$("[data-medida]").forEach((b) => b.onclick = () => {
@@ -140,7 +149,7 @@ function desenharMapa(d, geo) {
   const sem = d.semana_alerta;
   const legendaAlerta = alerta ? `<div class="escala escala-alerta"><div class="escala-tit">Alerta da semana</div>
       ${["acima", "dentro", "abaixo"].map((n) => `<div class="escala-sem"><i class="amostra" style="background:${COR[n]}"></i>${NIVEIS[n]}</div>`).join("")}
-      <div class="escala-sem"><svg viewBox="0 0 14 14" aria-hidden="true"><rect width="14" height="14" fill="url(#sem-dado)"></rect></svg>${SEM_HISTORICO}</div>
+      <div class="escala-sem"><svg viewBox="0 0 14 14" aria-hidden="true"><rect width="14" height="14" fill="url(#sem-dado)"></rect></svg>Sem nível nesta semana</div>
       </div>` : "";
   const hachura = `<defs><pattern id="sem-dado" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
     <rect width="8" height="8" fill="${css("--mapa-vazio")}"></rect><rect width="3" height="8" fill="${css("--muted")}"></rect></pattern></defs>`;
@@ -226,7 +235,7 @@ function desenharLateral(d) {
     nome = r.municipio; uf = m.ufs_nome[r.uf] || r.uf; inc = r.incidencia; suav = r.incidencia_suavizada; casos = r.casos; obitos = r.obitos;
     botao = f.mun ? "Ver perfil dos casos" : "Filtrar este município";
     if (d.semana_alerta) {
-      const n = d.contagens_ocultas || r.casos_semana == null ? "" : `${fmt(r.casos_semana)} ${r.casos_semana === 1 ? "notificação" : "notificações"} na semana ${d.semana_alerta.semana}` + (r.esperado_ate == null ? "" : `; esperado até ${fmt(r.esperado_ate)}`);
+      const n = d.contagens_ocultas || r.casos_semana == null ? "" : `${fmt(r.casos_semana)} ${r.casos_semana === 1 ? "notificação" : "notificações"} na semana ${d.semana_alerta.semana}` + (r.esperado_ate == null ? "" : `; esperado até ${fmt(r.esperado_ate, 1)}`);
       nivel = `<h3>Alerta da semana ${d.semana_alerta.semana}</h3><p class="card-sub">${esc(textoNivel(r))}${n ? `<br>${n}` : ""}</p>`;
     }
   } else {
