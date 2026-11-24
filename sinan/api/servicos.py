@@ -8,8 +8,8 @@ import numpy as np
 import pandas as pd
 
 from .. import agravos as cat
+from .. import config, rotulos
 from .. import consultas as cq
-from .. import rotulos
 from ..processar import CAMPOS_HOSP
 from ..tabnet import VariavelDef, ler_def
 from . import cache
@@ -140,14 +140,30 @@ def faixa_esperada(semana: pd.DataFrame, anos: pd.DataFrame,
     return q[[*grupos, "sem_epi", "q1", "mediana", "q3"]].sort_values([*grupos, "sem_epi"]).reset_index(drop=True)
 
 
+def ufs_da_serie(f: cq.Filtro, area: tuple[str, ...]) -> tuple[str, ...]:
+    """UFs que a contagem da série cobre: as escolhidas, as dos municípios escolhidos ou a área."""
+    if f.ufs:
+        return f.ufs
+    if f.municipios:
+        return tuple(sorted({config.UFS[m[:2]] for m in f.municipios if m[:2] in config.UFS}))
+    return area
+
+
+def filtro_da_serie(f: cq.Filtro, area: tuple[str, ...]) -> cq.Filtro:
+    """Sem UF nem município, restringe à área cuja cobertura é conferida."""
+    return f if f.ufs or f.municipios else replace(f, ufs=area)
+
+
 def canal_endemico(f: cq.Filtro, area: tuple[str, ...]) -> dict | None:
     """Faixa esperada por semana (quartis dos anos anteriores) ou None sem histórico suficiente."""
     ano = f.ano_fim
-    cobertos = anos_epi_cobertos(cq.anos_notificacao_cobertos(f.agravo, area))
-    cobertos = [a for a in cobertos if a >= ano - CANAL_ANOS]  # janela fixa: ano sem dado não vira zero
-    sem = cq.por_semana(replace(f, ano_ini=ano - CANAL_ANOS, ano_fim=ano))
+    cobertos = anos_epi_cobertos(cq.anos_notificacao_cobertos(f.agravo, ufs_da_serie(f, area)))
+    candidatos = sorted(a for a in cobertos if a < ano)[-CANAL_ANOS:]  # ano sem dado não vira zero
+    if not candidatos:
+        return None
+    sem = cq.por_semana(replace(filtro_da_serie(f, area), ano_ini=min(candidatos), ano_fim=ano))
     tot = sem.groupby("ano_epi", as_index=False)["casos"].sum()
-    anos = anos_do_canal(tot, ano, cobertos)
+    anos = anos_do_canal(tot, ano, candidatos)
     faixa = faixa_esperada(sem, anos)
     if faixa.empty:
         return None

@@ -30,7 +30,7 @@ def api_visao(ctx: Filtros):
         return {
             "indicadores": ind,
             # com município escolhido, a contagem semanal é pequena demais para o site publicado
-            "semana": None if ctx.restrito else registros(cq.por_semana(f)),
+            "semana": None if ctx.restrito else registros(cq.por_semana(servicos.filtro_da_serie(f, ctx.area))),
             "canal": None if ctx.restrito else servicos.canal_endemico(f, ctx.area),
             "contagens_ocultas": ctx.restrito,
             "ano": registros(ano),

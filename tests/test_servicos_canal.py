@@ -2,6 +2,7 @@ import pandas as pd
 
 from sinan import consultas as cq
 from sinan import processar
+from sinan.api import servicos
 from sinan.api.servicos import anos_do_canal, anos_epi_cobertos, faixa_esperada
 
 
@@ -151,3 +152,32 @@ def test_quartis_interpolacao_linear():
     s = pd.DataFrame({"ano_epi": list(range(2018, 2024)), "sem_epi": 10, "casos": [0, 1, 2, 3, 4, 10]})
     f = faixa_esperada(s, anos, semanas=(10,))
     assert f[["q1", "mediana", "q3"]].iloc[0].tolist() == [1.25, 2.5, 3.75]
+
+
+def test_ufs_da_serie():
+    area = ("AM", "RR")
+    assert servicos.ufs_da_serie(cq.Filtro("DENG", 2020, 2020, ufs=("AM",)), area) == ("AM",)
+    assert servicos.ufs_da_serie(cq.Filtro("DENG", 2020, 2020, municipios=("140010",)), area) == ("RR",)
+    assert servicos.ufs_da_serie(cq.Filtro("DENG", 2020, 2020), area) == area
+
+
+def test_filtro_da_serie():
+    area = ("AM", "RR")
+    assert servicos.filtro_da_serie(cq.Filtro("DENG", 2020, 2020), area).ufs == area
+    com_uf = cq.Filtro("DENG", 2020, 2020, ufs=("AM",))
+    com_mun = cq.Filtro("DENG", 2020, 2020, municipios=("140010",))
+    assert servicos.filtro_da_serie(com_uf, area) == com_uf
+    assert servicos.filtro_da_serie(com_mun, area) == com_mun
+
+
+def test_ufs_da_serie_varios_municipios_e_codigo_desconhecido():
+    area = ("AM", "RR")
+    assert servicos.ufs_da_serie(cq.Filtro("DENG", 2020, 2020, municipios=("140010", "130260")), area) == ("AM", "RR")
+    assert servicos.ufs_da_serie(cq.Filtro("DENG", 2020, 2020, municipios=("990010",)), area) == ()
+
+
+def test_canal_sem_uf_conhecida_nao_tem_canal(monkeypatch):
+    inv = {f"DENG_{a}": {"agravo": "DENG", "ano": a, "ufs": ["RR"]} for a in range(2010, 2021)}
+    monkeypatch.setattr(processar, "ler_inventario", lambda: inv)  # sem "BR"
+    f = cq.Filtro("DENG", 2020, 2020, municipios=("990010",))
+    assert servicos.canal_endemico(f, ("RR",)) is None

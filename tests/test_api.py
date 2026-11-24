@@ -271,13 +271,19 @@ def test_visao_traz_canal(cliente, dados_teste, cache_limpo, monkeypatch):
     assert next(s for s in d["canal"]["semanas"] if s["sem_epi"] == 10)["mediana"] == 10
 
 
-def test_canal_ignora_anos_fora_da_janela(cliente, dados_teste, cache_limpo, monkeypatch):
+def test_canal_usa_os_7_anos_cobertos_mais_recentes(cliente, dados_teste, cache_limpo, monkeypatch):
     # cobertura 1995-1997 e 2001-2007: anos epidemiológicos 1995, 1996, 2001..2006
     hist = pd.DataFrame({"ano_epi": [1995, 1996, *range(2001, 2007)], "sem_epi": 10, "casos": 10})
-    monkeypatch.setattr(cq, "por_semana", lambda f: hist[hist.ano_epi.between(f.ano_ini, f.ano_fim)])
+    pedidos = []
+
+    def por_semana(f):
+        pedidos.append(f)
+        return hist[hist.ano_epi.between(f.ano_ini, f.ano_fim)]
+    monkeypatch.setattr(cq, "por_semana", por_semana)
     monkeypatch.setattr(cq, "anos_notificacao_cobertos",
                         lambda agravo, ufs: [1995, 1996, 1997, *range(2001, 2008)])
     d = cliente.get("/api/visao", params={"agravo": "ACBI", "ini": 2006, "fim": 2006}).json()
-    assert d["canal"]["anos"] == [2001, 2002, 2003, 2004, 2005]
+    assert d["canal"]["anos"] == [1995, 1996, 2001, 2002, 2003, 2004, 2005]
     s10 = next(s for s in d["canal"]["semanas"] if s["sem_epi"] == 10)
-    assert s10["mediana"] == 10 and s10["q1"] == 10
+    assert s10["q1"] == s10["mediana"] == s10["q3"] == 10
+    assert any(f.ano_ini == 1995 for f in pedidos)
