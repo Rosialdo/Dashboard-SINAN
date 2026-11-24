@@ -29,6 +29,8 @@
   --serie-1: #00899c;
   --serie-2: #e8692c;
   --serie-ctx: #848f9a;
+  --faixa: rgba(132, 143, 154, 0.22);
+  --faixa-linha: #5d6a76;
   --grid: #e8edf0;
   --eixo: #c9d2d8;
   --mapa-vazio: #e7ecef;
@@ -69,6 +71,8 @@
   --serie-1: #14a8a3;
   --serie-2: #e06a26;
   --serie-ctx: #6a7b8b;
+  --faixa: rgba(106, 123, 139, 0.28);
+  --faixa-linha: #9fb0c0;
   --grid: #1b2d3d;
   --eixo: #2b4052;
   --mapa-vazio: #1a2c3c;
